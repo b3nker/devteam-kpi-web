@@ -1,0 +1,18 @@
+table {
+  width: 75%;
+}
+table.center {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+tr.is-green {
+  background : #006400;
+}
+tr.is-red {
+  background : #FF0000;
+}
+
+tr.is-orange {
+  background : #FFA500;
+}
