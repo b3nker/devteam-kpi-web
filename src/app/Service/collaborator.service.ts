@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable, pipe} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {Collaborator, CollaboratorAdapter} from './collaborator';
+import {Collaborator, CollaboratorAdapter} from '../Model/collaborator';
 @Injectable({
   providedIn: 'root'
 })

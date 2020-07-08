@@ -1,6 +1,6 @@
 import {Collaborator, CollaboratorAdapter} from './collaborator';
 import {Injectable} from '@angular/core';
-import {Adapter} from './adapter';
+import {Adapter} from '../Service/adapter';
 
 export class Team {
   private _name: string;
@@ -25,33 +25,25 @@ export class Team {
   providedIn: 'root',
 })
 export class TeamAdapter implements Adapter<Team>{
-  adapt(item: any): Team {
+  static adapt(item: any): Team {
     // tslint:disable-next-line:no-shadowed-variable
     const arrayOfCollaborators = item.collaborators.map(item => {
-      // Essayer de remplacer par une instance de CollaboratorAdapter
-      return new Collaborator(
-        item.accountId,
-        item.firstName,
-        item.name,
-        item.emailAddress,
-        item.velocity,
-        item.workedTime,
-        item.estimatedTime,
-        item.loggedTime,
-        item.remainingTime,
-        item.nbTickets,
-        item.nbDone,
-        item.nbInProgress,
-        item.nbToDo,
-        item.spTotal,
-        item.spInProgress,
-        item.spToDo,
-        item.spDone,
-        item.role
-      );
+      return CollaboratorAdapter.adapt(item);
     });
     return new Team(
       item.name,
-      arrayOfCollaborators);
+      arrayOfCollaborators
+    );
+  }
+
+  adapt(item: any): Team {
+    // tslint:disable-next-line:no-shadowed-variable
+    const arrayOfCollaborators = item.collaborators.map(item => {
+      return CollaboratorAdapter.adapt(item);
+    });
+    return new Team(
+        item.name,
+        arrayOfCollaborators
+    );
   }
 }

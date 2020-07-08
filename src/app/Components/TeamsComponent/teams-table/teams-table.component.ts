@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Team} from '../../../team';
-import {TeamService} from '../../../team.service';
+import {Team} from '../../../Model/team';
+import {TeamService} from '../../../Service/team.service';
 import {Router} from '@angular/router';
 
 export interface TableElement {

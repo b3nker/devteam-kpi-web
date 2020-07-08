@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {TeamService} from '../../../team.service';
+import {TeamService} from '../../../Service/team.service';
 import {Router} from '@angular/router';
-import {Team} from '../../../team';
+import {Team} from '../../../Model/team';
 
 @Component({
   selector: 'app-burndown-chart',

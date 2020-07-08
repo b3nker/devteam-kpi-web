@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChartType, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-import {Collaborator} from '../../../collaborator';
-import {CollaboratorService} from '../../../collaborator.service';
+import {Collaborator} from '../../../Model/collaborator';
+import {CollaboratorService} from '../../../Service/collaborator.service';
 import {Router} from '@angular/router';
 
 @Component({

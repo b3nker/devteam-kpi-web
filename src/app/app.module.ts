@@ -28,6 +28,7 @@ import { CollaboratorComponent } from './Components/CollaboratorsComponent/colla
 import { TeamPieChartComponent } from './Components/TeamComponent/team-pie-chart/team-pie-chart.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { TeamChartsComponent } from './Components/TeamComponent/team-charts/team-charts.component';
+import { TestComponentComponent } from './Components/OtherComponent/test-component/test-component.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { TeamChartsComponent } from './Components/TeamComponent/team-charts/team
     CollaboratorComponent,
     TeamPieChartComponent,
     TeamChartsComponent,
+    TestComponentComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,7 @@ import { TeamChartsComponent } from './Components/TeamComponent/team-charts/team
       {path: 'beta/sprint', component: TeamComponent},
       {path: 'gamma/sprint', component: TeamComponent},
       {path: 'teams/sprint', component: TeamsComponent},
+      {path: 'sprint', component: TestComponentComponent},
       {path: '404', component: NotFoundComponent},
       {path: '**', redirectTo: '/404'}
     ]),

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Collaborator} from '../../../collaborator';
-import {CollaboratorService} from '../../../collaborator.service';
+import {Collaborator} from '../../../Model/collaborator';
+import {CollaboratorService} from '../../../Service/collaborator.service';
 import {Router} from '@angular/router';
 import Table = WebAssembly.Table;
 

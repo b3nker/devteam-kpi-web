@@ -1,5 +1,5 @@
-import {Adapter} from './adapter';
 import {Injectable} from '@angular/core';
+import {Adapter} from '../Service/adapter';
 
 
 export class Collaborator {
@@ -128,7 +128,7 @@ export class Collaborator {
   providedIn: 'root',
 })
 export class CollaboratorAdapter implements Adapter<Collaborator>{
-  adapt(item: any): Collaborator {
+  static adapt(item: any): Collaborator {
     return new Collaborator(
       item.accountId,
       item.firstName,
@@ -150,4 +150,30 @@ export class CollaboratorAdapter implements Adapter<Collaborator>{
       item.role
   );
   }
+
+  adapt(item: any): Collaborator {
+    return new Collaborator(
+        item.accountId,
+        item.firstName,
+        item.name,
+        item.emailAddress,
+        item.velocity,
+        item.workedTime,
+        item.estimatedTime,
+        item.loggedTime,
+        item.remainingTime,
+        item.nbTickets,
+        item.nbDone,
+        item.nbInProgress,
+        item.nbToDo,
+        item.spTotal,
+        item.spToDo,
+        item.spInProgress,
+        item.spDone,
+        item.role
+    );
+  }
+}
+
+class CollaboratorAdapterImpl extends CollaboratorAdapter {
 }

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CollaboratorService} from '../../../collaborator.service';
+import {CollaboratorService} from '../../../Service/collaborator.service';
 import {Router} from '@angular/router';
-import {TeamService} from '../../../team.service';
-import {Team} from '../../../team';
+import {TeamService} from '../../../Service/team.service';
+import {Team} from '../../../Model/team';
 
 export interface TableElement {
   name: string;

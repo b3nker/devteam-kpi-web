@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {Collaborator} from '../../../collaborator';
-import {CollaboratorService} from '../../../collaborator.service';
+import {Collaborator} from '../../../Model/collaborator';
+import {CollaboratorService} from '../../../Service/collaborator.service';
 import {Router} from '@angular/router';
 import {ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-import {Team} from '../../../team';
-import {TeamService} from '../../../team.service';
+import {Team} from '../../../Model/team';
+import {TeamService} from '../../../Service/team.service';
 
 @Component({
   selector: 'app-team-pie-chart',
