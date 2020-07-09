@@ -28,10 +28,15 @@ export class CollaboratorTableComponent implements OnInit{
   anonymCollaborators: Array<AnonymCollaborator> = [];
   collaborators: Array<Collaborator> = [];
   ELEMENT_DATA: TableElement[] = [];
-  displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'workedTime', 'tickets', 'ticketsDone'];
-  displayedTooltip: string[] = ['Nom du développeur', 'Somme des temps estimés pour toutes les tâches finies',
-    'Somme des temps enregistrés', 'Somme des temps restants', 'Temps de présence sur le sprint', 'Tickets alloués sur le sprint',
-    'Tickets terminés sur le sprint'];
+  displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'workedTime', 'tickets', 'ticketsDone', 'statut'];
+  displayedTooltip: string[] = ['Nom du développeur',
+    'Somme des temps estimés pour toutes les tâches finies',
+    'Somme des temps enregistrés', 'Somme des temps restants',
+    'Temps de présence sur le sprint',
+    'Tickets alloués sur le sprint',
+    'Tickets terminés sur le sprint',
+    'Statut du collaborateur'
+  ];
   dataSource: TableElement[] = [];
   constructor(private collaboratorService: CollaboratorService, private router: Router) { }
   ngOnInit(): void{
@@ -51,7 +56,7 @@ export class CollaboratorTableComponent implements OnInit{
           leftToDo: c.remainingTime,
           tickets: c.nbTickets,
           ticketsDone: c.nbDone,
-          workedTime: c.workedTime
+          workedTime: c.totalWorkingTime
         };
         this.anonymCollaborators.push(anonymCollab);
         this.ELEMENT_DATA.push(elem);

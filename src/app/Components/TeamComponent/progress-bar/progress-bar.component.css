@@ -1,0 +1,13 @@
+.app-progress-bar{
+    width: 50%;
+    height: 3%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px
+}
+p{
+    padding: 20px;
+    text-align: center;
+}
+

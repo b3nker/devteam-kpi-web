@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {Sprint} from '../../../Model/sprint';
+import {Team} from '../../../Model/team';
+import {SprintService} from '../../../Service/sprint.service';
 
 @Component({
   selector: 'app-teams',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./teams.component.css']
 })
 export class TeamsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  sprint: Sprint;
+  constructor(private sprintService: SprintService){
   }
-
+  ngOnInit(): void {
+    this.sprintService.getSprint().subscribe(data => {
+      this.sprint = data[0];
+    });
+  }
 }

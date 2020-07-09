@@ -7,14 +7,14 @@ table.center {
   margin-right:auto;
 }
 td.is-green {
-  background : #006400;
+  background : #26A65B;
 }
 td.is-red {
-  background : #FF0000;
+  background : #e95549;
 }
 
 td.is-orange {
-  background : #FFA500;
+  background : #FFA400;
 }
 
 

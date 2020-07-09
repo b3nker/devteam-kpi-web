@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
 import {TeamService} from '../../../Service/team.service';
@@ -10,8 +10,8 @@ import {Team} from '../../../Model/team';
   templateUrl: './team-charts.component.html',
   styleUrls: ['./team-charts.component.css']
 })
-export class TeamChartsComponent implements OnInit {
-
+export class TeamChartsComponent implements OnChanges {
+  @Input() team: Team;
   private names: Array<string> = [];
   private spDone: Array<number> = [];
   private spToDo: Array<number> = [];
@@ -30,32 +30,29 @@ export class TeamChartsComponent implements OnInit {
   ];
   public barChartColors: Color[] = [
     { backgroundColor: '#DCDCDC' },
-    { backgroundColor: '#ADD8E6' },
-    { backgroundColor: '#90EE90' }
+    { backgroundColor: '#59ABE3' },
+    { backgroundColor: '#26A65B' }
   ];
-
-  team: Team;
   constructor(private teamService: TeamService, private router: Router) {}
 
-  ngOnInit(): void {
-      this.teamService.getTeam(this.router.url).subscribe(data => {
-        this.team = data[0];
-        const elem: any = {
-          name: this.team.name,
-          toDo: 0,
-          inProgress: 0,
-          done: 0
-        };
-        for (const c of this.team.collaborators){
-          elem.toDo += c.spToDo;
-          elem.inProgress += c.spInProgress;
-          elem.done += c.spDone;
-        }
-        this.names.push(elem.name);
-        this.spDone.push(elem.toDo);
-        this.spToDo.push(elem.inProgress);
-        this.spInProgress.push(elem.done);
-      });
+  ngOnChanges(): void {
+    if (typeof this.team !== 'undefined') {
+      const elem: any = {
+        name: this.team.name,
+        toDo: 0,
+        inProgress: 0,
+        done: 0
+      };
+      for (const c of this.team.collaborators) {
+        elem.toDo += c.spToDo;
+        elem.inProgress += c.spInProgress;
+        elem.done += c.spDone;
+      }
+      this.names.push(elem.name);
+      this.spDone.push(elem.toDo);
+      this.spToDo.push(elem.inProgress);
+      this.spInProgress.push(elem.done);
+    }
   }
 
 }

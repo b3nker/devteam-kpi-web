@@ -11,6 +11,11 @@ export class Sprint {
     private _startDate: string;
     private _endDate: string;
 
+
+    set teams(value: Team[]) {
+        this._teams = value;
+    }
+
     get name(): string {
         return this._name;
     }
@@ -23,7 +28,7 @@ export class Sprint {
         return this._totalTime;
     }
 
-    get team(): Team[] {
+    get teams(): Team[] {
         return this._teams;
     }
 

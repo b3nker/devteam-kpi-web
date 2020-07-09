@@ -25,10 +25,12 @@ import { BurndownChartComponent } from './Components/TeamComponent/burndown-char
 import { TeamComponent } from './Components/TeamComponent/team/team.component';
 import { TeamsComponent } from './Components/TeamsComponent/teams/teams.component';
 import { CollaboratorComponent } from './Components/CollaboratorsComponent/collaborator/collaborator.component';
-import { TeamPieChartComponent } from './Components/TeamComponent/team-pie-chart/team-pie-chart.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { TeamChartsComponent } from './Components/TeamComponent/team-charts/team-charts.component';
 import { TestComponentComponent } from './Components/OtherComponent/test-component/test-component.component';
+import { ProgressBarComponent } from './Components/TeamComponent/progress-bar/progress-bar.component';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -45,35 +47,36 @@ import { TestComponentComponent } from './Components/OtherComponent/test-compone
     TeamComponent,
     TeamsComponent,
     CollaboratorComponent,
-    TeamPieChartComponent,
     TeamChartsComponent,
     TestComponentComponent,
+    ProgressBarComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ChartsModule,
-    BrowserAnimationsModule,
-    MatTableModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    RouterModule.forRoot([
-      {path: '', component: WelcomePageComponent},
-      {path: 'all/sprint', component: CollaboratorComponent},
-      {path: 'alpha/sprint', component: TeamComponent},
-      {path: 'beta/sprint', component: TeamComponent},
-      {path: 'gamma/sprint', component: TeamComponent},
-      {path: 'teams/sprint', component: TeamsComponent},
-      {path: 'sprint', component: TestComponentComponent},
-      {path: '404', component: NotFoundComponent},
-      {path: '**', redirectTo: '/404'}
-    ]),
-    MatTooltipModule,
-    MatGridListModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ChartsModule,
+        BrowserAnimationsModule,
+        MatTableModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        RouterModule.forRoot([
+            {path: '', component: WelcomePageComponent},
+            {path: 'sprint/all', component: CollaboratorComponent},
+            {path: 'sprint/alpha', component: TeamComponent},
+            {path: 'sprint/beta', component: TeamComponent},
+            {path: 'sprint/gamma', component: TeamComponent},
+            {path: 'sprint/teams', component: TeamsComponent},
+            {path: '404', component: NotFoundComponent},
+            {path: '**', redirectTo: '/404'}
+        ]),
+        MatTooltipModule,
+        MatGridListModule,
+        MatProgressBarModule,
+        MatProgressSpinnerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

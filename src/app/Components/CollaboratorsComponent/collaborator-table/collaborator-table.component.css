@@ -5,13 +5,13 @@ table.center {
   margin-left:auto;
   margin-right:auto;
 }
-tr.is-green {
-  background : #006400;
+td.is-green {
+  background : #5dd340;
 }
-tr.is-red {
-  background : #FF0000;
+td.is-red {
+  background : #e95549;
 }
 
-tr.is-orange {
-  background : #FFA500;
+td.is-orange {
+  background : #f1d03e;
 }

@@ -7,6 +7,14 @@ export class Team {
   private _collaborators: Collaborator[];
 
 
+  set name(value: string) {
+    this._name = value;
+  }
+
+  set collaborators(value: Collaborator[]) {
+    this._collaborators = value;
+  }
+
   get name(): string {
     return this._name;
   }

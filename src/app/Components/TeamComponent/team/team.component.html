@@ -1,2 +1,3 @@
-<app-team-table></app-team-table>
-<app-team-charts></app-team-charts>
+<app-team-table [team]="team"></app-team-table>
+<app-team-charts [team]="team"></app-team-charts>
+<app-progress-bar [totalTime]="sprint.totalTime" [timeLeft]="sprint.timeLeft"></app-progress-bar>
