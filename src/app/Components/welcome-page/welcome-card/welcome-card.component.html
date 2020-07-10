@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>{{team.name}}</mat-card-title>
+        <mat-card-subtitle>Scrum Master :</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <ul>
+            <li *ngFor="let c of collaborators">
+                <p> {{c.getFullName()}}</p>
+            </li>
+        </ul>
+    </mat-card-content>
+</mat-card>
+
+

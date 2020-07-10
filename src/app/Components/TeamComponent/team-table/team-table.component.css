@@ -1,6 +1,7 @@
 table {
-  width: 50%;
+  width: 60%;
   padding-top: 25px;
+  padding-bottom: 25px;
 }
 table.center {
   margin-left:auto;

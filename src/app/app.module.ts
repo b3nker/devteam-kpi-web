@@ -31,6 +31,9 @@ import { TestComponentComponent } from './Components/OtherComponent/test-compone
 import { ProgressBarComponent } from './Components/TeamComponent/progress-bar/progress-bar.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { WelcomeCardComponent } from './Components/welcome-page/welcome-card/welcome-card.component';
+import { TeamChartsByCollaboratorsComponent } from './Components/TeamComponent/team-charts-by-collaborators/team-charts-by-collaborators.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     TeamChartsComponent,
     TestComponentComponent,
     ProgressBarComponent,
+    WelcomeCardComponent,
+    TeamChartsByCollaboratorsComponent,
   ],
     imports: [
         BrowserModule,
@@ -75,7 +80,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
         MatTooltipModule,
         MatGridListModule,
         MatProgressBarModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatCardModule
     ],
   providers: [],
   bootstrap: [AppComponent]

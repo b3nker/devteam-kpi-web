@@ -164,7 +164,7 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.name,
             item.emailAddress,
             item.velocity,
-            item.workedTime,
+            item.totalWorkingTime,
             item.estimatedTime,
             item.loggedTime,
             item.remainingTime,

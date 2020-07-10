@@ -33,8 +33,6 @@ export class TeamChartsComponent implements OnChanges {
     { backgroundColor: '#59ABE3' },
     { backgroundColor: '#26A65B' }
   ];
-  constructor(private teamService: TeamService, private router: Router) {}
-
   ngOnChanges(): void {
     if (typeof this.team !== 'undefined') {
       const elem: any = {
@@ -43,15 +41,40 @@ export class TeamChartsComponent implements OnChanges {
         inProgress: 0,
         done: 0
       };
+      const front: any = {
+        name: 'front',
+        toDo: 0,
+        inProgress: 0,
+        done: 0
+      };
+      const middle: any = {
+        name: 'middle',
+        toDo: 0,
+        inProgress: 0,
+        done: 0
+      };
       for (const c of this.team.collaborators) {
-        elem.toDo += c.spToDo;
-        elem.inProgress += c.spInProgress;
-        elem.done += c.spDone;
+        if (c.getFullName().includes('Non Assigné')){
+          continue;
+        }else{
+          elem.toDo += c.spToDo;
+          elem.inProgress += c.spInProgress;
+          elem.done += c.spDone;
+          if (c.role === 'front'){
+            front.toDo += c.spToDo;
+            front.inProgress += c.spInProgress;
+            front.done += c.spDone;
+          }else if (c.role === 'middle'){
+            middle.toDo += c.spToDo;
+            middle.inProgress += c.spInProgress;
+            middle.done += c.spDone;
+          }
+        }
       }
-      this.names.push(elem.name);
-      this.spDone.push(elem.toDo);
-      this.spToDo.push(elem.inProgress);
-      this.spInProgress.push(elem.done);
+      this.names.push(elem.name, front.name, middle.name);
+      this.spDone.push(elem.done, front.done, middle.done);
+      this.spToDo.push(elem.toDo, front.toDo, middle.toDo);
+      this.spInProgress.push(elem.inProgress, front.inProgress, middle.inProgress);
     }
   }
 

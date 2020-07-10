@@ -1,17 +1,17 @@
 table {
-  width: 75%;
+  width: 60%;
 }
 table.center {
   margin-left:auto;
   margin-right:auto;
 }
 td.is-green {
-  background : #5dd340;
+  background : #26A65B;
 }
 td.is-red {
   background : #e95549;
 }
 
 td.is-orange {
-  background : #f1d03e;
+  background : #FFA400;
 }

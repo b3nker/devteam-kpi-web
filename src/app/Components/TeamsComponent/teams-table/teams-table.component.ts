@@ -21,24 +21,30 @@ export interface TableElement {
 export class TeamsTableComponent implements OnChanges {
     @Input() teams: Array<Team> = [];
     ELEMENT_DATA: any[] = [];
-    dataSource: TableElement[] = [];
-    displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'workedTime', 'tickets', 'ticketsDone'];
-    displayedTooltip: string[] = ['Nom du développeur', 'Somme des temps estimés pour toutes les tâches finies',
-        'Somme des temps enregistrés', 'Somme des temps restants', 'Temps de présence sur le sprint', 'Tickets alloués sur le sprint',
-        'Tickets terminés sur le sprint'];
-
-    constructor(private teamService: TeamService, private router: Router) {
-    }
+    dataSource: any[] = [];
+    displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'availableTime', 'workedTime', 'tickets', 'ticketsDone', 'statut'];
+    displayedTooltip: string[] = [
+        'Nom du développeur',
+        'Alloué',
+        'Consommé',
+        'Reste à faire',
+        'Temps restant disponible d\'ici la fin du sprint',
+        'Temps de présence sur le sprint',
+        'Tickets alloués sur le sprint',
+        'Tickets terminés sur le sprint',
+        'Statut du collaborateur'
+    ];
 
     ngOnChanges(): void {
         if (typeof this.teams !== 'undefined') {
-            let allocatedTime = 0;
-            let consumedTime = 0;
-            let leftToDo = 0;
-            let tickets = 0;
-            let ticketsDone = 0;
-            let workedTime = 0;
             for (const t of this.teams) {
+                let allocatedTime = 0;
+                let consumedTime = 0;
+                let leftToDo = 0;
+                let tickets = 0;
+                let ticketsDone = 0;
+                let workedTime = 0;
+                let availableTime = 0;
                 for (const c of t.collaborators) {
                     allocatedTime += c.estimatedTime;
                     consumedTime += c.loggedTime;
@@ -46,6 +52,8 @@ export class TeamsTableComponent implements OnChanges {
                     tickets += c.nbTickets;
                     ticketsDone += c.nbDone;
                     workedTime += c.totalWorkingTime;
+                    availableTime += c.availableTime;
+
                 }
                 const elem: any = {
                     name: t.name,
@@ -54,7 +62,8 @@ export class TeamsTableComponent implements OnChanges {
                     leftToDo,
                     tickets,
                     ticketsDone,
-                    workedTime
+                    workedTime,
+                    availableTime
                 };
                 this.ELEMENT_DATA.push(elem);
             }

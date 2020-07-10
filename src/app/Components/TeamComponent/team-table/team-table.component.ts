@@ -28,9 +28,9 @@ export class TeamTableComponent implements OnChanges {
     displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'availableTime', 'workedTime', 'tickets', 'ticketsDone', 'statut'];
     displayedTooltip: string[] = [
         'Nom du développeur',
-        'Somme des temps estimés pour toutes les tâches finies',
-        'Somme des temps enregistrés',
-        'Somme des temps restants',
+        'Alloué',
+        'Consommé',
+        'Reste à faire',
         'Temps restant disponible d\'ici la fin du sprint',
         'Temps de présence sur le sprint',
         'Tickets alloués sur le sprint',
