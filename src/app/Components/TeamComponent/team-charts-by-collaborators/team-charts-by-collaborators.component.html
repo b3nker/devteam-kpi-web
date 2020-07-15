@@ -1,8 +1,20 @@
 <div class = "chart" style="display: block;">
     <canvas baseChart  width="8" height="2"
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
+            [datasets]="barChartDataFront"
+            [labels]="barChartLabelsFront"
+            [options]="barChartOptionsFront"
+            [colors]="barChartColors"
+            [plugins]="barChartPlugins"
+            [legend]="barChartLegend"
+            [chartType]="barChartType">
+    </canvas>
+</div>
+
+<div class = "chart" style="display: block;">
+    <canvas baseChart  width="8" height="2"
+            [datasets]="barChartDataMiddle"
+            [labels]="barChartLabelsMiddle"
+            [options]="barChartOptionsMiddle"
             [colors]="barChartColors"
             [plugins]="barChartPlugins"
             [legend]="barChartLegend"

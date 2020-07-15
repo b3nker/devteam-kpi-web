@@ -14,14 +14,88 @@ export class Collaborator {
     private _remainingTime: number;
     private _nbTickets: number;
     private _nbDone: number;
+    private _nbDevDone: number;
     private _nbInProgress: number;
     private _nbToDo: number;
     private _spTotal: number;
-    private _spDone: number;
-    private _spInProgress: number;
-    private _spToDo: number;
+    private _spAqualifier: number;
+    private _spBacAffinage: number;
+    private _spEnAttente: number;
+    private _spAfaire: number;
+    private _spEncours: number;
+    private _spAbandonne: number;
+    private _spDevTermine: number;
+    private _spAvalider: number;
+    private _spAlivrer: number;
+    private _spATester: number;
+    private _spRefuseEnRecette: number;
+    private _spValideEnRecette: number;
+    private _spLivre: number;
+    private _spTermine: number;
+
     private _role: string;
     private _availableTime: number;
+
+
+    get nbDevDone(): number {
+        return this._nbDevDone;
+    }
+
+    get spAqualifier(): number {
+        return this._spAqualifier;
+    }
+
+    get spBacAffinage(): number {
+        return this._spBacAffinage;
+    }
+
+    get spEnAttente(): number {
+        return this._spEnAttente;
+    }
+
+    get spAfaire(): number {
+        return this._spAfaire;
+    }
+
+    get spEncours(): number {
+        return this._spEncours;
+    }
+
+    get spAbandonne(): number {
+        return this._spAbandonne;
+    }
+
+    get spDevTermine(): number {
+        return this._spDevTermine;
+    }
+
+    get spAvalider(): number {
+        return this._spAvalider;
+    }
+
+    get spAlivrer(): number {
+        return this._spAlivrer;
+    }
+
+    get spATester(): number {
+        return this._spATester;
+    }
+
+    get spRefuseEnRecette(): number {
+        return this._spRefuseEnRecette;
+    }
+
+    get spValideEnRecette(): number {
+        return this._spValideEnRecette;
+    }
+
+    get spLivre(): number {
+        return this._spLivre;
+    }
+
+    get spTermine(): number {
+        return this._spTermine;
+    }
 
     get availableTime(): number {
         return this._availableTime;
@@ -33,18 +107,6 @@ export class Collaborator {
 
     get spTotal(): number {
         return this._spTotal;
-    }
-
-    get spDone(): number {
-        return this._spDone;
-    }
-
-    get spInProgress(): number {
-        return this._spInProgress;
-    }
-
-    get spToDo(): number {
-        return this._spToDo;
     }
 
     get remainingTime(): number {
@@ -104,26 +166,41 @@ export class Collaborator {
         return this._firstName + ' ' + this._name;
     }
 
-    constructor(accountId: string, firstName: string, name: string, emailAddress: string, velocity: number, workedTime: number,
-                estimatedTime: number, loggedTime: number, remainingTime: number, nbTickets: number, nbDone: number, nbInProgress: number,
-                nbToDo: number, spTotal: number, spDone: number, spInProgress: number, spToDo: number, role: string, availableTime: number) {
+    constructor(accountId: string, firstName: string, name: string, emailAddress: string, velocity: number, totalWorkingTime: number,
+                estimatedTime: number, loggedTime: number, remainingTime: number, nbTickets: number, nbDone: number, nbDevDone: number,
+                nbInProgress: number, nbToDo: number, spTotal: number, spAqualifier: number, spBacAffinage: number, spEnAttente: number,
+                spAfaire: number, spEncours: number, spAbandonne: number, spDevTermine: number, spAvalider: number, spAlivrer: number,
+                spATester: number, spRefuseEnRecette: number, spValideEnRecette: number, spLivre: number, spTermine: number, role: string,
+                availableTime: number) {
         this._accountId = accountId;
         this._firstName = firstName;
         this._name = name;
         this._emailAddress = emailAddress;
         this._velocity = velocity;
-        this._totalWorkingTime = workedTime;
+        this._totalWorkingTime = totalWorkingTime;
         this._estimatedTime = estimatedTime;
         this._loggedTime = loggedTime;
         this._remainingTime = remainingTime;
         this._nbTickets = nbTickets;
         this._nbDone = nbDone;
+        this._nbDevDone = nbDevDone;
         this._nbInProgress = nbInProgress;
         this._nbToDo = nbToDo;
         this._spTotal = spTotal;
-        this._spDone = spDone;
-        this._spInProgress = spInProgress;
-        this._spToDo = spToDo;
+        this._spAqualifier = spAqualifier;
+        this._spBacAffinage = spBacAffinage;
+        this._spEnAttente = spEnAttente;
+        this._spAfaire = spAfaire;
+        this._spEncours = spEncours;
+        this._spAbandonne = spAbandonne;
+        this._spDevTermine = spDevTermine;
+        this._spAvalider = spAvalider;
+        this._spAlivrer = spAlivrer;
+        this._spATester = spATester;
+        this._spRefuseEnRecette = spRefuseEnRecette;
+        this._spValideEnRecette = spValideEnRecette;
+        this._spLivre = spLivre;
+        this._spTermine = spTermine;
         this._role = role;
         this._availableTime = availableTime;
     }
@@ -146,12 +223,24 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.remainingTime,
             item.nbTickets,
             item.nbDone,
+            item.nbDevDone,
             item.nbInProgress,
             item.nbToDo,
             item.spTotal,
-            item.spToDo,
-            item.spInProgress,
-            item.spDone,
+            item.spAqualifier,
+            item.spBacAffinage,
+            item.spEnAttente,
+            item.spAfaire,
+            item.spEncours,
+            item.spAbandonne,
+            item.spDevTermine,
+            item.spAvalider,
+            item.spAlivrer,
+            item.spATester,
+            item.spRefuseEnRecette,
+            item.spValideEnRecette,
+            item.spLivre,
+            item.spTermine,
             item.role,
             item.availableTime
         );
@@ -170,17 +259,27 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.remainingTime,
             item.nbTickets,
             item.nbDone,
+            item.nbDevDone,
             item.nbInProgress,
             item.nbToDo,
             item.spTotal,
-            item.spToDo,
-            item.spInProgress,
-            item.spDone,
+            item.spAqualifier,
+            item.spBacAffinage,
+            item.spEnAttente,
+            item.spAfaire,
+            item.spEncours,
+            item.spAbandonne,
+            item.spDevTermine,
+            item.spAvalider,
+            item.spAlivrer,
+            item.spATester,
+            item.spRefuseEnRecette,
+            item.spValideEnRecette,
+            item.spLivre,
+            item.spTermine,
             item.role,
             item.availableTime
         );
     }
 }
 
-class CollaboratorAdapterImpl extends CollaboratorAdapter {
-}

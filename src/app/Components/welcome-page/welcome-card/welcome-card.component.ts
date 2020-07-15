@@ -8,7 +8,7 @@ import {Collaborator} from '../../../Model/collaborator';
   styleUrls: ['./welcome-card.component.css']
 })
 export class WelcomeCardComponent implements OnInit {
-  @Input team: Team;
+  @Input() team: Team;
   collaborators: Array<Collaborator> = []; // To exclude unassigned collaborator
   constructor() { }
 

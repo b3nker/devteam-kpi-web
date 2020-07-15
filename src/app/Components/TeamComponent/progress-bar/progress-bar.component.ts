@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, } from '@angular/core';
 
 @Component({
   selector: 'app-progress-bar',
@@ -6,15 +6,14 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
   styleUrls: ['./progress-bar.component.css']
 })
 export class ProgressBarComponent implements OnChanges {
-  @Input() totalTime: number;
-  @Input() timeLeft: number;
-  hoursInWorkingDay = 8;
-  nbDaysLeft: number;
+  @Input() nbSpDoneTotal: number;
+  @Input() nbSpTotal: number;
   percentage: number;
+  progression: number;
   ngOnChanges(): void{
-    this.percentage = (this.totalTime - this.timeLeft) / this.totalTime;
-    this.percentage = Math.round(this.percentage * 1000) / 1000;
-    this.nbDaysLeft = this.timeLeft / this.hoursInWorkingDay;
+    this.percentage = ((this.nbSpDoneTotal) / this.nbSpTotal) * 100;
+    this.progression = Math.round(this.percentage * 1e2) / 1e2;
+    console.log(this.percentage);
   }
 
 }

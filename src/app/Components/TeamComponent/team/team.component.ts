@@ -3,7 +3,6 @@ import {Sprint} from '../../../Model/sprint';
 import {SprintService} from '../../../Service/sprint.service';
 import {Router} from '@angular/router';
 import {Team} from '../../../Model/team';
-import {Collaborator} from '../../../Model/collaborator';
 
 @Component({
   selector: 'app-team',
@@ -13,6 +12,8 @@ import {Collaborator} from '../../../Model/collaborator';
 export class TeamComponent implements OnInit {
   sprint: Sprint;
   team: Team;
+  nbSpDoneTotal = 0;
+  nbSpTotal = 0;
   teamName = this.router.url.substring(this.router.url.lastIndexOf('/') + 1, this.router.url.length);
   constructor(private sprintService: SprintService, private router: Router){
   }
@@ -23,7 +24,16 @@ export class TeamComponent implements OnInit {
         if (t.name === this.teamName) {
           this.team = t;
         }
+        for (const c of t.collaborators){
+          this.nbSpDoneTotal += c.spAbandonne;
+          this.nbSpDoneTotal += c.spLivre;
+          this.nbSpDoneTotal += c.spTermine;
+          this.nbSpDoneTotal += c.spValideEnRecette;
+          this.nbSpDoneTotal += c.spAvalider;
+          this.nbSpTotal += c.spTotal;
+        }
       }
+      console.log(this.nbSpTotal);
     });
   }
 

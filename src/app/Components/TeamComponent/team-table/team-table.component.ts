@@ -1,20 +1,7 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
-import {Sprint} from '../../../Model/sprint';
-import {SprintService} from '../../../Service/sprint.service';
-import {Router} from '@angular/router';
-import {Collaborator} from '../../../Model/collaborator';
 
-export interface TableElement {
-    name: string;
-    allocatedTime: number;
-    consumedTime: number;
-    leftToDo: number;
-    tickets: number;
-    ticketsDone: number;
-    workedTime: number;
-    availableTime: number;
-}
+
 
 @Component({
     selector: 'app-team-table',
@@ -25,7 +12,7 @@ export class TeamTableComponent implements OnChanges {
     @Input() team: Team;
     ELEMENT_DATA: any[] = [];
     dataSource: any[] = [];
-    displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'availableTime', 'workedTime', 'tickets', 'ticketsDone', 'statut'];
+    displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'availableTime', 'workedTime', 'tickets', 'ticketsDone', 'ticketsDevDone', 'statut'];
     displayedTooltip: string[] = [
         'Nom du développeur',
         'Alloué',
@@ -35,6 +22,7 @@ export class TeamTableComponent implements OnChanges {
         'Temps de présence sur le sprint',
         'Tickets alloués sur le sprint',
         'Tickets terminés sur le sprint',
+        'Tickets dont la phase de développement est terminée',
         'Statut du collaborateur'
     ];
 
@@ -50,6 +38,7 @@ export class TeamTableComponent implements OnChanges {
                         leftToDo: c.remainingTime,
                         tickets: c.nbTickets,
                         ticketsDone: c.nbDone,
+                        ticketsDevDone: c.nbDevDone,
                         workedTime: c.totalWorkingTime,
                         availableTime: c.availableTime
                     };
@@ -61,6 +50,7 @@ export class TeamTableComponent implements OnChanges {
                         leftToDo: c.remainingTime,
                         tickets: c.nbTickets,
                         ticketsDone: c.nbDone,
+                        ticketsDevDone: c.nbDevDone,
                         workedTime: c.totalWorkingTime,
                         availableTime: c.availableTime
                     };
