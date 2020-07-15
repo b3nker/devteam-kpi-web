@@ -22,7 +22,7 @@ export class TeamsTableComponent implements OnChanges {
     @Input() teams: Array<Team> = [];
     ELEMENT_DATA: any[] = [];
     dataSource: any[] = [];
-    displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'availableTime', 'workedTime', 'tickets', 'ticketsDone', 'statut'];
+    displayedColumns: string[] = ['name', 'allocatedTime', 'consumedTime', 'leftToDo', 'availableTime', 'workedTime', 'tickets', 'ticketsDone', 'ticketsDevDone', 'statut'];
     displayedTooltip: string[] = [
         'Nom du développeur',
         'Alloué',
@@ -32,6 +32,7 @@ export class TeamsTableComponent implements OnChanges {
         'Temps de présence sur le sprint',
         'Tickets alloués sur le sprint',
         'Tickets terminés sur le sprint',
+        'Tickets dont la phase de développement est terminée',
         'Statut du collaborateur'
     ];
 
@@ -45,12 +46,14 @@ export class TeamsTableComponent implements OnChanges {
                 let ticketsDone = 0;
                 let workedTime = 0;
                 let availableTime = 0;
+                let ticketsDevDone = 0;
                 for (const c of t.collaborators) {
                     allocatedTime += c.estimatedTime;
                     consumedTime += c.loggedTime;
                     leftToDo += c.remainingTime;
                     tickets += c.nbTickets;
                     ticketsDone += c.nbDone;
+                    ticketsDevDone += c.nbDevDone;
                     workedTime += c.totalWorkingTime;
                     availableTime += c.availableTime;
 
@@ -63,7 +66,8 @@ export class TeamsTableComponent implements OnChanges {
                     tickets,
                     ticketsDone,
                     workedTime,
-                    availableTime
+                    availableTime,
+                    ticketsDevDone
                 };
                 this.ELEMENT_DATA.push(elem);
             }

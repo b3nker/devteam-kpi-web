@@ -21,7 +21,6 @@ import {TeamTableComponent} from './Components/TeamComponent/team-table/team-tab
 import {TeamsTableComponent} from './Components/TeamsComponent/teams-table/teams-table.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { NotFoundComponent } from './Components/not-found/not-found.component';
-import { BurndownChartComponent } from './Components/TeamComponent/burndown-chart/burndown-chart.component';
 import { TeamComponent } from './Components/TeamComponent/team/team.component';
 import { TeamsComponent } from './Components/TeamsComponent/teams/teams.component';
 import { CollaboratorComponent } from './Components/CollaboratorsComponent/collaborator/collaborator.component';
@@ -32,8 +31,10 @@ import { ProgressBarComponent } from './Components/TeamComponent/progress-bar/pr
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { WelcomeCardComponent } from './Components/welcome-page/welcome-card/welcome-card.component';
-import { TeamChartsByCollaboratorsComponent } from './Components/TeamComponent/team-charts-by-collaborators/team-charts-by-collaborators.component';
 import {MatCardModule} from '@angular/material/card';
+import { TeamsChartsComponent } from './Components/TeamsComponent/teams-charts/teams-charts.component';
+import { TeamChartsFrontComponent } from './Components/TeamComponent/team-charts-front/team-charts-front.component';
+import { TeamChartsMiddleComponent } from './Components/TeamComponent/team-charts-middle/team-charts-middle.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,6 @@ import {MatCardModule} from '@angular/material/card';
     TeamTableComponent,
     TeamsTableComponent,
     NotFoundComponent,
-    BurndownChartComponent,
     TeamComponent,
     TeamsComponent,
     CollaboratorComponent,
@@ -54,7 +54,9 @@ import {MatCardModule} from '@angular/material/card';
     TestComponentComponent,
     ProgressBarComponent,
     WelcomeCardComponent,
-    TeamChartsByCollaboratorsComponent,
+    TeamsChartsComponent,
+    TeamChartsFrontComponent,
+    TeamChartsMiddleComponent,
   ],
     imports: [
         BrowserModule,

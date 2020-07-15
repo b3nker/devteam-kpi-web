@@ -2,10 +2,14 @@
   flex: 1 1 auto;
 }
 a{
-  color: #074665;
+  color: #69614e;
 }
 mat-toolbar{
   background-color: #e6e6e6;
-  color: #074665;
+  color: #69614e;
 
+}
+.align{
+  vertical-align: middle;
+  display: inline-block;
 }

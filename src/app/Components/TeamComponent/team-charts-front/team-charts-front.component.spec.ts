@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BurndownChartComponent } from './burndown-chart.component';
+import { TeamChartsFrontComponent } from './team-charts-front.component';
 
-describe('BurndownChartComponent', () => {
-  let component: BurndownChartComponent;
-  let fixture: ComponentFixture<BurndownChartComponent>;
+describe('TeamChartsFrontComponent', () => {
+  let component: TeamChartsFrontComponent;
+  let fixture: ComponentFixture<TeamChartsFrontComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BurndownChartComponent ]
+      declarations: [ TeamChartsFrontComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BurndownChartComponent);
+    fixture = TestBed.createComponent(TeamChartsFrontComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
