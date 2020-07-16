@@ -1,5 +1,5 @@
 table {
-  width: 60%;
+  width: 80%;
   padding-top: 25px;
   padding-bottom: 25px;
 }
@@ -17,5 +17,3 @@ td.is-red {
 td.is-orange {
   background : #FFA400;
 }
-
-

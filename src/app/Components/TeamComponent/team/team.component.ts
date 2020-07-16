@@ -12,8 +12,11 @@ import {Team} from '../../../Model/team';
 export class TeamComponent implements OnInit {
   sprint: Sprint;
   team: Team;
-  nbSpDoneTotal = 0;
-  nbSpTotal = 0;
+  nbSpDoneTotalTeam = 0;
+  nbSpTotalTeam = 0;
+  nbSpEnCoursDevTermine = 0;
+  nbSpATester = 0;
+
   teamName = this.router.url.substring(this.router.url.lastIndexOf('/') + 1, this.router.url.length);
   constructor(private sprintService: SprintService, private router: Router){
   }
@@ -24,16 +27,13 @@ export class TeamComponent implements OnInit {
         if (t.name === this.teamName) {
           this.team = t;
         }
-        for (const c of t.collaborators){
-          this.nbSpDoneTotal += c.spAbandonne;
-          this.nbSpDoneTotal += c.spLivre;
-          this.nbSpDoneTotal += c.spTermine;
-          this.nbSpDoneTotal += c.spValideEnRecette;
-          this.nbSpDoneTotal += c.spAvalider;
-          this.nbSpTotal += c.spTotal;
-        }
       }
-      console.log(this.nbSpTotal);
+      for (const c of this.team.collaborators){
+        this.nbSpDoneTotalTeam += c.spAbandonne + c.spLivre + c.spTermine + c.spValideEnRecette + c.spAvalider;
+        this.nbSpEnCoursDevTermine += c.spEncours + c.spDevTermine;
+        this.nbSpATester += c.spATester;
+        this.nbSpTotalTeam += c.spTotal;
+      }
     });
   }
 

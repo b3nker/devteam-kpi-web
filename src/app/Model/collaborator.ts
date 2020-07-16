@@ -17,6 +17,8 @@ export class Collaborator {
     private _nbDevDone: number;
     private _nbInProgress: number;
     private _nbToDo: number;
+    private _nbEnCoursDevTermine: number;
+    private _nbATester: number;
     private _spTotal: number;
     private _spAqualifier: number;
     private _spBacAffinage: number;
@@ -36,6 +38,14 @@ export class Collaborator {
     private _role: string;
     private _availableTime: number;
 
+
+    get nbEnCoursDevTermine(): number {
+        return this._nbEnCoursDevTermine;
+    }
+
+    get nbATester(): number {
+        return this._nbATester;
+    }
 
     get nbDevDone(): number {
         return this._nbDevDone;
@@ -166,12 +176,13 @@ export class Collaborator {
         return this._firstName + ' ' + this._name;
     }
 
+
     constructor(accountId: string, firstName: string, name: string, emailAddress: string, velocity: number, totalWorkingTime: number,
                 estimatedTime: number, loggedTime: number, remainingTime: number, nbTickets: number, nbDone: number, nbDevDone: number,
-                nbInProgress: number, nbToDo: number, spTotal: number, spAqualifier: number, spBacAffinage: number, spEnAttente: number,
-                spAfaire: number, spEncours: number, spAbandonne: number, spDevTermine: number, spAvalider: number, spAlivrer: number,
-                spATester: number, spRefuseEnRecette: number, spValideEnRecette: number, spLivre: number, spTermine: number, role: string,
-                availableTime: number) {
+                nbInProgress: number, nbToDo: number, nbEnCoursDevTermine: number, nbATester: number, spTotal: number, spAqualifier: number,
+                spBacAffinage: number, spEnAttente: number, spAfaire: number, spEncours: number, spAbandonne: number, spDevTermine: number,
+                spAvalider: number, spAlivrer: number, spATester: number, spRefuseEnRecette: number, spValideEnRecette: number,
+                spLivre: number, spTermine: number, role: string, availableTime: number) {
         this._accountId = accountId;
         this._firstName = firstName;
         this._name = name;
@@ -186,6 +197,8 @@ export class Collaborator {
         this._nbDevDone = nbDevDone;
         this._nbInProgress = nbInProgress;
         this._nbToDo = nbToDo;
+        this._nbEnCoursDevTermine = nbEnCoursDevTermine;
+        this._nbATester = nbATester;
         this._spTotal = spTotal;
         this._spAqualifier = spAqualifier;
         this._spBacAffinage = spBacAffinage;
@@ -226,6 +239,8 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.nbDevDone,
             item.nbInProgress,
             item.nbToDo,
+            item.nbEnCoursDevTermine,
+            item.nbATester,
             item.spTotal,
             item.spAqualifier,
             item.spBacAffinage,
@@ -262,6 +277,8 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.nbDevDone,
             item.nbInProgress,
             item.nbToDo,
+            item.nbEnCoursDevTermine,
+            item.nbATester,
             item.spTotal,
             item.spAqualifier,
             item.spBacAffinage,

@@ -11,21 +11,15 @@ import {Color, Label} from 'ng2-charts';
 export class TeamChartsFrontComponent implements OnChanges {
   @Input() team: Team;
   private names: Array<string> = [];
-  private ROLE = 'front';
-  private spAqualifier: Array<Array<number>> = [];
-  private spBacAffinage: Array<number> = [];
-  private spEnAttente: Array<number> = [];
+  private ROLE = 'Front';
+  private spAqualifierBacAffinnage: Array<Array<number>> = [];
   private spAfaire: Array<number> = [];
-  private spEncours: Array<number> = [];
-  private spAbandonne: Array<number> = [];
-  private spDevTermine: Array<number> = [];
-  private spAvalider: Array<number> = [];
+  private spEnAttente: Array<number> = [];
+  private spRefuseEnRecette: Array<number> = [];
+  private spEncoursDevTermine: Array<number> = [];
   private spAlivrer: Array<number> = [];
   private spATester: Array<number> = [];
-  private spRefuseEnRecette: Array<number> = [];
-  private spValideEnRecette: Array<number> = [];
-  private spLivre: Array<number> = [];
-  private spTermine: Array<number> = [];
+  private spValideEnRecetteLivreTermine: Array<number> = [];
   public barChartOptions: ChartOptions = {
     title: {
       text: 'Repartition des Story Points pour le ' + this.ROLE,
@@ -38,111 +32,82 @@ export class TeamChartsFrontComponent implements OnChanges {
   public barChartLegend = true;
   public barChartPlugins = [];
   public barChartData: ChartDataSets[] = [
-    {data: this.spAqualifier, label: 'A Qualifier', stack: 'a'},
-    {data: this.spBacAffinage, label: 'Bac Affinage', stack: 'a'},
-    {data: this.spEnAttente, label: 'En Attente', stack: 'a'},
+    {data: this.spAqualifierBacAffinnage, label: 'A qualifier/Bac d\'affinage', stack: 'a'},
     {data: this.spAfaire, label: 'A faire', stack: 'a'},
-    {data: this.spEncours, label: 'En cours', stack: 'a'},
-    {data: this.spAbandonne, label: 'Abandonné', stack: 'a'},
-    {data: this.spDevTermine, label: 'Dev Terminé', stack: 'a'},
-    {data: this.spAvalider, label: 'A Valider', stack: 'a'},
-    {data: this.spAlivrer, label: 'A Livrer', stack: 'a'},
-    {data: this.spATester, label: 'A Tester', stack: 'a'},
-    {data: this.spRefuseEnRecette, label: 'Refusé en Recette', stack: 'a'},
-    {data: this.spValideEnRecette, label: 'Validé en Recette', stack: 'a'},
-    {data: this.spLivre, label: 'Livré', stack: 'a'},
-    {data: this.spTermine, label: 'Terminé', stack: 'a'}
+    {data: this.spEnAttente, label: 'En Attente', stack: 'a'},
+    {data: this.spRefuseEnRecette, label: 'Refusé en recette', stack: 'a'},
+    {data: this.spEncoursDevTermine, label: 'En cours/Dev terminé', stack: 'a'},
+    {data: this.spAlivrer, label: 'A livrer', stack: 'a'},
+    {data: this.spATester, label: 'A tester', stack: 'a'},
+    {data: this.spValideEnRecetteLivreTermine, label: 'Validé en recette/Livré/Terminé', stack: 'a'},
   ];
   public barChartColors: Color[] = [
-    {backgroundColor: '#DCDCDC'},
-    {backgroundColor: '#59ABE3'},
-    {backgroundColor: '#26A65B'}
+    {backgroundColor: '#696969'}, // gris foncé
+    {backgroundColor: '#c0c0c0'}, // gris clair
+    {backgroundColor: '#f29120'}, // rouge pastel
+    {backgroundColor: 'red'}, // orange
+    {backgroundColor: '#0052cc'}, // bleu foncé
+    {backgroundColor: '#87CEFA'}, // bleu clair
+    {backgroundColor: '#b1c113'}, // vert clair
+    {backgroundColor: '#7a9823'}, // vert foncé
+
   ];
 
   ngOnChanges(): void {
     if (typeof this.team !== 'undefined') {
       const all: any = {
         name: this.ROLE,
-        aQualifier: 0,
-        bacAffinage: 0,
-        enAttente: 0,
+        aQualifierBacAffinnage: 0,
         aFaire: 0,
-        enCours: 0,
-        abandonne: 0,
-        devTermine: 0,
-        aValider: 0,
+        enAttente: 0,
+        refuseEnRecette: 0,
+        enCoursDevTermine: 0,
         aLivrer: 0,
         aTester: 0,
-        refuseEnRecette: 0,
-        valideEnRecette: 0,
-        livre: 0,
-        termine: 0
+        valideEnRecetteLivreTermine: 0
       };
       for (const c of this.team.collaborators) {
-        if (!c.getFullName().includes('Non Assigné') && c.role === this.ROLE) {
+        if (!c.getFullName().includes('Non Assigné') && c.role.toUpperCase().includes(this.ROLE.toUpperCase())) {
           const elem: any = {
             name: c.getFullName(),
-            aQualifier: c.spAqualifier,
-            bacAffinage: c.spBacAffinage,
-            enAttente: c.spEnAttente,
+            aQualifierBacAffinnage: c.spAqualifier + c.spBacAffinage,
             aFaire: c.spAfaire,
-            enCours: c.spEncours,
-            abandonne: c.spAbandonne,
-            devTermine: c.spDevTermine,
-            aValider: c.spAvalider,
+            enAttente: c.spEnAttente,
+            refuseEnRecette: c.spRefuseEnRecette,
+            enCoursDevTermine: c.spEncours + c.spDevTermine,
             aLivrer: c.spAlivrer,
             aTester: c.spATester,
-            refuseEnRecette: c.spRefuseEnRecette,
-            valideEnRecette: c.spValideEnRecette,
-            livre: c.spLivre,
-            termine: c.spTermine
+            valideEnRecetteLivreTermine: c.spValideEnRecette + c.spLivre + c.spTermine
           };
           this.names.push(elem.name);
-          this.spAqualifier.push(elem.aQualifier);
-          this.spBacAffinage.push(elem.bacAffinage);
-          this.spEnAttente.push(elem.enAttente);
+          this.spAqualifierBacAffinnage.push(elem.aQualifierBacAffinnage);
           this.spAfaire.push(elem.aFaire);
-          this.spEncours.push(elem.enCours);
-          this.spAbandonne.push(elem.abandonne);
-          this.spDevTermine.push(elem.devTermine);
-          this.spAvalider.push(elem.aValider);
+          this.spEnAttente.push(elem.enAttente);
+          this.spRefuseEnRecette.push(elem.refuseEnRecette);
+          this.spEncoursDevTermine.push(elem.enCoursDevTermine);
           this.spAlivrer.push(elem.aLivrer);
           this.spATester.push(elem.aTester);
-          this.spRefuseEnRecette.push(elem.refuseEnRecette);
-          this.spValideEnRecette.push(elem.valideEnRecette);
-          this.spLivre.push(elem.livre);
-          this.spTermine.push(elem.termine);
+          this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
           // On aggrège tous les story points dans la variable "all"
-          all.aQualifier += c.spAqualifier;
-          all.bacAffinage += c.spBacAffinage;
-          all.enAttente += c.spEnAttente;
+          all.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
           all.aFaire += c.spAfaire;
-          all.enCours += c.spEncours;
-          all.abandonne += c.spAbandonne;
-          all.devTermine += c.spDevTermine;
-          all.aValider += c.spAvalider;
+          all.enAttente += c.spEnAttente;
+          all.refuseEnRecette += c.spRefuseEnRecette;
+          all.enCoursDevTermine += c.spEncours + c.spDevTermine;
           all.aLivrer += c.spAlivrer;
           all.aTester += c.spATester;
-          all.refuseEnRecette += c.spRefuseEnRecette;
-          all.valideEnRecette += c.spValideEnRecette;
-          all.livre += c.spLivre;
-          all.termine += c.spTermine;
+          all.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
         }
       }
       this.names.unshift(all.name);
-      this.spAqualifier.unshift(all.aQualifier);
-      this.spBacAffinage.unshift(all.bacAffinage);
-      this.spEnAttente.unshift(all.enAttente);
+      this.spAqualifierBacAffinnage.unshift(all.aQualifierBacAffinnage);
       this.spAfaire.unshift(all.aFaire);
-      this.spEncours.unshift(all.enCours);
-      this.spAbandonne.unshift(all.abandonne);
-      this.spDevTermine.unshift(all.devTermine);
-      this.spAvalider.unshift(all.aValider);
-      this.spATester.unshift(all.aTester);
+      this.spEnAttente.unshift(all.enAttente);
       this.spRefuseEnRecette.unshift(all.refuseEnRecette);
-      this.spValideEnRecette.unshift(all.valideEnRecette);
-      this.spLivre.unshift(all.livre);
-      this.spTermine.unshift(all.termine);
+      this.spEncoursDevTermine.unshift(all.enCoursDevTermine);
+      this.spAlivrer.unshift(all.aLivrer);
+      this.spATester.unshift(all.aTester);
+      this.spValideEnRecetteLivreTermine.unshift(all.valideEnRecetteLivreTermine);
     }
   }
 }
