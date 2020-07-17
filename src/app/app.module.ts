@@ -35,6 +35,8 @@ import {MatCardModule} from '@angular/material/card';
 import { TeamsChartsComponent } from './Components/TeamsComponent/teams-charts/teams-charts.component';
 import { TeamChartsFrontComponent } from './Components/TeamComponent/team-charts-front/team-charts-front.component';
 import { TeamChartsMiddleComponent } from './Components/TeamComponent/team-charts-middle/team-charts-middle.component';
+import { BacklogComponent } from './Components/BacklogComponent/backlog/backlog.component';
+import { PieChartBacklogComponent } from './Components/BacklogComponent/pie-chart-backlog/pie-chart-backlog.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { TeamChartsMiddleComponent } from './Components/TeamComponent/team-chart
     TeamsChartsComponent,
     TeamChartsFrontComponent,
     TeamChartsMiddleComponent,
+    BacklogComponent,
+    PieChartBacklogComponent,
   ],
     imports: [
         BrowserModule,
@@ -76,6 +80,8 @@ import { TeamChartsMiddleComponent } from './Components/TeamComponent/team-chart
             {path: 'sprint/beta', component: TeamComponent},
             {path: 'sprint/gamma', component: TeamComponent},
             {path: 'sprint/teams', component: TeamsComponent},
+            {path: 'backlog', component: BacklogComponent},
+
             {path: '404', component: NotFoundComponent},
             {path: '**', redirectTo: '/404'}
         ]),

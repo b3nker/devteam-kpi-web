@@ -43,7 +43,11 @@ export class PieChartComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public pieChartColors = [
     {
-      backgroundColor: ['rgba(255,0,0,0.3)', 'rgba(0,255,0,0.3)', 'rgba(0,0,255,0.3)'],
+      backgroundColor: [
+          'rgba(255,0,0,0.3)',
+          'rgba(0,255,0,0.3)',
+          'rgba(0,0,255,0.3)',
+      ],
     },
   ];
   // tslint:disable-next-line:typedef
@@ -60,12 +64,4 @@ export class PieChartComponent implements OnInit {
     });
   }
 
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
 }

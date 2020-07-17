@@ -34,7 +34,6 @@ export class Collaborator {
     private _spValideEnRecette: number;
     private _spLivre: number;
     private _spTermine: number;
-
     private _role: string;
     private _availableTime: number;
 
@@ -260,7 +259,6 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.availableTime
         );
     }
-
     adapt(item: any): Collaborator {
         return new Collaborator(
             item.accountId,
