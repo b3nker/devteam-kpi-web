@@ -37,6 +37,7 @@ import { TeamChartsFrontComponent } from './Components/TeamComponent/team-charts
 import { TeamChartsMiddleComponent } from './Components/TeamComponent/team-charts-middle/team-charts-middle.component';
 import { BacklogComponent } from './Components/BacklogComponent/backlog/backlog.component';
 import { PieChartBacklogComponent } from './Components/BacklogComponent/pie-chart-backlog/pie-chart-backlog.component';
+import { LineChartBacklogComponent } from './Components/BacklogComponent/line-chart-backlog/line-chart-backlog.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { PieChartBacklogComponent } from './Components/BacklogComponent/pie-char
     TeamChartsMiddleComponent,
     BacklogComponent,
     PieChartBacklogComponent,
+    LineChartBacklogComponent,
   ],
     imports: [
         BrowserModule,

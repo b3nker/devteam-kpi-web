@@ -12,6 +12,8 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 export class PieChartBacklogComponent implements OnChanges {
     @Input() backlog: Backlog;
     private bugRepartition: number[] = []; // index : {0: low, 1: medium, 2: high, 3: highest}
+    private bugRepartitionWVEC: number[] = []; // index : {0: low, 1: medium, 2: high, 3: highest}
+
     // Pie
     private ticketsLabel: Array<string> = [];
     public pieChartOptions: ChartOptions = {
@@ -28,8 +30,11 @@ export class PieChartBacklogComponent implements OnChanges {
             },
         }
     };
-    public pieChartLabels: Label[] = this.ticketsLabel;
+    public pieChartLabels: Label[];
+    public pieChartLabelsWVEC: Label[];
+
     public pieChartData: number[] = [];
+    public pieChartDataWVEC: number[] = [];
     public pieChartType: ChartType = 'pie';
     public pieChartLegend = false;
     public pieChartPlugins = [pluginDataLabels];
@@ -52,13 +57,20 @@ export class PieChartBacklogComponent implements OnChanges {
                 this.backlog.nbBugsHigh,
                 this.backlog.nbBugsHighest
             );
-            this.pieChartLabels = [
-                'Low: ' + this.backlog.nbBugsLow,
-                'Medium: ' + this.backlog.nbBugsMedium,
-                'High: ' + this.backlog.nbBugsHigh,
-                'Highest: ' + this.backlog.nbBugsHighest
+            this.bugRepartitionWVEC.push(
+                this.backlog.nbBugsLowWVEC,
+                this.backlog.nbBugsMediumWVEC,
+                this.backlog.nbBugsHighWVEC,
+                this.backlog.nbBugsHighestWVEC
+            );
+            this.pieChartLabelsWVEC = [
+                'Low: ' + this.backlog.nbBugsLowWVEC,
+                'Medium: ' + this.backlog.nbBugsMediumWVEC,
+                'High: ' + this.backlog.nbBugsHighWVEC,
+                'Highest: ' + this.backlog.nbBugsHighestWVEC
             ];
             this.pieChartData = this.bugRepartition;
+            this.pieChartDataWVEC = this.bugRepartitionWVEC;
 
         }
     }

@@ -24,8 +24,8 @@ export class TeamsTableComponent implements OnChanges {
     dataSource: any[] = [];
     displayedColumns: string[] = [
         'name',
-        'devTime', // workedTime * velocité attendue
-        'workedTime', // Temps de présence sur le sprint
+        'workedTime', // workedTime * velocité attendue
+        'devTime', // Temps de présence sur le sprint
         'consumedTime', // logged time
         'availableTime', // Temps disponible restant sur le sprint
         'leftToDo', // remaining time

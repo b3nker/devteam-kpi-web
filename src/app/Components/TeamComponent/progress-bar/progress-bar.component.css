@@ -3,12 +3,12 @@
     height: 7%;
     margin-left: auto;
     margin-right: auto;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 p{
-    padding: 20px;
+    padding-top: 20px;
     text-align: center;
 }
 

@@ -21,3 +21,25 @@
 <p>
     <b>Nombre total de bugs actifs sur le projet: </b> {{backlog.nbBugs}} <br>
 </p>
+
+
+<div>
+    <div>
+        <div class="chart">
+            <canvas baseChart
+                    [data]="pieChartDataWVEC"
+                    [labels]="pieChartLabelsWVEC"
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [colors]="pieChartColors"
+                    [legend]="pieChartLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
+<div>
+</div>
+<p>
+    <b>Nombre total de bugs actifs sur le projet (sans l'état "Validé en recette"): </b> {{backlog.nbBugsWVEC}} <br>
+</p>
