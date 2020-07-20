@@ -40,7 +40,6 @@ export class ProgressBarComponent implements OnChanges {
   getNumber(now: Date, fin: Date): number{
     let nbWeekendDays = 0;
     const daysBetween = now;
-    console.log(daysBetween.getTime() + ' ' + fin.getTime());
     if (now.getTime() <= fin.getTime()){
       while (daysBetween.getTime() < fin.getTime()){
         if (daysBetween.getDay() % 6 === 0){

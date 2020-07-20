@@ -5,6 +5,9 @@ import {Adapter} from '../Service/adapter';
 
 export class Sprint {
     private _name: string;
+    private _initialCommitment: number;
+    private _finalCommitment: number;
+    private _addedWork: number;
     private _timeLeft: number;
     private _totalTime: number;
     private _teams: Team[];
@@ -14,6 +17,18 @@ export class Sprint {
 
     set teams(value: Team[]) {
         this._teams = value;
+    }
+
+    get initialCommitment(): number {
+        return this._initialCommitment;
+    }
+
+    get finalCommitment(): number {
+        return this._finalCommitment;
+    }
+
+    get addedWork(): number {
+        return this._addedWork;
     }
 
     get name(): string {
@@ -28,6 +43,7 @@ export class Sprint {
         return this._totalTime;
     }
 
+    // tslint:disable-next-line:adjacent-overload-signatures
     get teams(): Team[] {
         return this._teams;
     }
@@ -40,8 +56,12 @@ export class Sprint {
         return this._endDate;
     }
 
-    constructor(name: string, timeLeft: number, totalTime: number, teams: Team[], startDate: string, endDate: string) {
+    constructor(name: string, initialCommitment: number, finalCommitment: number, addedWork: number, timeLeft: number, totalTime: number,
+                teams: Team[], startDate: string, endDate: string) {
         this._name = name;
+        this._initialCommitment = initialCommitment;
+        this._finalCommitment = finalCommitment;
+        this._addedWork = addedWork;
         this._timeLeft = timeLeft;
         this._totalTime = totalTime;
         this._teams = teams;
@@ -61,6 +81,9 @@ export class SprintAdapter implements Adapter<Sprint> {
         });
         return new Sprint(
             item.name,
+            item.initialCommitment,
+            item.finalCommitment,
+            item.addedWork,
             item.timeLeft,
             item.totalTime,
             arrayOfTeams,

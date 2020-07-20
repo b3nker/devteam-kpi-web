@@ -1,88 +1,97 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Color, Label} from 'ng2-charts';
 import {ChartDataSets, ChartOptions} from 'chart.js';
+import {Backlog} from '../../../Model/backlog';
 
 @Component({
-  selector: 'app-line-chart-backlog',
-  templateUrl: './line-chart-backlog.component.html',
-  styleUrls: ['./line-chart-backlog.component.css']
+    selector: 'app-line-chart-backlog',
+    templateUrl: './line-chart-backlog.component.html',
+    styleUrls: ['./line-chart-backlog.component.css']
 })
-export class LineChartBacklogComponent implements OnInit {
-  public lineChartData: ChartDataSets[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [180, 480, 770, 90, 1000, 270, 400], label: 'Series C', yAxisID: 'y-axis-1'}
-  ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions: (ChartOptions & { annotation: any }) = {
-    responsive: true,
-    scales: {
-      // We use this empty structure as a placeholder for dynamic theming.
-      xAxes: [{}],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'left',
+export class LineChartBacklogComponent implements OnChanges {
+    @Input() backlog: Backlog;
+    public lineChartData: ChartDataSets[] = [
+      {data: [], label: ''}
+    ];
+    public lineChartLabels: Label[] = [];
+    public lineChartOptions: (ChartOptions & { annotation: any }) = {
+        responsive: true,
+        scales: {
+            // We use this empty structure as a placeholder for dynamic theming.
+            xAxes: [{}],
+            yAxes: [
+                {
+                    id: 'y-axis-0',
+                    position: 'left',
+                }
+            ]
         },
-        {
-          id: 'y-axis-1',
-          position: 'right',
-          gridLines: {
-            color: 'rgba(255,0,0,0.3)',
-          },
-          ticks: {
-            fontColor: 'red',
-          }
-        }
-      ]
-    },
-    annotation: {
-      annotations: [
-        {
-          type: 'line',
-          mode: 'vertical',
-          scaleID: 'x-axis-0',
-          value: 'March',
-          borderColor: 'orange',
-          borderWidth: 2,
-          label: {
-            enabled: true,
-            fontColor: 'orange',
-            content: 'LineAnno'
-          }
+        annotation: {
+            annotations: [
+                {
+                    type: 'line',
+                    mode: 'vertical',
+                    scaleID: 'x-axis-0',
+                    value: 'March',
+                    borderColor: 'orange',
+                    borderWidth: 2,
+                    label: {
+                        enabled: true,
+                        fontColor: 'orange',
+                        content: 'LineAnno'
+                    }
+                },
+            ],
         },
-      ],
-    },
-  };
-  public lineChartColors: Color[] = [
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // red
-      backgroundColor: 'rgba(255,0,0,0.3)',
-      borderColor: 'red',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    }
-  ];
-  public lineChartLegend = true;
-  public lineChartType = 'line';
+    };
+    public lineChartColors: Color[] = [];
+    public lineChartLegend = true;
+    public lineChartType = 'line';
 
-  ngOnInit(): void {
-  }
+    ngOnChanges(): void {
+        if (typeof this.backlog !== 'undefined') {
+          const bugsCreated: any = {
+            data: this.backlog.nbBugsCreated,
+            label: 'Bugs Created'
+          };
+          const bugsResolved: any = {
+            data: this.backlog.nbBugsResolved,
+            label: 'Bugs Resolved'
+          };
+          this.lineChartData = [bugsCreated, bugsResolved];
+          for (const date of this.getDates()) {
+            this.lineChartLabels.push(date);
+          }
+
+          // COLORS
+          // Push grey until the component is fixed, then delete elemColorGrey
+          const elemColorRed: any = {
+            backgroundColor: 'rgba(255,0,0,0.3)',
+            borderColor: 'red',
+            pointBackgroundColor: 'rgba(255,0,0,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgba(255,0,0,0.8)'
+          };
+          const elemColorGreen: any = {
+            backgroundColor: 'rgb(0,128,0,0.3)',
+            borderColor: 'green',
+            pointBackgroundColor: 'rgb(0,128,0,1)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(0,128,0,0.8)'
+          };
+          this.lineChartColors.push(elemColorRed, elemColorGreen);
+        }
+    }
+
+    getDates(): string[] {
+        const dates: string [] = [];
+        for (let i = 0; i < this.backlog.nbBugsResolved.length; i++) {
+            const date = new Date();
+            date.setDate(date.getDate() - i);
+            dates.unshift(date.toDateString());
+        }
+        return dates;
+    }
 }

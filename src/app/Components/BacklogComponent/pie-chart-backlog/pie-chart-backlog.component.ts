@@ -11,7 +11,6 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 })
 export class PieChartBacklogComponent implements OnChanges {
     @Input() backlog: Backlog;
-    private bugRepartition: number[] = []; // index : {0: low, 1: medium, 2: high, 3: highest}
     private bugRepartitionWVEC: number[] = []; // index : {0: low, 1: medium, 2: high, 3: highest}
 
     // Pie
@@ -30,10 +29,7 @@ export class PieChartBacklogComponent implements OnChanges {
             },
         }
     };
-    public pieChartLabels: Label[];
     public pieChartLabelsWVEC: Label[];
-
-    public pieChartData: number[] = [];
     public pieChartDataWVEC: number[] = [];
     public pieChartType: ChartType = 'pie';
     public pieChartLegend = false;
@@ -51,12 +47,6 @@ export class PieChartBacklogComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.backlog !== 'undefined') {
-            this.bugRepartition.push(
-                this.backlog.nbBugsLow,
-                this.backlog.nbBugsMedium,
-                this.backlog.nbBugsHigh,
-                this.backlog.nbBugsHighest
-            );
             this.bugRepartitionWVEC.push(
                 this.backlog.nbBugsLowWVEC,
                 this.backlog.nbBugsMediumWVEC,
@@ -69,9 +59,7 @@ export class PieChartBacklogComponent implements OnChanges {
                 'High: ' + this.backlog.nbBugsHighWVEC,
                 'Highest: ' + this.backlog.nbBugsHighestWVEC
             ];
-            this.pieChartData = this.bugRepartition;
             this.pieChartDataWVEC = this.bugRepartitionWVEC;
-
         }
     }
 }
