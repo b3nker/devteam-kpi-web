@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Team} from '../../../Model/team';
 import {Collaborator} from '../../../Model/collaborator';
 
@@ -7,15 +7,17 @@ import {Collaborator} from '../../../Model/collaborator';
   templateUrl: './welcome-card.component.html',
   styleUrls: ['./welcome-card.component.css']
 })
-export class WelcomeCardComponent implements OnInit {
+export class WelcomeCardComponent implements OnChanges {
   @Input() team: Team;
   collaborators: Array<Collaborator> = []; // To exclude unassigned collaborator
   constructor() { }
 
-  ngOnInit(): void {
-    for (const c of this.team.collaborators){
-      if (!c.getFullName().includes('Non Assigné')) {
-        this.collaborators.push(c);
+  ngOnChanges(): void {
+    if (typeof this.team !== 'undefined'){
+      for (const c of this.team.collaborators){
+        if (!c.getFullName().includes('Non Assigné')) {
+          this.collaborators.push(c);
+        }
       }
     }
   }

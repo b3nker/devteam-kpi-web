@@ -11,6 +11,7 @@ import {Color, Label} from 'ng2-charts';
 export class TeamChartsFrontComponent implements OnChanges {
   @Input() team: Team;
   private names: Array<string> = [];
+  private anonymNames: Array<string> = [];
   private ROLE = 'Front';
   private spAqualifierBacAffinnage: Array<Array<number>> = [];
   private spAfaire: Array<number> = [];

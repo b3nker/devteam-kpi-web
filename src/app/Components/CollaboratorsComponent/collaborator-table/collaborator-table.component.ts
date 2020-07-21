@@ -70,7 +70,6 @@ export class CollaboratorTableComponent implements OnChanges {
                         value: 'Dev ' + i
                     };
                     let velocity = 0;
-                    console.log(c.role);
                     if (c.role.includes('lead dev') || c.role.includes('scrum')){
                         velocity = 0.5;
                     }else {

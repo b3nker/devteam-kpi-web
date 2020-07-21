@@ -38,6 +38,8 @@ import { TeamChartsMiddleComponent } from './Components/TeamComponent/team-chart
 import { BacklogComponent } from './Components/BacklogComponent/backlog/backlog.component';
 import { PieChartBacklogComponent } from './Components/BacklogComponent/pie-chart-backlog/pie-chart-backlog.component';
 import { LineChartBacklogComponent } from './Components/BacklogComponent/line-chart-backlog/line-chart-backlog.component';
+import { TeamRetrospectiveBarChartComponent } from './Components/TeamComponent/team-retrospective-bar-chart/team-retrospective-bar-chart.component';
+import { TeamRetrospectiveLineChartComponent } from './Components/TeamComponent/team-retrospective-line-chart/team-retrospective-line-chart.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import { LineChartBacklogComponent } from './Components/BacklogComponent/line-ch
     BacklogComponent,
     PieChartBacklogComponent,
     LineChartBacklogComponent,
+    TeamRetrospectiveBarChartComponent,
+    TeamRetrospectiveLineChartComponent,
   ],
     imports: [
         BrowserModule,
@@ -83,7 +87,6 @@ import { LineChartBacklogComponent } from './Components/BacklogComponent/line-ch
             {path: 'sprint/gamma', component: TeamComponent},
             {path: 'sprint/teams', component: TeamsComponent},
             {path: 'backlog', component: BacklogComponent},
-
             {path: '404', component: NotFoundComponent},
             {path: '**', redirectTo: '/404'}
         ]),

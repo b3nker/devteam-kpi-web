@@ -11,7 +11,6 @@ import {Team} from '../../../Model/team';
 export class TeamChartsComponent implements OnChanges {
     @Input() team: Team;
     private names: Array<string> = [];
-
     private spAqualifierBacAffinnage: Array<Array<number>> = [];
     private spAfaire: Array<number> = [];
     private spEnAttente: Array<number> = [];
@@ -22,7 +21,7 @@ export class TeamChartsComponent implements OnChanges {
     private spValideEnRecetteLivreTermine: Array<number> = [];
     public barChartOptions: ChartOptions = {
         title: {
-            text: 'Etats des story points dans le sprint pour l\' équipe ',
+            text: 'Etats des Story Points dans le sprint pour l\' équipe ',
             display: true
         },
         responsive: true,

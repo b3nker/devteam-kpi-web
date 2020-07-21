@@ -15,12 +15,20 @@ export class LineChartBacklogComponent implements OnChanges {
     ];
     public lineChartLabels: Label[] = [];
     public lineChartOptions: (ChartOptions & { annotation: any }) = {
+        title: {
+            text: 'Nombre de bugs crées et résolus sur le projet BMKP lors des derniers jours ',
+            display: true
+        },
         responsive: true,
         scales: {
             // We use this empty structure as a placeholder for dynamic theming.
             xAxes: [{}],
             yAxes: [
                 {
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Number of bugs'
+                    },
                     id: 'y-axis-0',
                     position: 'left',
                 }
@@ -59,6 +67,7 @@ export class LineChartBacklogComponent implements OnChanges {
             label: 'Bugs Resolved'
           };
           this.lineChartData = [bugsCreated, bugsResolved];
+
           for (const date of this.getDates()) {
             this.lineChartLabels.push(date);
           }

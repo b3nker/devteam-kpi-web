@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
+import {AnonymCollaborator} from '../../../Model/anonym-collaborator';
 
 
 
@@ -57,7 +58,6 @@ export class TeamTableComponent implements OnChanges {
                     };
                 } else {
                     let velocity = 0;
-                    console.log(c.role);
                     if (c.role.includes('lead dev') || c.role.includes('scrum')){
                         velocity = 0.5;
                     }else {

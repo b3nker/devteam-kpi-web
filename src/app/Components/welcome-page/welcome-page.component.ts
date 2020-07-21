@@ -20,7 +20,6 @@ export class WelcomePageComponent implements OnInit {
       this.dateStart = new Date(this.sprint.startDate);
       this.dateEnd = new Date(this.sprint.endDate);
       this.nbTeams = this.sprint.teams.length.toString();
-      console.log(this.nbTeams);
     });
   }
 
