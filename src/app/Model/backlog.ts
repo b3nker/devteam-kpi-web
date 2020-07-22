@@ -4,37 +4,64 @@ import {Injectable} from '@angular/core';
 export class Backlog {
     private _projectName: string;
     private _nbBugs: number;
-    private _nbBugsWVEC: number;
     private _nbBugsLow: number;
     private _nbBugsMedium: number;
     private _nbBugsHigh: number;
     private _nbBugsHighest: number;
-    private _nbBugsLowWVEC: number;
-    private _nbBugsMediumWVEC: number;
-    private _nbBugsHighWVEC: number;
-    private _nbBugsHighestWVEC: number;
+    private _nbIncidents: number;
+    private _nbIncidentsLow: number;
+    private _nbIncidentsMedium: number;
+    private _nbIncidentsHigh: number;
+    private _nbIncidentsHighest: number;
+    private _nbIncidentsCreated: number[];
+    private _nbIncidentsResolved: number[];
+    private _nbIncidentsInProgress: number [];
     private _nbBugsCreated: number [];
     private _nbBugsResolved: number [];
+    private _nbBugsInProgress: number [];
 
 
-    get nbBugsWVEC(): number {
-        return this._nbBugsWVEC;
+    get nbIncidentsInProgress(): number[] {
+        return this._nbIncidentsInProgress;
     }
 
-    get nbBugsLowWVEC(): number {
-        return this._nbBugsLowWVEC;
+    get nbBugsInProgress(): number[] {
+        return this._nbBugsInProgress;
     }
 
-    get nbBugsMediumWVEC(): number {
-        return this._nbBugsMediumWVEC;
+    get nbIncidents(): number {
+        return this._nbIncidents;
     }
 
-    get nbBugsHighWVEC(): number {
-        return this._nbBugsHighWVEC;
+    get nbIncidentsLow(): number {
+        return this._nbIncidentsLow;
     }
 
-    get nbBugsHighestWVEC(): number {
-        return this._nbBugsHighestWVEC;
+    get nbIncidentsMedium(): number {
+        return this._nbIncidentsMedium;
+    }
+
+    get nbIncidentsHigh(): number {
+        return this._nbIncidentsHigh;
+    }
+
+    get nbIncidentsHighest(): number {
+        return this._nbIncidentsHighest;
+    }
+    get nbIncidentsCreated(): number[] {
+        return this._nbIncidentsCreated;
+    }
+
+    set nbIncidentsCreated(value: number[]) {
+        this._nbIncidentsCreated = value;
+    }
+
+    get nbIncidentsResolved(): number[] {
+        return this._nbIncidentsResolved;
+    }
+
+    set nbIncidentsResolved(value: number[]) {
+        this._nbIncidentsResolved = value;
     }
 
     get nbBugsCreated(): number[] {
@@ -69,20 +96,28 @@ export class Backlog {
         return this._nbBugsHighest;
     }
 
-    constructor(projectName: string, nbBugs: number, nbBugsWVEC: number, nbBugsLow: number, nbBugsMedium: number, nbBugsHigh: number, nbBugsHighest: number, nbBugsLowWVEC: number, nbBugsMediumWVEC: number, nbBugsHighWVEC: number, nbBugsHighestWVEC: number, nbBugsCreated: number[], nbBugsResolved: number[]) {
+
+    constructor(projectName: string, nbBugs: number, nbBugsLow: number, nbBugsMedium: number, nbBugsHigh: number, nbBugsHighest: number,
+                nbIncidents: number, nbIncidentsLow: number, nbIncidentsMedium: number, nbIncidentsHigh: number, nbIncidentsHighest: number,
+                nbIncidentsCreated: number[], nbIncidentsResolved: number[], nbIncidentsInProgress: number[], nbBugsCreated: number[],
+                nbBugsResolved: number[], nbBugsInProgress: number[]) {
         this._projectName = projectName;
         this._nbBugs = nbBugs;
-        this._nbBugsWVEC = nbBugsWVEC;
         this._nbBugsLow = nbBugsLow;
         this._nbBugsMedium = nbBugsMedium;
         this._nbBugsHigh = nbBugsHigh;
         this._nbBugsHighest = nbBugsHighest;
-        this._nbBugsLowWVEC = nbBugsLowWVEC;
-        this._nbBugsMediumWVEC = nbBugsMediumWVEC;
-        this._nbBugsHighWVEC = nbBugsHighWVEC;
-        this._nbBugsHighestWVEC = nbBugsHighestWVEC;
+        this._nbIncidents = nbIncidents;
+        this._nbIncidentsLow = nbIncidentsLow;
+        this._nbIncidentsMedium = nbIncidentsMedium;
+        this._nbIncidentsHigh = nbIncidentsHigh;
+        this._nbIncidentsHighest = nbIncidentsHighest;
+        this._nbIncidentsCreated = nbIncidentsCreated;
+        this._nbIncidentsResolved = nbIncidentsResolved;
+        this._nbIncidentsInProgress = nbIncidentsInProgress;
         this._nbBugsCreated = nbBugsCreated;
         this._nbBugsResolved = nbBugsResolved;
+        this._nbBugsInProgress = nbBugsInProgress;
     }
 }
 
@@ -94,34 +129,42 @@ export class BacklogAdapter implements Adapter<Backlog> {
         return new Backlog(
             item.projectName,
             item.nbBugs,
-            item.nbBugsWVEC,
             item.nbBugsLow,
             item.nbBugsMedium,
             item.nbBugsHigh,
             item.nbBugsHighest,
-            item.nbBugsLowWVEC,
-            item.nbBugsMediumWVEC,
-            item.nbBugsHighWVEC,
-            item.nbBugsHighestWVEC,
+            item.nbIncidents,
+            item.nbIncidentsLow,
+            item.nbIncidentsMedium,
+            item.nbIncidentsHigh,
+            item.nbIncidentsHighest,
+            item.nbIncidentsCreated,
+            item.nbIncidentsResolved,
+            item.nbIncidentsInProgress,
             item.nbBugsCreated,
-            item.nbBugsResolved
+            item.nbBugsResolved,
+            item.nbBugsInProgress
         );
     }
     adapt(item: any): Backlog{
         return new Backlog(
             item.projectName,
             item.nbBugs,
-            item.nbBugsWVEC,
             item.nbBugsLow,
             item.nbBugsMedium,
             item.nbBugsHigh,
             item.nbBugsHighest,
-            item.nbBugsLowWVEC,
-            item.nbBugsMediumWVEC,
-            item.nbBugsHighWVEC,
-            item.nbBugsHighestWVEC,
+            item.nbIncidents,
+            item.nbIncidentsLow,
+            item.nbIncidentsMedium,
+            item.nbIncidentsHigh,
+            item.nbIncidentsHighest,
+            item.nbIncidentsCreated,
+            item.nbIncidentsResolved,
+            item.nbIncidentsInProgress,
             item.nbBugsCreated,
-            item.nbBugsResolved
+            item.nbBugsResolved,
+            item.nbBugsInProgress
         );
     }
 }

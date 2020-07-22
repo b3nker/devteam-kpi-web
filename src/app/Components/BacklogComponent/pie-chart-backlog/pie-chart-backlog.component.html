@@ -2,8 +2,8 @@
     <div>
         <div class="chart">
             <canvas baseChart
-                    [data]="pieChartDataWVEC"
-                    [labels]="pieChartLabelsWVEC"
+                    [data]="pieChartBugData"
+                    [labels]="pieChartBugLabels"
                     [chartType]="pieChartType"
                     [options]="pieChartOptions"
                     [plugins]="pieChartPlugins"
@@ -16,5 +16,26 @@
 <div>
 </div>
 <p>
-    <b>Nombre total de bugs actifs sur le projetl: </b> {{backlog.nbBugsWVEC}} <br>
+    <b>Nombre total de bugs actifs sur le projet: </b> {{backlog.nbBugs}} <br>
+</p>
+
+<div>
+    <div>
+        <div class="chart">
+            <canvas baseChart
+                    [data]="pieChartIncidentData"
+                    [labels]="pieChartIncidentLabels"
+                    [chartType]="pieChartType"
+                    [options]="pieChartOptions"
+                    [plugins]="pieChartPlugins"
+                    [colors]="pieChartColors"
+                    [legend]="pieChartLegend">
+            </canvas>
+        </div>
+    </div>
+</div>
+<div>
+</div>
+<p>
+    <b>Nombre total d'incidents actifs sur le projet: </b> {{this.backlog.nbIncidents}} <br>
 </p>

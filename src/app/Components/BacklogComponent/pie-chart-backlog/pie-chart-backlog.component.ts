@@ -11,10 +11,10 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 })
 export class PieChartBacklogComponent implements OnChanges {
     @Input() backlog: Backlog;
-    private bugRepartitionWVEC: number[] = []; // index : {0: low, 1: medium, 2: high, 3: highest}
+    private bugRepartition: number[] = []; // index : {0: low, 1: medium, 2: high, 3: highest}
+    private incidentRepartition: number[] = []; // index : {0: low, 1: medium, 2: high, 3: highest}
 
     // Pie
-    private ticketsLabel: Array<string> = [];
     public pieChartOptions: ChartOptions = {
         responsive: true,
         legend: {
@@ -29,8 +29,10 @@ export class PieChartBacklogComponent implements OnChanges {
             },
         }
     };
-    public pieChartLabelsWVEC: Label[];
-    public pieChartDataWVEC: number[] = [];
+    public pieChartBugLabels: Label[];
+    public pieChartIncidentLabels: Label[];
+    public pieChartBugData: number[] = [];
+    public pieChartIncidentData: number[] = [];
     public pieChartType: ChartType = 'pie';
     public pieChartLegend = false;
     public pieChartPlugins = [pluginDataLabels];
@@ -47,19 +49,32 @@ export class PieChartBacklogComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.backlog !== 'undefined') {
-            this.bugRepartitionWVEC.push(
-                this.backlog.nbBugsLowWVEC,
-                this.backlog.nbBugsMediumWVEC,
-                this.backlog.nbBugsHighWVEC,
-                this.backlog.nbBugsHighestWVEC
+            this.bugRepartition.push(
+                this.backlog.nbBugsLow,
+                this.backlog.nbBugsMedium,
+                this.backlog.nbBugsHigh,
+                this.backlog.nbBugsHighest
             );
-            this.pieChartLabelsWVEC = [
-                'Low: ' + this.backlog.nbBugsLowWVEC,
-                'Medium: ' + this.backlog.nbBugsMediumWVEC,
-                'High: ' + this.backlog.nbBugsHighWVEC,
-                'Highest: ' + this.backlog.nbBugsHighestWVEC
+            this.pieChartBugLabels = [
+                'Low: ' + this.backlog.nbBugsLow,
+                'Medium: ' + this.backlog.nbBugsMedium,
+                'High: ' + this.backlog.nbBugsHigh,
+                'Highest: ' + this.backlog.nbBugsHighest
             ];
-            this.pieChartDataWVEC = this.bugRepartitionWVEC;
+            this.pieChartBugData = this.bugRepartition;
+            this.incidentRepartition.push(
+                this.backlog.nbIncidentsLow,
+                this.backlog.nbIncidentsMedium,
+                this.backlog.nbIncidentsHigh,
+                this.backlog.nbIncidentsHighest
+            );
+            this.pieChartIncidentLabels = [
+                'Low: ' + this.backlog.nbIncidentsLow,
+                'Medium: ' + this.backlog.nbIncidentsMedium,
+                'High: ' + this.backlog.nbIncidentsHigh,
+                'Highest: ' + this.backlog.nbIncidentsHighest
+            ];
+            this.pieChartIncidentData = this.incidentRepartition;
         }
     }
 }

@@ -14,6 +14,7 @@ export class BacklogComponent implements OnInit {
   ngOnInit(): void {
     this.backlogService.getBacklog(this.router.url).subscribe(data => {
       this.backlog = data[0];
+      console.log(this.backlog);
     });
   }
 
