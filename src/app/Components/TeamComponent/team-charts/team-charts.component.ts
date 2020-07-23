@@ -66,7 +66,6 @@ export class TeamChartsComponent implements OnChanges {
                 valideEnRecetteLivreTermine: 0
             };
             for (const c of this.team.collaborators) {
-                if (!c.getFullName().includes('Non Assigné')) {
                     elem.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
                     elem.aFaire += c.spAfaire;
                     elem.enAttente += c.spEnAttente;
@@ -75,7 +74,6 @@ export class TeamChartsComponent implements OnChanges {
                     elem.aLivrer += c.spAlivrer;
                     elem.aTester += c.spATester;
                     elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
-                }
             }
             this.names.push(elem.name);
             this.spAqualifierBacAffinnage.push(elem.aQualifierBacAffinnage);

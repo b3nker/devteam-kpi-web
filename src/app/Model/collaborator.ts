@@ -171,8 +171,16 @@ export class Collaborator {
     }
 
 // tslint:disable-next-line:typedef
-    getFullName() {
-        return this._firstName + ' ' + this._name;
+    getPascalCase(str: string): string{
+        if (str.length > 0 ){
+            return str[0].toUpperCase() + str.slice(1);
+        }else{
+            return str;
+        }
+    }
+
+    getFullName(): string {
+        return this.getPascalCase(this._firstName) + ' ' + this.getPascalCase(this._name);
     }
 
 

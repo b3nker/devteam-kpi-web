@@ -1,18 +1,19 @@
 import {Sprint, SprintAdapter} from './sprint';
 import {Adapter} from '../Service/adapter';
+import {SprintCommitment, SprintCommitmentAdapter} from './sprint-commitment';
 
 export class Retrospective {
     private _teamName: string;
-    private _sprints: Sprint [];
+    private _sprints: SprintCommitment [];
 
 
-    constructor(teamName: string, sprints: Sprint[]) {
+    constructor(teamName: string, sprints: SprintCommitment[]) {
         this._teamName = teamName;
         this._sprints = sprints;
     }
 
 
-    get sprints(): Sprint[] {
+    get sprints(): SprintCommitment[] {
         return this._sprints;
     }
 
@@ -24,12 +25,12 @@ export class Retrospective {
 export class RetrospectiveAdapter implements Adapter<Retrospective> {
     adapt(item: any): Retrospective {
         // tslint:disable-next-line:no-shadowed-variable
-        const arrayOfSprints = item.sprints.map(item => {
-            return SprintAdapter.adapt(item);
+        const arrayOfSprintCommitment = item.sprints.map(item => {
+            return SprintCommitmentAdapter.adapt(item);
         });
         return new Retrospective(
             item.teamName,
-            arrayOfSprints
+            arrayOfSprintCommitment
         );
     }
 }

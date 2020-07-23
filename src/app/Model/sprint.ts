@@ -6,10 +6,6 @@ import {Adapter} from '../Service/adapter';
 export class Sprint {
     private _id: number;
     private _name: string;
-    private _initialCommitment: number;
-    private _finalCommitment: number;
-    private _addedWork: number;
-    private _completedWork: number;
     private _timeLeft: number;
     private _totalTime: number;
     private _teams: Team[];
@@ -19,27 +15,6 @@ export class Sprint {
 
     set teams(value: Team[]) {
         this._teams = value;
-    }
-
-
-    get completedWork(): number {
-        return this._completedWork;
-    }
-
-    get id(): number {
-        return this._id;
-    }
-
-    get initialCommitment(): number {
-        return this._initialCommitment;
-    }
-
-    get finalCommitment(): number {
-        return this._finalCommitment;
-    }
-
-    get addedWork(): number {
-        return this._addedWork;
     }
 
     get name(): string {
@@ -67,14 +42,9 @@ export class Sprint {
         return this._endDate;
     }
 
-    constructor(id: number, name: string, initialCommitment: number, finalCommitment: number, addedWork: number, completedWork: number,
-                timeLeft: number, totalTime: number, teams: Team[], startDate: string, endDate: string) {
+    constructor(id: number, name: string, timeLeft: number, totalTime: number, teams: Team[], startDate: string, endDate: string) {
         this._id = id;
         this._name = name;
-        this._initialCommitment = initialCommitment;
-        this._finalCommitment = finalCommitment;
-        this._addedWork = addedWork;
-        this._completedWork = completedWork;
         this._timeLeft = timeLeft;
         this._totalTime = totalTime;
         this._teams = teams;
@@ -95,10 +65,6 @@ export class SprintAdapter implements Adapter<Sprint> {
         return new Sprint(
             item.id,
             item.name,
-            item.initialCommitment,
-            item.finalCommitment,
-            item.addedWork,
-            item.completedWork,
             item.timeLeft,
             item.totalTime,
             arrayOfTeams,
@@ -114,10 +80,6 @@ export class SprintAdapter implements Adapter<Sprint> {
         return new Sprint(
             item.id,
             item.name,
-            item.initialCommitment,
-            item.finalCommitment,
-            item.addedWork,
-            item.completedWork,
             item.timeLeft,
             item.totalTime,
             arrayOfTeams,

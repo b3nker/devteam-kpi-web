@@ -67,7 +67,7 @@ export class TeamChartsMiddleComponent implements OnChanges {
         valideEnRecetteLivreTermine: 0
       };
       for (const c of this.team.collaborators) {
-        if (!c.getFullName().includes('Non Assigné') && c.role.toUpperCase().includes(this.ROLE.toUpperCase())) {
+        if (c.role.toUpperCase().includes(this.ROLE.toUpperCase()) || c.role === 'none') {
           const elem: any = {
             name: c.getFullName(),
             aQualifierBacAffinnage: c.spAqualifier + c.spBacAffinage,
