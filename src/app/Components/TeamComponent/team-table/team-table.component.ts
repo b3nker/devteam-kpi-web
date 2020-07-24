@@ -64,7 +64,7 @@ export class TeamTableComponent implements OnChanges {
                         velocity = 0.8;
                     }
                     const elem: any = {
-                        name: c.getFullName(),
+                        name: c.accountId,
                         devTime: Math.round(c.totalWorkingTime * velocity),
                         allocatedTime: c.estimatedTime,
                         consumedTime: c.loggedTime,
@@ -73,7 +73,7 @@ export class TeamTableComponent implements OnChanges {
                         ticketsDone: c.nbDone,
                         ticketsDevDone: c.nbDevDone + c.nbDone,
                         workedTime: c.totalWorkingTime,
-                        availableTime: c.availableTime
+                        availableTime: Math.round(c.availableTime * velocity)
                     };
                     this.ELEMENT_DATA.push(elem);
                 }

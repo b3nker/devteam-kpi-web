@@ -49,7 +49,12 @@ export class TeamComponent implements OnInit {
       }
     });
     this.retrospectiveService.getRetrospectives().subscribe(data => {
-      this.retrospective = data[0];
+      const retrospectives = data;
+      for (const r of retrospectives){
+        if (r.teamName === this.teamName){
+          this.retrospective = r;
+        }
+      }
     });
   }
 

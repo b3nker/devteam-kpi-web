@@ -25,6 +25,7 @@ export class ProgressBarComponent implements OnChanges {
       this.progression = Math.round(this.percentage * 1e2) / 1e2;
       this.dateDebut = this.sprint.startDate;
       this.dateFin = this.sprint.endDate;
+
       this.dateNow = new Date();
       const dateF = new Date(this.dateFin);
       this.diffTime = Math.round((dateF.getTime() - this.dateNow.getTime()) / (1000 * 3600 * 24));
@@ -37,11 +38,11 @@ export class ProgressBarComponent implements OnChanges {
     }
   }
 
-  getNumber(now: Date, fin: Date): number{
+  getNumber(now: Date, end: Date): number{
     let nbWeekendDays = 0;
     const daysBetween = now;
-    if (now.getTime() <= fin.getTime()){
-      while (daysBetween.getTime() < fin.getTime()){
+    if (now.getTime() <= end.getTime()){
+      while (daysBetween.getTime() < end.getTime()){
         if (daysBetween.getDay() % 6 === 0){
           nbWeekendDays++;
         }
@@ -49,11 +50,11 @@ export class ProgressBarComponent implements OnChanges {
       }
       return nbWeekendDays;
     }else{
-      while (fin.getTime() < daysBetween.getTime()){
-        if (fin.getDay() % 6 === 0){
+      while (end.getTime() < daysBetween.getTime()){
+        if (end.getDay() % 6 === 0){
           nbWeekendDays++;
         }
-        fin.setDate(fin.getDate() + 1);
+        end.setDate(end.getDate() + 1);
       }
       return nbWeekendDays;
     }

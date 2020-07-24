@@ -40,6 +40,7 @@ import { PieChartBacklogComponent } from './Components/BacklogComponent/pie-char
 import { LineChartBacklogComponent } from './Components/BacklogComponent/line-chart-backlog/line-chart-backlog.component';
 import { TeamRetrospectiveBarChartComponent } from './Components/TeamComponent/team-retrospective-bar-chart/team-retrospective-bar-chart.component';
 import { TeamRetrospectiveLineChartComponent } from './Components/TeamComponent/team-retrospective-line-chart/team-retrospective-line-chart.component';
+import { TeamBootstrapTableComponent } from './Components/TeamComponent/team-bootstrap-table/team-bootstrap-table.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { TeamRetrospectiveLineChartComponent } from './Components/TeamComponent/
     LineChartBacklogComponent,
     TeamRetrospectiveBarChartComponent,
     TeamRetrospectiveLineChartComponent,
+    TeamBootstrapTableComponent,
   ],
     imports: [
         BrowserModule,

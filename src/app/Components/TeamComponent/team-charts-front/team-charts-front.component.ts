@@ -68,7 +68,6 @@ export class TeamChartsFrontComponent implements OnChanges {
         valideEnRecetteLivreTermine: 0
       };
       for (const c of this.team.collaborators) {
-        console.log(c.role);
         if (c.role.toUpperCase().includes(this.ROLE.toUpperCase()) || c.role === 'none') {
           const elem: any = {
             name: c.getFullName(),
@@ -81,7 +80,6 @@ export class TeamChartsFrontComponent implements OnChanges {
             aTester: c.spATester,
             valideEnRecetteLivreTermine: c.spValideEnRecette + c.spLivre + c.spTermine
           };
-          console.log(elem);
           this.names.push(elem.name);
           this.spAqualifierBacAffinnage.push(elem.aQualifierBacAffinnage);
           this.spAfaire.push(elem.aFaire);
