@@ -7,25 +7,22 @@ export class Team {
   private _collaborators: Collaborator[];
 
 
-  set name(value: string) {
-    this._name = value;
-  }
-
-  set collaborators(value: Collaborator[]) {
-    this._collaborators = value;
-  }
-
-  get name(): string {
-    return this._name;
-  }
-
-  get collaborators(): Collaborator[] {
-    return this._collaborators;
-  }
-
   constructor(name: string, collaborators: Collaborator[]){
     this._name = name;
     this._collaborators = collaborators;
+  }
+
+  set name(value: string) {
+    this._name = value;
+  }
+  get name(): string {
+    return this._name;
+  }
+  set collaborators(value: Collaborator[]) {
+    this._collaborators = value;
+  }
+  get collaborators(): Collaborator[] {
+    return this._collaborators;
   }
 }
 

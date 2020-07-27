@@ -1,9 +1,5 @@
-<p><b>Sprint en cours : </b>{{sprint.name}}</p>
-<p><b>Début du sprint : </b>{{dateStart | date:'medium'}}</p>
-<p><b>Fin du sprint : </b>{{dateEnd | date:'medium'}}</p>
-
 <mat-grid-list cols="{{nbTeams}}">
 
-<mat-grid-tile *ngFor="let team of sprint.teams">
-    <app-welcome-card [team]="team"></app-welcome-card>
+<mat-grid-tile *ngFor="let sprint of sprints">
+    <app-welcome-card [team]="sprint.team"></app-welcome-card>
 </mat-grid-tile>

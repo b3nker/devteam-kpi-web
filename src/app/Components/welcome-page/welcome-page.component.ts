@@ -1,26 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {SprintService} from '../../Service/sprint.service';
 import {Sprint} from '../../Model/sprint';
 
 @Component({
-  selector: 'app-welcome-page',
-  templateUrl: './welcome-page.component.html',
-  styleUrls: ['./welcome-page.component.css']
+    selector: 'app-welcome-page',
+    templateUrl: './welcome-page.component.html',
+    styleUrls: ['./welcome-page.component.css']
 })
-export class WelcomePageComponent implements OnInit {
-  sprint: Sprint;
-  nbTeams: string;
-  dateStart: Date;
-  dateEnd: Date;
-  constructor(private sprintService: SprintService) {}
+export class WelcomePageComponent implements OnChanges {
+    sprints: Sprint[];
+    nbTeams: number;
 
-  ngOnInit(): void {
-    this.sprintService.getSprint().subscribe(data => {
-      this.sprint = data[0];
-      this.dateStart = new Date(this.sprint.startDate);
-      this.dateEnd = new Date(this.sprint.endDate);
-      this.nbTeams = this.sprint.teams.length.toString();
-    });
-  }
+    constructor(private sprintService: SprintService) {
+        this.sprintService.getSprint().subscribe(data => {
+            this.sprints = data;
+            console.log(3);
+            console.log(this.sprints);
+        });
+    }
+    ngOnChanges(): void {
+        if (typeof this.sprints !== 'undefined') {
+            this.nbTeams = this.sprints.length;
+        }
+    }
 
 }

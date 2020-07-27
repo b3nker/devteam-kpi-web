@@ -25,7 +25,6 @@ export class ProgressBarComponent implements OnChanges {
       this.progression = Math.round(this.percentage * 1e2) / 1e2;
       this.dateDebut = this.sprint.startDate;
       this.dateFin = this.sprint.endDate;
-
       this.dateNow = new Date();
       const dateF = new Date(this.dateFin);
       this.diffTime = Math.round((dateF.getTime() - this.dateNow.getTime()) / (1000 * 3600 * 24));
