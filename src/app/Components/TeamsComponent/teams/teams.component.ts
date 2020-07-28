@@ -13,7 +13,7 @@ export class TeamsComponent implements OnInit {
   constructor(private sprintService: SprintService){
   }
   ngOnInit(): void {
-    this.sprintService.getSprint().subscribe(data => {
+    this.sprintService.getSprints().subscribe(data => {
       this.sprint = data[0];
     });
   }

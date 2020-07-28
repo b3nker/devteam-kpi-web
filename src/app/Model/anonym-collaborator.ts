@@ -1,4 +1,3 @@
 export interface AnonymCollaborator {
-    key: string;
-    value: string;
+    [key: string]: string;
 }

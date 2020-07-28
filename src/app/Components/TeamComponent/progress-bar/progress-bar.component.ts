@@ -12,17 +12,16 @@ export class ProgressBarComponent implements OnChanges {
   @Input() nbSpEnCoursDevTermine: number;
   @Input() nbSpATester: number;
   @Input() sprint: Sprint;
-  percentage: number;
   progression: number;
-  dateDebut: string;
-  dateFin: string;
+  dateDebut: string; // Sprint's start date
+  dateFin: string; // Sprint's end date
   dateNow: Date;
-  diffTime: number; // Nombre de jours restants ou de dépassement
+  diffTime: number;
 
   ngOnChanges(): void{
     if (typeof this.sprint !== 'undefined'){
-      this.percentage = ((this.nbSpDoneTotal) / this.nbSpTotal) * 100;
-      this.progression = Math.round(this.percentage * 1e2) / 1e2;
+      const percentage = ((this.nbSpDoneTotal) / this.nbSpTotal) * 100;
+      this.progression = Math.round(percentage * 1e2) / 1e2;
       this.dateDebut = this.sprint.startDate;
       this.dateFin = this.sprint.endDate;
       this.dateNow = new Date();
@@ -37,6 +36,9 @@ export class ProgressBarComponent implements OnChanges {
     }
   }
 
+  /* Method that returns the number of weekend days
+   * between two dates
+   */
   getNumber(now: Date, end: Date): number{
     let nbWeekendDays = 0;
     const daysBetween = now;

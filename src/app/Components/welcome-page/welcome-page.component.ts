@@ -12,7 +12,7 @@ export class WelcomePageComponent implements OnChanges {
     nbTeams: number;
 
     constructor(private sprintService: SprintService) {
-        this.sprintService.getSprint().subscribe(data => {
+        this.sprintService.getSprints().subscribe(data => {
             this.sprints = data;
             console.log(3);
             console.log(this.sprints);
