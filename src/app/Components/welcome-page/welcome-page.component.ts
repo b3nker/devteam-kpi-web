@@ -7,20 +7,20 @@ import {Sprint} from '../../Model/sprint';
     templateUrl: './welcome-page.component.html',
     styleUrls: ['./welcome-page.component.css']
 })
-export class WelcomePageComponent implements OnChanges {
+export class WelcomePageComponent implements OnInit {
     sprints: Sprint[];
     nbTeams: number;
 
     constructor(private sprintService: SprintService) {
-        this.sprintService.getSprints().subscribe(data => {
-            this.sprints = data;
-            console.log(3);
-            console.log(this.sprints);
-        });
+        this.sprints = [];
     }
-    ngOnChanges(): void {
+    ngOnInit(): void {
         if (typeof this.sprints !== 'undefined') {
-            this.nbTeams = this.sprints.length;
+            this.sprintService.getSprints().subscribe(data => {
+                this.sprints = data;
+                console.log(this.sprints);
+                this.nbTeams = this.sprints.length;
+            });
         }
     }
 

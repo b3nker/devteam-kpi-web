@@ -1,5 +1,5 @@
 <mat-grid-list cols="{{nbTeams}}">
-
-<mat-grid-tile *ngFor="let sprint of sprints">
-    <app-welcome-card [team]="sprint.team"></app-welcome-card>
-</mat-grid-tile>
+    <mat-grid-tile *ngFor="let sprint of sprints">
+        <app-welcome-card [team]="sprint.team"></app-welcome-card>
+    </mat-grid-tile>
+</mat-grid-list>

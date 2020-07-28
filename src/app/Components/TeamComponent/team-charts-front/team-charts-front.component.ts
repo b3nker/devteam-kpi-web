@@ -2,7 +2,19 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {Team} from '../../../Model/team';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
+import {Collaborator} from '../../../Model/collaborator';
 
+export interface ChartElement {
+  name: string;
+  aQualifierBacAffinnage: number;
+  aFaire: number;
+  enAttente: number;
+  refuseEnRecette: number;
+  enCoursDevTermine: number;
+  aLivrer: number;
+  aTester: number;
+  valideEnRecetteLivreTermine: number;
+}
 @Component({
   selector: 'app-team-charts-front',
   templateUrl: './team-charts-front.component.html',
@@ -10,49 +22,60 @@ import {Color, Label} from 'ng2-charts';
 })
 export class TeamChartsFrontComponent implements OnChanges {
   @Input() team: Team;
-  private names: Array<string> = [];
-  private anonymNames: Array<string> = [];
-  private ROLE = 'Front';
-  private spAqualifierBacAffinnage: Array<Array<number>> = [];
-  private spAfaire: Array<number> = [];
-  private spEnAttente: Array<number> = [];
-  private spRefuseEnRecette: Array<number> = [];
-  private spEncoursDevTermine: Array<number> = [];
-  private spAlivrer: Array<number> = [];
-  private spATester: Array<number> = [];
-  private spValideEnRecetteLivreTermine: Array<number> = [];
-  public barChartOptions: ChartOptions = {
-    title: {
-      text: 'Repartition des Story Points pour le ' + this.ROLE,
-      display: true
-    },
-    responsive: true,
-  };
-  public barChartLabels: Label[] = this.names; // Collaborators
-  public barChartType: ChartType = 'horizontalBar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
-  public barChartData: ChartDataSets[] = [
-    {data: this.spAqualifierBacAffinnage, label: 'A qualifier/Bac d\'affinage', stack: 'a'},
-    {data: this.spAfaire, label: 'A faire', stack: 'a'},
-    {data: this.spEnAttente, label: 'En Attente', stack: 'a'},
-    {data: this.spRefuseEnRecette, label: 'Refusé en recette', stack: 'a'},
-    {data: this.spEncoursDevTermine, label: 'En cours/Dev terminé', stack: 'a'},
-    {data: this.spAlivrer, label: 'A livrer', stack: 'a'},
-    {data: this.spATester, label: 'A tester', stack: 'a'},
-    {data: this.spValideEnRecetteLivreTermine, label: 'Validé en recette/Livré/Terminé', stack: 'a'},
-  ];
-  public barChartColors: Color[] = [
-    {backgroundColor: '#696969'}, // gris foncé
-    {backgroundColor: '#c0c0c0'}, // gris clair
-    {backgroundColor: '#f29120'}, // rouge pastel
-    {backgroundColor: 'red'}, // orange
-    {backgroundColor: '#0052cc'}, // bleu foncé
-    {backgroundColor: '#87CEFA'}, // bleu clair
-    {backgroundColor: '#b1c113'}, // vert clair
-    {backgroundColor: '#7a9823'}, // vert foncé
+  @Input() anonymizedNames: Map<string, string>;
+  names: Array<string> = [];
+  spAqualifierBacAffinnage: Array<number> = [];
+  spAfaire: Array<number> = [];
+  spEnAttente: Array<number> = [];
+  spRefuseEnRecette: Array<number> = [];
+  spEncoursDevTermine: Array<number> = [];
+  spAlivrer: Array<number> = [];
+  spATester: Array<number> = [];
+  spValideEnRecetteLivreTermine: Array<number> = [];
+  UNASSIGNED_ACCOUNT_ID: string;
+  barChartOptions: ChartOptions;
+  barChartLabels: Label[]; // Collaborators identity
+  barChartType: ChartType;
+  barChartLegend: boolean;
+  barChartPlugins = [];
+  barChartData: ChartDataSets[];
+  barChartColors: Color[];
+  ROLE: string;
 
-  ];
+  constructor(){
+    this.ROLE = 'Front';
+    this.UNASSIGNED_ACCOUNT_ID = 'unassigned';
+    this.barChartLabels = this.names;
+    this.barChartType = 'horizontalBar';
+    this.barChartLegend = true;
+    this.barChartOptions = {
+      title: {
+        text: 'Etats des Story Points dans le sprint pour l\' équipe ',
+        display: true
+      },
+      responsive: true,
+    };
+    this.barChartColors = [
+      {backgroundColor: '#696969'}, // Dark grey
+      {backgroundColor: '#c0c0c0'}, // Light grey
+      {backgroundColor: '#f29120'}, // Orange
+      {backgroundColor: 'red'}, // Red
+      {backgroundColor: '#0052cc'}, // Dark blue
+      {backgroundColor: '#87CEFA'}, // Light blue
+      {backgroundColor: '#b1c113'}, // Light green
+      {backgroundColor: '#7a9823'}, // Dark green
+    ];
+    this.barChartData = [
+      {data: this.spAqualifierBacAffinnage, label: 'A qualifier/Bac d\'affinage', stack: 'a'},
+      {data: this.spAfaire, label: 'A faire', stack: 'a'},
+      {data: this.spEnAttente, label: 'En Attente', stack: 'a'},
+      {data: this.spRefuseEnRecette, label: 'Refusé en recette', stack: 'a'},
+      {data: this.spEncoursDevTermine, label: 'En cours/Dev terminé', stack: 'a'},
+      {data: this.spAlivrer, label: 'A livrer', stack: 'a'},
+      {data: this.spATester, label: 'A tester', stack: 'a'},
+      {data: this.spValideEnRecetteLivreTermine, label: 'Validé en recette/Livré/Terminé', stack: 'a'},
+    ];
+  }
 
   ngOnChanges(): void {
     if (typeof this.team !== 'undefined') {
@@ -68,47 +91,67 @@ export class TeamChartsFrontComponent implements OnChanges {
         valideEnRecetteLivreTermine: 0
       };
       for (const c of this.team.collaborators) {
-        if (c.role.toUpperCase().includes(this.ROLE.toUpperCase()) || c.role === 'none') {
-          const elem: any = {
-            name: c.getFullName(),
-            aQualifierBacAffinnage: c.spAqualifier + c.spBacAffinage,
-            aFaire: c.spAfaire,
-            enAttente: c.spEnAttente,
-            refuseEnRecette: c.spRefuseEnRecette,
-            enCoursDevTermine: c.spEncours + c.spDevTermine,
-            aLivrer: c.spAlivrer,
-            aTester: c.spATester,
-            valideEnRecetteLivreTermine: c.spValideEnRecette + c.spLivre + c.spTermine
-          };
-          this.names.push(elem.name);
-          this.spAqualifierBacAffinnage.push(elem.aQualifierBacAffinnage);
-          this.spAfaire.push(elem.aFaire);
-          this.spEnAttente.push(elem.enAttente);
-          this.spRefuseEnRecette.push(elem.refuseEnRecette);
-          this.spEncoursDevTermine.push(elem.enCoursDevTermine);
-          this.spAlivrer.push(elem.aLivrer);
-          this.spATester.push(elem.aTester);
-          this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
-          // On aggrège tous les story points dans la variable "all"
-          all.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
-          all.aFaire += c.spAfaire;
-          all.enAttente += c.spEnAttente;
-          all.refuseEnRecette += c.spRefuseEnRecette;
-          all.enCoursDevTermine += c.spEncours + c.spDevTermine;
-          all.aLivrer += c.spAlivrer;
-          all.aTester += c.spATester;
-          all.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
+        if (c.role.toUpperCase().includes(this.ROLE.toUpperCase())) {
+          const elem = this.generateChartElement(c, this.anonymizedNames);
+          this.pushElement(elem);
+          this.updateChartElement(c, all);
         }
       }
-      this.names.unshift(all.name);
-      this.spAqualifierBacAffinnage.unshift(all.aQualifierBacAffinnage);
-      this.spAfaire.unshift(all.aFaire);
-      this.spEnAttente.unshift(all.enAttente);
-      this.spRefuseEnRecette.unshift(all.refuseEnRecette);
-      this.spEncoursDevTermine.unshift(all.enCoursDevTermine);
-      this.spAlivrer.unshift(all.aLivrer);
-      this.spATester.unshift(all.aTester);
-      this.spValideEnRecetteLivreTermine.unshift(all.valideEnRecetteLivreTermine);
-    }
+      this.unshiftElement(all);
+      }
+  }
+
+  generateChartElement(c: Collaborator, anonym: Map<string, string>): ChartElement{
+    const elem: ChartElement = {
+      name: anonym.get(c.accountId),
+      aQualifierBacAffinnage: c.spAqualifier + c.spBacAffinage,
+      aFaire: c.spAfaire,
+      enAttente: c.spEnAttente,
+      refuseEnRecette: c.spRefuseEnRecette,
+      enCoursDevTermine: c.spEncours + c.spDevTermine,
+      aLivrer: c.spAlivrer,
+      aTester: c.spATester,
+      valideEnRecetteLivreTermine: c.spValideEnRecette + c.spLivre + c.spTermine
+    };
+    return elem;
+  }
+
+  /* Find a way not to duplicate these methods
+   *
+   */
+  pushElement(elem: ChartElement): void{
+    this.names.push(elem.name);
+    this.spAqualifierBacAffinnage.push(elem.aQualifierBacAffinnage);
+    this.spAfaire.push(elem.aFaire);
+    this.spEnAttente.push(elem.enAttente);
+    this.spRefuseEnRecette.push(elem.refuseEnRecette);
+    this.spEncoursDevTermine.push(elem.enCoursDevTermine);
+    this.spAlivrer.push(elem.aLivrer);
+    this.spATester.push(elem.aTester);
+    this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
+  }
+
+  unshiftElement(elem: ChartElement): void{
+    this.names.unshift(elem.name);
+    this.spAqualifierBacAffinnage.unshift(elem.aQualifierBacAffinnage);
+    this.spAfaire.unshift(elem.aFaire);
+    this.spEnAttente.unshift(elem.enAttente);
+    this.spRefuseEnRecette.unshift(elem.refuseEnRecette);
+    this.spEncoursDevTermine.unshift(elem.enCoursDevTermine);
+    this.spAlivrer.unshift(elem.aLivrer);
+    this.spATester.unshift(elem.aTester);
+    this.spValideEnRecetteLivreTermine.unshift(elem.valideEnRecetteLivreTermine);
+  }
+
+
+  updateChartElement(c: Collaborator, elem: ChartElement): void{
+    elem.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
+    elem.aFaire += c.spAfaire;
+    elem.enAttente += c.spEnAttente;
+    elem.refuseEnRecette += c.spRefuseEnRecette;
+    elem.enCoursDevTermine += c.spEncours + c.spDevTermine;
+    elem.aLivrer += c.spAlivrer;
+    elem.aTester += c.spATester;
+    elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
   }
 }

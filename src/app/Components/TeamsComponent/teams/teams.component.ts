@@ -9,12 +9,20 @@ import {SprintService} from '../../../Service/sprint.service';
   styleUrls: ['./teams.component.css']
 })
 export class TeamsComponent implements OnInit {
-  sprint: Sprint;
+  sprints: Array<Sprint>;
+  teams: Team[];
+
   constructor(private sprintService: SprintService){
+    this.sprints = [];
+    this.teams = [];
   }
+
   ngOnInit(): void {
     this.sprintService.getSprints().subscribe(data => {
-      this.sprint = data[0];
+      this.sprints = data;
+      for (const s of this.sprints){
+        this.teams.push(s.team);
+      }
     });
   }
 }
