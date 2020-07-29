@@ -1,0 +1,58 @@
+<p></p>
+<table class="center" mat-table [dataSource]="dataSource">
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Identity Column -->
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[0]> Release# </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- startDate Column -->
+    <ng-container matColumnDef="startDate">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[1]> Date début </th>
+        <td mat-cell *matCellDef="let element"> {{element.startDate | date:"dd/MM/yyyy"}} </td>
+    </ng-container>
+
+    <!-- Allocated Time Column -->
+    <ng-container matColumnDef="endDate">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[2]> Date fin </th>
+        <td mat-cell *matCellDef="let element"> {{element.endDate | date:"dd/MM/yyyy" }} </td>
+    </ng-container>
+
+    <!-- Open Days Column -->
+    <ng-container matColumnDef="nbOpenDays">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[3] > Nb jours ouvrés </th>
+        <td mat-cell *matCellDef="let element"> {{element.nbOpenDays}} </td>
+    </ng-container>
+
+    <!-- Left To Do Column -->
+    <ng-container matColumnDef="nbWorkingDays">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[4]> Nb jours </th>
+        <td mat-cell *matCellDef="let element"> {{element.nbWorkingDays}} </td>
+    </ng-container>
+
+    <!-- Front capacity Column -->
+    <ng-container matColumnDef="buildCapacityFront">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[5]> Capacité build front (h) </th>
+        <td mat-cell *matCellDef="let element"> {{element.buildCapacityFront}} </td>
+    </ng-container>
+
+    <!-- Middle capacity Column -->
+    <ng-container matColumnDef="buildCapacityMiddle">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[6]> Capacité build middle (h) </th>
+        <td mat-cell *matCellDef="let element"> {{element.buildCapacityMiddle}} </td>
+    </ng-container>
+
+
+    <!-- Total capacity of tickets Column -->
+    <ng-container matColumnDef="buildCapacityTotal">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[7]> Capacité build totale (h)</th>
+        <td mat-cell *matCellDef="let element"> {{element.buildCapacityTotal}} </td>
+    </ng-container>
+
+    <tr mat-header-row   *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row ; columns: displayedColumns ;"></tr>
+</table>
+

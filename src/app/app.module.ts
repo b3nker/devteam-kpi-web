@@ -41,6 +41,8 @@ import { LineChartBacklogComponent } from './Components/BacklogComponent/line-ch
 import { TeamRetrospectiveBarChartComponent } from './Components/TeamComponent/team-retrospective-bar-chart/team-retrospective-bar-chart.component';
 import { TeamRetrospectiveLineChartComponent } from './Components/TeamComponent/team-retrospective-line-chart/team-retrospective-line-chart.component';
 import { TeamBootstrapTableComponent } from './Components/TeamComponent/team-bootstrap-table/team-bootstrap-table.component';
+import { ReleaseComponent } from './Components/ReleaseComponent/release/release.component';
+import { ReleaseTableComponent } from './Components/ReleaseComponent/release-table/release-table.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import { TeamBootstrapTableComponent } from './Components/TeamComponent/team-boo
     TeamRetrospectiveBarChartComponent,
     TeamRetrospectiveLineChartComponent,
     TeamBootstrapTableComponent,
+    ReleaseComponent,
+    ReleaseTableComponent,
   ],
     imports: [
         BrowserModule,
@@ -89,6 +93,7 @@ import { TeamBootstrapTableComponent } from './Components/TeamComponent/team-boo
             {path: 'sprint/gamma', component: TeamComponent},
             {path: 'sprint/teams', component: TeamsComponent},
             {path: 'backlog', component: BacklogComponent},
+            {path: 'release', component: ReleaseComponent},
             {path: '404', component: NotFoundComponent},
             {path: '**', redirectTo: '/404'}
         ]),

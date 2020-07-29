@@ -8,7 +8,7 @@ import {Retrospective, RetrospectiveAdapter} from '../Model/retrospective';
   providedIn: 'root'
 })
 export class RetrospectiveService {
-  private BASE_URL = '//localhost:8080/retrospective';
+  private BASE_URL = '/api/retrospective';
 
   constructor(private http: HttpClient) {}
 

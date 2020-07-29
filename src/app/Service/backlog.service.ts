@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BacklogService {
-  private BASE_URL = '//localhost:8080/backlog';
+  private BASE_URL = '/api/backlog';
   constructor(private http: HttpClient, private adapter: BacklogAdapter) { }
   getBacklog(lastIndexUrl: string): Observable<Backlog[]> {
     return this.http.get(this.BASE_URL).pipe(

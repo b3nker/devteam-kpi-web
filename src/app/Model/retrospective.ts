@@ -35,3 +35,5 @@ export class RetrospectiveAdapter implements Adapter<Retrospective> {
     }
 }
 
+
+

@@ -125,27 +125,6 @@ export class Backlog {
     providedIn: 'root',
 })
 export class BacklogAdapter implements Adapter<Backlog> {
-    static adapt(item: any): Backlog{
-        return new Backlog(
-            item.projectName,
-            item.nbBugs,
-            item.nbBugsLow,
-            item.nbBugsMedium,
-            item.nbBugsHigh,
-            item.nbBugsHighest,
-            item.nbIncidents,
-            item.nbIncidentsLow,
-            item.nbIncidentsMedium,
-            item.nbIncidentsHigh,
-            item.nbIncidentsHighest,
-            item.nbIncidentsCreated,
-            item.nbIncidentsResolved,
-            item.nbIncidentsInProgress,
-            item.nbBugsCreated,
-            item.nbBugsResolved,
-            item.nbBugsInProgress
-        );
-    }
     adapt(item: any): Backlog{
         return new Backlog(
             item.projectName,

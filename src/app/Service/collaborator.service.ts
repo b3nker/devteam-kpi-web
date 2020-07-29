@@ -7,7 +7,7 @@ import {Collaborator, CollaboratorAdapter} from '../Model/collaborator';
   providedIn: 'root'
 })
 export class CollaboratorService {
-  private BASE_URL = '//localhost:8080';
+  private BASE_URL = '/api';
 
   constructor(private http: HttpClient, private adapter: CollaboratorAdapter) {
   }
