@@ -15,6 +15,7 @@ export interface TableElement{
     ticketsDevDone: number;
     workedTime: number;
     availableTime: number;
+    progression: number;
 }
 
 @Component({
@@ -43,6 +44,7 @@ export class TeamTableComponent implements OnChanges{
             'workedTime', // workedTime * velocité attendue
             'devTime', // Temps de présence sur le sprint
             'consumedTime', // logged time
+            'progression',
             'availableTime', // Temps disponible restant sur le sprint
             'leftToDo', // remaining time
             'allocatedTime', // estimated time
@@ -56,6 +58,7 @@ export class TeamTableComponent implements OnChanges{
             'Temps de développement attendu',
             'Alloué',
             'Consommé',
+            'Progression',
             'Reste à faire',
             'Temps restant disponible d\'ici la fin du sprint',
             'Temps de présence sur le sprint',
@@ -86,6 +89,7 @@ export class TeamTableComponent implements OnChanges{
                         ticketsDevDone: c.nbDevDone,
                         workedTime: null,
                         availableTime: null,
+                        progression: null
                     };
                 } else {
                     let velocity = 0;
@@ -94,9 +98,11 @@ export class TeamTableComponent implements OnChanges{
                     }else {
                         velocity = this.DEV_VELOCITY;
                     }
+                    const developmentTime = Math.round(c.totalWorkingTime * velocity);
+                    const progress = (developmentTime !== 0) ? (Math.round((c.loggedTime / developmentTime) * 100)) : null;
                     const elem: TableElement = {
                         name: this.anonymizedNames.get(c.accountId),
-                        devTime: Math.round(c.totalWorkingTime * velocity),
+                        devTime: developmentTime,
                         allocatedTime: c.estimatedTime,
                         consumedTime: c.loggedTime,
                         leftToDo: c.remainingTime,
@@ -104,7 +110,8 @@ export class TeamTableComponent implements OnChanges{
                         ticketsDone: c.nbDone,
                         ticketsDevDone: c.nbDevDone + c.nbDone,
                         workedTime: c.totalWorkingTime,
-                        availableTime: Math.round(c.availableTime * velocity)
+                        availableTime: Math.round(c.availableTime * velocity),
+                        progression: progress
                     };
                     this.ELEMENT_DATA.push(elem);
                 }
