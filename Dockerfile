@@ -1,21 +1,13 @@
-# base image
-FROM node:12.2.0
+FROM eu.gcr.io/neo9-software-factory/n9-images/jdk:11.0.7 as builder
 
+ENV PROFILE test
+CMD java -Dspring.profiles.active=dev,local -jar /home/app/target/*.jar
 
-# set working directory
-WORKDIR /app
+FROM eu.gcr.io/neo9-software-factory/n9-images/jdk:11.0.7-runtime
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY --from=builder --chown=webadmin:webadmin /home/app/target/*.jar /home/app/
 
-# install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install
-#RUN npm install -g @angular/cli@7.3.9
-
-# add app
-COPY . /app
-
-# start app
-CMD ng serve --host 0.0.0.0
-
+CMD java \
+    -XX:MaxRAM=$(( $(cat /sys/fs/cgroup/memory/memory.limit_in_bytes) / 100 * 70 )) \
+    -Dspring.profiles.active=${PROFILE} \
+    -jar /home/app/*.jar

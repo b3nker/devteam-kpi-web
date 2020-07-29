@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "JiraReportTest"
+  "defaultProject": "JiraReportTest",
+  "cli": {
+    "analytics": false
+  }
 }
