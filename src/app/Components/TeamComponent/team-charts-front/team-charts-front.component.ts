@@ -22,7 +22,6 @@ export interface ChartElement {
 })
 export class TeamChartsFrontComponent implements OnChanges {
   @Input() team: Team;
-  @Input() anonymizedNames: Map<string, string>;
   names: Array<string> = [];
   spAqualifierBacAffinnage: Array<number> = [];
   spAfaire: Array<number> = [];
@@ -60,7 +59,7 @@ export class TeamChartsFrontComponent implements OnChanges {
       {backgroundColor: '#c0c0c0'}, // Light grey
       {backgroundColor: '#f29120'}, // Orange
       {backgroundColor: 'red'}, // Red
-      {backgroundColor: '#0052cc'}, // Dark blue
+      {backgroundColor: '#4682B4'}, // Dark blue
       {backgroundColor: '#87CEFA'}, // Light blue
       {backgroundColor: '#b1c113'}, // Light green
       {backgroundColor: '#7a9823'}, // Dark green
@@ -93,7 +92,7 @@ export class TeamChartsFrontComponent implements OnChanges {
       console.log(this.team.collaborators);
       for (const c of this.team.collaborators) {
         if (c.role.toUpperCase().includes(this.ROLE.toUpperCase())) {
-          const elem = this.generateChartElement(c, this.anonymizedNames);
+          const elem = this.generateChartElement(c);
           this.pushElement(elem);
           this.updateChartElement(c, all);
         }
@@ -102,9 +101,9 @@ export class TeamChartsFrontComponent implements OnChanges {
       }
   }
 
-  generateChartElement(c: Collaborator, anonym: Map<string, string>): ChartElement{
+  generateChartElement(c: Collaborator): ChartElement{
     const elem: ChartElement = {
-      name: anonym.get(c.accountId),
+      name: c.getFullName(),
       aQualifierBacAffinnage: c.spAqualifier + c.spBacAffinage,
       aFaire: c.spAfaire,
       enAttente: c.spEnAttente,

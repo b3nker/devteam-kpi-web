@@ -69,6 +69,7 @@ export class TeamsTableComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.teams !== 'undefined') {
+            console.log(this.teams);
             for (const t of this.teams) {
                 console.log(t);
                 const row: TableElement = {

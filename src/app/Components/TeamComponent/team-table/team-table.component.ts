@@ -92,9 +92,9 @@ export class TeamTableComponent implements OnChanges{
                     const elem: TableElement = {
                         name: c.getFullName(),
                         devTime: developmentTime,
-                        allocatedTime: c.estimatedTime,
+                        allocatedTime: Math.round(c.estimatedTime * 10) / 10,
                         consumedTime: Math.round(c.loggedTime * 10) / 10,
-                        leftToDo: c.remainingTime,
+                        leftToDo: Math.round(c.remainingTime * 10) / 10,
                         tickets: c.nbTickets,
                         ticketsDone: c.nbDone,
                         ticketsDevDone: c.nbDevDone + c.nbDone,
