@@ -1,8 +1,7 @@
 table {
   width: 80%;
-  padding-top: 20px;
-  padding-bottom: 25px;
-
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 table.center {
   margin-left:auto;
@@ -18,5 +17,17 @@ td.is-red {
 td.is-orange {
   background : #FFA400;
 }
+.mat-header-cell{
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+td.mat-cell{
+  font-size: 18px;
+  text-align: center;
+}
 
-
+tr.grey-background{
+  background-color: lightgrey;
+}

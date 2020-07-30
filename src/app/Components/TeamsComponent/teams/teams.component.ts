@@ -13,7 +13,6 @@ export class TeamsComponent implements OnInit {
   teams: Team[];
 
   constructor(private sprintService: SprintService){
-    this.sprints = [];
     this.teams = [];
   }
 
