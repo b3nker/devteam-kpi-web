@@ -11,6 +11,6 @@ HelmPipeline {
   ]
   target = "builder"
   flatteningStrategy = "skip_flattening"
-  sonarCommand = "./node_modules/sonar-scanner/bin/sonar-scanner"
+  sonarCommand = "sonar-scanner"
   notifications = [email: 'xavier.michel@neo9.fr']
 }
