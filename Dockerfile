@@ -1,21 +1,21 @@
-# base image
-FROM node:12.2.0
+FROM eu.gcr.io/neo9-software-factory/n9-images/node:12.18.2 as builder
+
+COPY ./ ./
+
+ENV PORT 4200
+ENV NODE_ENV "development"
+
+RUN npm run build
+
+CMD ["npm", "run", "start"]
 
 
-# set working directory
-WORKDIR /app
+FROM eu.gcr.io/neo9-software-factory/n9-images/node:12.18.2-runtime
 
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
+COPY --from=builder /home/app/dist .
 
-# install and cache app dependencies
-COPY package.json /app/package.json
-RUN npm install
-#RUN npm install -g @angular/cli@7.3.9
+RUN npm prune --production \
+  && rm -rf test \
+  && find . -type f -name "*.d.ts" -exec rm {} \;
 
-# add app
-COPY . /app
-
-# start app
-CMD ng serve --host 0.0.0.0
-
+CMD ["node", "dist/index.js"]
