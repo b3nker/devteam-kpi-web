@@ -11,6 +11,6 @@ HelmPipeline {
   ]
   target = "builder"
   flatteningStrategy = "skip_flattening"
-  sonarCommand = "sonar-scanner -Dsonar.typescript.tsconfigPath=tsconfig.app.json"
+  sonarCommand = "sonar-scanner -Dsonar.typescript.tsconfigPath=tsconfig.sonar.json"
   notifications = [email: 'xavier.michel@neo9.fr']
 }
