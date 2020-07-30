@@ -3,6 +3,8 @@ import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
 import {Team} from '../../../Model/team';
 import {Collaborator} from '../../../Model/collaborator';
+// @ts-ignore
+import Chart = require('chart.js');
 
 export interface ChartElement {
     name: string;
@@ -39,8 +41,15 @@ export class TeamChartsComponent implements OnChanges {
     barChartPlugins = [];
     barChartData: ChartDataSets[];
     barChartColors: Color[];
-
+    // tslint:disable-next-line:align
     constructor(){
+        // tslint:disable-next-line:no-unused-expression
+        Chart.defaults.global.defaultFontSize = 18;
+        Chart.defaults.global.defaultFontColor = 'black';
+        Chart.defaults.global.defaultFontStyle = 'bold';
+
+
+
         this.UNASSIGNED_ACCOUNT_ID = 'unassigned';
         this.barChartLabels = this.names;
         this.barChartType = 'horizontalBar';
@@ -48,16 +57,25 @@ export class TeamChartsComponent implements OnChanges {
         this.barChartOptions = {
             title: {
                 text: 'Etats des Story Points dans le sprint pour l\' équipe ',
-                display: true
+                display: true,
+                fontSize: 16,
+                fontColor: 'black'
             },
             responsive: true,
+            legend: {
+                labels: {
+                    fontColor: 'black',
+                    fontSize: 16,
+                }
+
+            }
         };
         this.barChartColors = [
             {backgroundColor: '#696969'}, // Dark grey
             {backgroundColor: '#c0c0c0'}, // Light grey
             {backgroundColor: '#f29120'}, // Orange
             {backgroundColor: 'red'}, // Red
-            {backgroundColor: '#0052cc'}, // Dark blue
+            {backgroundColor: '#4682B4'}, // Dark blue
             {backgroundColor: '#87CEFA'}, // Light blue
             {backgroundColor: '#b1c113'}, // Light green
             {backgroundColor: '#7a9823'}, // Dark green

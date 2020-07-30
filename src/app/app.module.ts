@@ -4,9 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {HorizontalBarChartComponent} from './Components/OtherComponent/horizontal-bar-chart/horizontal-bar-chart.component';
 import {ChartsModule} from 'ng2-charts';
-import {PieChartComponent} from './Components/OtherComponent/pie-chart/pie-chart.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CollaboratorTableComponent} from './Components/CollaboratorsComponent/collaborator-table/collaborator-table.component';
 import {MatTableModule} from '@angular/material/table';
@@ -46,8 +44,6 @@ import { ReleaseTableComponent } from './Components/ReleaseComponent/release-tab
 @NgModule({
   declarations: [
     AppComponent,
-    HorizontalBarChartComponent,
-    PieChartComponent,
     CollaboratorTableComponent,
     NavbarComponent,
     WelcomePageComponent,

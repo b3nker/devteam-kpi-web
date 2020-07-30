@@ -13,9 +13,7 @@ export interface TableElement{
     tickets: number;
     ticketsDone: number;
     ticketsDevDone: number;
-    workedTime: number;
     availableTime: number;
-    progression: number;
 }
 
 @Component({
@@ -25,7 +23,6 @@ export interface TableElement{
 })
 export class TeamTableComponent implements OnChanges{
     @Input() team: Team;
-    @Input() anonymizedNames: Map<string, string>;
     ELEMENT_DATA: TableElement[];
     dataSource: TableElement[];
     displayedColumns: string[];
@@ -41,31 +38,26 @@ export class TeamTableComponent implements OnChanges{
         this.dataSource = [];
         this.displayedColumns = [
             'name',
-            'workedTime', // workedTime * velocité attendue
             'devTime', // Temps de présence sur le sprint
             'consumedTime', // logged time
-            'progression',
             'availableTime', // Temps disponible restant sur le sprint
             'leftToDo', // remaining time
             'allocatedTime', // estimated time
             'tickets',
             'ticketsDevDone',
             'ticketsDone',
-            'statut'
         ];
         this.displayedTooltip = [
             'Nom du développeur',
             'Temps de développement attendu',
             'Alloué',
             'Consommé',
-            'Progression',
             'Reste à faire',
             'Temps restant disponible d\'ici la fin du sprint',
             'Temps de présence sur le sprint',
             'Tickets alloués sur le sprint',
             'Tickets terminés sur le sprint (Statut JIRA: Livré, Terminé, Validé en recette)',
             'Tickets qui se situe après l\' état "Dév terminé" dans le workflow Jira" (Statut JIRA : A tester, A livrer, livré, terminé, validé en recette)',
-            'Statut du collaborateur'
         ];
         this.LEAD_DEV_VELOCITY = 0.5;
         this.DEV_VELOCITY = 0.8;
@@ -74,7 +66,7 @@ export class TeamTableComponent implements OnChanges{
         this.UNASSIGNED = 'Non Assigné';
     }
     ngOnChanges(): void {
-        if (typeof this.team !== 'undefined' && typeof this.anonymizedNames !== 'undefined') {
+        if (typeof this.team !== 'undefined') {
             let unassigned: TableElement;
             for (const c of this.team.collaborators) {
                 if (c.getFullName().includes(this.UNASSIGNED)) {
@@ -87,9 +79,7 @@ export class TeamTableComponent implements OnChanges{
                         tickets: c.nbTickets,
                         ticketsDone: c.nbDone,
                         ticketsDevDone: c.nbDevDone,
-                        workedTime: null,
                         availableTime: null,
-                        progression: null
                     };
                 } else {
                     let velocity = 0;
@@ -99,19 +89,16 @@ export class TeamTableComponent implements OnChanges{
                         velocity = this.DEV_VELOCITY;
                     }
                     const developmentTime = Math.round(c.totalWorkingTime * velocity);
-                    const progress = (developmentTime !== 0) ? (Math.round((c.loggedTime / developmentTime) * 100)) : null;
                     const elem: TableElement = {
-                        name: this.anonymizedNames.get(c.accountId),
+                        name: c.getFullName(),
                         devTime: developmentTime,
                         allocatedTime: c.estimatedTime,
-                        consumedTime: c.loggedTime,
+                        consumedTime: Math.round(c.loggedTime * 10) / 10,
                         leftToDo: c.remainingTime,
                         tickets: c.nbTickets,
                         ticketsDone: c.nbDone,
                         ticketsDevDone: c.nbDevDone + c.nbDone,
-                        workedTime: c.totalWorkingTime,
                         availableTime: Math.round(c.availableTime * velocity),
-                        progression: progress
                     };
                     this.ELEMENT_DATA.push(elem);
                 }

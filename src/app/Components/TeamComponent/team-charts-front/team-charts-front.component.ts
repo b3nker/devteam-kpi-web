@@ -90,6 +90,7 @@ export class TeamChartsFrontComponent implements OnChanges {
         aTester: 0,
         valideEnRecetteLivreTermine: 0
       };
+      console.log(this.team.collaborators);
       for (const c of this.team.collaborators) {
         if (c.role.toUpperCase().includes(this.ROLE.toUpperCase())) {
           const elem = this.generateChartElement(c, this.anonymizedNames);
