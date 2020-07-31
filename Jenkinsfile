@@ -1,4 +1,4 @@
-library('pipeline@v10.8.0')
+library('pipeline@v10.9.0')
 
 HelmPipeline {
   repository = "eu.gcr.io/neo9-software-factory/n9-images"
@@ -10,7 +10,10 @@ HelmPipeline {
   continuousDelivery = [
   ]
   target = "builder"
-  flatteningStrategy = "skip_flattening"
+  flattening = [
+    strategy: "docker_squash",
+    from: "eu.gcr.io/neo9-software-factory/n9-images/node:12.18.2-runtime"
+  ]
   sonarCommand = "sonar-scanner -Dsonar.typescript.tsconfigPath=tsconfig.sonar.json"
-  notifications = [email: 'xavier.michel@neo9.fr']
+  notifications = [email: 'april@neo9.fr']
 }
