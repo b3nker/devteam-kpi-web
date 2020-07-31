@@ -50,7 +50,6 @@ export class ReleaseTableComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (typeof this.releases !== 'undefined'){
-      console.log(this.releases);
       for (const r of this.releases){
         const elem: ReleaseRow = {
           name: r.name,

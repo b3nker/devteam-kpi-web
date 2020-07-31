@@ -67,7 +67,6 @@ export class TeamsTableComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.teams !== 'undefined' && typeof this.sprints !== 'undefined' ) {
-            console.log(this.sprints);
             for (const t of this.teams) {
                 const row: TableElement = {
                     name: t.name,
@@ -80,7 +79,6 @@ export class TeamsTableComponent implements OnChanges {
                     ticketsDevDone: 0,
                     availableTime: 0,
                 };
-                console.log(row);
                 for (const c of t.collaborators) {
                     let velocity = 0;
                     if (c.role.includes(this.LEAD_DEV) || c.role.includes(this.SCRUM)){
@@ -90,7 +88,6 @@ export class TeamsTableComponent implements OnChanges {
                     }
                     this.updateTableElement(c, row, velocity);
                 }
-                console.log(row);
                 this.ELEMENT_DATA.push(row);
             }
             this.dataSource = this.ELEMENT_DATA;

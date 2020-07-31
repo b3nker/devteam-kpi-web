@@ -10,7 +10,9 @@ import {Router} from '@angular/router';
 })
 export class BacklogComponent implements OnInit {
   backlog: Backlog;
+
   constructor(private backlogService: BacklogService, private router: Router) {}
+
   ngOnInit(): void {
     this.backlogService.getBacklog(this.router.url).subscribe(data => {
       this.backlog = data[0];

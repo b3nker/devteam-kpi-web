@@ -6,3 +6,10 @@ li{
     list-style: none;
     padding: 5px;
 }
+p{
+    font-size: 20px;
+}
+
+mat-card-title.writing {
+    font-size: 24px;
+}

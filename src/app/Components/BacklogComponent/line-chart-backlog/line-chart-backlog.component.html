@@ -1,46 +1,25 @@
-<div class="flex">
-    <div class="flex-item">
-        <div class="line-chart">
-            <canvas baseChart
-                    [datasets]="lineChartData || []"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptions"
-                    [colors]="lineChartColors"
-                    [legend]="lineChartLegend"
-                    [chartType]="lineChartType"
-            ></canvas>
-            <p>
-                <b>&sum;Created = </b> {{this.sumCreated}} <br/>
-                <b>&sum;Resolved = </b> {{this.sumResolved}} <br/>
-                <b>&sum;In Progress = </b> {{this.sumInProgress}} <br/>
+<ng-container *ngIf="backlog">
+    <div class="flex">
+        <div class="flex-item">
+            <div class="line-chart">
+                <canvas baseChart
+                        [datasets]="lineChartData || []"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType"
+                ></canvas>
+                <p>
+                    <b>&sum;Created = </b> {{this.sumCreated}} <br/>
+                    <b>&sum;Resolved = </b> {{this.sumResolved}} <br/>
+                </p>
+            </div>
 
-            </p>
         </div>
-
     </div>
-</div>
+</ng-container>
 
-<div class="flex">
-    <div class="flex-item">
-        <div class="line-chart">
-            <canvas baseChart
-                    [datasets]="lineChartDataIncident"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptionsIncident"
-                    [colors]="lineChartColors"
-                    [legend]="lineChartLegend"
-                    [chartType]="lineChartType"
-            ></canvas>
-            <p>
-                <b>&sum;Created = </b> {{this.sumIncidentCreated}} <br/>
-                <b>&sum;Resolved = </b> {{this.sumIncidentResolved}} <br/>
-                <b>&sum;In Progress = </b> {{this.sumIncidentInProgress}} <br/>
-
-            </p>
-        </div>
-
-    </div>
-</div>
 
 
 

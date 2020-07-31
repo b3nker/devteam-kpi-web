@@ -1,3 +1,4 @@
+<ng-container *ngIf="backlog">
 <div>
     <div>
         <div class="chart">
@@ -18,24 +19,5 @@
 <p>
     <b>Nombre total de bugs actifs sur le projet: </b> {{backlog.nbBugs}} <br>
 </p>
+</ng-container>
 
-<div>
-    <div>
-        <div class="chart">
-            <canvas baseChart
-                    [data]="pieChartIncidentData"
-                    [labels]="pieChartIncidentLabels"
-                    [chartType]="pieChartType"
-                    [options]="pieChartOptions"
-                    [plugins]="pieChartPlugins"
-                    [colors]="pieChartColors"
-                    [legend]="pieChartLegend">
-            </canvas>
-        </div>
-    </div>
-</div>
-<div>
-</div>
-<p>
-    <b>Nombre total d'incidents actifs sur le projet: </b> {{this.backlog.nbIncidents}} <br>
-</p>

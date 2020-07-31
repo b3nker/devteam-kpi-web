@@ -18,16 +18,17 @@ td.is-orange {
   background : #FFA400;
 }
 .mat-header-cell{
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   color: black;
 }
 td.mat-cell{
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
 }
 
 tr.grey-background{
   background-color: lightgrey;
 }
+

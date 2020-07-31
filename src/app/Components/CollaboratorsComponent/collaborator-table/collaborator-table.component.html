@@ -1,4 +1,3 @@
-<p></p>
 <table class="center" mat-table [dataSource]="dataSource">
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -11,7 +10,7 @@
 
   <!-- Development Time Column -->
   <ng-container matColumnDef="devTime">
-    <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[1]> Temps de développement </th>
+    <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[1]> Temps de dév total (h) </th>
     <td mat-cell *matCellDef="let element"> {{element.devTime}} </td>
   </ng-container>
 
@@ -30,21 +29,18 @@
   <!-- Left To Do Column -->
   <ng-container matColumnDef="leftToDo">
     <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[4]>&Sigma;Remaining Time (h)</th>
-    <td mat-cell *matCellDef="let element"> {{element.leftToDo}} </td>
+    <td mat-cell *matCellDef="let element" [ngClass]="{
+      'is-green' : element.leftToDo <= element.availableTime,
+      'is-orange': element.leftToDo > element.availableTime && element.leftToDo <= 1.2*element.availableTime,
+      'is-red' : element.leftToDo > 1.2* element.availableTime
+      }"> {{element.leftToDo}} </td>
   </ng-container>
 
   <!-- Available Time Column -->
   <ng-container matColumnDef="availableTime">
-    <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[5]>Temps disponible restant (h)</th>
+    <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[5]>Temps de dév restant (h)</th>
     <td mat-cell *matCellDef="let element"> {{element.availableTime}} </td>
   </ng-container>
-
-  <!-- Worked Time Column -->
-  <ng-container matColumnDef="workedTime">
-    <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[6]>Temps de présence (h)</th>
-    <td mat-cell *matCellDef="let element"> {{element.workedTime}} </td>
-  </ng-container>
-
 
   <!-- Total number of tickets Column -->
   <ng-container matColumnDef="tickets">
@@ -63,18 +59,9 @@
     <td mat-cell *matCellDef="let element"> {{element.ticketsDevDone}} </td>
   </ng-container>
 
-  <!-- Statut done Column -->
-  <ng-container matColumnDef="statut">
-    <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[10]>Statut</th>
-    <td mat-cell [ngClass]="{
-      'is-green' : element.leftToDo <= element.availableTime,
-      'is-orange': element.leftToDo > element.availableTime && element.leftToDo <= 1.2*element.availableTime,
-      'is-red' : element.leftToDo > 1.2* element.availableTime
-      }"
-        *matCellDef="let element"></td>
-  </ng-container>
-
   <tr mat-header-row   *matHeaderRowDef="displayedColumns" ></tr>
-  <tr mat-row *matRowDef="let row ; columns: displayedColumns ;"></tr>
+  <tr [ngClass]="{
+      'grey-background' : i%2 == 0
+      }" mat-row *matRowDef="let row ; columns: displayedColumns ; let i = index"></tr>
 </table>
 
