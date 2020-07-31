@@ -21,8 +21,12 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
   public barChartLegend;
   public barChartData: ChartDataSets[];
   public barChartColors: Color[];
+  public urls: Map<string, string>;
+  public url: string;
 
   constructor() {
+    this.url = 'https://apriltechnologies.atlassian.net/issues/?jql=issue in (';
+    this.urls = new Map<string, string>();
     this.initialCommitments = [];
     this.completedWorks = [];
     this.addedWorks = [];
@@ -53,6 +57,7 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (typeof this.retrospective !== 'undefined'){
+      console.log(this.retrospective);
       for (const s of this.retrospective.sprints){
         this.initialCommitments.unshift(s.initialCommitment);
         this.completedWorks.unshift(s.completedWork);
@@ -77,7 +82,12 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
         };
         this.barChartData = [initialCommitment, completedWork, addedWork, finalCommitment];
         this.barChartLabels = this.sprintNames;
+
+        // Get url to jira with added issue keys
+        const str = this.getJqlSearch(s.addedIssueKeys);
+        this.urls.set(s.name, str);
       }
+      console.log(this.urls);
 
     }
   }
@@ -89,5 +99,23 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
+  }
+
+  getJqlSearch(issueKeys: string[]): string {
+    if (issueKeys === null){
+      return null;
+    }
+    let str = '';
+    let i = 1;
+    const size = issueKeys.length;
+    for (const issueKey of issueKeys){
+      if (i === size){
+        str += '\'' + issueKey + '\'';
+      }else{
+        str += '\'' + issueKey + '\',';
+        i++;
+      }
+    }
+    return this.url + str + ')';
   }
 }

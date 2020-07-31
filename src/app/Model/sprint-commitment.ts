@@ -9,15 +9,21 @@ export class SprintCommitment {
     private _finalCommitment: number;
     private _addedWork: number;
     private _completedWork: number;
+    private _addedIssueKeys: string[];
 
-
-    constructor(id: number, name: string, initialCommitment: number, finalCommitment: number, addedWork: number, completedWork: number) {
+    constructor(id: number, name: string, initialCommitment: number, finalCommitment: number, addedWork: number, completedWork: number,
+                addedIssueKeys: string[]) {
         this._id = id;
         this._name = name;
         this._initialCommitment = initialCommitment;
         this._finalCommitment = finalCommitment;
         this._addedWork = addedWork;
         this._completedWork = completedWork;
+        this._addedIssueKeys = addedIssueKeys;
+    }
+
+    get addedIssueKeys(): string[] {
+        return this._addedIssueKeys;
     }
 
     get id(): number {
@@ -53,7 +59,8 @@ export class SprintCommitmentAdapter implements Adapter<SprintCommitment> {
             item.initialCommitment,
             item.finalCommitment,
             item.addedWork,
-            item.completedWork
+            item.completedWork,
+            item.addedIssueKeys
         );
     }
     adapt(item: any): SprintCommitment {
@@ -63,7 +70,8 @@ export class SprintCommitmentAdapter implements Adapter<SprintCommitment> {
             item.initialCommitment,
             item.finalCommitment,
             item.addedWork,
-            item.completedWork
+            item.completedWork,
+            item.addedIssueKeys
         );
     }
 }
