@@ -1,5 +1,6 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
+import Table = WebAssembly.Table;
 
 /* Interface that schematize information contained in each element (row)
  *
@@ -67,7 +68,17 @@ export class TeamTableComponent implements OnChanges{
     }
     ngOnChanges(): void {
         if (typeof this.team !== 'undefined') {
-            let unassigned: TableElement;
+            let unassigned: TableElement = {
+                name: this.UNASSIGNED,
+                devTime: null,
+                allocatedTime: null,
+                consumedTime: null,
+                leftToDo: null,
+                tickets: 0,
+                ticketsDone: 0,
+                ticketsDevDone: 0,
+                availableTime: null,
+            };
             for (const c of this.team.collaborators) {
                 if (c.getFullName().includes(this.UNASSIGNED)) {
                     unassigned = {

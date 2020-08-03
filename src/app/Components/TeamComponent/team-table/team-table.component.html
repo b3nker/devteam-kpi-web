@@ -30,9 +30,9 @@
   <ng-container matColumnDef="leftToDo">
     <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[4]>&Sigma;Remaining Time (h)</th>
     <td mat-cell *matCellDef="let element" [ngClass]="{
-      'is-green' : element.leftToDo <= element.availableTime,
-      'is-orange': element.leftToDo > element.availableTime && element.leftToDo <= 1.2*element.availableTime,
-      'is-red' : element.leftToDo > 1.2* element.availableTime
+      'is-green' : element.leftToDo <= element.availableTime && (element.leftToDo != null && element.availableTime != null),
+      'is-orange': element.leftToDo > element.availableTime && element.leftToDo <= 1.2*element.availableTime && (element.leftToDo != null && element.availableTime != null),
+      'is-red' : element.leftToDo > 1.2* element.availableTime && (element.leftToDo != null && element.availableTime != null)
       }"> {{element.leftToDo}} </td>
   </ng-container>
 

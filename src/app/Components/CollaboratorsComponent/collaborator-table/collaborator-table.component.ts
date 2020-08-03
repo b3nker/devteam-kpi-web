@@ -61,14 +61,14 @@ export class CollaboratorTableComponent implements OnChanges {
         this.DEV_VELOCITY = 0.8;
         this.SCRUM = 'scrum';
         this.LEAD_DEV = 'lead dev';
-        this.UNASSIGNED = 'Non Assigné';
+        this.UNASSIGNED = 'unassigned';
     }
 
     ngOnChanges(): void {
         if (typeof this.collaborators !== 'undefined') {
             let i = 0;
             for (const c of this.collaborators) {
-                if (c.getFullName().includes('Non Assigné')) {
+                if (c.accountId.includes(this.UNASSIGNED)) {
                     continue;
                 } else {
                     i++;
