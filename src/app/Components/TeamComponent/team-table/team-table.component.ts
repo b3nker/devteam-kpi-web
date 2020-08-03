@@ -80,6 +80,7 @@ export class TeamTableComponent implements OnChanges{
                 availableTime: null,
             };
             for (const c of this.team.collaborators) {
+                console.log(c);
                 if (c.getFullName().includes(this.UNASSIGNED)) {
                     unassigned = {
                         name: c.getFullName(),

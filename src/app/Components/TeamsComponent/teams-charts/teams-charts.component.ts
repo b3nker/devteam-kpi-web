@@ -95,7 +95,7 @@ export class TeamsChartsComponent implements OnChanges {
             elem.aFaire += c.spAfaire;
             elem.enAttente += c.spEnAttente;
             elem.refuseEnRecette += c.spRefuseEnRecette;
-            elem.enCoursDevTermine += c.spEncours + c.spDevTermine;
+            elem.enCoursDevTermine += c.spEncours + c.spDevTermine + c.spTestCroise;
             elem.aLivrer += c.spAlivrer;
             elem.aTester += c.spATester;
             elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
@@ -120,7 +120,7 @@ export class TeamsChartsComponent implements OnChanges {
       aFaire: 0,
       enAttente: 0,
       refuseEnRecette: 0,
-      enCoursDevTermine: 0,
+      enCoursDevTermineTestCroise: 0,
       aLivrer: 0,
       aTester: 0,
       valideEnRecetteLivreTermine: 0
@@ -137,7 +137,7 @@ export class TeamsChartsComponent implements OnChanges {
     this.spAfaire.push(elem.aFaire);
     this.spEnAttente.push(elem.enAttente);
     this.spRefuseEnRecette.push(elem.refuseEnRecette);
-    this.spEncoursDevTermine.push(elem.enCoursDevTermine);
+    this.spEncoursDevTermine.push(elem.enCoursDevTermineTestCroise);
     this.spAlivrer.push(elem.aLivrer);
     this.spATester.push(elem.aTester);
     this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
@@ -151,7 +151,7 @@ export class TeamsChartsComponent implements OnChanges {
     elem.aFaire += c.spAfaire;
     elem.enAttente += c.spEnAttente;
     elem.refuseEnRecette += c.spRefuseEnRecette;
-    elem.enCoursDevTermine += c.spEncours + c.spDevTermine;
+    elem.enCoursDevTermineTestCroise += c.spEncours + c.spDevTermine;
     elem.aLivrer += c.spAlivrer;
     elem.aTester += c.spATester;
     elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;

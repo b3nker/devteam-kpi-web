@@ -12,7 +12,7 @@ export interface ChartElement {
     aFaire: number;
     enAttente: number;
     refuseEnRecette: number;
-    enCoursDevTermine: number;
+    enCoursDevTermineTestCroise: number;
     aLivrer: number;
     aTester: number;
     valideEnRecetteLivreTermine: number;
@@ -29,7 +29,7 @@ export class TeamChartsComponent implements OnChanges {
     spAfaire: Array<number> = [];
     spEnAttente: Array<number> = [];
     spRefuseEnRecette: Array<number> = [];
-    spEncoursDevTermine: Array<number> = [];
+    spEncoursDevTermineTestCroise: Array<number> = [];
     spAlivrer: Array<number> = [];
     spATester: Array<number> = [];
     spValideEnRecetteLivreTermine: Array<number> = [];
@@ -85,7 +85,7 @@ export class TeamChartsComponent implements OnChanges {
             {data: this.spAfaire, label: 'A faire', stack: 'a'},
             {data: this.spEnAttente, label: 'En Attente', stack: 'a'},
             {data: this.spRefuseEnRecette, label: 'Refusé en recette', stack: 'a'},
-            {data: this.spEncoursDevTermine, label: 'En cours/Dev terminé', stack: 'a'},
+            {data: this.spEncoursDevTermineTestCroise, label: 'En cours/Dev terminé/Test croisé', stack: 'a'},
             {data: this.spAlivrer, label: 'A livrer', stack: 'a'},
             {data: this.spATester, label: 'A tester', stack: 'a'},
             {data: this.spValideEnRecetteLivreTermine, label: 'Validé en recette/Livré/Terminé', stack: 'a'},
@@ -115,7 +115,7 @@ export class TeamChartsComponent implements OnChanges {
             aFaire: 0,
             enAttente: 0,
             refuseEnRecette: 0,
-            enCoursDevTermine: 0,
+            enCoursDevTermineTestCroise: 0,
             aLivrer: 0,
             aTester: 0,
             valideEnRecetteLivreTermine: 0
@@ -132,7 +132,7 @@ export class TeamChartsComponent implements OnChanges {
         this.spAfaire.push(elem.aFaire);
         this.spEnAttente.push(elem.enAttente);
         this.spRefuseEnRecette.push(elem.refuseEnRecette);
-        this.spEncoursDevTermine.push(elem.enCoursDevTermine);
+        this.spEncoursDevTermineTestCroise.push(elem.enCoursDevTermineTestCroise);
         this.spAlivrer.push(elem.aLivrer);
         this.spATester.push(elem.aTester);
         this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
@@ -146,7 +146,7 @@ export class TeamChartsComponent implements OnChanges {
         elem.aFaire += c.spAfaire;
         elem.enAttente += c.spEnAttente;
         elem.refuseEnRecette += c.spRefuseEnRecette;
-        elem.enCoursDevTermine += c.spEncours + c.spDevTermine;
+        elem.enCoursDevTermineTestCroise += c.spEncours + c.spDevTermine + c.spTestCroise;
         elem.aLivrer += c.spAlivrer;
         elem.aTester += c.spATester;
         elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;

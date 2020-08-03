@@ -36,7 +36,12 @@ export class Collaborator {
     private _spTermine: number;
     private _role: string;
     private _availableTime: number;
+    private _spTestCroise: number;
 
+
+    get spTestCroise(): number {
+        return this._spTestCroise;
+    }
 
     get nbEnCoursDevTermine(): number {
         return this._nbEnCoursDevTermine;
@@ -189,7 +194,7 @@ export class Collaborator {
                 nbInProgress: number, nbToDo: number, nbEnCoursDevTermine: number, nbATester: number, spTotal: number, spAqualifier: number,
                 spBacAffinage: number, spEnAttente: number, spAfaire: number, spEncours: number, spAbandonne: number, spDevTermine: number,
                 spAvalider: number, spAlivrer: number, spATester: number, spRefuseEnRecette: number, spValideEnRecette: number,
-                spLivre: number, spTermine: number, role: string, availableTime: number) {
+                spLivre: number, spTermine: number, role: string, availableTime: number, spTestCroise: number) {
         this._accountId = accountId;
         this._firstName = firstName;
         this._name = name;
@@ -223,6 +228,7 @@ export class Collaborator {
         this._spTermine = spTermine;
         this._role = role;
         this._availableTime = availableTime;
+        this._spTestCroise = spTestCroise;
     }
 }
 
@@ -264,7 +270,8 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.spLivre,
             item.spTermine,
             item.role,
-            item.availableTime
+            item.availableTime,
+            item.spTestCroise
         );
     }
     adapt(item: any): Collaborator {
@@ -301,7 +308,9 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.spLivre,
             item.spTermine,
             item.role,
-            item.availableTime
+            item.availableTime,
+            item.spTestCroise
+
         );
     }
 }
