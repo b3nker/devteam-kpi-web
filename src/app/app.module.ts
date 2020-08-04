@@ -40,6 +40,9 @@ import { TeamRetrospectiveLineChartComponent } from './Components/TeamComponent/
 import { TeamBootstrapTableComponent } from './Components/TeamComponent/team-bootstrap-table/team-bootstrap-table.component';
 import { ReleaseComponent } from './Components/ReleaseComponent/release/release.component';
 import { ReleaseTableComponent } from './Components/ReleaseComponent/release-table/release-table.component';
+import {MatOptionModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -95,7 +98,10 @@ import { ReleaseTableComponent } from './Components/ReleaseComponent/release-tab
         MatGridListModule,
         MatProgressBarModule,
         MatProgressSpinnerModule,
-        MatCardModule
+        MatCardModule,
+        MatOptionModule,
+        MatSelectModule,
+        FormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

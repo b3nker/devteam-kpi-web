@@ -58,6 +58,19 @@
         <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[9]>Tickets supérieur à "Dev Terminé"</th>
         <td mat-cell *matCellDef="let element"> {{element.ticketsDevDone}} </td>
     </ng-container>
+  <!-- Nb run days Column -->
+  <ng-container matColumnDef="runDays">
+    <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[10]>Jours de run</th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <mat-form-field>
+        <mat-select [(ngModel)]="dataSource[i].runDays" name="runDays" (ngModelChange)="changeRowValues(i)">
+          <mat-option *ngFor="let runDays of nbRunDays" [value]="runDays.value">
+            {{runDays.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </td>
+  </ng-container>
 
   <tr mat-header-row   *matHeaderRowDef="displayedColumns" ></tr>
   <tr [ngClass]="{

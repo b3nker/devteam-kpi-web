@@ -19,18 +19,31 @@ export class TeamBootstrapTableComponent implements OnChanges {
     'tickets',
     'ticketsDevDone',
     'ticketsDone',
-    'statut'
+    'statut',
+    'Jour de runs'
   ];
   rowsInfo: Array<any> = [];
+  UNASSIGNED: string;
 
   constructor() {
+    this.UNASSIGNED = 'unassigned';
   }
 
   ngOnChanges(): void {
     if (typeof this.team !== 'undefined') {
-      let unassigned: any;
+      let unassigned = {
+        name: this.UNASSIGNED,
+        devTime: null,
+        allocatedTime: null,
+        consumedTime: null,
+        leftToDo: null,
+        tickets: 0,
+        ticketsDone: 0,
+        ticketsDevDone: 0,
+        availableTime: null,
+      };
       for (const c of this.team.collaborators) {
-        if (c.getFullName().includes('Non Assigné')) {
+        if (c.accountId.includes(this.UNASSIGNED)) {
           unassigned = {
             name: c.getFullName(),
             devTime: null,
@@ -40,8 +53,7 @@ export class TeamBootstrapTableComponent implements OnChanges {
             tickets: c.nbTickets,
             ticketsDone: c.nbDone,
             ticketsDevDone: c.nbDevDone,
-            workedTime: null,
-            availableTime: null
+            availableTime: null,
           };
         } else {
           let velocity = 0;

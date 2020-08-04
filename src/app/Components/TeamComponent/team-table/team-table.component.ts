@@ -15,6 +15,9 @@ export interface TableElement{
     ticketsDone: number;
     ticketsDevDone: number;
     availableTime: number;
+    runDays: number;
+    role: string;
+
 }
 
 @Component({
@@ -24,6 +27,7 @@ export interface TableElement{
 })
 export class TeamTableComponent implements OnChanges{
     @Input() team: Team;
+
     ELEMENT_DATA: TableElement[];
     dataSource: TableElement[];
     displayedColumns: string[];
@@ -33,8 +37,16 @@ export class TeamTableComponent implements OnChanges{
     SCRUM: string;
     LEAD_DEV: string;
     UNASSIGNED: string;
+    UNASSIGNED_ROLE;
+    nbRunDays: any[];
+    WORKING_HOURS_PER_DAY: number;
 
     constructor(){
+        this.nbRunDays = [
+            {value: 1, viewValue: 1},
+            {value: 2, viewValue: 2},
+            {value: 3, viewValue: 3}
+        ];
         this.ELEMENT_DATA = [];
         this.dataSource = [];
         this.displayedColumns = [
@@ -47,6 +59,7 @@ export class TeamTableComponent implements OnChanges{
             'tickets',
             'ticketsDevDone',
             'ticketsDone',
+            'runDays',
         ];
         this.displayedTooltip = [
             'Nom du développeur',
@@ -59,12 +72,15 @@ export class TeamTableComponent implements OnChanges{
             'Tickets alloués sur le sprint',
             'Tickets terminés sur le sprint (Statut JIRA: Livré, Terminé, Validé en recette)',
             'Tickets qui se situe après l\' état "Dév terminé" dans le workflow Jira" (Statut JIRA : A tester, A livrer, livré, terminé, validé en recette)',
+            'Nombre de jours à faire du RUN/MCO'
         ];
         this.LEAD_DEV_VELOCITY = 0.5;
         this.DEV_VELOCITY = 0.8;
         this.SCRUM = 'scrum';
         this.LEAD_DEV = 'lead dev';
         this.UNASSIGNED = 'Non Assigné';
+        this.UNASSIGNED_ROLE = 'none';
+        this.WORKING_HOURS_PER_DAY = 8;
     }
     ngOnChanges(): void {
         if (typeof this.team !== 'undefined') {
@@ -78,9 +94,10 @@ export class TeamTableComponent implements OnChanges{
                 ticketsDone: 0,
                 ticketsDevDone: 0,
                 availableTime: null,
+                runDays: 0,
+                role: this.UNASSIGNED_ROLE
             };
             for (const c of this.team.collaborators) {
-                console.log(c);
                 if (c.getFullName().includes(this.UNASSIGNED)) {
                     unassigned = {
                         name: c.getFullName(),
@@ -92,6 +109,8 @@ export class TeamTableComponent implements OnChanges{
                         ticketsDone: c.nbDone,
                         ticketsDevDone: c.nbDevDone,
                         availableTime: null,
+                        runDays: 0,
+                        role: this.UNASSIGNED_ROLE
                     };
                 } else {
                     let velocity = 0;
@@ -111,6 +130,8 @@ export class TeamTableComponent implements OnChanges{
                         ticketsDone: c.nbDone,
                         ticketsDevDone: c.nbDevDone + c.nbDone,
                         availableTime: Math.round(c.availableTime * velocity),
+                        runDays: 0,
+                        role: c.role
                     };
                     this.ELEMENT_DATA.push(elem);
                 }
@@ -118,6 +139,23 @@ export class TeamTableComponent implements OnChanges{
             }
             this.ELEMENT_DATA.push(unassigned);
             this.dataSource = this.ELEMENT_DATA;
+        }
+    }
+
+    changeRowValues(i: number): void{
+        if (this.dataSource[i].role !== this.UNASSIGNED_ROLE){
+            let velocity = 0;
+            const nbRunDays = this.dataSource[i].runDays;
+            const role = this.dataSource[i].role;
+            if (role.includes(this.LEAD_DEV) || role.includes(this.SCRUM)){
+                velocity = this.LEAD_DEV_VELOCITY;
+                this.dataSource[i].availableTime -= velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
+                this.dataSource[i].devTime -= velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
+            }else{
+                velocity = this.DEV_VELOCITY;
+                this.dataSource[i].availableTime -= velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
+                this.dataSource[i].devTime -= velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
+            }
         }
     }
 }

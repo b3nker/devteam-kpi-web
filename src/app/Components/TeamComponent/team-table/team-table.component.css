@@ -32,3 +32,6 @@ tr.grey-background{
   background-color: lightgrey;
 }
 
+mat-select{
+  text-align: center;
+}
