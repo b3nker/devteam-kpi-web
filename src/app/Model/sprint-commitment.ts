@@ -1,4 +1,4 @@
-import {Adapter} from '../Service/adapter';
+import {Adapter} from '../Service/adapter/adapter';
 import {Collaborator} from './collaborator';
 import {Sprint} from './sprint';
 

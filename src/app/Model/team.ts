@@ -1,6 +1,6 @@
 import {Collaborator, CollaboratorAdapter} from './collaborator';
 import {Injectable} from '@angular/core';
-import {Adapter} from '../Service/adapter';
+import {Adapter} from '../Service/adapter/adapter';
 
 export class Team {
   private _name: string;

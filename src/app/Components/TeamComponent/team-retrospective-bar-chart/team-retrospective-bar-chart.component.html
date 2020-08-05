@@ -1,21 +1,21 @@
-<div>
+<ng-container *ngIf="retrospective">
     <div>
         <div>
-            <div class="chart "style="display: block">
-                <canvas baseChart
-                        [datasets]="barChartData"
-                        [labels]="barChartLabels"
-                        [options]="barChartOptions"
-                        [legend]="barChartLegend"
-                        [chartType]="barChartType"
-                        [colors]="barChartColors"
-                        (chartHover)="chartHovered($event)"
-                ></canvas>
+            <div>
+                <div class="chart " style="display: block">
+                    <canvas baseChart
+                            [datasets]="barChartData"
+                            [labels]="barChartLabels"
+                            [options]="barChartOptions"
+                            [legend]="barChartLegend"
+                            [chartType]="barChartType"
+                            [colors]="barChartColors"
+                    ></canvas>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<ul *ngFor="let key of urls.keys()">
-    <a  *ngIf="key !== null" href="{{urls.get(key)}}" target="_blank" > Added issues for {{key}}</a>
-</ul>
+    <ul *ngFor="let key of urls.keys()">
+        <a *ngIf="key !== null" href="{{urls.get(key)}}" target="_blank"> Added issues for {{key}}</a>
+    </ul>
+</ng-container>

@@ -1,5 +1,5 @@
 import {Sprint, SprintAdapter} from './sprint';
-import {Adapter} from '../Service/adapter';
+import {Adapter} from '../Service/adapter/adapter';
 import {SprintCommitment, SprintCommitmentAdapter} from './sprint-commitment';
 
 export class Retrospective {

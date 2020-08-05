@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Backlog} from '../../../Model/backlog';
 import {BacklogService} from '../../../Service/backlog.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-backlog',
@@ -11,12 +10,15 @@ import {Router} from '@angular/router';
 export class BacklogComponent implements OnInit {
   backlog: Backlog;
 
-  constructor(private backlogService: BacklogService, private router: Router) {}
 
+  constructor(private backlogService: BacklogService) {}
+
+  /* Fetch data from "api/backlog" route.
+   * OnInit, create a backlog object and generate child components.
+   */
   ngOnInit(): void {
-    this.backlogService.getBacklog(this.router.url).subscribe(data => {
-      this.backlog = data[0];
-      console.log(this.backlog);
+    this.backlogService.getBacklog().subscribe(data => {
+      this.backlog = data;
     });
   }
 

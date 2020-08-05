@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Adapter} from '../Service/adapter';
+import {Adapter} from '../Service/adapter/adapter';
 import {Backlog} from './backlog';
 
 export class Release {

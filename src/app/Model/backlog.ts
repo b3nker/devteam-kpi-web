@@ -1,4 +1,4 @@
-import {Adapter} from '../Service/adapter';
+import {Adapter} from '../Service/adapter/adapter';
 import {Injectable} from '@angular/core';
 
 export class Backlog {

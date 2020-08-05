@@ -1,27 +1,6 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
-import Table = WebAssembly.Table;
-
-/* Interface that schematize information contained in each element (row)
- *
- */
-export interface TableElement {
-    name: string;
-    devTime: number;
-    allocatedTime: number;
-    consumedTime: number;
-    leftToDo: number;
-    tickets: number;
-    ticketsDone: number;
-    ticketsDevDone: number;
-    availableTime: number;
-    runDays: number;
-    role: string;
-    _devTime: number;
-    _availableTime: number;
-
-
-}
+import {CollaboratorElement} from '../../../Interface/collaborator-element';
 
 @Component({
     selector: 'app-team-table',
@@ -30,9 +9,8 @@ export interface TableElement {
 })
 export class TeamTableComponent implements OnChanges {
     @Input() team: Team;
-
-    ELEMENT_DATA: TableElement[];
-    dataSource: TableElement[];
+    ELEMENT_DATA: CollaboratorElement[];
+    dataSource: CollaboratorElement[];
     displayedColumns: string[];
     displayedTooltip: string[];
     LEAD_DEV_VELOCITY: number;
@@ -89,7 +67,7 @@ export class TeamTableComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.team !== 'undefined') {
-            let unassigned: TableElement = {
+            let unassigned: CollaboratorElement = {
                 name: this.UNASSIGNED,
                 devTime: null,
                 allocatedTime: null,
@@ -130,7 +108,7 @@ export class TeamTableComponent implements OnChanges {
                         velocity = this.DEV_VELOCITY;
                     }
                     const developmentTime = Math.round(c.totalWorkingTime * velocity);
-                    const elem: TableElement = {
+                    const elem: CollaboratorElement = {
                         name: c.getFullName(),
                         devTime: developmentTime,
                         allocatedTime: Math.round(c.estimatedTime * 10) / 10,
@@ -172,7 +150,8 @@ export class TeamTableComponent implements OnChanges {
         this.dataSource[i].devTime = Math.round((this.dataSource[i]._devTime - timeToSubtract) * 10) / 10;
         if (this.dataSource[i].availableTime < 0){
             this.dataSource[i].availableTime = 0;
-        }else if (this.dataSource[i].devTime < 0){
+        }
+        if (this.dataSource[i].devTime < 0){
             this.dataSource[i].devTime = 0;
         }
     }

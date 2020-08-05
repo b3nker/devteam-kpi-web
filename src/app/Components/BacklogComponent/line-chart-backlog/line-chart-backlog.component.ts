@@ -91,6 +91,7 @@ export class LineChartBacklogComponent implements OnChanges {
             },
         };
     }
+
     ngOnChanges(): void {
         if (typeof this.backlog !== 'undefined') {
             const bugsCreated: any = {
@@ -115,6 +116,10 @@ export class LineChartBacklogComponent implements OnChanges {
         }
     }
 
+    /* Returns an array of strings of the size of nbBugsResolved/Created's array.
+     * Index "0" corresponds to today's date.
+     * Index "max", length(array bugs created) date (representing 'x' days ago date)
+     */
     getDates(): string[] {
         const dates: string [] = [];
         for (let i = 0; i < this.backlog.nbBugsResolved.length; i++) {
