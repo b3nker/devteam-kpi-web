@@ -3,8 +3,17 @@ import {Team} from '../../../Model/team';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
 import {Collaborator} from '../../../Model/collaborator';
-import {ChartElement} from '../team-charts-front/team-charts-front.component';
-
+export class ChartElement{
+  name: string;
+  aQualifierBacAffinnage: number;
+  aFaire: number;
+  enAttente: number;
+  refuseEnRecette: number;
+  enCoursDevTermineTestCroise: number;
+  aLivrer: number;
+  aTester: number;
+  valideEnRecetteLivreTermine: number;
+}
 @Component({
   selector: 'app-team-charts-role',
   templateUrl: './team-charts-role.component.html',

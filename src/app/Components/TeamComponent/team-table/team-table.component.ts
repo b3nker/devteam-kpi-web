@@ -46,6 +46,7 @@ export class TeamTableComponent implements OnChanges {
 
     constructor() {
         this.nbRunDays = [
+            {value: 0, viewValue: 'Aucun'},
             {value: 1, viewValue: 1},
             {value: 2, viewValue: 2},
             {value: 3, viewValue: 3}
@@ -166,7 +167,8 @@ export class TeamTableComponent implements OnChanges {
         } else {
             velocity = this.DEV_VELOCITY;
         }
-        this.dataSource[i].availableTime = this.dataSource[i]._availableTime - velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
-        this.dataSource[i].devTime = this.dataSource[i]._devTime - velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
+        const timeToSubtract = velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
+        this.dataSource[i].availableTime = Math.round((this.dataSource[i]._availableTime - timeToSubtract) * 10) / 10;
+        this.dataSource[i].devTime = Math.round((this.dataSource[i]._devTime - timeToSubtract) * 10) / 10;
     }
 }

@@ -30,7 +30,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { WelcomeCardComponent } from './Components/welcome-page/welcome-card/welcome-card.component';
 import {MatCardModule} from '@angular/material/card';
 import { TeamsChartsComponent } from './Components/TeamsComponent/teams-charts/teams-charts.component';
-import { TeamChartsFrontComponent } from './Components/TeamComponent/team-charts-front/team-charts-front.component';
 import { BacklogComponent } from './Components/BacklogComponent/backlog/backlog.component';
 import { PieChartBacklogComponent } from './Components/BacklogComponent/pie-chart-backlog/pie-chart-backlog.component';
 import { LineChartBacklogComponent } from './Components/BacklogComponent/line-chart-backlog/line-chart-backlog.component';
@@ -59,7 +58,6 @@ import { TeamChartsRoleComponent } from './Components/TeamComponent/team-charts-
     ProgressBarComponent,
     WelcomeCardComponent,
     TeamsChartsComponent,
-    TeamChartsFrontComponent,
     BacklogComponent,
     PieChartBacklogComponent,
     LineChartBacklogComponent,
