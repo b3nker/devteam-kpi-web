@@ -32,6 +32,9 @@ tr.grey-background{
   background-color: lightgrey;
 }
 
+mat-form-field{
+  width: 50px;
+}
 mat-select{
   text-align: center;
 }

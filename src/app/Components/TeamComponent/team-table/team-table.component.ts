@@ -5,7 +5,7 @@ import Table = WebAssembly.Table;
 /* Interface that schematize information contained in each element (row)
  *
  */
-export interface TableElement{
+export interface TableElement {
     name: string;
     devTime: number;
     allocatedTime: number;
@@ -17,6 +17,9 @@ export interface TableElement{
     availableTime: number;
     runDays: number;
     role: string;
+    _devTime: number;
+    _availableTime: number;
+
 
 }
 
@@ -25,7 +28,7 @@ export interface TableElement{
     templateUrl: './team-table.component.html',
     styleUrls: ['./team-table.component.css']
 })
-export class TeamTableComponent implements OnChanges{
+export class TeamTableComponent implements OnChanges {
     @Input() team: Team;
 
     ELEMENT_DATA: TableElement[];
@@ -41,7 +44,7 @@ export class TeamTableComponent implements OnChanges{
     nbRunDays: any[];
     WORKING_HOURS_PER_DAY: number;
 
-    constructor(){
+    constructor() {
         this.nbRunDays = [
             {value: 1, viewValue: 1},
             {value: 2, viewValue: 2},
@@ -82,6 +85,7 @@ export class TeamTableComponent implements OnChanges{
         this.UNASSIGNED_ROLE = 'none';
         this.WORKING_HOURS_PER_DAY = 8;
     }
+
     ngOnChanges(): void {
         if (typeof this.team !== 'undefined') {
             let unassigned: TableElement = {
@@ -95,7 +99,9 @@ export class TeamTableComponent implements OnChanges{
                 ticketsDevDone: 0,
                 availableTime: null,
                 runDays: 0,
-                role: this.UNASSIGNED_ROLE
+                role: this.UNASSIGNED_ROLE,
+                _availableTime: null,
+                _devTime: null
             };
             for (const c of this.team.collaborators) {
                 if (c.getFullName().includes(this.UNASSIGNED)) {
@@ -110,13 +116,16 @@ export class TeamTableComponent implements OnChanges{
                         ticketsDevDone: c.nbDevDone,
                         availableTime: null,
                         runDays: 0,
-                        role: this.UNASSIGNED_ROLE
+                        role: this.UNASSIGNED_ROLE,
+                        _availableTime: null,
+                        _devTime: null
+
                     };
                 } else {
                     let velocity = 0;
-                    if (c.role.includes(this.LEAD_DEV) || c.role.includes(this.SCRUM)){
+                    if (c.role.includes(this.LEAD_DEV) || c.role.includes(this.SCRUM)) {
                         velocity = this.LEAD_DEV_VELOCITY;
-                    }else {
+                    } else {
                         velocity = this.DEV_VELOCITY;
                     }
                     const developmentTime = Math.round(c.totalWorkingTime * velocity);
@@ -131,7 +140,10 @@ export class TeamTableComponent implements OnChanges{
                         ticketsDevDone: c.nbDevDone + c.nbDone,
                         availableTime: Math.round(c.availableTime * velocity),
                         runDays: 0,
-                        role: c.role
+                        role: c.role,
+                        _availableTime: Math.round(c.availableTime * velocity),
+                        _devTime: developmentTime
+
                     };
                     this.ELEMENT_DATA.push(elem);
                 }
@@ -142,20 +154,19 @@ export class TeamTableComponent implements OnChanges{
         }
     }
 
-    changeRowValues(i: number): void{
-        if (this.dataSource[i].role !== this.UNASSIGNED_ROLE){
-            let velocity = 0;
-            const nbRunDays = this.dataSource[i].runDays;
-            const role = this.dataSource[i].role;
-            if (role.includes(this.LEAD_DEV) || role.includes(this.SCRUM)){
-                velocity = this.LEAD_DEV_VELOCITY;
-                this.dataSource[i].availableTime -= velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
-                this.dataSource[i].devTime -= velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
-            }else{
-                velocity = this.DEV_VELOCITY;
-                this.dataSource[i].availableTime -= velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
-                this.dataSource[i].devTime -= velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
-            }
+    changeRowValues(event: any, i: number): void {
+        if (this.dataSource[i].role === this.UNASSIGNED_ROLE) {
+            return;
         }
+        let velocity;
+        const nbRunDays = event.value;
+        const role = this.dataSource[i].role;
+        if (role.includes(this.LEAD_DEV) || role.includes(this.SCRUM)) {
+            velocity = this.LEAD_DEV_VELOCITY;
+        } else {
+            velocity = this.DEV_VELOCITY;
+        }
+        this.dataSource[i].availableTime = this.dataSource[i]._availableTime - velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
+        this.dataSource[i].devTime = this.dataSource[i]._devTime - velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
     }
 }
