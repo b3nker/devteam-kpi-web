@@ -32,8 +32,8 @@ export class Team {
 export class TeamAdapter implements Adapter<Team>{
   static adapt(item: any): Team {
     // tslint:disable-next-line:no-shadowed-variable
-    const arrayOfCollaborators = item.collaborators.map(item => {
-      return CollaboratorAdapter.adapt(item);
+    const arrayOfCollaborators = item.collaborators.map(data => {
+      return CollaboratorAdapter.adapt(data);
     });
     return new Team(
       item.name,
@@ -43,8 +43,8 @@ export class TeamAdapter implements Adapter<Team>{
 
   adapt(item: any): Team {
     // tslint:disable-next-line:no-shadowed-variable
-    const arrayOfCollaborators = item.collaborators.map(item => {
-      return CollaboratorAdapter.adapt(item);
+    const arrayOfCollaborators = item.collaborators.map(data => {
+      return CollaboratorAdapter.adapt(data);
     });
     return new Team(
         item.name,

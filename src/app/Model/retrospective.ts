@@ -25,8 +25,8 @@ export class Retrospective {
 export class RetrospectiveAdapter implements Adapter<Retrospective> {
     adapt(item: any): Retrospective {
         // tslint:disable-next-line:no-shadowed-variable
-        const arrayOfSprintCommitment = item.sprints.map(item => {
-            return SprintCommitmentAdapter.adapt(item);
+        const arrayOfSprintCommitment = item.sprints.map(data => {
+            return SprintCommitmentAdapter.adapt(data);
         });
         return new Retrospective(
             item.teamName,
