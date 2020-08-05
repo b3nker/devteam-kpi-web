@@ -1,5 +1,5 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {Color, Label} from 'ng2-charts';
+import {Component, Input, OnChanges} from '@angular/core';
+import {Label} from 'ng2-charts';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import {Backlog} from '../../../Model/backlog';
 // @ts-ignore

@@ -15,6 +15,8 @@ import {AnonymCollaborator} from '../../../Model/anonym-collaborator';
 export class TeamComponent implements OnInit {
     sprint: Sprint;
     team: Team;
+    roleFront = 'Front';
+    roleMiddle = 'Middle';
     anonymizedNames: Map<string, string>;
     retrospective: Retrospective;
     nbSpDoneTotalTeam: number;

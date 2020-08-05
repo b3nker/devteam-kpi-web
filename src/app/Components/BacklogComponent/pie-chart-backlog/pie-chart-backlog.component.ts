@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Backlog} from '../../../Model/backlog';
 import {ChartOptions, ChartType} from 'chart.js';
 import {Label} from 'ng2-charts';

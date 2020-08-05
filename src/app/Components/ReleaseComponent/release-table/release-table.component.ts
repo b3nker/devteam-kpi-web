@@ -1,6 +1,5 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Release} from '../../../Model/release';
-import {TableElement} from '../../TeamComponent/team-table/team-table.component';
 
 export interface ReleaseRow {
   name: string;

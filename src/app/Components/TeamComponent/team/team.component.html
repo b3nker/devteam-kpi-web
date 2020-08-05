@@ -6,6 +6,6 @@
 ></app-progress-bar>
 <app-team-table [team]="team"></app-team-table>
 <app-team-charts [team]="team"></app-team-charts>
-<app-team-charts-front [team]="team"></app-team-charts-front>
-<app-team-charts-middle [team]="team"></app-team-charts-middle>
+<app-team-charts-role [team]="team" [role]="roleFront"></app-team-charts-role>
+<app-team-charts-role [team]="team" [role]="roleMiddle"></app-team-charts-role>
 <app-team-retrospective-bar-chart *ngIf="teamName=='beta'" [retrospective]="retrospective"></app-team-retrospective-bar-chart>

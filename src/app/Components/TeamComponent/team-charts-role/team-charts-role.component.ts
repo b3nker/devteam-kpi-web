@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
@@ -6,12 +6,13 @@ import {Collaborator} from '../../../Model/collaborator';
 import {ChartElement} from '../team-charts-front/team-charts-front.component';
 
 @Component({
-  selector: 'app-team-charts-middle',
-  templateUrl: './team-charts-middle.component.html',
-  styleUrls: ['./team-charts-middle.component.css']
+  selector: 'app-team-charts-role',
+  templateUrl: './team-charts-role.component.html',
+  styleUrls: ['./team-charts-role.component.css']
 })
-export class TeamChartsMiddleComponent implements OnChanges {
+export class TeamChartsRoleComponent implements OnChanges {
   @Input() team: Team;
+  @Input() role: string;
   names: Array<string> = [];
   spAqualifierBacAffinnage: Array<number> = [];
   spAfaire: Array<number> = [];
@@ -29,10 +30,8 @@ export class TeamChartsMiddleComponent implements OnChanges {
   barChartPlugins = [];
   barChartData: ChartDataSets[];
   barChartColors: Color[];
-  ROLE: string;
 
   constructor(){
-    this.ROLE = 'Middle';
     this.UNASSIGNED_ACCOUNT_ID = 'unassigned';
     this.barChartLabels = this.names;
     this.barChartType = 'horizontalBar';
@@ -67,9 +66,9 @@ export class TeamChartsMiddleComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    if (typeof this.team !== 'undefined') {
+    if (typeof this.team !== 'undefined' && typeof this.role !== 'undefined') {
       const all: any = {
-        name: this.ROLE,
+        name: this.role,
         aQualifierBacAffinnage: 0,
         aFaire: 0,
         enAttente: 0,
@@ -80,7 +79,7 @@ export class TeamChartsMiddleComponent implements OnChanges {
         valideEnRecetteLivreTermine: 0
       };
       for (const c of this.team.collaborators) {
-        if (c.role.toUpperCase().includes(this.ROLE.toUpperCase())) {
+        if (c.role.toUpperCase().includes(this.role.toUpperCase())) {
           const elem = this.generateChartElement(c);
           this.pushElement(elem);
           this.updateChartElement(c, all);
@@ -144,3 +143,4 @@ export class TeamChartsMiddleComponent implements OnChanges {
     elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
   }
 }
+

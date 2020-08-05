@@ -31,18 +31,17 @@ import { WelcomeCardComponent } from './Components/welcome-page/welcome-card/wel
 import {MatCardModule} from '@angular/material/card';
 import { TeamsChartsComponent } from './Components/TeamsComponent/teams-charts/teams-charts.component';
 import { TeamChartsFrontComponent } from './Components/TeamComponent/team-charts-front/team-charts-front.component';
-import { TeamChartsMiddleComponent } from './Components/TeamComponent/team-charts-middle/team-charts-middle.component';
 import { BacklogComponent } from './Components/BacklogComponent/backlog/backlog.component';
 import { PieChartBacklogComponent } from './Components/BacklogComponent/pie-chart-backlog/pie-chart-backlog.component';
 import { LineChartBacklogComponent } from './Components/BacklogComponent/line-chart-backlog/line-chart-backlog.component';
 import { TeamRetrospectiveBarChartComponent } from './Components/TeamComponent/team-retrospective-bar-chart/team-retrospective-bar-chart.component';
 import { TeamRetrospectiveLineChartComponent } from './Components/TeamComponent/team-retrospective-line-chart/team-retrospective-line-chart.component';
-import { TeamBootstrapTableComponent } from './Components/TeamComponent/team-bootstrap-table/team-bootstrap-table.component';
 import { ReleaseComponent } from './Components/ReleaseComponent/release/release.component';
 import { ReleaseTableComponent } from './Components/ReleaseComponent/release-table/release-table.component';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule} from '@angular/forms';
+import { TeamChartsRoleComponent } from './Components/TeamComponent/team-charts-role/team-charts-role.component';
 
 @NgModule({
   declarations: [
@@ -61,15 +60,14 @@ import {FormsModule} from '@angular/forms';
     WelcomeCardComponent,
     TeamsChartsComponent,
     TeamChartsFrontComponent,
-    TeamChartsMiddleComponent,
     BacklogComponent,
     PieChartBacklogComponent,
     LineChartBacklogComponent,
     TeamRetrospectiveBarChartComponent,
     TeamRetrospectiveLineChartComponent,
-    TeamBootstrapTableComponent,
     ReleaseComponent,
     ReleaseTableComponent,
+    TeamChartsRoleComponent,
   ],
     imports: [
         BrowserModule,
