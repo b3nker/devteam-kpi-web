@@ -55,6 +55,7 @@ export class TeamTableComponent implements OnChanges {
         this.dataSource = [];
         this.displayedColumns = [
             'name',
+            'runDays',
             'devTime', // Temps de présence sur le sprint
             'consumedTime', // logged time
             'availableTime', // Temps disponible restant sur le sprint
@@ -63,7 +64,6 @@ export class TeamTableComponent implements OnChanges {
             'tickets',
             'ticketsDevDone',
             'ticketsDone',
-            'runDays',
         ];
         this.displayedTooltip = [
             'Nom du développeur',
@@ -170,5 +170,10 @@ export class TeamTableComponent implements OnChanges {
         const timeToSubtract = velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
         this.dataSource[i].availableTime = Math.round((this.dataSource[i]._availableTime - timeToSubtract) * 10) / 10;
         this.dataSource[i].devTime = Math.round((this.dataSource[i]._devTime - timeToSubtract) * 10) / 10;
+        if (this.dataSource[i].availableTime < 0){
+            this.dataSource[i].availableTime = 0;
+        }else if (this.dataSource[i].devTime < 0){
+            this.dataSource[i].devTime = 0;
+        }
     }
 }
