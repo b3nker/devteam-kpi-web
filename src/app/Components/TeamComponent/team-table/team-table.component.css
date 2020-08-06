@@ -3,6 +3,9 @@ table {
   padding-top: 30px;
   padding-bottom: 30px;
 }
+i{
+  font-size: 14px;
+}
 table.center {
   margin-left:auto;
   margin-right:auto;
