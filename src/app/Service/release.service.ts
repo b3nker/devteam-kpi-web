@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Sprint, SprintAdapter} from '../Model/sprint';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {Release, ReleaseAdapter} from '../Model/release';
+import {Release} from '../Model/release';
+import {ReleaseAdapter} from './adapter/release-adapter';
 
 @Injectable({
   providedIn: 'root'

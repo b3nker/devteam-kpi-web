@@ -1,6 +1,3 @@
-import {Adapter} from '../Service/adapter/adapter';
-import {Injectable} from '@angular/core';
-
 export class Backlog {
     private _projectName: string;
     private _nbBugs: number;
@@ -118,32 +115,5 @@ export class Backlog {
         this._nbBugsCreated = nbBugsCreated;
         this._nbBugsResolved = nbBugsResolved;
         this._nbBugsInProgress = nbBugsInProgress;
-    }
-}
-
-@Injectable({
-    providedIn: 'root',
-})
-export class BacklogAdapter implements Adapter<Backlog> {
-    adapt(item: any): Backlog{
-        return new Backlog(
-            item.projectName,
-            item.nbBugs,
-            item.nbBugsLow,
-            item.nbBugsMedium,
-            item.nbBugsHigh,
-            item.nbBugsHighest,
-            item.nbIncidents,
-            item.nbIncidentsLow,
-            item.nbIncidentsMedium,
-            item.nbIncidentsHigh,
-            item.nbIncidentsHighest,
-            item.nbIncidentsCreated,
-            item.nbIncidentsResolved,
-            item.nbIncidentsInProgress,
-            item.nbBugsCreated,
-            item.nbBugsResolved,
-            item.nbBugsInProgress
-        );
     }
 }

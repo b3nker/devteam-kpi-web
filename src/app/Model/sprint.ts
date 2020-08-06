@@ -1,7 +1,4 @@
-import {Team, TeamAdapter} from './team';
-import {Injectable} from '@angular/core';
-import {Collaborator, CollaboratorAdapter} from './collaborator';
-import {Adapter} from '../Service/adapter/adapter';
+import {Team} from './team';
 
 export class Sprint {
     private _id: number;
@@ -53,21 +50,4 @@ export class Sprint {
     }
 }
 
-@Injectable({
-    providedIn: 'root',
-})
-export class SprintAdapter implements Adapter<Sprint> {
-    adapt(item: any): Sprint {
-        // tslint:disable-next-line:no-shadowed-variable
-        return new Sprint(
-            item.id,
-            item.name,
-            item.timeLeft,
-            item.totalTime,
-            TeamAdapter.adapt(item.team),
-            item.startDate,
-            item.endDate
-        );
-    }
-}
 

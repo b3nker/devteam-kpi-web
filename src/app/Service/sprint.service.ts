@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {Sprint, SprintAdapter} from '../Model/sprint';
-import {Retrospective} from '../Model/retrospective';
+import {Sprint} from '../Model/sprint';
+import {SprintAdapter} from './adapter/sprint-adapter';
 
 @Injectable({
   providedIn: 'root'

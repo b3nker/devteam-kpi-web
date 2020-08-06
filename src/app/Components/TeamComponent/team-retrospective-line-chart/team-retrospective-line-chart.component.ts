@@ -91,7 +91,11 @@ export class TeamRetrospectiveLineChartComponent implements OnChanges {
     ngOnChanges(): void {
         if (typeof this.retrospective !== 'undefined') {
             for (const s of this.retrospective.sprints) {
-                this.sprintNames.unshift(s.name);
+                if (s.name == null){
+                    this.sprintNames.unshift('N/D');
+                }else{
+                    this.sprintNames.unshift(s.name);
+                }
                 if (s.initialCommitment !== 0) {
                     this.percentageDone.unshift(Math.round((s.completedWork / s.initialCommitment) * 100));
                 } else {
@@ -102,10 +106,8 @@ export class TeamRetrospectiveLineChartComponent implements OnChanges {
                 data: this.percentageDone,
                 label: '(Completed Work / Initial Commitment)*100'
             };
-            const thresholdArray: Array<number> = [];
-            for (const val of this.percentageDone) {
-                thresholdArray.push(this.THRESHOLD_VALUE);
-            }
+            const thresholdArray = new Array(this.percentageDone.length);
+            thresholdArray.fill(this.THRESHOLD_VALUE);
             const threshold: any = {
                 data: thresholdArray,
                 label: 'Expected Percentage'

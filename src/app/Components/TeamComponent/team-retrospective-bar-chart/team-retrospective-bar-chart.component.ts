@@ -63,7 +63,11 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
         this.completedWorks.unshift(s.completedWork);
         this.addedWorks.unshift(s.addedWork);
         this.finalCommitments.unshift(s.finalCommitment);
-        this.sprintNames.unshift(s.name);
+        if (s.name == null){
+          this.sprintNames.unshift('N/D');
+        }else{
+          this.sprintNames.unshift(s.name);
+        }
         const initialCommitment: any = {
           data: this.initialCommitments,
           label: 'Initial Commitment'
@@ -92,15 +96,11 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
     }
   }
 
-  // events
-  public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
-
+  /* Given a set of string containing issue keys, returned a parsed string
+   * fitting jira's JQL syntax.
+   * Return the string for an "in" request (projection)
+   * ex: project = BMKP AND issue in ('issue1','issue2','issue3')
+   */
   getJqlSearch(issueKeys: string[]): string {
     if (issueKeys === null){
       return null;

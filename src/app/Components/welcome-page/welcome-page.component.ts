@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {SprintService} from '../../Service/sprint.service';
 import {Sprint} from '../../Model/sprint';
 

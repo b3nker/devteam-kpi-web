@@ -1,7 +1,3 @@
-import {Adapter} from '../Service/adapter/adapter';
-import {Collaborator} from './collaborator';
-import {Sprint} from './sprint';
-
 export class SprintCommitment {
     private _id: number;
     private _name: string;
@@ -51,27 +47,4 @@ export class SprintCommitment {
     }
 }
 
-export class SprintCommitmentAdapter implements Adapter<SprintCommitment> {
-    static adapt(item: any): SprintCommitment {
-        return new SprintCommitment(
-            item.id,
-            item.name,
-            item.initialCommitment,
-            item.finalCommitment,
-            item.addedWork,
-            item.completedWork,
-            item.addedIssueKeys
-        );
-    }
-    adapt(item: any): SprintCommitment {
-        return new SprintCommitment(
-            item.id,
-            item.name,
-            item.initialCommitment,
-            item.finalCommitment,
-            item.addedWork,
-            item.completedWork,
-            item.addedIssueKeys
-        );
-    }
-}
+

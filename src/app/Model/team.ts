@@ -1,6 +1,4 @@
-import {Collaborator, CollaboratorAdapter} from './collaborator';
-import {Injectable} from '@angular/core';
-import {Adapter} from '../Service/adapter/adapter';
+import {Collaborator} from './collaborator';
 
 export class Team {
   private _name: string;
@@ -23,32 +21,5 @@ export class Team {
   }
   get collaborators(): Collaborator[] {
     return this._collaborators;
-  }
-}
-
-@Injectable({
-  providedIn: 'root',
-})
-export class TeamAdapter implements Adapter<Team>{
-  static adapt(item: any): Team {
-    // tslint:disable-next-line:no-shadowed-variable
-    const arrayOfCollaborators = item.collaborators.map(data => {
-      return CollaboratorAdapter.adapt(data);
-    });
-    return new Team(
-      item.name,
-      arrayOfCollaborators
-    );
-  }
-
-  adapt(item: any): Team {
-    // tslint:disable-next-line:no-shadowed-variable
-    const arrayOfCollaborators = item.collaborators.map(data => {
-      return CollaboratorAdapter.adapt(data);
-    });
-    return new Team(
-        item.name,
-        arrayOfCollaborators
-    );
   }
 }

@@ -5,7 +5,6 @@ import {Router} from '@angular/router';
 import {Team} from '../../../Model/team';
 import {RetrospectiveService} from '../../../Service/retrospective.service';
 import {Retrospective} from '../../../Model/retrospective';
-import {AnonymCollaborator} from '../../../Model/anonym-collaborator';
 
 @Component({
     selector: 'app-team',

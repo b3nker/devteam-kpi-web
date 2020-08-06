@@ -1,7 +1,3 @@
-import {Injectable} from '@angular/core';
-import {Adapter} from '../Service/adapter/adapter';
-import {Backlog} from './backlog';
-
 export class Release {
     private _name: string;
     private _startDate: Date;
@@ -55,23 +51,5 @@ export class Release {
 
     get buildCapacityTotal(): number {
         return this._buildCapacityTotal;
-    }
-}
-
-@Injectable({
-    providedIn: 'root',
-})
-export class ReleaseAdapter implements Adapter<Release> {
-    adapt(item: any): Release {
-        return new Release(
-            item.name,
-            item.startDate,
-            item.endDate,
-            item.nbOpenDays,
-            item.nbWorkingDays,
-            item.buildCapacityFront,
-            item.buildCapacityMiddle,
-            item.buildCapacityTotal
-        );
     }
 }

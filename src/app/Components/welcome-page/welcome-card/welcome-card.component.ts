@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
 import {Collaborator} from '../../../Model/collaborator';
 
