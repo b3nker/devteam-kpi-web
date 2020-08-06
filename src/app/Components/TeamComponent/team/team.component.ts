@@ -14,9 +14,8 @@ import {Retrospective} from '../../../Model/retrospective';
 export class TeamComponent implements OnInit {
     sprint: Sprint;
     team: Team;
-    roleFront = 'Front';
-    roleMiddle = 'Middle';
-    anonymizedNames: Map<string, string>;
+    ROLE_FRONT = 'Front';
+    ROLE_MIDDLE = 'Middle';
     retrospective: Retrospective;
     nbSpDoneTotalTeam: number;
     nbSpTotalTeam: number;
@@ -32,7 +31,6 @@ export class TeamComponent implements OnInit {
         this.nbSpATester = 0;
         this.teamName = this.router.url.substring(this.router.url.lastIndexOf('/') + 1, this.router.url.length);
         this.teamNameURL = '/' + this.teamName;
-        this.anonymizedNames = new Map<string, string>();
     }
 
     ngOnInit(): void {
@@ -41,7 +39,6 @@ export class TeamComponent implements OnInit {
             this.team = this.sprint.team;
             let i = 1;
             for (const c of this.team.collaborators) {
-                this.anonymizedNames.set(c.accountId, 'Dev ' + i);
                 this.nbSpDoneTotalTeam += c.spAbandonne + c.spLivre + c.spTermine + c.spValideEnRecette + c.spAvalider;
                 this.nbSpEnCoursDevTermine += c.spEncours + c.spDevTermine;
                 this.nbSpATester += c.spATester;
@@ -50,8 +47,7 @@ export class TeamComponent implements OnInit {
             }
         });
         this.retrospectiveService.getRetrospectives().subscribe(data => {
-            const retrospectives = data;
-            for (const r of retrospectives) {
+            for (const r of data) {
                 if (r.teamName === this.teamName) {
                     this.retrospective = r;
                 }

@@ -5,18 +5,9 @@ import {Team} from '../../../Model/team';
 import {Collaborator} from '../../../Model/collaborator';
 // @ts-ignore
 import Chart = require('chart.js');
+import {ChartElement} from '../../../Interface/chart-element';
 
-export interface ChartElement {
-    name: string;
-    aQualifierBacAffinnage: number;
-    aFaire: number;
-    enAttente: number;
-    refuseEnRecette: number;
-    enCoursDevTermineTestCroise: number;
-    aLivrer: number;
-    aTester: number;
-    valideEnRecetteLivreTermine: number;
-}
+
 @Component({
     selector: 'app-team-charts',
     templateUrl: './team-charts.component.html',
@@ -24,16 +15,16 @@ export interface ChartElement {
 })
 export class TeamChartsComponent implements OnChanges {
     @Input() team: Team;
-    names: Array<string> = [];
-    spAqualifierBacAffinnage: Array<number> = [];
-    spAfaire: Array<number> = [];
-    spEnAttente: Array<number> = [];
-    spRefuseEnRecette: Array<number> = [];
-    spEncoursDevTermineTestCroise: Array<number> = [];
-    spAlivrer: Array<number> = [];
-    spATester: Array<number> = [];
-    spValideEnRecetteLivreTermine: Array<number> = [];
-    UNASSIGNED_ACCOUNT_ID: string;
+    names: Array<string>;
+    spAqualifierBacAffinnage: Array<number>;
+    spAfaire: Array<number>;
+    spEnAttente: Array<number>;
+    spRefuseEnRecette: Array<number>;
+    spEncoursDevTermineTestCroise: Array<number>;
+    spAlivrer: Array<number>;
+    spATester: Array<number>;
+    spValideEnRecetteLivreTermine: Array<number>;
+    UNASSIGNED_ACCOUNT_ID = 'unassigned';
     barChartOptions: ChartOptions;
     barChartLabels: Label[]; // Collaborators identity
     barChartType: ChartType;
@@ -41,16 +32,20 @@ export class TeamChartsComponent implements OnChanges {
     barChartPlugins = [];
     barChartData: ChartDataSets[];
     barChartColors: Color[];
-    // tslint:disable-next-line:align
+
     constructor(){
-        // tslint:disable-next-line:no-unused-expression
         Chart.defaults.global.defaultFontSize = 18;
         Chart.defaults.global.defaultFontColor = 'black';
         Chart.defaults.global.defaultFontStyle = 'bold';
-
-
-
-        this.UNASSIGNED_ACCOUNT_ID = 'unassigned';
+        this.names = [];
+        this.spAqualifierBacAffinnage = [];
+        this.spAfaire = [];
+        this.spEnAttente = [];
+        this.spRefuseEnRecette = [];
+        this.spEncoursDevTermineTestCroise = [];
+        this.spAlivrer = [];
+        this.spATester = [];
+        this.spValideEnRecetteLivreTermine = [];
         this.barChartLabels = this.names;
         this.barChartType = 'horizontalBar';
         this.barChartLegend = true;
@@ -109,7 +104,7 @@ export class TeamChartsComponent implements OnChanges {
     }
 
     generateChartElement(nameAttribute: string): ChartElement{
-        const elem: ChartElement = {
+        return {
             name: nameAttribute,
             aQualifierBacAffinnage: 0,
             aFaire: 0,
@@ -120,7 +115,6 @@ export class TeamChartsComponent implements OnChanges {
             aTester: 0,
             valideEnRecetteLivreTermine: 0
         };
-        return elem;
     }
 
     /* Method that push ChartElement's data to each Chart attribute
@@ -138,9 +132,6 @@ export class TeamChartsComponent implements OnChanges {
         this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
     }
 
-    /* Method that add collaborator story points' data to a ChartElement
-     *
-     */
     updateChartElement(c: Collaborator, elem: ChartElement): void{
         elem.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
         elem.aFaire += c.spAfaire;

@@ -31,7 +31,6 @@ export class TeamChartsRoleComponent implements OnChanges {
   spAlivrer: Array<number> = [];
   spATester: Array<number> = [];
   spValideEnRecetteLivreTermine: Array<number> = [];
-  UNASSIGNED_ACCOUNT_ID: string;
   barChartOptions: ChartOptions;
   barChartLabels: Label[]; // Collaborators identity
   barChartType: ChartType;
@@ -41,7 +40,6 @@ export class TeamChartsRoleComponent implements OnChanges {
   barChartColors: Color[];
 
   constructor(){
-    this.UNASSIGNED_ACCOUNT_ID = 'unassigned';
     this.barChartLabels = this.names;
     this.barChartType = 'horizontalBar';
     this.barChartLegend = true;
@@ -140,7 +138,12 @@ export class TeamChartsRoleComponent implements OnChanges {
     this.spValideEnRecetteLivreTermine.unshift(elem.valideEnRecetteLivreTermine);
   }
 
-
+  /**
+   * Updates a ChartElement by adding Collaborator data
+   * @param c, Collaborator object we collect data from
+   * @param elem, ChartElement we update
+   * @return an updated ChartElement given as input (void)
+   */
   updateChartElement(c: Collaborator, elem: ChartElement): void{
     elem.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
     elem.aFaire += c.spAfaire;

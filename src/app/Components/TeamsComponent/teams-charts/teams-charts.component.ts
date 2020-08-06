@@ -6,7 +6,7 @@ import {Sprint} from '../../../Model/sprint';
 // @ts-ignore
 import Chart = require('chart.js');
 import {Collaborator} from '../../../Model/collaborator';
-import {ChartElement} from '../../TeamComponent/team-charts/team-charts.component';
+import {ChartElement} from '../../../Interface/chart-element';
 
 @Component({
   selector: 'app-teams-charts',

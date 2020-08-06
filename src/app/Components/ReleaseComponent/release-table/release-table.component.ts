@@ -1,16 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {Release} from '../../../Model/release';
+import {ReleaseRow} from '../../../Interface/release-row';
 
-export interface ReleaseRow {
-  name: string;
-  startDate: Date;
-  endDate: Date;
-  nbOpenDays: number;
-  nbWorkingDays: number;
-  buildCapacityFront: number;
-  buildCapacityMiddle: number;
-  buildCapacityTotal: number;
-}
 @Component({
   selector: 'app-release-table',
   templateUrl: './release-table.component.html',
@@ -22,6 +13,7 @@ export class ReleaseTableComponent implements OnChanges {
   ELEMENT_DATA: ReleaseRow[];
   displayedColumns: string[];
   displayedTooltip: string[];
+
   constructor() {
     this.ELEMENT_DATA = [];
     this.dataSource = [];

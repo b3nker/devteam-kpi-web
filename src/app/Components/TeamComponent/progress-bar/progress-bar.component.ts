@@ -13,8 +13,8 @@ export class ProgressBarComponent implements OnChanges {
   @Input() nbSpATester: number;
   @Input() sprint: Sprint;
   progression: number;
-  dateDebut: string; // Sprint's start date
-  dateFin: string; // Sprint's end date
+  dateDebut: string;
+  dateFin: string;
   dateNow: Date;
   diffTime: number;
 
@@ -36,8 +36,11 @@ export class ProgressBarComponent implements OnChanges {
     }
   }
 
-  /* Method that returns the number of weekend days
-   * between two dates
+  /**
+   * Compute the number of weekend days (saturdays and sundays) between two dates
+   * @param now, Represent start date
+   * @param end, Represent end date
+   * @return A number
    */
   getNumber(now: Date, end: Date): number{
     let nbWeekendDays = 0;
