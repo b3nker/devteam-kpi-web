@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
-import {Collaborator} from '../../../Model/collaborator';
 import {ChartElement} from '../../../Interface/chart-element';
+import {TeamService} from '../../../Service/team.service';
 
 @Component({
   selector: 'app-team-charts-role',
@@ -38,29 +38,16 @@ export class TeamChartsRoleComponent implements OnChanges {
       };
       for (const c of this.team.collaborators) {
         if (c.role.toUpperCase().includes(this.role.toUpperCase())) {
-          const elem = this.generateChartElement(c);
+          const elem = TeamService.generateChartElement(c);
           this.pushElement(elem);
-          this.updateChartElement(c, all);
+          TeamService.updateChartElement(c, all);
         }
       }
       this.unshiftElement(all);
     }
   }
 
-  generateChartElement(c: Collaborator): ChartElement{
-    const elem: ChartElement = {
-      name: c.getFullName(),
-      aQualifierBacAffinnage: c.spAqualifier + c.spBacAffinage,
-      aFaire: c.spAfaire,
-      enAttente: c.spEnAttente,
-      refuseEnRecette: c.spRefuseEnRecette,
-      enCoursDevTermineTestCroise: c.spEncours + c.spDevTermine + c.spTestCroise,
-      aLivrer: c.spAlivrer,
-      aTester: c.spATester,
-      valideEnRecetteLivreTermine: c.spValideEnRecette + c.spLivre + c.spTermine
-    };
-    return elem;
-  }
+
 
   pushElement(elem: ChartElement): void{
     this.names.push(elem.name);
@@ -84,23 +71,6 @@ export class TeamChartsRoleComponent implements OnChanges {
     this.spAlivrer.unshift(elem.aLivrer);
     this.spATester.unshift(elem.aTester);
     this.spValideEnRecetteLivreTermine.unshift(elem.valideEnRecetteLivreTermine);
-  }
-
-  /**
-   * Updates a ChartElement by adding Collaborator data
-   * @param c, Collaborator object we collect data from
-   * @param elem, ChartElement we update
-   * @return An updated ChartElement given as input (void)
-   */
-  updateChartElement(c: Collaborator, elem: ChartElement): void{
-    elem.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
-    elem.aFaire += c.spAfaire;
-    elem.enAttente += c.spEnAttente;
-    elem.refuseEnRecette += c.spRefuseEnRecette;
-    elem.enCoursDevTermineTestCroise += c.spEncours + c.spDevTermine;
-    elem.aLivrer += c.spAlivrer;
-    elem.aTester += c.spATester;
-    elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
   }
 }
 

@@ -171,7 +171,6 @@ export class Collaborator {
         return this._nbToDo;
     }
 
-// tslint:disable-next-line:typedef
     getPascalCase(str: string): string{
         if (str.length > 0 ){
             return str[0].toUpperCase() + str.slice(1);
@@ -184,7 +183,20 @@ export class Collaborator {
         return this.getPascalCase(this._firstName) + ' ' + this.getPascalCase(this._name);
     }
 
-
+    /**
+     * Return specific velocity depending on collaborator's role
+     * @param firstRole, role (middle, front, scrum,...)
+     * @param secondRole, role (middle, front, scrum,...)
+     */
+    getVelocity(firstRole: string, secondRole: string): number{
+        let velocity;
+        if (this.role.includes(firstRole) || this.role.includes(secondRole)){
+            velocity = 0.5;
+        }else {
+            velocity = 0.8;
+        }
+        return velocity;
+    }
     constructor(accountId: string, firstName: string, name: string, emailAddress: string, velocity: number, totalWorkingTime: number,
                 estimatedTime: number, loggedTime: number, remainingTime: number, nbTickets: number, nbDone: number, nbDevDone: number,
                 nbInProgress: number, nbToDo: number, nbEnCoursDevTermine: number, nbATester: number, spTotal: number, spAqualifier: number,

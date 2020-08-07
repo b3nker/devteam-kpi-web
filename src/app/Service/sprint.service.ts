@@ -21,10 +21,6 @@ export class SprintService {
     );
   }
 
-  /* Method that return ONE sprint object corresponding to its teamName
-   * The route is of the following form : '//BASE_URL/sprint/{teamName}
-   * Update this method to return a Sprint object instead of an array
-   */
   getSprint(currentUrl: string): Observable<Sprint[]>{
     return this.http.get(this.BASE_URL + currentUrl).pipe(
         map((data: any) => [data].map((item) => this.adapter.adapt(item)))

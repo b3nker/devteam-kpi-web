@@ -1,7 +1,7 @@
 /* Model that encapsulate Collaborator data in tables (team, teams, collaborators components)
  */
 
-export interface CollaboratorElement {
+export interface TableElement {
     name: string;
     devTime: number;
     allocatedTime: number;
