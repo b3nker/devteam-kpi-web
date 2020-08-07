@@ -41,6 +41,8 @@ import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {FormsModule} from '@angular/forms';
 import { TeamChartsRoleComponent } from './Components/TeamComponent/team-charts-role/team-charts-role.component';
+import { HorizontalBarChartComponent } from './Components/GenericComponent/horizontal-bar-chart/horizontal-bar-chart.component';
+import { TableComponent } from './Components/GenericComponent/table/table.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,8 @@ import { TeamChartsRoleComponent } from './Components/TeamComponent/team-charts-
     ReleaseComponent,
     ReleaseTableComponent,
     TeamChartsRoleComponent,
+    HorizontalBarChartComponent,
+    TableComponent,
   ],
     imports: [
         BrowserModule,

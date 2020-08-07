@@ -1,11 +1,11 @@
-<div class = "chart" style="display: block;">
-    <canvas baseChart  width="8" height="2"
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [colors]="barChartColors"
-            [plugins]="barChartPlugins"
-            [legend]="barChartLegend"
-            [chartType]="barChartType">
-    </canvas>
-</div>
+<app-horizontal-bar-chart
+        [names]="names"
+        [spAqualifierBacAffinnage]="spAqualifierBacAffinnage"
+        [spAfaire]="spAfaire"
+        [spEnAttente]="spEnAttente"
+        [spRefuseEnRecette]="spRefuseEnRecette"
+        [spEncoursDevTermineTestCroise]="spEncoursDevTermineTestCroise"
+        [spAlivrer]="spAlivrer"
+        [spATester]="spATester"
+        [spValideEnRecetteLivreTermine]="spValideEnRecetteLivreTermine">
+</app-horizontal-bar-chart>

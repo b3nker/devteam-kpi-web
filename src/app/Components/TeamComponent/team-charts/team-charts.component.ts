@@ -1,10 +1,8 @@
 import {Component, Input, OnChanges} from '@angular/core';
-import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
-import {Color, Label} from 'ng2-charts';
+
 import {Team} from '../../../Model/team';
 import {Collaborator} from '../../../Model/collaborator';
 // @ts-ignore
-import Chart = require('chart.js');
 import {ChartElement} from '../../../Interface/chart-element';
 
 
@@ -25,18 +23,8 @@ export class TeamChartsComponent implements OnChanges {
     spATester: Array<number>;
     spValideEnRecetteLivreTermine: Array<number>;
     UNASSIGNED_ACCOUNT_ID = 'unassigned';
-    barChartOptions: ChartOptions;
-    barChartLabels: Label[]; // Collaborators identity
-    barChartType: ChartType;
-    barChartLegend: boolean;
-    barChartPlugins = [];
-    barChartData: ChartDataSets[];
-    barChartColors: Color[];
 
     constructor(){
-        Chart.defaults.global.defaultFontSize = 18;
-        Chart.defaults.global.defaultFontColor = 'black';
-        Chart.defaults.global.defaultFontStyle = 'bold';
         this.names = [];
         this.spAqualifierBacAffinnage = [];
         this.spAfaire = [];
@@ -46,45 +34,6 @@ export class TeamChartsComponent implements OnChanges {
         this.spAlivrer = [];
         this.spATester = [];
         this.spValideEnRecetteLivreTermine = [];
-        this.barChartLabels = this.names;
-        this.barChartType = 'horizontalBar';
-        this.barChartLegend = true;
-        this.barChartOptions = {
-            title: {
-                text: 'Etats des Story Points dans le sprint pour l\' équipe ',
-                display: true,
-                fontSize: 16,
-                fontColor: 'black'
-            },
-            responsive: true,
-            legend: {
-                labels: {
-                    fontColor: 'black',
-                    fontSize: 16,
-                }
-
-            }
-        };
-        this.barChartColors = [
-            {backgroundColor: '#696969'}, // Dark grey
-            {backgroundColor: '#c0c0c0'}, // Light grey
-            {backgroundColor: '#f29120'}, // Orange
-            {backgroundColor: 'red'}, // Red
-            {backgroundColor: '#4682B4'}, // Dark blue
-            {backgroundColor: '#87CEFA'}, // Light blue
-            {backgroundColor: '#b1c113'}, // Light green
-            {backgroundColor: '#7a9823'}, // Dark green
-        ];
-        this.barChartData = [
-            {data: this.spAqualifierBacAffinnage, label: 'A qualifier/Bac d\'affinage', stack: 'a'},
-            {data: this.spAfaire, label: 'A faire', stack: 'a'},
-            {data: this.spEnAttente, label: 'En Attente', stack: 'a'},
-            {data: this.spRefuseEnRecette, label: 'Refusé en recette', stack: 'a'},
-            {data: this.spEncoursDevTermineTestCroise, label: 'En cours/Dev terminé/Test croisé', stack: 'a'},
-            {data: this.spAlivrer, label: 'A livrer', stack: 'a'},
-            {data: this.spATester, label: 'A tester', stack: 'a'},
-            {data: this.spValideEnRecetteLivreTermine, label: 'Validé en recette/Livré/Terminé', stack: 'a'},
-        ];
     }
 
     ngOnChanges(): void {
