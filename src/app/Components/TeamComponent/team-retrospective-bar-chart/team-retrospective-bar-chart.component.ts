@@ -49,8 +49,8 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
     ];
     this.barChartColors = [
       { backgroundColor: '#0077b6' }, // Blue
-      { backgroundColor: '#90be6d' }, // Green
       { backgroundColor: '#d62828' }, // Red
+      { backgroundColor: '#90be6d' }, // Green
       { backgroundColor: '#8d99ae' }, // Black
     ];
   }
@@ -84,7 +84,7 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
           data: this.finalCommitments,
           label: 'Final Commitment'
         };
-        this.barChartData = [initialCommitment, completedWork, addedWork, finalCommitment];
+        this.barChartData = [initialCommitment, addedWork, completedWork];
         this.barChartLabels = this.sprintNames;
 
         // Get url to jira with added issue keys
