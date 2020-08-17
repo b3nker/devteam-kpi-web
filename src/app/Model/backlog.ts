@@ -5,61 +5,8 @@ export class Backlog {
     private _nbBugsMedium: number;
     private _nbBugsHigh: number;
     private _nbBugsHighest: number;
-    private _nbIncidents: number;
-    private _nbIncidentsLow: number;
-    private _nbIncidentsMedium: number;
-    private _nbIncidentsHigh: number;
-    private _nbIncidentsHighest: number;
-    private _nbIncidentsCreated: number[];
-    private _nbIncidentsResolved: number[];
-    private _nbIncidentsInProgress: number [];
     private _nbBugsCreated: number [];
     private _nbBugsResolved: number [];
-    private _nbBugsInProgress: number [];
-
-
-    get nbIncidentsInProgress(): number[] {
-        return this._nbIncidentsInProgress;
-    }
-
-    get nbBugsInProgress(): number[] {
-        return this._nbBugsInProgress;
-    }
-
-    get nbIncidents(): number {
-        return this._nbIncidents;
-    }
-
-    get nbIncidentsLow(): number {
-        return this._nbIncidentsLow;
-    }
-
-    get nbIncidentsMedium(): number {
-        return this._nbIncidentsMedium;
-    }
-
-    get nbIncidentsHigh(): number {
-        return this._nbIncidentsHigh;
-    }
-
-    get nbIncidentsHighest(): number {
-        return this._nbIncidentsHighest;
-    }
-    get nbIncidentsCreated(): number[] {
-        return this._nbIncidentsCreated;
-    }
-
-    set nbIncidentsCreated(value: number[]) {
-        this._nbIncidentsCreated = value;
-    }
-
-    get nbIncidentsResolved(): number[] {
-        return this._nbIncidentsResolved;
-    }
-
-    set nbIncidentsResolved(value: number[]) {
-        this._nbIncidentsResolved = value;
-    }
 
     get nbBugsCreated(): number[] {
         return this._nbBugsCreated;
@@ -94,26 +41,16 @@ export class Backlog {
     }
 
 
-    constructor(projectName: string, nbBugs: number, nbBugsLow: number, nbBugsMedium: number, nbBugsHigh: number, nbBugsHighest: number,
-                nbIncidents: number, nbIncidentsLow: number, nbIncidentsMedium: number, nbIncidentsHigh: number, nbIncidentsHighest: number,
-                nbIncidentsCreated: number[], nbIncidentsResolved: number[], nbIncidentsInProgress: number[], nbBugsCreated: number[],
-                nbBugsResolved: number[], nbBugsInProgress: number[]) {
+   constructor(projectName: string, nbBugs: number, nbBugsLow: number, nbBugsMedium: number,
+               nbBugsHigh: number, nbBugsHighest: number, nbBugsCreated: number[],
+               nbBugsResolved: number[]) {
         this._projectName = projectName;
         this._nbBugs = nbBugs;
         this._nbBugsLow = nbBugsLow;
         this._nbBugsMedium = nbBugsMedium;
         this._nbBugsHigh = nbBugsHigh;
         this._nbBugsHighest = nbBugsHighest;
-        this._nbIncidents = nbIncidents;
-        this._nbIncidentsLow = nbIncidentsLow;
-        this._nbIncidentsMedium = nbIncidentsMedium;
-        this._nbIncidentsHigh = nbIncidentsHigh;
-        this._nbIncidentsHighest = nbIncidentsHighest;
-        this._nbIncidentsCreated = nbIncidentsCreated;
-        this._nbIncidentsResolved = nbIncidentsResolved;
-        this._nbIncidentsInProgress = nbIncidentsInProgress;
         this._nbBugsCreated = nbBugsCreated;
         this._nbBugsResolved = nbBugsResolved;
-        this._nbBugsInProgress = nbBugsInProgress;
     }
 }

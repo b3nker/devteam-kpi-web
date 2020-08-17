@@ -14,17 +14,8 @@ export class BacklogAdapter implements Adapter<Backlog> {
             item.nbBugsMedium,
             item.nbBugsHigh,
             item.nbBugsHighest,
-            item.nbIncidents,
-            item.nbIncidentsLow,
-            item.nbIncidentsMedium,
-            item.nbIncidentsHigh,
-            item.nbIncidentsHighest,
-            item.nbIncidentsCreated,
-            item.nbIncidentsResolved,
-            item.nbIncidentsInProgress,
             item.nbBugsCreated,
             item.nbBugsResolved,
-            item.nbBugsInProgress
         );
     }
 }
