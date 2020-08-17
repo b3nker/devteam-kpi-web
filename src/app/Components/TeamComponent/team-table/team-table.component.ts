@@ -43,6 +43,21 @@ export class TeamTableComponent implements OnChanges {
                 _availableTime: null,
                 _devTime: null
             };
+            const total: TableElement = {
+                name: 'Total',
+                devTime: 0,
+                allocatedTime: 0,
+                consumedTime: 0,
+                leftToDo: 0,
+                tickets: 0,
+                ticketsDone: 0,
+                ticketsDevDone: 0,
+                availableTime: 0,
+                runDays: 0,
+                role: 'none',
+                _availableTime: null,
+                _devTime: null
+            };
             for (const c of this.team.collaborators) {
                 if (c.getFullName().includes(this.UNASSIGNED_NAME)) {
                     unassigned = {
@@ -59,16 +74,18 @@ export class TeamTableComponent implements OnChanges {
                         role: this.UNASSIGNED_ROLE,
                         _availableTime: null,
                         _devTime: null
-
                     };
+                    TeamService.updateTableElement(c, total, 0);
                 } else {
                     const velocity = c.getVelocity(this.SCRUM, this.LEAD_DEV);
                     const elem = TeamService.generateTableElement(c, velocity);
+                    TeamService.updateTableElement(c, total, velocity);
                     this.ELEMENT_DATA.push(elem);
                 }
 
             }
             this.ELEMENT_DATA.push(unassigned);
+            this.ELEMENT_DATA.push(total);
             this.dataSource = this.ELEMENT_DATA;
         }
     }
