@@ -6,30 +6,23 @@ import {Injectable} from '@angular/core';
     providedIn: 'root',
 })
 export class CollaboratorAdapter implements Adapter<Collaborator> {
-    static adapt(item: any): Collaborator {
+    static getCollaborator(item: any): Collaborator {
         return new Collaborator(
             item.accountId,
             item.firstName,
             item.name,
             item.emailAddress,
-            item.velocity,
             item.totalWorkingTime,
+            item.availableTime,
             item.estimatedTime,
             item.loggedTime,
             item.remainingTime,
-            item.nbTickets,
-            item.nbDone,
-            item.nbDevDone,
-            item.nbInProgress,
-            item.nbToDo,
-            item.nbEnCoursDevTermine,
-            item.nbATester,
             item.spTotal,
             item.spAqualifier,
             item.spBacAffinage,
             item.spEnAttente,
             item.spAfaire,
-            item.spEncours,
+            item.spTermine,
             item.spAbandonne,
             item.spDevTermine,
             item.spAvalider,
@@ -38,49 +31,36 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.spRefuseEnRecette,
             item.spValideEnRecette,
             item.spLivre,
-            item.spTermine,
-            item.role,
-            item.availableTime,
-            item.spTestCroise
-        );
-    }
-    adapt(item: any): Collaborator {
-        return new Collaborator(
-            item.accountId,
-            item.firstName,
-            item.name,
-            item.emailAddress,
-            item.velocity,
-            item.totalWorkingTime,
-            item.estimatedTime,
-            item.loggedTime,
-            item.remainingTime,
-            item.nbTickets,
-            item.nbDone,
-            item.nbDevDone,
-            item.nbInProgress,
-            item.nbToDo,
-            item.nbEnCoursDevTermine,
-            item.nbATester,
-            item.spTotal,
-            item.spAqualifier,
-            item.spBacAffinage,
-            item.spEnAttente,
-            item.spAfaire,
             item.spEncours,
-            item.spAbandonne,
-            item.spDevTermine,
-            item.spAvalider,
-            item.spAlivrer,
-            item.spATester,
-            item.spRefuseEnRecette,
-            item.spValideEnRecette,
-            item.spLivre,
-            item.spTermine,
+            item.spTestCroise,
+            item.ticketsTotal,
+            item.ticketsAqualifier,
+            item.ticketsBacAffinage,
+            item.ticketsEnAttente,
+            item.ticketsAfaire,
+            item.ticketsEncours,
+            item.ticketsAbandonne,
+            item.ticketsDevTermine,
+            item.ticketsAvalider,
+            item.ticketsAlivrer,
+            item.ticketsATester,
+            item.ticketsRefuseEnRecette,
+            item.ticketsValideEnRecette,
+            item.ticketsLivre,
+            item.ticketsTermine,
+            item.ticketsValide,
             item.role,
-            item.availableTime,
-            item.spTestCroise
+            item.ticketsTestCroise,
+
 
         );
+    }
+
+    static adapt(item: any): Collaborator {
+        return CollaboratorAdapter.getCollaborator(item);
+    }
+
+    adapt(item: any): Collaborator {
+        return CollaboratorAdapter.getCollaborator(item);
     }
 }

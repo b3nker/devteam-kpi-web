@@ -3,18 +3,11 @@ export class Collaborator {
     private _firstName: string;
     private _name: string;
     private _emailAddress: string;
-    private _velocity: number;
     private _totalWorkingTime: number;
+    private _availableTime: number;
     private _estimatedTime: number;
     private _loggedTime: number;
     private _remainingTime: number;
-    private _nbTickets: number;
-    private _nbDone: number;
-    private _nbDevDone: number;
-    private _nbInProgress: number;
-    private _nbToDo: number;
-    private _nbEnCoursDevTermine: number;
-    private _nbATester: number;
     private _spTotal: number;
     private _spAqualifier: number;
     private _spBacAffinage: number;
@@ -30,25 +23,102 @@ export class Collaborator {
     private _spValideEnRecette: number;
     private _spLivre: number;
     private _spTermine: number;
-    private _role: string;
-    private _availableTime: number;
     private _spTestCroise: number;
+    private _ticketsTotal: number;
+    private _ticketsAqualifier: number;
+    private _ticketsBacAffinage: number;
+    private _ticketsEnAttente: number;
+    private _ticketsAfaire: number;
+    private _ticketsEncours: number;
+    private _ticketsAbandonne: number;
+    private _ticketsDevTermine: number;
+    private _ticketsAvalider: number;
+    private _ticketsAlivrer: number;
+    private _ticketsATester: number;
+    private _ticketsRefuseEnRecette: number;
+    private _ticketsValideEnRecette: number;
+    private _ticketsLivre: number;
+    private _ticketsTermine: number;
+    private _ticketsTestCroise: number;
+    private _ticketsValide: number;
+    private _role: string;
 
+
+    get doneTickets(): number {
+        return this.ticketsValideEnRecette + this.ticketsValide + this.ticketsTermine + this.ticketsLivre;
+    }
+
+    get supDevDoneTickets(): number {
+        return this.ticketsTestCroise + this.ticketsATester + this.ticketsAlivrer + this.doneTickets;
+    }
+
+
+    get ticketsTestCroise(): number {
+        return this._ticketsTestCroise;
+    }
+
+    get ticketsAqualifier(): number {
+        return this._ticketsAqualifier;
+    }
+
+    get ticketsBacAffinage(): number {
+        return this._ticketsBacAffinage;
+    }
+
+    get ticketsEnAttente(): number {
+        return this._ticketsEnAttente;
+    }
+
+    get ticketsAfaire(): number {
+        return this._ticketsAfaire;
+    }
+
+    get ticketsEncours(): number {
+        return this._ticketsEncours;
+    }
+
+    get ticketsAbandonne(): number {
+        return this._ticketsAbandonne;
+    }
+
+    get ticketsDevTermine(): number {
+        return this._ticketsDevTermine;
+    }
+
+    get ticketsAvalider(): number {
+        return this._ticketsAvalider;
+    }
+
+    get ticketsAlivrer(): number {
+        return this._ticketsAlivrer;
+    }
+
+    get ticketsATester(): number {
+        return this._ticketsATester;
+    }
+
+    get ticketsRefuseEnRecette(): number {
+        return this._ticketsRefuseEnRecette;
+    }
+
+    get ticketsValideEnRecette(): number {
+        return this._ticketsValideEnRecette;
+    }
+
+    get ticketsLivre(): number {
+        return this._ticketsLivre;
+    }
+
+    get ticketsTermine(): number {
+        return this._ticketsTermine;
+    }
+
+    get ticketsValide(): number {
+        return this._ticketsValide;
+    }
 
     get spTestCroise(): number {
         return this._spTestCroise;
-    }
-
-    get nbEnCoursDevTermine(): number {
-        return this._nbEnCoursDevTermine;
-    }
-
-    get nbATester(): number {
-        return this._nbATester;
-    }
-
-    get nbDevDone(): number {
-        return this._nbDevDone;
     }
 
     get spAqualifier(): number {
@@ -139,10 +209,6 @@ export class Collaborator {
         return this._emailAddress;
     }
 
-    get velocity(): number {
-        return this._velocity;
-    }
-
     get totalWorkingTime(): number {
         return this._totalWorkingTime;
     }
@@ -155,20 +221,8 @@ export class Collaborator {
         return this._loggedTime;
     }
 
-    get nbTickets(): number {
-        return this._nbTickets;
-    }
-
-    get nbDone(): number {
-        return this._nbDone;
-    }
-
-    get nbInProgress(): number {
-        return this._nbInProgress;
-    }
-
-    get nbToDo(): number {
-        return this._nbToDo;
+    get ticketsTotal(): number {
+        return this._ticketsTotal;
     }
 
     getPascalCase(str: string): string{
@@ -197,28 +251,27 @@ export class Collaborator {
         }
         return velocity;
     }
-    constructor(accountId: string, firstName: string, name: string, emailAddress: string, velocity: number, totalWorkingTime: number,
-                estimatedTime: number, loggedTime: number, remainingTime: number, nbTickets: number, nbDone: number, nbDevDone: number,
-                nbInProgress: number, nbToDo: number, nbEnCoursDevTermine: number, nbATester: number, spTotal: number, spAqualifier: number,
-                spBacAffinage: number, spEnAttente: number, spAfaire: number, spEncours: number, spAbandonne: number, spDevTermine: number,
-                spAvalider: number, spAlivrer: number, spATester: number, spRefuseEnRecette: number, spValideEnRecette: number,
-                spLivre: number, spTermine: number, role: string, availableTime: number, spTestCroise: number) {
+
+    constructor(accountId: string, firstName: string, name: string, emailAddress: string,
+                totalWorkingTime: number, availableTime: number, estimatedTime: number, loggedTime: number,
+                remainingTime: number, spTotal: number, spAqualifier: number, spBacAffinage: number,
+                spEnAttente: number, spAfaire: number, spEncours: number, spAbandonne: number,
+                spDevTermine: number, spAvalider: number, spAlivrer: number, spATester: number,
+                spRefuseEnRecette: number, spValideEnRecette: number, spLivre: number, spTermine: number,
+                spTestCroise: number, ticketsTotal: number, ticketsAqualifier: number, ticketsBacAffinage: number,
+                ticketsEnAttente: number, ticketsAfaire: number, ticketsEncours: number, ticketsAbandonne: number,
+                ticketsDevTermine: number, ticketsAvalider: number, ticketsAlivrer: number, ticketsATester: number,
+                ticketsRefuseEnRecette: number, ticketsValideEnRecette: number, ticketsLivre: number,
+                ticketsTermine: number, ticketsValide: number, role: string, ticketsTestCroise: number) {
         this._accountId = accountId;
         this._firstName = firstName;
         this._name = name;
         this._emailAddress = emailAddress;
-        this._velocity = velocity;
         this._totalWorkingTime = totalWorkingTime;
+        this._availableTime = availableTime;
         this._estimatedTime = estimatedTime;
         this._loggedTime = loggedTime;
         this._remainingTime = remainingTime;
-        this._nbTickets = nbTickets;
-        this._nbDone = nbDone;
-        this._nbDevDone = nbDevDone;
-        this._nbInProgress = nbInProgress;
-        this._nbToDo = nbToDo;
-        this._nbEnCoursDevTermine = nbEnCoursDevTermine;
-        this._nbATester = nbATester;
         this._spTotal = spTotal;
         this._spAqualifier = spAqualifier;
         this._spBacAffinage = spBacAffinage;
@@ -234,9 +287,25 @@ export class Collaborator {
         this._spValideEnRecette = spValideEnRecette;
         this._spLivre = spLivre;
         this._spTermine = spTermine;
-        this._role = role;
-        this._availableTime = availableTime;
         this._spTestCroise = spTestCroise;
+        this._ticketsTotal = ticketsTotal;
+        this._ticketsAqualifier = ticketsAqualifier;
+        this._ticketsBacAffinage = ticketsBacAffinage;
+        this._ticketsEnAttente = ticketsEnAttente;
+        this._ticketsAfaire = ticketsAfaire;
+        this._ticketsEncours = ticketsEncours;
+        this._ticketsAbandonne = ticketsAbandonne;
+        this._ticketsDevTermine = ticketsDevTermine;
+        this._ticketsAvalider = ticketsAvalider;
+        this._ticketsAlivrer = ticketsAlivrer;
+        this._ticketsATester = ticketsATester;
+        this._ticketsRefuseEnRecette = ticketsRefuseEnRecette;
+        this._ticketsValideEnRecette = ticketsValideEnRecette;
+        this._ticketsLivre = ticketsLivre;
+        this._ticketsTermine = ticketsTermine;
+        this._ticketsValide = ticketsValide;
+        this._ticketsTestCroise = ticketsTestCroise;
+        this._role = role;
     }
 }
 

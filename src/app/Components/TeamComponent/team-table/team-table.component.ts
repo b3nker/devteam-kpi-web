@@ -12,8 +12,6 @@ export class TeamTableComponent implements OnChanges {
     @Input() team: Team;
     ELEMENT_DATA: TableElement[];
     dataSource: TableElement[];
-    LEAD_DEV_VELOCITY: number;
-    DEV_VELOCITY: number;
     SCRUM: string;
     LEAD_DEV: string;
     UNASSIGNED_NAME: string;
@@ -53,9 +51,9 @@ export class TeamTableComponent implements OnChanges {
                         allocatedTime: c.estimatedTime,
                         consumedTime: c.loggedTime,
                         leftToDo: c.remainingTime,
-                        tickets: c.nbTickets,
-                        ticketsDone: c.nbDone,
-                        ticketsDevDone: c.nbDevDone,
+                        tickets: c.ticketsTotal,
+                        ticketsDone: c.doneTickets,
+                        ticketsDevDone: c.supDevDoneTickets,
                         availableTime: null,
                         runDays: 0,
                         role: this.UNASSIGNED_ROLE,

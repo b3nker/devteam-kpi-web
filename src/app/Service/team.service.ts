@@ -106,9 +106,9 @@ export class TeamService {
             allocatedTime: Math.round(c.estimatedTime * 10) / 10,
             consumedTime: Math.round(c.loggedTime * 10) / 10,
             leftToDo: Math.round(c.remainingTime * 10) / 10,
-            tickets: c.nbTickets,
-            ticketsDone: c.nbDone,
-            ticketsDevDone: c.nbDevDone + c.nbDone,
+            tickets: c.ticketsTotal,
+            ticketsDone: c.doneTickets,
+            ticketsDevDone: c.supDevDoneTickets,
             availableTime: Math.round(c.availableTime * velocity),
             runDays: 0,
             role: c.role,
@@ -131,9 +131,9 @@ export class TeamService {
         elem.allocatedTime += Math.round(c.estimatedTime * 10) / 10;
         elem.consumedTime += Math.round(c.loggedTime * 10) / 10;
         elem.leftToDo += Math.round(c.remainingTime * 10) / 10;
-        elem.tickets += c.nbTickets;
-        elem.ticketsDone += c.nbDone;
-        elem.ticketsDevDone += c.nbDone + c.nbDevDone;
+        elem.tickets += c.ticketsTotal;
+        elem.ticketsDone += c.doneTickets;
+        elem.ticketsDevDone += c.supDevDoneTickets;
         elem.availableTime += timeAvailable;
         elem._devTime += developmentTime;
         elem._availableTime += timeAvailable;
