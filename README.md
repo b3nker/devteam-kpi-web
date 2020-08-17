@@ -27,6 +27,7 @@ git clone URL
 Then you must enter the following command in the main directory : 
 
 ```shell script
+npm install
 npm run start:dev
 ```
 
