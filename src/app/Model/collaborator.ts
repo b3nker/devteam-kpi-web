@@ -42,6 +42,7 @@ export class Collaborator {
     private _ticketsTestCroise: number;
     private _ticketsValide: number;
     private _role: string;
+    private _assignedIssues: Array<string>;
 
 
     get doneTickets(): number {
@@ -52,6 +53,9 @@ export class Collaborator {
         return this.ticketsTestCroise + this.ticketsATester + this.ticketsAlivrer + this.doneTickets;
     }
 
+    get assignedIssues(): Array<string> {
+        return this._assignedIssues;
+    }
 
     get ticketsTestCroise(): number {
         return this._ticketsTestCroise;
@@ -245,11 +249,29 @@ export class Collaborator {
     getVelocity(firstRole: string, secondRole: string): number{
         let velocity;
         if (this.role.includes(firstRole) || this.role.includes(secondRole)){
-            velocity = 0.5;
+            velocity = 0.65;
         }else {
-            velocity = 0.8;
+            velocity = 1;
         }
         return velocity;
+    }
+
+    getJqlKeysList(): string {
+        if (this.assignedIssues === null){
+            return null;
+        }
+        let str = '';
+        let i = 1;
+        const size = this.assignedIssues.length;
+        for (const issueKey of this.assignedIssues){
+            if (i === size){
+                str += '\'' + issueKey + '\'';
+            }else{
+                str += '\'' + issueKey + '\',';
+                i++;
+            }
+        }
+        return str;
     }
 
     constructor(accountId: string, firstName: string, name: string, emailAddress: string,
@@ -262,7 +284,8 @@ export class Collaborator {
                 ticketsEnAttente: number, ticketsAfaire: number, ticketsEncours: number, ticketsAbandonne: number,
                 ticketsDevTermine: number, ticketsAvalider: number, ticketsAlivrer: number, ticketsATester: number,
                 ticketsRefuseEnRecette: number, ticketsValideEnRecette: number, ticketsLivre: number,
-                ticketsTermine: number, ticketsValide: number, role: string, ticketsTestCroise: number) {
+                ticketsTermine: number, ticketsValide: number, role: string, ticketsTestCroise: number,
+                assignedIssues: Array<string>) {
         this._accountId = accountId;
         this._firstName = firstName;
         this._name = name;
@@ -306,6 +329,7 @@ export class Collaborator {
         this._ticketsValide = ticketsValide;
         this._ticketsTestCroise = ticketsTestCroise;
         this._role = role;
+        this._assignedIssues = assignedIssues;
     }
 }
 

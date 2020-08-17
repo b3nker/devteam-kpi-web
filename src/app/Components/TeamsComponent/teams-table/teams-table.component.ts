@@ -41,6 +41,7 @@ export class TeamsTableComponent implements OnChanges {
                 availableTime: 0,
                 runDays: 0,
                 role: 'none',
+                url: '',
                 _availableTime: null,
                 _devTime: null
             };

@@ -8,7 +8,12 @@ import {TableElement} from '../Interface/table-element';
     providedIn: 'root'
 })
 export class TeamService {
+    private _baseUrl: string;
+
     constructor() {
+    }
+    get baseUrl(): string {
+        return this._baseUrl;
     }
 
     /**
@@ -67,7 +72,6 @@ export class TeamService {
     }
 
 
-
     /**
      * Creates an empty TableElement, specifying nothing but its name.
      * @param nameAttribute, name attributed to created TableElement
@@ -87,22 +91,24 @@ export class TeamService {
             availableTime: null,
             runDays: 0,
             role: collabRole,
+            url: '',
             _availableTime: null,
             _devTime: null,
         };
     }
 
-  /**
-   * Creates a TableElement and assigned values passed as parameter to it
-   * @param c, Collaborator we want to fetch data in
-   * @param velocity, theoretical value assigned to collaborator given as input
-   * @return A TableElement interface filled with values given as parameters.
-   */
+    /**
+     * Creates a TableElement and assigned values passed as parameter to it
+     * @param c, Collaborator we want to fetch data in
+     * @param velocity, theoretical value assigned to collaborator given as input
+     * @return A TableElement interface filled with values given as parameters.
+     */
     static generateTableElement(c: Collaborator, velocity: number): TableElement {
-    const developmentTime = Math.round(c.totalWorkingTime * velocity);
-    return {
+        const developmentTime = Math.round((c.totalWorkingTime - 2 * 8) * velocity);
+        const devTimeCeremonyDays = (developmentTime >= 0) ? developmentTime : 0;
+        return {
             name: c.getFullName(),
-            devTime: developmentTime,
+            devTime: devTimeCeremonyDays,
             allocatedTime: Math.round(c.estimatedTime * 10) / 10,
             consumedTime: Math.round(c.loggedTime * 10) / 10,
             leftToDo: Math.round(c.remainingTime * 10) / 10,
@@ -112,6 +118,7 @@ export class TeamService {
             availableTime: Math.round(c.availableTime * velocity),
             runDays: 0,
             role: c.role,
+            url:  'https://apriltechnologies.atlassian.net/issues/?jql=issue in (' + c.getJqlKeysList() + ')',
             _availableTime: Math.round(c.availableTime * velocity),
             _devTime: developmentTime
         };
@@ -126,7 +133,7 @@ export class TeamService {
      */
     static updateTableElement(c: Collaborator, elem: TableElement, velocity: number): void {
         const developmentTime = Math.round(c.totalWorkingTime * velocity);
-        const timeAvailable =  Math.round(c.availableTime * velocity);
+        const timeAvailable = Math.round(c.availableTime * velocity);
         elem.devTime += developmentTime;
         elem.allocatedTime += Math.round(c.estimatedTime * 10) / 10;
         elem.consumedTime += Math.round(c.loggedTime * 10) / 10;

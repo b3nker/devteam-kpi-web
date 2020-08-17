@@ -40,6 +40,7 @@ export class TeamTableComponent implements OnChanges {
                 availableTime: null,
                 runDays: 0,
                 role: this.UNASSIGNED_ROLE,
+                url: '',
                 _availableTime: null,
                 _devTime: null
             };
@@ -55,6 +56,7 @@ export class TeamTableComponent implements OnChanges {
                 availableTime: 0,
                 runDays: 0,
                 role: 'none',
+                url: '',
                 _availableTime: null,
                 _devTime: null
             };
@@ -72,6 +74,7 @@ export class TeamTableComponent implements OnChanges {
                         availableTime: null,
                         runDays: 0,
                         role: this.UNASSIGNED_ROLE,
+                        url: '',
                         _availableTime: null,
                         _devTime: null
                     };

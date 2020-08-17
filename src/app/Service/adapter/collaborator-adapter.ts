@@ -51,6 +51,7 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.ticketsValide,
             item.role,
             item.ticketsTestCroise,
+            item.assignedIssues,
 
 
         );

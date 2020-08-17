@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TableElement} from '../../../Interface/table-element';
 
 @Component({
@@ -40,6 +40,7 @@ export class TableComponent {
             'tickets',
             'ticketsDevDone',
             'ticketsDone',
+            'url',
         ];
         this.displayedTooltip = [
             'Nom du développeur',
@@ -51,8 +52,9 @@ export class TableComponent {
             'Temps de présence sur le sprint',
             'Tickets alloués sur le sprint',
             'Tickets terminés sur le sprint (Statut JIRA: Livré, Terminé, Validé en recette)',
-            'Tickets qui se situe après l\' état "Dév terminé" dans le workflow Jira" (Statut JIRA : A tester, A livrer, livré, terminé, validé en recette)',
-            'Nombre de jours à faire du RUN/MCO'
+            'Tickets qui se situe après l\' état "Dév terminé" dans le workflow Jira',
+            'Nombre de jours à faire du RUN/MCO',
+            'Lien JIRA vers les tâches assignées',
         ];
         this.LEAD_DEV_VELOCITY = 0.5;
         this.DEV_VELOCITY = 0.8;
