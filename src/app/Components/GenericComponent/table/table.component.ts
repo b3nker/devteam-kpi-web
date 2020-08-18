@@ -9,6 +9,7 @@ import {TableElement} from '../../../Interface/table-element';
 export class TableComponent {
     @Input() dataSource: TableElement[];
     nbRunDays: any[];
+    nbCeremonyDays: any[];
     displayedColumns: string[];
     displayedTooltip: string[];
     LEAD_DEV_VELOCITY: number;
@@ -29,9 +30,20 @@ export class TableComponent {
             {value: 5, viewValue: 5},
             {value: 6, viewValue: 6},
         ];
+
+        this.nbCeremonyDays = [
+            {value: 0, viewValue: 'Aucun'},
+            {value: 1, viewValue: 1},
+            {value: 2, viewValue: 2},
+            {value: 3, viewValue: 3},
+            {value: 4, viewValue: 4},
+            {value: 5, viewValue: 5},
+            {value: 6, viewValue: 6},
+        ];
         this.displayedColumns = [
             'name',
             'runDays',
+            'ceremonyDays',
             'devTime', // Temps de présence sur le sprint
             'consumedTime', // logged time
             'availableTime', // Temps disponible restant sur le sprint
@@ -56,34 +68,77 @@ export class TableComponent {
             'Nombre de jours à faire du RUN/MCO',
             'Lien JIRA vers les tâches assignées',
         ];
-        this.LEAD_DEV_VELOCITY = 0.5;
-        this.DEV_VELOCITY = 0.8;
+        this.LEAD_DEV_VELOCITY = 0.65;
+        this.DEV_VELOCITY = 1;
         this.SCRUM = 'scrum';
         this.LEAD_DEV = 'lead dev';
         this.UNASSIGNED_ROLE = 'none';
         this.WORKING_HOURS_PER_DAY = 8;
     }
 
-    changeRowValues(event: any, i: number): void {
+    changeRowValuesRun(event: any, i: number): void {
         if (this.dataSource[i].role === this.UNASSIGNED_ROLE) {
             return;
         }
         let velocity;
-        const nbRunDays = event.value;
+        const nbDays = event.value;
         const role = this.dataSource[i].role;
         if (role.includes(this.LEAD_DEV) || role.includes(this.SCRUM)) {
             velocity = this.LEAD_DEV_VELOCITY;
         } else {
             velocity = this.DEV_VELOCITY;
         }
-        const timeToSubtract = velocity * (nbRunDays * this.WORKING_HOURS_PER_DAY);
-        this.dataSource[i].availableTime = Math.round((this.dataSource[i]._availableTime - timeToSubtract) * 10) / 10;
-        this.dataSource[i].devTime = Math.round((this.dataSource[i]._devTime - timeToSubtract) * 10) / 10;
+        const oldNbDays = this.dataSource[i].runDays;
+        this.dataSource[i].runDays = nbDays;
+        const diffNbDays = nbDays - oldNbDays;
+        console.log(diffNbDays);
+        const timeToSubtract = velocity * (diffNbDays * this.WORKING_HOURS_PER_DAY);
+        this.dataSource[i].availableTime = Math.round((this.dataSource[i].availableTime - timeToSubtract) * 10) / 10;
+        this.dataSource[i].devTime = Math.round((this.dataSource[i].devTime - timeToSubtract) * 10) / 10;
         if (this.dataSource[i].availableTime < 0) {
             this.dataSource[i].availableTime = 0;
         }
+        if (this.dataSource[i].availableTime > this.dataSource[i]._availableTime) {
+            this.dataSource[i].availableTime = this.dataSource[i]._availableTime;
+        }
         if (this.dataSource[i].devTime < 0) {
             this.dataSource[i].devTime = 0;
+        }
+        if (this.dataSource[i].devTime > this.dataSource[i]._devTime) {
+            this.dataSource[i].devTime = this.dataSource[i]._devTime;
+        }
+    }
+
+    changeRowValuesCeremony(event: any, i: number): void {
+        if (this.dataSource[i].role === this.UNASSIGNED_ROLE) {
+            return;
+        }
+
+        let velocity;
+        const nbDays = event.value;
+        const role = this.dataSource[i].role;
+        if (role.includes(this.LEAD_DEV) || role.includes(this.SCRUM)) {
+            velocity = this.LEAD_DEV_VELOCITY;
+        } else {
+            velocity = this.DEV_VELOCITY;
+        }
+        const oldNbDays = this.dataSource[i].ceremonyDays;
+        this.dataSource[i].ceremonyDays = nbDays;
+        const diffNbDays = nbDays - oldNbDays;
+        const timeToSubtract = velocity * (diffNbDays * this.WORKING_HOURS_PER_DAY);
+        this.dataSource[i].availableTime = Math.round((this.dataSource[i].availableTime - timeToSubtract) * 10) / 10;
+        this.dataSource[i].devTime = Math.round((this.dataSource[i].devTime - timeToSubtract) * 10) / 10;
+        if (this.dataSource[i].availableTime < 0) {
+            this.dataSource[i].availableTime = 0;
+        }
+        if (this.dataSource[i].availableTime > this.dataSource[i]._availableTime) {
+            this.dataSource[i].availableTime = this.dataSource[i]._availableTime;
+        }
+        if (this.dataSource[i].devTime < 0) {
+            this.dataSource[i].devTime = 0;
+        }
+        if (this.dataSource[i].devTime > this.dataSource[i]._devTime) {
+            this.dataSource[i].devTime = this.dataSource[i]._devTime;
         }
     }
 

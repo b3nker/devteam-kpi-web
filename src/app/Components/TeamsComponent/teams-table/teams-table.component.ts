@@ -40,6 +40,7 @@ export class TeamsTableComponent implements OnChanges {
                 ticketsDevDone: 0,
                 availableTime: 0,
                 runDays: 0,
+                ceremonyDays: 0,
                 role: 'none',
                 url: '',
                 _availableTime: null,

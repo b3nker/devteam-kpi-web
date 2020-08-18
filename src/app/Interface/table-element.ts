@@ -12,6 +12,7 @@ export interface TableElement {
     ticketsDevDone: number;
     availableTime: number;
     runDays: number;
+    ceremonyDays: number;
     role: string;
     url: string;
     _devTime: number;

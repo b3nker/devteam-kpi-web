@@ -8,12 +8,8 @@ import {TableElement} from '../Interface/table-element';
     providedIn: 'root'
 })
 export class TeamService {
-    private _baseUrl: string;
 
     constructor() {
-    }
-    get baseUrl(): string {
-        return this._baseUrl;
     }
 
     /**
@@ -90,6 +86,7 @@ export class TeamService {
             ticketsDevDone: 0,
             availableTime: null,
             runDays: 0,
+            ceremonyDays: 0,
             role: collabRole,
             url: '',
             _availableTime: null,
@@ -104,11 +101,10 @@ export class TeamService {
      * @return A TableElement interface filled with values given as parameters.
      */
     static generateTableElement(c: Collaborator, velocity: number): TableElement {
-        const developmentTime = Math.round((c.totalWorkingTime - 2 * 8) * velocity);
-        const devTimeCeremonyDays = (developmentTime >= 0) ? developmentTime : 0;
+        const developmentTime = Math.round(c.totalWorkingTime * velocity);
         return {
             name: c.getFullName(),
-            devTime: devTimeCeremonyDays,
+            devTime: developmentTime,
             allocatedTime: Math.round(c.estimatedTime * 10) / 10,
             consumedTime: Math.round(c.loggedTime * 10) / 10,
             leftToDo: Math.round(c.remainingTime * 10) / 10,
@@ -117,6 +113,7 @@ export class TeamService {
             ticketsDevDone: c.supDevDoneTickets,
             availableTime: Math.round(c.availableTime * velocity),
             runDays: 0,
+            ceremonyDays: 0,
             role: c.role,
             url:  'https://apriltechnologies.atlassian.net/issues/?jql=issue in (' + c.getJqlKeysList() + ')',
             _availableTime: Math.round(c.availableTime * velocity),
