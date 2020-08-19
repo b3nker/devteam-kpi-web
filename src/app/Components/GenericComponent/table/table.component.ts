@@ -29,6 +29,10 @@ export class TableComponent {
             {value: 4, viewValue: 4},
             {value: 5, viewValue: 5},
             {value: 6, viewValue: 6},
+            {value: 7, viewValue: 7},
+            {value: 8, viewValue: 8},
+            {value: 9, viewValue: 9},
+            {value: 10, viewValue: 10},
         ];
 
         this.nbCeremonyDays = [
@@ -39,6 +43,10 @@ export class TableComponent {
             {value: 4, viewValue: 4},
             {value: 5, viewValue: 5},
             {value: 6, viewValue: 6},
+            {value: 7, viewValue: 7},
+            {value: 8, viewValue: 8},
+            {value: 9, viewValue: 9},
+            {value: 10, viewValue: 10},
         ];
         this.displayedColumns = [
             'name',
