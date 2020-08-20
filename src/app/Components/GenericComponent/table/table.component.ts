@@ -37,13 +37,16 @@ export class TableComponent {
 
         this.nbCeremonyDays = [
             {value: 0, viewValue: 'Aucun'},
+            {value: 0.5, viewValue: 0.5},
             {value: 1, viewValue: 1},
-            {value: 2, viewValue: 2},
+            {value: 1.5, viewValue: 1.5},
             {value: 3, viewValue: 3},
+            {value: 2, viewValue: 2},
             {value: 4, viewValue: 4},
             {value: 5, viewValue: 5},
             {value: 6, viewValue: 6},
             {value: 7, viewValue: 7},
+            {value: 7.5, viewValue: 7.5},
             {value: 8, viewValue: 8},
             {value: 9, viewValue: 9},
             {value: 10, viewValue: 10},
