@@ -118,10 +118,6 @@ export class TableComponent {
     }
 
     changeRowValuesCeremony(event: any, i: number): void {
-        if (this.dataSource[i].role === this.UNASSIGNED_ROLE) {
-            return;
-        }
-
         let velocity;
         const nbDays = event.value;
         const role = this.dataSource[i].role;
