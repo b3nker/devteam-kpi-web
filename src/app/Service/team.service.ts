@@ -23,7 +23,7 @@ export class TeamService {
         elem.aFaire += c.spAfaire;
         elem.enAttente += c.spEnAttente;
         elem.refuseEnRecette += c.spRefuseEnRecette;
-        elem.enCoursDevTermineTestCroise += c.spEncours + c.spDevTermine;
+        elem.enCoursDevTermineTestCroise += c.spEncours + c.spDevTermine + c.spTestCroise + c.spMergeRequest;
         elem.aLivrer += c.spAlivrer;
         elem.aTester += c.spATester;
         elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
@@ -41,7 +41,7 @@ export class TeamService {
             aFaire: c.spAfaire,
             enAttente: c.spEnAttente,
             refuseEnRecette: c.spRefuseEnRecette,
-            enCoursDevTermineTestCroise: c.spEncours + c.spDevTermine + c.spTestCroise,
+            enCoursDevTermineTestCroise: c.spEncours + c.spDevTermine + c.spTestCroise + c.spMergeRequest,
             aLivrer: c.spAlivrer,
             aTester: c.spATester,
             valideEnRecetteLivreTermine: c.spValideEnRecette + c.spLivre + c.spTermine

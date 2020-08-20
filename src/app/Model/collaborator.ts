@@ -23,6 +23,7 @@ export class Collaborator {
     private _spValideEnRecette: number;
     private _spLivre: number;
     private _spTermine: number;
+    private _spMergeRequest: number;
     private _spTestCroise: number;
     private _ticketsTotal: number;
     private _ticketsAqualifier: number;
@@ -41,6 +42,7 @@ export class Collaborator {
     private _ticketsTermine: number;
     private _ticketsTestCroise: number;
     private _ticketsValide: number;
+    private _ticketsMergeRequest: number;
     private _role: string;
     private _assignedIssues: Array<string>;
 
@@ -50,7 +52,15 @@ export class Collaborator {
     }
 
     get supDevDoneTickets(): number {
-        return this.ticketsTestCroise + this.ticketsATester + this.ticketsAlivrer + this.doneTickets;
+        return this.ticketsTestCroise + this.ticketsMergeRequest + this.ticketsATester + this.ticketsAlivrer + this.doneTickets;
+    }
+
+    get spMergeRequest(): number {
+        return this._spMergeRequest;
+    }
+
+    get ticketsMergeRequest(): number {
+        return this._ticketsMergeRequest;
     }
 
     get assignedIssues(): Array<string> {
@@ -285,7 +295,7 @@ export class Collaborator {
                 ticketsDevTermine: number, ticketsAvalider: number, ticketsAlivrer: number, ticketsATester: number,
                 ticketsRefuseEnRecette: number, ticketsValideEnRecette: number, ticketsLivre: number,
                 ticketsTermine: number, ticketsValide: number, role: string, ticketsTestCroise: number,
-                assignedIssues: Array<string>) {
+                assignedIssues: Array<string>, ticketsMergeRequest: number, spMergeRequest: number) {
         this._accountId = accountId;
         this._firstName = firstName;
         this._name = name;
@@ -311,6 +321,7 @@ export class Collaborator {
         this._spLivre = spLivre;
         this._spTermine = spTermine;
         this._spTestCroise = spTestCroise;
+        this._spMergeRequest = spMergeRequest;
         this._ticketsTotal = ticketsTotal;
         this._ticketsAqualifier = ticketsAqualifier;
         this._ticketsBacAffinage = ticketsBacAffinage;
@@ -328,6 +339,7 @@ export class Collaborator {
         this._ticketsTermine = ticketsTermine;
         this._ticketsValide = ticketsValide;
         this._ticketsTestCroise = ticketsTestCroise;
+        this._ticketsMergeRequest = ticketsMergeRequest;
         this._role = role;
         this._assignedIssues = assignedIssues;
     }

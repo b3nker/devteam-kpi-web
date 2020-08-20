@@ -22,7 +22,7 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.spBacAffinage,
             item.spEnAttente,
             item.spAfaire,
-            item.spTermine,
+            item.spEncours,
             item.spAbandonne,
             item.spDevTermine,
             item.spAvalider,
@@ -31,7 +31,7 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.spRefuseEnRecette,
             item.spValideEnRecette,
             item.spLivre,
-            item.spEncours,
+            item.spTermine,
             item.spTestCroise,
             item.ticketsTotal,
             item.ticketsAqualifier,
@@ -52,8 +52,8 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.role,
             item.ticketsTestCroise,
             item.assignedIssues,
-
-
+            item.ticketsMergeRequest,
+            item.spMergeRequest
         );
     }
 

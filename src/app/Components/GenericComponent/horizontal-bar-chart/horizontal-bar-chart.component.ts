@@ -71,7 +71,7 @@ export class HorizontalBarChartComponent implements  OnChanges{
           {data: this.spAfaire, label: 'A faire', stack: 'a'},
           {data: this.spEnAttente, label: 'En Attente', stack: 'a'},
           {data: this.spRefuseEnRecette, label: 'Refusé en recette', stack: 'a'},
-          {data: this.spEncoursDevTermineTestCroise, label: 'En cours/Dev terminé/Test croisé', stack: 'a'},
+          {data: this.spEncoursDevTermineTestCroise, label: 'En cours/Dev terminé/Test croisé/ MR', stack: 'a'},
           {data: this.spAlivrer, label: 'A livrer', stack: 'a'},
           {data: this.spATester, label: 'A tester', stack: 'a'},
           {data: this.spValideEnRecetteLivreTermine, label: 'Validé en recette/Livré/Terminé', stack: 'a'}
