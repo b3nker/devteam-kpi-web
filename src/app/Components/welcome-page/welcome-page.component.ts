@@ -18,7 +18,6 @@ export class WelcomePageComponent implements OnInit {
         if (typeof this.sprints !== 'undefined') {
             this.sprintService.getSprints().subscribe(data => {
                 this.sprints = data;
-                console.log(this.sprints);
                 this.nbTeams = this.sprints.length;
             });
         }

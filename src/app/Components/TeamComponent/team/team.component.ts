@@ -36,8 +36,6 @@ export class TeamComponent implements OnInit {
     ngOnInit(): void {
         this.sprintService.getSprint(this.teamNameURL).subscribe(data => {
             this.sprint = data[0];
-            console.log(this.sprint);
-            console.log(3);
             this.team = this.sprint.team;
             let i = 1;
             for (const c of this.team.collaborators) {

@@ -23,8 +23,10 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
   public barChartColors: Color[];
   public urls: Map<string, string>;
   public url: string;
+  public sprints: Array<string>;
 
   constructor() {
+    this.sprints = [];
     this.url = 'https://apriltechnologies.atlassian.net/issues/?jql=issue in (';
     this.urls = new Map<string, string>();
     this.initialCommitments = [];
@@ -57,7 +59,6 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (typeof this.retrospective !== 'undefined'){
-      console.log(this.retrospective);
       for (const s of this.retrospective.sprints){
         this.initialCommitments.unshift(s.initialCommitment);
         this.completedWorks.unshift(s.completedWork);
@@ -91,8 +92,7 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
         const str = this.getJqlSearch(s.addedIssueKeys);
         this.urls.set(s.name, str);
       }
-      console.log(this.urls);
-
+      this.getKeys();
     }
   }
 
@@ -117,5 +117,11 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
       }
     }
     return this.url + str + ')';
+  }
+
+  getKeys(): void{
+    for (const key of this.urls.keys()){
+      this.sprints.push(key);
+    }
   }
 }
