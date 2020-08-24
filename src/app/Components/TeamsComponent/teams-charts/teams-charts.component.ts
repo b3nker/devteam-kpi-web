@@ -47,7 +47,7 @@ export class TeamsChartsComponent implements OnChanges {
   }
 
   generateChartElement(nameAttribute: string): ChartElement{
-    const elem: ChartElement = {
+    return {
       name: nameAttribute,
       aQualifierBacAffinnage: 0,
       aFaire: 0,
@@ -58,7 +58,6 @@ export class TeamsChartsComponent implements OnChanges {
       aTester: 0,
       valideEnRecetteLivreTermine: 0
     };
-    return elem;
   }
 
   /* Method that push ChartElement's data to each Chart attribute
@@ -80,13 +79,13 @@ export class TeamsChartsComponent implements OnChanges {
    *
    */
   updateChartElement(c: Collaborator, elem: ChartElement): void{
-    elem.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
-    elem.aFaire += c.spAfaire;
-    elem.enAttente += c.spEnAttente;
-    elem.refuseEnRecette += c.spRefuseEnRecette;
-    elem.enCoursDevTermineTestCroise += c.spEncours + c.spDevTermine;
-    elem.aLivrer += c.spAlivrer;
-    elem.aTester += c.spATester;
-    elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
+    elem.aQualifierBacAffinnage += c.storyPoints.aqualifier + c.storyPoints.bacAffinage;
+    elem.aFaire += c.storyPoints.afaire;
+    elem.enAttente += c.storyPoints.enAttente;
+    elem.refuseEnRecette += c.storyPoints.refuseEnRecette;
+    elem.enCoursDevTermineTestCroise += c.storyPoints.enCours + c.storyPoints.devTermine;
+    elem.aLivrer += c.storyPoints.alivrer;
+    elem.aTester += c.storyPoints.atester;
+    elem.valideEnRecetteLivreTermine += c.storyPoints.valideEnRecette + c.storyPoints.livre + c.storyPoints.termine;
   }
 }

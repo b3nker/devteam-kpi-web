@@ -1,6 +1,9 @@
 import {Collaborator} from '../../Model/collaborator';
 import {Adapter} from './adapter';
 import {Injectable} from '@angular/core';
+import {TicketAdapter} from './ticket-adapter';
+import {StoryPoint} from '../../Model/story-point';
+import {StoryPointAdapter} from './story-point-adapter';
 
 @Injectable({
     providedIn: 'root',
@@ -17,43 +20,10 @@ export class CollaboratorAdapter implements Adapter<Collaborator> {
             item.estimatedTime,
             item.loggedTime,
             item.remainingTime,
-            item.spTotal,
-            item.spAqualifier,
-            item.spBacAffinage,
-            item.spEnAttente,
-            item.spAfaire,
-            item.spEncours,
-            item.spAbandonne,
-            item.spDevTermine,
-            item.spAvalider,
-            item.spAlivrer,
-            item.spATester,
-            item.spRefuseEnRecette,
-            item.spValideEnRecette,
-            item.spLivre,
-            item.spTermine,
-            item.spTestCroise,
-            item.ticketsTotal,
-            item.ticketsAqualifier,
-            item.ticketsBacAffinage,
-            item.ticketsEnAttente,
-            item.ticketsAfaire,
-            item.ticketsEncours,
-            item.ticketsAbandonne,
-            item.ticketsDevTermine,
-            item.ticketsAvalider,
-            item.ticketsAlivrer,
-            item.ticketsATester,
-            item.ticketsRefuseEnRecette,
-            item.ticketsValideEnRecette,
-            item.ticketsLivre,
-            item.ticketsTermine,
-            item.ticketsValide,
             item.role,
-            item.ticketsTestCroise,
             item.assignedIssues,
-            item.ticketsMergeRequest,
-            item.spMergeRequest
+            TicketAdapter.adapt(item.tickets),
+            StoryPointAdapter.adapt(item.storyPoints),
         );
     }
 

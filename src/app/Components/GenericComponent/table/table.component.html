@@ -94,6 +94,15 @@
             <a *ngIf="element.url != ''" href="{{element.url}}" target="_blank">Lien Jira</a>
     </ng-container>
 
+    <!-- Header row first group -->
+    <ng-container matColumnDef="header-row-first-group">
+        <th mat-header-cell *matHeaderCellDef
+            [attr.colspan]="4">
+            First group
+        </th>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['header-row-first-group']"></tr>
     <tr mat-header-row   *matHeaderRowDef="displayedColumns" ></tr>
     <tr [ngClass]="{
       'grey-background' : i%2 == 0

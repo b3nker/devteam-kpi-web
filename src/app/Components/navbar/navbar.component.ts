@@ -6,14 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  private ROUTE_COLLABORATORS = '/sprint/all';
-  private ROUTE_ALPHA = '/sprint/alpha';
-  private ROUTE_BETA = '/sprint/beta';
-  private ROUTE_GAMMA = '/sprint/gamma';
-  private ROUTE_DELTA = '/sprint/delta';
-  private ROUTE_TEAMS = '/sprint/teams';
-  private ROUTE_BACKLOG = '/backlog';
-  private ROUTE_RELEASE = '/release';
+  ROUTE_COLLABORATORS = '/sprint/all';
+  ROUTE_ALPHA = '/sprint/alpha';
+  ROUTE_BETA = '/sprint/beta';
+  ROUTE_GAMMA = '/sprint/gamma';
+  ROUTE_DELTA = '/sprint/delta';
+  ROUTE_TEAMS = '/sprint/teams';
+  ROUTE_BACKLOG = '/backlog';
+  ROUTE_RELEASE = '/release';
 
 
 

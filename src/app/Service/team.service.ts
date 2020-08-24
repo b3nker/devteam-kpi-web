@@ -19,14 +19,15 @@ export class TeamService {
      * @return An updated ChartElement given as input (void)
      */
     static updateChartElement(c: Collaborator, elem: ChartElement): void {
-        elem.aQualifierBacAffinnage += c.spAqualifier + c.spBacAffinage;
-        elem.aFaire += c.spAfaire;
-        elem.enAttente += c.spEnAttente;
-        elem.refuseEnRecette += c.spRefuseEnRecette;
-        elem.enCoursDevTermineTestCroise += c.spEncours + c.spDevTermine + c.spTestCroise + c.spMergeRequest;
-        elem.aLivrer += c.spAlivrer;
-        elem.aTester += c.spATester;
-        elem.valideEnRecetteLivreTermine += c.spValideEnRecette + c.spLivre + c.spTermine;
+        elem.aQualifierBacAffinnage += c.storyPoints.aQualifier + c.storyPoints.bacAffinage;
+        elem.aFaire += c.storyPoints.aFaire;
+        elem.enAttente += c.storyPoints.enAttente;
+        elem.refuseEnRecette += c.storyPoints.refuseEnRecette;
+        elem.enCoursDevTermineTestCroise += c.storyPoints.enCours + c.storyPoints.devTermine + c.storyPoints.testCroise
+            + c.storyPoints.mergeRequest;
+        elem.aLivrer += c.storyPoints.aLivrer;
+        elem.aTester += c.storyPoints.aTester;
+        elem.valideEnRecetteLivreTermine += c.storyPoints.valideEnRecette + c.storyPoints.livre + c.storyPoints.termine;
     }
 
     /**
@@ -37,14 +38,15 @@ export class TeamService {
     static generateChartElement(c: Collaborator): ChartElement {
         return {
             name: c.getFullName(),
-            aQualifierBacAffinnage: c.spAqualifier + c.spBacAffinage,
-            aFaire: c.spAfaire,
-            enAttente: c.spEnAttente,
-            refuseEnRecette: c.spRefuseEnRecette,
-            enCoursDevTermineTestCroise: c.spEncours + c.spDevTermine + c.spTestCroise + c.spMergeRequest,
-            aLivrer: c.spAlivrer,
-            aTester: c.spATester,
-            valideEnRecetteLivreTermine: c.spValideEnRecette + c.spLivre + c.spTermine
+            aQualifierBacAffinnage: c.storyPoints.aQualifier + c.storyPoints.bacAffinage,
+            aFaire: c.storyPoints.aFaire,
+            enAttente: c.storyPoints.enAttente,
+            refuseEnRecette: c.storyPoints.refuseEnRecette,
+            enCoursDevTermineTestCroise: c.storyPoints.enCours + c.storyPoints.devTermine + c.storyPoints.testCroise
+                + c.storyPoints.mergeRequest,
+            aLivrer: c.storyPoints.aLivrer,
+            aTester: c.storyPoints.aTester,
+            valideEnRecetteLivreTermine: c.storyPoints.valideEnRecette + c.storyPoints.livre + c.storyPoints.termine
         };
     }
 
@@ -108,9 +110,9 @@ export class TeamService {
             allocatedTime: Math.round(c.estimatedTime * 10) / 10,
             consumedTime: Math.round(c.loggedTime * 10) / 10,
             leftToDo: Math.round(c.remainingTime * 10) / 10,
-            tickets: c.ticketsTotal,
-            ticketsDone: c.doneTickets,
-            ticketsDevDone: c.supDevDoneTickets,
+            tickets: c.tickets.total,
+            ticketsDone: c.tickets.getDoneTickets(),
+            ticketsDevDone: c.tickets.getSupDevDoneTickets(),
             availableTime: Math.round(c.availableTime * velocity),
             runDays: 0,
             ceremonyDays: 0,
@@ -135,9 +137,9 @@ export class TeamService {
         elem.allocatedTime += Math.round(c.estimatedTime * 10) / 10;
         elem.consumedTime += Math.round(c.loggedTime * 10) / 10;
         elem.leftToDo += Math.round(c.remainingTime * 10) / 10;
-        elem.tickets += c.ticketsTotal;
-        elem.ticketsDone += c.doneTickets;
-        elem.ticketsDevDone += c.supDevDoneTickets;
+        elem.tickets += c.tickets.total;
+        elem.ticketsDone += c.tickets.getDoneTickets();
+        elem.ticketsDevDone += c.tickets.getSupDevDoneTickets();
         elem.availableTime += timeAvailable;
         elem._devTime += developmentTime;
         elem._availableTime += timeAvailable;

@@ -39,10 +39,11 @@ export class TeamComponent implements OnInit {
             this.team = this.sprint.team;
             let i = 1;
             for (const c of this.team.collaborators) {
-                this.nbSpDoneTotalTeam += c.spAbandonne + c.spLivre + c.spTermine + c.spValideEnRecette + c.spAvalider;
-                this.nbSpEnCoursDevTermine += c.spEncours + c.spDevTermine;
-                this.nbSpATester += c.spATester;
-                this.nbSpTotalTeam += c.spTotal;
+                this.nbSpDoneTotalTeam += c.storyPoints.abandonne + c.storyPoints.livre + c.storyPoints.termine
+                    + c.storyPoints.valideEnRecette + c.storyPoints.avalider;
+                this.nbSpEnCoursDevTermine += c.storyPoints.enCours + c.storyPoints.devTermine;
+                this.nbSpATester += c.storyPoints.atester;
+                this.nbSpTotalTeam += c.storyPoints.total;
                 i++;
             }
         });

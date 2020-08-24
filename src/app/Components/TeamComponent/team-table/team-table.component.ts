@@ -63,6 +63,7 @@ export class TeamTableComponent implements OnChanges {
                 _devTime: null
             };
             for (const c of this.team.collaborators) {
+                console.log(c);
                 if (c.getFullName().includes(this.UNASSIGNED_NAME)) {
                     unassigned = {
                         name: c.getFullName(),
@@ -70,9 +71,9 @@ export class TeamTableComponent implements OnChanges {
                         allocatedTime: c.estimatedTime,
                         consumedTime: c.loggedTime,
                         leftToDo: c.remainingTime,
-                        tickets: c.ticketsTotal,
-                        ticketsDone: c.doneTickets,
-                        ticketsDevDone: c.supDevDoneTickets,
+                        tickets: c.tickets.total,
+                        ticketsDone: c.tickets.getDoneTickets(),
+                        ticketsDevDone: c.tickets.getSupDevDoneTickets(),
                         availableTime: null,
                         runDays: 0,
                         ceremonyDays: 0,
