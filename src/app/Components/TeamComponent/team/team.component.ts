@@ -14,8 +14,12 @@ import {Retrospective} from '../../../Model/retrospective';
 export class TeamComponent implements OnInit {
     sprint: Sprint;
     team: Team;
-    ROLE_FRONT = 'Front';
-    ROLE_MIDDLE = 'Middle';
+    ROLE_FRONT = 'front';
+    ROLE_MIDDLE = 'middle';
+    ROLE_TRANSVERSE = 'transverse';
+    hasTransverse = false;
+    hasMiddle = false;
+    hasFront = false;
     retrospective: Retrospective;
     nbSpDoneTotalTeam: number;
     nbSpTotalTeam: number;
@@ -39,11 +43,19 @@ export class TeamComponent implements OnInit {
             this.team = this.sprint.team;
             let i = 1;
             for (const c of this.team.collaborators) {
+
                 this.nbSpDoneTotalTeam += c.storyPoints.abandonne + c.storyPoints.livre + c.storyPoints.termine
                     + c.storyPoints.valideEnRecette + c.storyPoints.avalider;
                 this.nbSpEnCoursDevTermine += c.storyPoints.enCours + c.storyPoints.devTermine;
                 this.nbSpATester += c.storyPoints.atester;
                 this.nbSpTotalTeam += c.storyPoints.total;
+                if (c.role.includes(this.ROLE_FRONT)){
+                    this.hasFront = true;
+                }else if (c.role.includes(this.ROLE_MIDDLE)){
+                    this.hasMiddle = true;
+                }else if (c.role.includes(this.ROLE_TRANSVERSE)){
+                    this.hasTransverse = true;
+                }
                 i++;
             }
         });
