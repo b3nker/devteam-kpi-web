@@ -88,6 +88,7 @@ import { TableComponent } from './Components/GenericComponent/table/table.compon
             {path: 'sprint/alpha', component: TeamComponent},
             {path: 'sprint/beta', component: TeamComponent},
             {path: 'sprint/gamma', component: TeamComponent},
+            {path: 'sprint/delta', component: TeamComponent},
             {path: 'sprint/teams', component: TeamsComponent},
             {path: 'backlog', component: BacklogComponent},
             {path: 'release', component: ReleaseComponent},
