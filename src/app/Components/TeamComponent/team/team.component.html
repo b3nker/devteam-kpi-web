@@ -1,3 +1,4 @@
+<app-team-overview [sprint]="sprint"></app-team-overview>
 <app-progress-bar [nbSpDoneTotal]="nbSpDoneTotalTeam"
                   [nbSpTotal]="nbSpTotalTeam"
                   [nbSpEnCoursDevTermine]="nbSpEnCoursDevTermine"
@@ -5,10 +6,12 @@
                   [sprint]="sprint"
 ></app-progress-bar>
 <app-team-table [team]="team"></app-team-table>
-<app-team-charts [team]="team"></app-team-charts>
-<app-team-charts-role *ngIf="hasFront == true" [team]="team" [role]="ROLE_FRONT"></app-team-charts-role>
-<app-team-charts-role *ngIf="hasMiddle == true" [team]="team" [role]="ROLE_MIDDLE"></app-team-charts-role>
-<app-team-charts-role *ngIf="hasTransverse" [team]="team" [role]="ROLE_TRANSVERSE"></app-team-charts-role>
+<mat-tab-group mat-stretch-tabs>
+    <mat-tab label="{{teamName}}"> <app-team-charts [team]="team"></app-team-charts> </mat-tab>
+    <mat-tab label="Front" *ngIf="hasFront"> <app-team-charts-role [team]="team" [role]="ROLE_FRONT"></app-team-charts-role>  </mat-tab>
+    <mat-tab label="Middle" *ngIf="hasMiddle"> <app-team-charts-role [team]="team" [role]="ROLE_MIDDLE"></app-team-charts-role> </mat-tab>
+    <mat-tab label="Transverse" *ngIf="hasTransverse"> <app-team-charts-role [team]="team" [role]="ROLE_TRANSVERSE"></app-team-charts-role> </mat-tab>
+</mat-tab-group>
 <app-team-retrospective-bar-chart [retrospective]="retrospective"></app-team-retrospective-bar-chart>
 <app-team-retrospective-line-chart [retrospective]="retrospective"></app-team-retrospective-line-chart>
 

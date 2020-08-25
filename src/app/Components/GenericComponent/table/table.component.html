@@ -11,54 +11,9 @@
         </td>
     </ng-container>
 
-    <!-- Development Time Column -->
-    <ng-container matColumnDef="devTime">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[1]> Présence </th>
-        <td mat-cell *matCellDef="let element">{{(element.devTime / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
-            {{element.devTime % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
-    </ng-container>
-
-    <!-- Allocated Time Column -->
-    <ng-container matColumnDef="allocatedTime">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[2]> Temps assigné </th>
-        <td mat-cell *matCellDef="let element">{{(element.allocatedTime / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
-            {{element.allocatedTime % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
-    </ng-container>
-
-    <!-- Consumed Time Column -->
-    <ng-container matColumnDef="consumedTime">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[3] >Temps Log</th>
-        <td mat-cell *matCellDef="let element">{{(element.consumedTime / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
-            {{element.consumedTime % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
-    </ng-container>
-
-    <!-- Left To Do Column -->
-    <ng-container matColumnDef="leftToDo">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[4]>Reste à faire</th>
-        <td mat-cell *matCellDef="let element" [ngClass]="{
-      'is-green' : element.leftToDo <= element.availableTime && (element.leftToDo != null && element.availableTime != null),
-      'is-orange': element.leftToDo > element.availableTime && element.leftToDo <= 1.2*element.availableTime && (element.leftToDo != null && element.availableTime != null),
-      'is-red' : element.leftToDo > 1.2* element.availableTime && (element.leftToDo != null && element.availableTime != null)
-      }">{{(element.leftToDo / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
-            {{element.leftToDo % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
-    </ng-container>
-
-    <!-- Available Time Column -->
-    <ng-container matColumnDef="availableTime">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[5]>Temps restant</th>
-        <td mat-cell *matCellDef="let element">{{(element.availableTime / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
-            {{element.availableTime % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
-    </ng-container>
-
-    <!-- Tickets Column -->
-    <ng-container matColumnDef="tickets">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[7]>Tickets <br/> (finis / total)</th>
-        <td mat-cell *matCellDef="let element" > <sup>{{element.ticketsDone}}</sup>/<sub>{{element.tickets}}</sub> </td>
-    </ng-container>
-
     <!-- Not Dev days Column -->
     <ng-container matColumnDef="notDevDays">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[10]>Activités non dév <br/> (run/crémonies)</th>
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[1]>Activités non dév <br/> (run/crémonies)</th>
         <td mat-cell *matCellDef="let element; let i = index">
             <mat-form-field>
                 <mat-select [ngModel]="dataSource[i].runDays" name="runDays" (selectionChange)="changeRowValues($event,i)">
@@ -70,12 +25,61 @@
         </td>
     </ng-container>
 
+    <!-- Development Time Column -->
+    <ng-container matColumnDef="devTime">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[2]> Présence </th>
+        <td mat-cell *matCellDef="let element">{{(element.devTime / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
+            {{element.devTime % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
+    </ng-container>
+
+    <!-- Allocated Time Column -->
+    <ng-container matColumnDef="allocatedTime">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[3]> Temps assigné </th>
+        <td mat-cell *matCellDef="let element"[ngClass]="{
+      'is-green' : element.allocatedTime <= LOWER_BOUND_MULTIPLIER * element.devTime && (element.devTime != null && element.allocatedTime != null),
+      'is-orange': element.allocatedTime > LOWER_BOUND_MULTIPLIER * element.devTime && element.allocatedTime <= UPPER_BOUND_MULTIPLIER*element.devTime && (element.devTime != null && element.allocatedTime != null),
+      'is-red' : element.allocatedTime > UPPER_BOUND_MULTIPLIER* element.devTime && (element.devTime != null && element.allocatedTime != null)
+      }">{{(element.allocatedTime / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
+            {{element.allocatedTime % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
+    </ng-container>
+
+    <!-- Log Time Column -->
+    <ng-container matColumnDef="consumedTime">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[4] >Temps log</th>
+        <td mat-cell *matCellDef="let element">{{(element.consumedTime / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
+            {{element.consumedTime % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
+    </ng-container>
+
+    <!-- Time Left Column -->
+    <ng-container matColumnDef="availableTime">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[5]>Temps restant</th>
+        <td mat-cell *matCellDef="let element">{{(element.availableTime / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
+            {{element.availableTime % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
+    </ng-container>
+
+    <!-- Left To Do Column -->
+    <ng-container matColumnDef="leftToDo">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[6]>Reste à faire</th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{
+      'is-green' : element.leftToDo <= LOWER_BOUND_MULTIPLIER * element.availableTime && (element.leftToDo != null && element.availableTime != null),
+      'is-orange': element.leftToDo > LOWER_BOUND_MULTIPLIER * element.availableTime && element.leftToDo <= UPPER_BOUND_MULTIPLIER*element.availableTime && (element.leftToDo != null && element.availableTime != null),
+      'is-red' : element.leftToDo > UPPER_BOUND_MULTIPLIER* element.availableTime && (element.leftToDo != null && element.availableTime != null)
+      }">{{(element.leftToDo / WORKING_HOURS_PER_DAY) | number : '1.0-0'}}j
+            {{element.leftToDo % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h</td>
+    </ng-container>
+
+    <!-- Tickets Column -->
+    <ng-container matColumnDef="tickets">
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[7]>Tickets <br/> (finis / total)</th>
+        <td mat-cell *matCellDef="let element" > <sup>{{element.ticketsDone}}</sup>/<sub>{{element.tickets}}</sub> </td>
+    </ng-container>
+
+    <!-- Jira link to issues Column-->
     <ng-container matColumnDef="url">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[9]>Tâches assignées</th>
+        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[8]>Tâches assignées</th>
         <td mat-cell *matCellDef="let element">
             <a *ngIf="element.url != ''" href="{{element.url}}" target="_blank">Lien Jira</a>
     </ng-container>
-
 
 
     <ng-container matColumnDef="header-first">
@@ -95,8 +99,7 @@
             [attr.colspan]="3"
             style="
             background-color: midnightblue;
-            color: white;
-                    ">
+            color: white;">
             Activités <br/>(jours)
         </th>
     </ng-container>

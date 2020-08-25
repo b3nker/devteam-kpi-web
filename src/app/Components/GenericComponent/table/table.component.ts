@@ -9,16 +9,16 @@ import {TableElement} from '../../../Interface/table-element';
 export class TableComponent {
     @Input() dataSource: TableElement[];
     nbRunDays: any[];
-    nbCeremonyDays: any[];
     displayedColumns: string[];
     displayedTooltip: string[];
-    LEAD_DEV_VELOCITY: number;
-    DEV_VELOCITY: number;
-    SCRUM: string;
-    LEAD_DEV: string;
-    UNASSIGNED_ROLE;
-    WORKING_HOURS_PER_DAY: number;
-
+    LOWER_BOUND_MULTIPLIER = 0.9;
+    UPPER_BOUND_MULTIPLIER = 1.1;
+    LEAD_DEV_VELOCITY = 0.65;
+    DEV_VELOCITY = 1;
+    SCRUM = 'scrum';
+    LEAD_DEV = 'lead dev';
+    UNASSIGNED_ROLE = 'none';
+    WORKING_HOURS_PER_DAY = 8;
 
     constructor() {
         this.nbRunDays = [
@@ -35,22 +35,6 @@ export class TableComponent {
             {value: 10, viewValue: 10},
         ];
 
-        this.nbCeremonyDays = [
-            {value: 0, viewValue: 'Aucun'},
-            {value: 0.5, viewValue: 0.5},
-            {value: 1, viewValue: 1},
-            {value: 1.5, viewValue: 1.5},
-            {value: 3, viewValue: 3},
-            {value: 2, viewValue: 2},
-            {value: 4, viewValue: 4},
-            {value: 5, viewValue: 5},
-            {value: 6, viewValue: 6},
-            {value: 7, viewValue: 7},
-            {value: 7.5, viewValue: 7.5},
-            {value: 8, viewValue: 8},
-            {value: 9, viewValue: 9},
-            {value: 10, viewValue: 10},
-        ];
         this.displayedColumns = [
             'name',
             'notDevDays',
@@ -64,24 +48,15 @@ export class TableComponent {
         ];
         this.displayedTooltip = [
             'Nom du développeur',
-            'Temps de développement attendu',
-            'Alloué',
-            'Consommé',
-            'Reste à faire',
-            'Temps restant disponible d\'ici la fin du sprint',
-            'Temps de présence sur le sprint',
-            'Tickets alloués sur le sprint',
-            'Tickets terminés sur le sprint (Statut JIRA: Livré, Terminé, Validé en recette)',
-            'Tickets qui se situe après l\' état "Dév terminé" dans le workflow Jira',
-            'Nombre de jours à faire du RUN/MCO',
+            'Temps passé à faire du run ou en cérémonie',
+            'Temps de présence du collaborateur sur le sprint',
+            'Somme des temps estimés des tâches assignés au collaborateur',
+            'Temps de log sur Tempo',
+            'Temps de dév restant, disponible d\'ici la fin du sprint',
+            'Somme des temps restants estimés par le collaborateur',
+            'Tickets finis (à partir de dév terminé) et finis  sur le sprint',
             'Lien JIRA vers les tâches assignées',
         ];
-        this.LEAD_DEV_VELOCITY = 0.65;
-        this.DEV_VELOCITY = 1;
-        this.SCRUM = 'scrum';
-        this.LEAD_DEV = 'lead dev';
-        this.UNASSIGNED_ROLE = 'none';
-        this.WORKING_HOURS_PER_DAY = 8;
     }
 
     changeRowValues(event: any, i: number): void {

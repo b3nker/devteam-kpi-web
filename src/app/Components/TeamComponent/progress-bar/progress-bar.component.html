@@ -3,10 +3,7 @@
         <b>Sprint en cours: </b>{{sprint.name}}<br/>
         <b>Dates du Sprint: </b>{{dateDebut | date}} &rarr; {{dateFin | date}} <br/>
         <b>Nombre de jours restant / de dépassement </b>{{diffTime}}<br/>
-
-
     </p>
-
     <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
     <p>
         <b>Progression sur le sprint (en SP): </b>{{progression}}% <br/>
@@ -15,8 +12,6 @@
             de Story Points finis: </b> {{nbSpDoneTotal}} <br/>
         <b>Nombre de Story Points en cours/dév terminé: </b> {{nbSpEnCoursDevTermine}} <br/>
         <b>Nombre de Story Points à tester: </b> {{nbSpATester}}
-
-
     </p>
 </ng-container>
 

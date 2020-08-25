@@ -43,6 +43,8 @@ import {FormsModule} from '@angular/forms';
 import { TeamChartsRoleComponent } from './Components/TeamComponent/team-charts-role/team-charts-role.component';
 import { HorizontalBarChartComponent } from './Components/GenericComponent/horizontal-bar-chart/horizontal-bar-chart.component';
 import { TableComponent } from './Components/GenericComponent/table/table.component';
+import { TeamOverviewComponent } from './Components/TeamComponent/team-overview/team-overview.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,7 @@ import { TableComponent } from './Components/GenericComponent/table/table.compon
     TeamChartsRoleComponent,
     HorizontalBarChartComponent,
     TableComponent,
+    TeamOverviewComponent,
   ],
     imports: [
         BrowserModule,
@@ -102,7 +105,8 @@ import { TableComponent } from './Components/GenericComponent/table/table.compon
         MatCardModule,
         MatOptionModule,
         MatSelectModule,
-        FormsModule
+        FormsModule,
+        MatTabsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

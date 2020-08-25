@@ -1,0 +1,43 @@
+<ng-container *ngIf="sprint">
+    <mat-grid-list cols="4" rowHeight="100px" class="center">
+        <!-- Sprint Recap (info and progress bar)-->
+        <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="2"
+                class="mat-elevation-z8">
+            <p>
+                <b>
+                    <span class="sprint-title">{{sprint.name}} <br/></span>
+                    {{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}<br/>
+                </b>
+            </p>
+            <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
+
+        </mat-grid-tile>
+
+        <!--Gauge Recap-->
+        <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="3"
+                class="mat-elevation-z8">
+            <p>Gauge</p>
+        </mat-grid-tile>
+
+        <!--Velocity and story points Recap-->
+        <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="4"
+                class="mat-elevation-z8">
+            <p>story point board</p>
+
+        </mat-grid-tile>
+
+        <!-- Resume-->
+        <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="3"
+                class="mat-elevation-z8">
+            <p>Resume</p>
+        </mat-grid-tile>
+    </mat-grid-list>
+</ng-container>

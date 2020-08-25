@@ -1,0 +1,19 @@
+mat-grid-list.center {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.app-progress-bar{
+    width: 50%;
+    height: 30%;
+}
+
+p{
+    text-align: start;
+    font-size: 20px;
+}
+
+span.sprint-title{
+    font-size: 25px;
+}
