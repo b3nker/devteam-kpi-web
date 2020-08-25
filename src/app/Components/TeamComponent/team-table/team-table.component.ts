@@ -36,14 +36,13 @@ export class TeamTableComponent implements OnChanges {
                 leftToDo: null,
                 tickets: 0,
                 ticketsDone: 0,
-                ticketsDevDone: 0,
                 availableTime: null,
                 runDays: 0,
                 ceremonyDays: 0,
                 role: this.UNASSIGNED_ROLE,
                 url: '',
                 _availableTime: null,
-                _devTime: null
+                _devTime: null,
             };
             const total: TableElement = {
                 name: 'Total',
@@ -53,17 +52,15 @@ export class TeamTableComponent implements OnChanges {
                 leftToDo: 0,
                 tickets: 0,
                 ticketsDone: 0,
-                ticketsDevDone: 0,
                 availableTime: 0,
                 runDays: 0,
                 ceremonyDays: 0,
                 role: 'none',
                 url: '',
                 _availableTime: null,
-                _devTime: null
+                _devTime: null,
             };
             for (const c of this.team.collaborators) {
-                console.log(c);
                 if (c.getFullName().includes(this.UNASSIGNED_NAME)) {
                     unassigned = {
                         name: c.getFullName(),
@@ -72,15 +69,14 @@ export class TeamTableComponent implements OnChanges {
                         consumedTime: c.loggedTime,
                         leftToDo: c.remainingTime,
                         tickets: c.tickets.total,
-                        ticketsDone: c.tickets.getDoneTickets(),
-                        ticketsDevDone: c.tickets.getSupDevDoneTickets(),
+                        ticketsDone: c.tickets.getSupDevDoneTickets(),
                         availableTime: null,
                         runDays: 0,
                         ceremonyDays: 0,
                         role: this.UNASSIGNED_ROLE,
                         url: '',
                         _availableTime: null,
-                        _devTime: null
+                        _devTime: null,
                     };
                     TeamService.updateTableElement(c, total, 0);
                 } else {

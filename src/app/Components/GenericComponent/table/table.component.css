@@ -1,10 +1,10 @@
 table{
-    width: 80%;
+    width: 75%;
     padding-top: 30px;
     padding-bottom: 30px;
 }
 i{
-    font-size: 14px;
+    font-size: 15px;
 }
 table.center {
     margin-left:auto;
@@ -40,4 +40,10 @@ mat-form-field{
 }
 mat-select{
     text-align: center;
+}
+
+th.mat-header-cell, td.mat-cell {
+    text-align: center;
+    border: 1px solid black;
+    padding: 0 !important;
 }

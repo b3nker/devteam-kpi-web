@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {TableElement} from '../../../Interface/table-element';
 
 @Component({
@@ -53,16 +53,13 @@ export class TableComponent {
         ];
         this.displayedColumns = [
             'name',
-            'runDays',
-            'ceremonyDays',
+            'notDevDays',
             'devTime', // Temps de présence sur le sprint
+            'allocatedTime', // estimated time
             'consumedTime', // logged time
             'availableTime', // Temps disponible restant sur le sprint
             'leftToDo', // remaining time
-            'allocatedTime', // estimated time
             'tickets',
-            'ticketsDevDone',
-            'ticketsDone',
             'url',
         ];
         this.displayedTooltip = [
@@ -87,10 +84,11 @@ export class TableComponent {
         this.WORKING_HOURS_PER_DAY = 8;
     }
 
-    changeRowValuesRun(event: any, i: number): void {
+    changeRowValues(event: any, i: number): void {
         if (this.dataSource[i].role === this.UNASSIGNED_ROLE) {
             return;
         }
+        console.log(this.dataSource);
         let velocity;
         const nbDays = event.value;
         const role = this.dataSource[i].role;
@@ -119,34 +117,4 @@ export class TableComponent {
             this.dataSource[i].devTime = this.dataSource[i]._devTime;
         }
     }
-
-    changeRowValuesCeremony(event: any, i: number): void {
-        let velocity;
-        const nbDays = event.value;
-        const role = this.dataSource[i].role;
-        if (role.includes(this.LEAD_DEV) || role.includes(this.SCRUM)) {
-            velocity = this.LEAD_DEV_VELOCITY;
-        } else {
-            velocity = this.DEV_VELOCITY;
-        }
-        const oldNbDays = this.dataSource[i].ceremonyDays;
-        this.dataSource[i].ceremonyDays = nbDays;
-        const diffNbDays = nbDays - oldNbDays;
-        const timeToSubtract = velocity * (diffNbDays * this.WORKING_HOURS_PER_DAY);
-        this.dataSource[i].availableTime = Math.round((this.dataSource[i].availableTime - timeToSubtract) * 10) / 10;
-        this.dataSource[i].devTime = Math.round((this.dataSource[i].devTime - timeToSubtract) * 10) / 10;
-        if (this.dataSource[i].availableTime < 0) {
-            this.dataSource[i].availableTime = 0;
-        }
-        if (this.dataSource[i].availableTime > this.dataSource[i]._availableTime) {
-            this.dataSource[i].availableTime = this.dataSource[i]._availableTime;
-        }
-        if (this.dataSource[i].devTime < 0) {
-            this.dataSource[i].devTime = 0;
-        }
-        if (this.dataSource[i].devTime > this.dataSource[i]._devTime) {
-            this.dataSource[i].devTime = this.dataSource[i]._devTime;
-        }
-    }
-
 }

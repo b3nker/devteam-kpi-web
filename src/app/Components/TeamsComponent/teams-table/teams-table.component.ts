@@ -37,14 +37,13 @@ export class TeamsTableComponent implements OnChanges {
                 leftToDo: 0,
                 tickets: 0,
                 ticketsDone: 0,
-                ticketsDevDone: 0,
                 availableTime: 0,
                 runDays: 0,
                 ceremonyDays: 0,
                 role: 'none',
                 url: '',
                 _availableTime: null,
-                _devTime: null
+                _devTime: null,
             };
             for (const t of this.teams) {
                 const row = TeamService.generateEmptyTableElement(t.name, this.UNASSIGNED_ROLE);

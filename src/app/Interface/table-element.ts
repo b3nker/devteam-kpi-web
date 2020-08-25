@@ -3,18 +3,21 @@
 
 export interface TableElement {
     name: string;
-    devTime: number;
-    allocatedTime: number;
-    consumedTime: number;
-    leftToDo: number;
+    devTime: any;
+    allocatedTime: any;
+    consumedTime: any;
+    leftToDo: any;
     tickets: number;
     ticketsDone: number;
-    ticketsDevDone: number;
-    availableTime: number;
+    availableTime: any;
     runDays: number;
     ceremonyDays: number;
     role: string;
     url: string;
+    // Hidden variables
     _devTime: number;
     _availableTime: number;
+
+
+
 }

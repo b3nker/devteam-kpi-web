@@ -19,14 +19,14 @@ export class TeamService {
      * @return An updated ChartElement given as input (void)
      */
     static updateChartElement(c: Collaborator, elem: ChartElement): void {
-        elem.aQualifierBacAffinnage += c.storyPoints.aQualifier + c.storyPoints.bacAffinage;
-        elem.aFaire += c.storyPoints.aFaire;
+        elem.aQualifierBacAffinnage += c.storyPoints.aqualifier + c.storyPoints.bacAffinage;
+        elem.aFaire += c.storyPoints.afaire;
         elem.enAttente += c.storyPoints.enAttente;
         elem.refuseEnRecette += c.storyPoints.refuseEnRecette;
         elem.enCoursDevTermineTestCroise += c.storyPoints.enCours + c.storyPoints.devTermine + c.storyPoints.testCroise
             + c.storyPoints.mergeRequest;
-        elem.aLivrer += c.storyPoints.aLivrer;
-        elem.aTester += c.storyPoints.aTester;
+        elem.aLivrer += c.storyPoints.alivrer;
+        elem.aTester += c.storyPoints.atester;
         elem.valideEnRecetteLivreTermine += c.storyPoints.valideEnRecette + c.storyPoints.livre + c.storyPoints.termine;
     }
 
@@ -38,14 +38,14 @@ export class TeamService {
     static generateChartElement(c: Collaborator): ChartElement {
         return {
             name: c.getFullName(),
-            aQualifierBacAffinnage: c.storyPoints.aQualifier + c.storyPoints.bacAffinage,
-            aFaire: c.storyPoints.aFaire,
+            aQualifierBacAffinnage: c.storyPoints.aqualifier + c.storyPoints.bacAffinage,
+            aFaire: c.storyPoints.afaire,
             enAttente: c.storyPoints.enAttente,
             refuseEnRecette: c.storyPoints.refuseEnRecette,
             enCoursDevTermineTestCroise: c.storyPoints.enCours + c.storyPoints.devTermine + c.storyPoints.testCroise
                 + c.storyPoints.mergeRequest,
-            aLivrer: c.storyPoints.aLivrer,
-            aTester: c.storyPoints.aTester,
+            aLivrer: c.storyPoints.alivrer,
+            aTester: c.storyPoints.atester,
             valideEnRecetteLivreTermine: c.storyPoints.valideEnRecette + c.storyPoints.livre + c.storyPoints.termine
         };
     }
@@ -85,7 +85,6 @@ export class TeamService {
             leftToDo: null,
             tickets: 0,
             ticketsDone: 0,
-            ticketsDevDone: 0,
             availableTime: null,
             runDays: 0,
             ceremonyDays: 0,
@@ -111,15 +110,14 @@ export class TeamService {
             consumedTime: Math.round(c.loggedTime * 10) / 10,
             leftToDo: Math.round(c.remainingTime * 10) / 10,
             tickets: c.tickets.total,
-            ticketsDone: c.tickets.getDoneTickets(),
-            ticketsDevDone: c.tickets.getSupDevDoneTickets(),
+            ticketsDone: c.tickets.getSupDevDoneTickets(),
             availableTime: Math.round(c.availableTime * velocity),
             runDays: 0,
             ceremonyDays: 0,
             role: c.role,
             url:  'https://apriltechnologies.atlassian.net/issues/?jql=issue in (' + c.getJqlKeysList() + ')',
             _availableTime: Math.round(c.availableTime * velocity),
-            _devTime: developmentTime
+            _devTime: developmentTime,
         };
     }
 
@@ -138,8 +136,7 @@ export class TeamService {
         elem.consumedTime += Math.round(c.loggedTime * 10) / 10;
         elem.leftToDo += Math.round(c.remainingTime * 10) / 10;
         elem.tickets += c.tickets.total;
-        elem.ticketsDone += c.tickets.getDoneTickets();
-        elem.ticketsDevDone += c.tickets.getSupDevDoneTickets();
+        elem.ticketsDone += c.tickets.getSupDevDoneTickets();
         elem.availableTime += timeAvailable;
         elem._devTime += developmentTime;
         elem._availableTime += timeAvailable;
