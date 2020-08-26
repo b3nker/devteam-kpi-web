@@ -5,9 +5,9 @@
                 [colspan]="2"
                 [rowspan]="2"
                 class="resume-tile">
-                <h1><b>{{sprint.name}}</b></h1>
-                <h2>{{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}</h2>
-                <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
+            <h1><b>{{sprint.name}}</b></h1>
+            <h2>{{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}</h2>
+            <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
         </mat-grid-tile>
 
         <!-- Story Points -->
@@ -29,7 +29,7 @@
                 ({{totalEstimatedHours / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
                 {{totalEstimatedHours % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
                 <br><br><br>
-                <span style="font-size: 35px; color: darkred">+X</span>  ajoutés <br>
+                <span style="font-size: 35px; color: darkred">+X</span> ajoutés <br>
                 (Xh)
                 <br><br><br>
                 <span style="font-size: 55px"><b>{{ticketsLeftToDo}}</b></span> à faire <br>
@@ -44,9 +44,17 @@
             <div>
                 <h2>Fiches embarquées</h2> <br>
                 <ul>
-                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>  US</li> <br><br>
-                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>  Tâches</li> <br><br>
-                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span> Bugs</li>
+                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
+                        US
+                    </li>
+                    <br><br>
+                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
+                        Tâches
+                    </li>
+                    <br><br>
+                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
+                        Bugs
+                    </li>
 
                 </ul>
             </div>
@@ -59,14 +67,31 @@
                 [rowspan]="3">
             <div>
                 <app-gauge [gaugeValue]="gaugeValue"></app-gauge>
-                <p *ngIf="inAdvance >=0" style="font-size: 20px; text-align: center"> En avance de <span style="color: green"> {{inAdvance}} h</span></p>
-                <p *ngIf="inAdvance < 0"style="font-size: 20px; text-align: center"> En retard de <span style="color: darkred">{{inAdvance}} h</span></p>
+                <p *ngIf="inAdvance >=0" style="font-size: 20px; text-align: center"> En avance de <span
+                        style="color: green"> {{inAdvance}} h</span></p>
+                <p *ngIf="inAdvance < 0" style="font-size: 20px; text-align: center"> En retard de <span
+                        style="color: darkred">{{inAdvance}} h</span></p>
 
             </div>
 
         </mat-grid-tile>
 
         <!-- Comment -->
+        <mat-grid-tile
+                [colspan]="4"
+                [rowspan]="2">
+            <div>
+                <form class="example-form">
+                    <mat-form-field class="example-full-width">
+                        <mat-label style="font-size: 20px">Warning</mat-label>
+                        <label>
+                            <textarea matInput style="font-size: 20px"></textarea>
+                        </label>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary">Enregistrer</button>
+                </form>
+            </div>
+        </mat-grid-tile>
     </mat-grid-list>
 </ng-container>
 

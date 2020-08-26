@@ -63,7 +63,6 @@ export class TableComponent {
         if (this.dataSource[i].role === this.UNASSIGNED_ROLE) {
             return;
         }
-        console.log(this.dataSource);
         let velocity;
         const nbDays = event.value;
         const role = this.dataSource[i].role;
@@ -75,7 +74,6 @@ export class TableComponent {
         const oldNbDays = this.dataSource[i].runDays;
         this.dataSource[i].runDays = nbDays;
         const diffNbDays = nbDays - oldNbDays;
-        console.log(diffNbDays);
         const timeToSubtract = velocity * (diffNbDays * this.WORKING_HOURS_PER_DAY);
         this.dataSource[i].availableTime = Math.round((this.dataSource[i].availableTime - timeToSubtract) * 10) / 10;
         this.dataSource[i].devTime = Math.round((this.dataSource[i].devTime - timeToSubtract) * 10) / 10;

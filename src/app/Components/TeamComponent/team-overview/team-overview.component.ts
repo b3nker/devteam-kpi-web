@@ -36,7 +36,6 @@ export class TeamOverviewComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.sprint !== 'undefined') {
-            console.log(this.sprint.team);
             this.getProgressBar();
             this.getBootstrapStoryPoints();
             this.getTicketsInfos();

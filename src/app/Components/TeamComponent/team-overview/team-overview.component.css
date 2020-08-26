@@ -24,7 +24,7 @@ span{
 }
 
 mat-grid-tile{
-    border: 1px solid black;
+    border: 2px solid silver;
 }
 
 ::ng-deep app-story-point-progress-bar{

@@ -48,6 +48,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { StoryPointProgressBarComponent } from './Components/GenericComponent/story-point-progress-bar/story-point-progress-bar.component';
 import {NgxGaugeModule} from 'ngx-gauge';
 import { GaugeComponent } from './Components/GenericComponent/gauge/gauge.component';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { GaugeComponent } from './Components/GenericComponent/gauge/gauge.compon
         MatSelectModule,
         FormsModule,
         MatTabsModule,
-        NgxGaugeModule
+        NgxGaugeModule,
+        MatInputModule
     ],
   providers: [],
   bootstrap: [AppComponent]
