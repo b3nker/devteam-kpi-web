@@ -26,8 +26,9 @@ export class TeamService {
         elem.enCoursDevTermineTestCroise += c.storyPoints.enCours + c.storyPoints.devTermine + c.storyPoints.testCroise
             + c.storyPoints.mergeRequest;
         elem.aLivrer += c.storyPoints.alivrer;
-        elem.aTester += c.storyPoints.atester;
-        elem.valideEnRecetteLivreTermine += c.storyPoints.valideEnRecette + c.storyPoints.livre + c.storyPoints.termine;
+        elem.aTester += c.storyPoints.atester + c.storyPoints.avalider;
+        elem.valideEnRecetteLivreTermine += c.storyPoints.valideEnRecette + c.storyPoints.livre
+            + c.storyPoints.termine + c.storyPoints.abandonne;
     }
 
     /**
@@ -45,8 +46,9 @@ export class TeamService {
             enCoursDevTermineTestCroise: c.storyPoints.enCours + c.storyPoints.devTermine + c.storyPoints.testCroise
                 + c.storyPoints.mergeRequest,
             aLivrer: c.storyPoints.alivrer,
-            aTester: c.storyPoints.atester,
+            aTester: c.storyPoints.atester + c.storyPoints.avalider,
             valideEnRecetteLivreTermine: c.storyPoints.valideEnRecette + c.storyPoints.livre + c.storyPoints.termine
+                + c.storyPoints.abandonne
         };
     }
 

@@ -1,26 +1,29 @@
 <ng-container *ngIf="sprint">
-    <mat-grid-list cols="4" rowHeight="100px" class="center">
+    <mat-grid-list cols="4" rowHeight="100px" >
         <!-- Sprint Recap (info and progress bar)-->
-        <mat-grid-tile
-                [colspan]="2"
-                [rowspan]="2"
-                class="mat-elevation-z8">
-            <p>
-                <b>
-                    <span class="sprint-title">{{sprint.name}} <br/></span>
-                    {{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}<br/>
-                </b>
-            </p>
-            <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
-
-        </mat-grid-tile>
-
-        <!--Gauge Recap-->
         <mat-grid-tile
                 [colspan]="2"
                 [rowspan]="3"
                 class="mat-elevation-z8">
-            <p>Gauge</p>
+            <div>
+                <h1><b>{{sprint.name}}</b></h1>
+                <h2>{{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}</h2>
+                <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
+            </div>
+        </mat-grid-tile>
+        <!--Tickets Recap-->
+        <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="3"
+                class="mat-elevation-z8">
+            <h2>Fiches embarquées: </h2>
+            <li>
+                <ul> US : {{totalTickets}}</ul>
+            </li>
+
+
+
+
         </mat-grid-tile>
 
         <!--Velocity and story points Recap-->
@@ -28,8 +31,7 @@
                 [colspan]="2"
                 [rowspan]="4"
                 class="mat-elevation-z8">
-            <p>story point board</p>
-
+            <app-story-point-progress-bar [chartElement]="chartElement" [totalStoryPoints]="totalStoryPoints"></app-story-point-progress-bar>
         </mat-grid-tile>
 
         <!-- Resume-->
@@ -37,7 +39,7 @@
                 [colspan]="2"
                 [rowspan]="3"
                 class="mat-elevation-z8">
-            <p>Resume</p>
+            <p>Niveau de confiance : </p>
         </mat-grid-tile>
     </mat-grid-list>
 </ng-container>

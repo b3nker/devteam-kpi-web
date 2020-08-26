@@ -1,0 +1,42 @@
+<div class="progress">
+
+    <!-- To Do Progress Bar-->
+
+    <div class="progress-bar" role="progressbar" style="background-color: #c0c0c0"
+         [style.width]="
+         (((chartElement.aQualifierBacAffinnage
+         + chartElement.aFaire
+         + chartElement.enAttente
+         + chartElement.refuseEnRecette
+         )/totalStoryPoints)) * 100 + '%'"
+         [attr.aria-valuemax]="totalStoryPoints">
+        {{chartElement.aQualifierBacAffinnage + chartElement.aFaire + chartElement.enAttente + chartElement.refuseEnRecette}}
+    </div>
+
+    <!-- In Progress -->
+
+    <div class="progress-bar" role="progressbar" style="background-color: #4682B4"
+         [style.width]="((chartElement.enCoursDevTermineTestCroise/totalStoryPoints) * 100) + '%'"
+         [attr.aria-valuemax]="totalStoryPoints">
+        {{chartElement.enCoursDevTermineTestCroise}}
+    </div>
+
+    <!-- To be tested-->
+
+    <div class="progress-bar" role="progressbar" style="background-color: #b1c113"
+         [style.width]="(((chartElement.aTester
+         + chartElement.aLivrer
+         )/totalStoryPoints)*100) + '%'"
+
+         [attr.aria-valuemax]="totalStoryPoints">
+        {{chartElement.aTester + chartElement.aLivrer}}
+    </div>
+
+    <!--Done-->
+
+    <div class="progress-bar" role="progressbar" style="background-color: #7a9823"
+         [style.width]="((chartElement.valideEnRecetteLivreTermine/totalStoryPoints) * 100) + '%'"
+         [attr.aria-valuemax]="totalStoryPoints">
+        {{chartElement.valideEnRecetteLivreTermine}}
+    </div>
+</div>

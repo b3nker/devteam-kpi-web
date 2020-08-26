@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnChanges} from '@angular/core';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
 // @ts-ignore
@@ -71,10 +71,10 @@ export class HorizontalBarChartComponent implements  OnChanges{
           {data: this.spAfaire, label: 'A faire', stack: 'a'},
           {data: this.spEnAttente, label: 'En Attente', stack: 'a'},
           {data: this.spRefuseEnRecette, label: 'Refusé en recette', stack: 'a'},
-          {data: this.spEncoursDevTermineTestCroise, label: 'En cours/Dev terminé/Test croisé/ MR', stack: 'a'},
+          {data: this.spEncoursDevTermineTestCroise, label: 'En cours/Dev terminé/Test croisé/MR', stack: 'a'},
           {data: this.spAlivrer, label: 'A livrer', stack: 'a'},
-          {data: this.spATester, label: 'A tester', stack: 'a'},
-          {data: this.spValideEnRecetteLivreTermine, label: 'Validé en recette/Livré/Terminé', stack: 'a'}
+          {data: this.spATester, label: 'A tester/A valider', stack: 'a'},
+          {data: this.spValideEnRecetteLivreTermine, label: 'Validé en recette/Livré/Terminé/Abandonné', stack: 'a'}
       ];
       this.barChartLabels = this.names;
     }
@@ -85,7 +85,7 @@ export class HorizontalBarChartComponent implements  OnChanges{
    * @return: Boolean response, true if it's the case, false otherwise
    */
   checkDefined(): boolean {
-    if (typeof this.names !== 'undefined' &&
+    return typeof this.names !== 'undefined' &&
         typeof this.spAqualifierBacAffinnage !== 'undefined' &&
         typeof this.spAfaire !== 'undefined' &&
         typeof this.spEnAttente !== 'undefined' &&
@@ -93,10 +93,6 @@ export class HorizontalBarChartComponent implements  OnChanges{
         typeof this.spEncoursDevTermineTestCroise !== 'undefined' &&
         typeof this.spAlivrer !== 'undefined' &&
         typeof this.spATester !== 'undefined' &&
-        typeof this.spValideEnRecetteLivreTermine !== 'undefined') {
-      return true;
-    }else{
-      return false;
-    }
+        typeof this.spValideEnRecetteLivreTermine !== 'undefined';
   }
 }

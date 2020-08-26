@@ -1,5 +1,7 @@
 import {Component, Input, OnChanges} from '@angular/core';
 import {Sprint} from '../../../Model/sprint';
+import {ChartElement} from '../../../Interface/chart-element';
+import {TeamService} from '../../../Service/team.service';
 
 
 @Component({
@@ -10,14 +12,21 @@ import {Sprint} from '../../../Model/sprint';
 export class TeamOverviewComponent implements OnChanges {
     @Input() sprint: Sprint;
     progression: number;
+    chartElement: ChartElement;
+    totalStoryPoints: number;
+    totalTickets: number;
 
     constructor() {
+        this.totalStoryPoints = 0;
+        this.totalTickets = 0;
     }
 
     ngOnChanges(): void {
         if (typeof this.sprint !== 'undefined') {
-          this.getProgressBar();
-
+            console.log(this.sprint.team);
+            this.getProgressBar();
+            this.getBootstrapStoryPoints();
+            this.getTicketsInfos();
         }
     }
 
@@ -30,6 +39,20 @@ export class TeamOverviewComponent implements OnChanges {
         }
         const percentage = (nbSpDone / nbSpTotal) * 100;
         this.progression = Math.round(percentage * 1e2) / 1e2;
+    }
+
+    getBootstrapStoryPoints(): void {
+        this.chartElement = TeamService.generateEmptyChartElement(null);
+        for (const c of this.sprint.team.collaborators) {
+            TeamService.updateChartElement(c, this.chartElement);
+            this.totalStoryPoints += c.storyPoints.total;
+        }
+    }
+
+    getTicketsInfos(): void {
+        for (const c of this.sprint.team.collaborators){
+            this.totalTickets += c.tickets.total;
+        }
     }
 
 }

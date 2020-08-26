@@ -1,10 +1,13 @@
 <app-team-overview [sprint]="sprint"></app-team-overview>
+<!--
 <app-progress-bar [nbSpDoneTotal]="nbSpDoneTotalTeam"
                   [nbSpTotal]="nbSpTotalTeam"
                   [nbSpEnCoursDevTermine]="nbSpEnCoursDevTermine"
                   [nbSpATester]="nbSpATester"
                   [sprint]="sprint"
 ></app-progress-bar>
+
+-->
 <app-team-table [team]="team"></app-team-table>
 <mat-tab-group mat-stretch-tabs>
     <mat-tab label="{{teamName}}"> <app-team-charts [team]="team"></app-team-charts> </mat-tab>

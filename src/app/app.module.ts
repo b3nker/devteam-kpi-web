@@ -45,6 +45,7 @@ import { HorizontalBarChartComponent } from './Components/GenericComponent/horiz
 import { TableComponent } from './Components/GenericComponent/table/table.component';
 import { TeamOverviewComponent } from './Components/TeamComponent/team-overview/team-overview.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { StoryPointProgressBarComponent } from './Components/GenericComponent/story-point-progress-bar/story-point-progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     HorizontalBarChartComponent,
     TableComponent,
     TeamOverviewComponent,
+    StoryPointProgressBarComponent,
   ],
     imports: [
         BrowserModule,

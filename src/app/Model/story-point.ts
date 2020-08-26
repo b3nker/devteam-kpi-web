@@ -116,11 +116,11 @@ export class StoryPoint {
 
 
     getDoneStoryPoints(): number {
-        return this.valideEnRecette + this.valide + this.termine + this.livre;
+        return this.valideEnRecette + this.valide + this.termine + this.livre + this.abandonne;
     }
 
     getSupDevDoneStoryPoints(): number {
         return this.devTermine + this.testCroise + this.mergeRequest +
-            this.atester + this.alivrer + this.getDoneStoryPoints();
+            this.atester + this.alivrer + this.avalider + this.getDoneStoryPoints();
     }
 }
