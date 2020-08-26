@@ -1,45 +1,72 @@
 <ng-container *ngIf="sprint">
-    <mat-grid-list cols="4" rowHeight="100px" >
+    <mat-grid-list cols="4" rowHeight="100px">
         <!-- Sprint Recap (info and progress bar)-->
         <mat-grid-tile
                 [colspan]="2"
-                [rowspan]="3"
-                class="mat-elevation-z8">
-            <div>
+                [rowspan]="2"
+                class="resume-tile">
                 <h1><b>{{sprint.name}}</b></h1>
                 <h2>{{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}</h2>
                 <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
-            </div>
         </mat-grid-tile>
+
+        <!-- Story Points -->
+        <mat-grid-tile
+                [colspan]="2"
+                [rowspan]="3"
+                class="resume-tile">
+            <h2>Etats des story points</h2>
+            <app-story-point-progress-bar [chartElement]="chartElement"
+                                          [totalStoryPoints]="totalStoryPoints"></app-story-point-progress-bar>
+        </mat-grid-tile>
+
         <!--Tickets Recap-->
         <mat-grid-tile
-                [colspan]="2"
-                [rowspan]="3"
-                class="mat-elevation-z8">
-            <h2>Fiches embarquées: </h2>
-            <li>
-                <ul> US : {{totalTickets}}</ul>
-            </li>
+                [colspan]="1"
+                [rowspan]="4">
+            <p>
+                <span style="font-size: 35px; ">{{totalTickets}}</span> tickets<br>
+                ({{totalEstimatedHours / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
+                {{totalEstimatedHours % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
+                <br><br><br>
+                <span style="font-size: 35px; color: darkred">+X</span>  ajoutés <br>
+                (Xh)
+                <br><br><br>
+                <span style="font-size: 55px"><b>{{ticketsLeftToDo}}</b></span> à faire <br>
+                ({{totalWorkLeft / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
+                {{totalWorkLeft % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
+            </p>
+        </mat-grid-tile>
 
+        <mat-grid-tile
+                [colspan]="1"
+                [rowspan]="4">
+            <div>
+                <h2>Fiches embarquées</h2> <br>
+                <ul>
+                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>  US</li> <br><br>
+                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>  Tâches</li> <br><br>
+                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span> Bugs</li>
 
-
+                </ul>
+            </div>
 
         </mat-grid-tile>
 
-        <!--Velocity and story points Recap-->
+        <!-- Gauge-->
         <mat-grid-tile
                 [colspan]="2"
-                [rowspan]="4"
-                class="mat-elevation-z8">
-            <app-story-point-progress-bar [chartElement]="chartElement" [totalStoryPoints]="totalStoryPoints"></app-story-point-progress-bar>
+                [rowspan]="3">
+            <div>
+                <app-gauge [gaugeValue]="gaugeValue"></app-gauge>
+                <p *ngIf="inAdvance >=0" style="font-size: 20px; text-align: center"> En avance de <span style="color: green"> {{inAdvance}} h</span></p>
+                <p *ngIf="inAdvance < 0"style="font-size: 20px; text-align: center"> En retard de <span style="color: darkred">{{inAdvance}} h</span></p>
+
+            </div>
+
         </mat-grid-tile>
 
-        <!-- Resume-->
-        <mat-grid-tile
-                [colspan]="2"
-                [rowspan]="3"
-                class="mat-elevation-z8">
-            <p>Niveau de confiance : </p>
-        </mat-grid-tile>
+        <!-- Comment -->
     </mat-grid-list>
 </ng-container>
+

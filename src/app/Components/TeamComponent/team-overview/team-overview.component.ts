@@ -15,10 +15,23 @@ export class TeamOverviewComponent implements OnChanges {
     chartElement: ChartElement;
     totalStoryPoints: number;
     totalTickets: number;
+    totalEstimatedHours: number;
+    totalWorkLeft: number;
+    ticketsLeftToDo: number;
+    gaugeValue: number;
+    inAdvance: number;
+    SCRUM = 'scrum';
+    LEAD_DEV = 'lead dev';
+    WORKING_HOURS_PER_DAY = 8;
 
     constructor() {
         this.totalStoryPoints = 0;
         this.totalTickets = 0;
+        this.ticketsLeftToDo = 0;
+        this.gaugeValue = 0;
+        this.inAdvance = 0;
+        this.totalEstimatedHours = 0;
+        this.totalWorkLeft = 0;
     }
 
     ngOnChanges(): void {
@@ -27,6 +40,7 @@ export class TeamOverviewComponent implements OnChanges {
             this.getProgressBar();
             this.getBootstrapStoryPoints();
             this.getTicketsInfos();
+            this.getGaugeValue();
         }
     }
 
@@ -50,9 +64,26 @@ export class TeamOverviewComponent implements OnChanges {
     }
 
     getTicketsInfos(): void {
+        let ticketsSupDevDone = 0;
         for (const c of this.sprint.team.collaborators){
             this.totalTickets += c.tickets.total;
+            ticketsSupDevDone += c.tickets.getSupDevDoneTickets();
+            this.totalEstimatedHours += c.estimatedTime;
+            this.totalWorkLeft += c.remainingTime;
         }
+        this.ticketsLeftToDo = this.totalTickets - ticketsSupDevDone;
     }
 
+    getGaugeValue(): void {
+        let sumRemainingTime = 0;
+        let sumTimeLeft = 0;
+        let velocity;
+        for (const c of this.sprint.team.collaborators) {
+            velocity = c.getVelocity(this.SCRUM, this.LEAD_DEV);
+            sumRemainingTime += c.remainingTime;
+            sumTimeLeft += c.availableTime * velocity;
+        }
+        this.inAdvance = Math.round((sumTimeLeft - sumRemainingTime) * 10) / 10;
+        this.gaugeValue = Math.floor(( sumTimeLeft / sumRemainingTime ) * 100);
+    }
 }

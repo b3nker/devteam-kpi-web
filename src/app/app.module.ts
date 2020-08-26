@@ -46,6 +46,8 @@ import { TableComponent } from './Components/GenericComponent/table/table.compon
 import { TeamOverviewComponent } from './Components/TeamComponent/team-overview/team-overview.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { StoryPointProgressBarComponent } from './Components/GenericComponent/story-point-progress-bar/story-point-progress-bar.component';
+import {NgxGaugeModule} from 'ngx-gauge';
+import { GaugeComponent } from './Components/GenericComponent/gauge/gauge.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,7 @@ import { StoryPointProgressBarComponent } from './Components/GenericComponent/st
     TableComponent,
     TeamOverviewComponent,
     StoryPointProgressBarComponent,
+    GaugeComponent,
   ],
     imports: [
         BrowserModule,
@@ -108,7 +111,8 @@ import { StoryPointProgressBarComponent } from './Components/GenericComponent/st
         MatOptionModule,
         MatSelectModule,
         FormsModule,
-        MatTabsModule
+        MatTabsModule,
+        NgxGaugeModule
     ],
   providers: [],
   bootstrap: [AppComponent]
