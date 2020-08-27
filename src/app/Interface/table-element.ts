@@ -13,7 +13,7 @@ export interface TableElement {
     runDays: number;
     ceremonyDays: number;
     role: string;
-    url: string;
+    url: Array<string>;
     // Hidden variables
     _devTime: number;
     _availableTime: number;

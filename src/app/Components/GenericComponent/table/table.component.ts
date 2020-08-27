@@ -19,6 +19,7 @@ export class TableComponent {
     LEAD_DEV = 'lead dev';
     UNASSIGNED_ROLE = 'none';
     WORKING_HOURS_PER_DAY = 8;
+    JIRA_DOMAIN = 'https://apriltechnologies.atlassian.net';
 
     constructor() {
         this.nbRunDays = [
@@ -89,5 +90,23 @@ export class TableComponent {
         if (this.dataSource[i].devTime > this.dataSource[i]._devTime) {
             this.dataSource[i].devTime = this.dataSource[i]._devTime;
         }
+    }
+
+    getJqlKeysList(urls: Array<string>): string {
+        if (urls.length === 0){
+            return null;
+        }
+        let str = '';
+        let i = 1;
+        const size = urls.length;
+        for (const issueKey of urls){
+            if (i === size){
+                str += issueKey;
+            }else{
+                str += issueKey + ',';
+                i++;
+            }
+        }
+        return this.JIRA_DOMAIN + '/issues/?jql=issue in (' + str + ')';
     }
 }

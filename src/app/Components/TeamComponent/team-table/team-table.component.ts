@@ -40,7 +40,7 @@ export class TeamTableComponent implements OnChanges {
                 runDays: 0,
                 ceremonyDays: 0,
                 role: this.UNASSIGNED_ROLE,
-                url: '',
+                url: new Array<string>(),
                 _availableTime: null,
                 _devTime: null,
             };
@@ -56,7 +56,7 @@ export class TeamTableComponent implements OnChanges {
                 runDays: 0,
                 ceremonyDays: 0,
                 role: 'none',
-                url: '',
+                url: new Array<string>(),
                 _availableTime: null,
                 _devTime: null,
             };
@@ -74,7 +74,7 @@ export class TeamTableComponent implements OnChanges {
                         runDays: 0,
                         ceremonyDays: 0,
                         role: this.UNASSIGNED_ROLE,
-                        url: '',
+                        url: c.assignedIssues,
                         _availableTime: null,
                         _devTime: null,
                     };

@@ -103,24 +103,6 @@ export class Collaborator {
         return velocity;
     }
 
-    getJqlKeysList(): string {
-        if (this.assignedIssues === null){
-            return null;
-        }
-        let str = '';
-        let i = 1;
-        const size = this.assignedIssues.length;
-        for (const issueKey of this.assignedIssues){
-            if (i === size){
-                str += '\'' + issueKey + '\'';
-            }else{
-                str += '\'' + issueKey + '\',';
-                i++;
-            }
-        }
-        return str;
-    }
-
     getPascalCase(str: string): string{
         if (str.length > 0 ){
             return str[0].toUpperCase() + str.slice(1);

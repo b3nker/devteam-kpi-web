@@ -91,7 +91,7 @@ export class TeamService {
             runDays: 0,
             ceremonyDays: 0,
             role: collabRole,
-            url: '',
+            url: new Array<string>(),
             _availableTime: null,
             _devTime: null,
         };
@@ -117,7 +117,7 @@ export class TeamService {
             runDays: 0,
             ceremonyDays: 0,
             role: c.role,
-            url:  'https://apriltechnologies.atlassian.net/issues/?jql=issue in (' + c.getJqlKeysList() + ')',
+            url:  c.assignedIssues,
             _availableTime: Math.round(c.availableTime * velocity),
             _devTime: developmentTime,
         };
@@ -142,5 +142,7 @@ export class TeamService {
         elem.availableTime += timeAvailable;
         elem._devTime += developmentTime;
         elem._availableTime += timeAvailable;
+        // @ts-ignore
+        elem.url.push(c.assignedIssues);
     }
 }

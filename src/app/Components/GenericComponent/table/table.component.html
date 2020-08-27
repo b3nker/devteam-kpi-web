@@ -78,7 +78,7 @@
     <ng-container matColumnDef="url">
         <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[8]>Tâches assignées</th>
         <td mat-cell *matCellDef="let element">
-            <a *ngIf="element.url != ''" href="{{element.url}}" target="_blank">Lien Jira</a>
+            <a *ngIf="element.url != ''" href="{{this.getJqlKeysList(element.url)}}" target="_blank">Lien Jira</a>
     </ng-container>
 
 
