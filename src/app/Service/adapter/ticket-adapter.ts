@@ -28,7 +28,10 @@ export class TicketAdapter implements Adapter<Ticket> {
             item.valide,
             item.mergeRequest,
             item.overEstimated,
-            item.underEstimated
+            item.underEstimated,
+            item.ticketsBug,
+            item.ticketsTask,
+            item.ticketsUS
         );
     }
     adapt(item: any): Ticket{
@@ -52,7 +55,10 @@ export class TicketAdapter implements Adapter<Ticket> {
             item.valide,
             item.mergeRequest,
             item.overEstimated,
-            item.underEstimated
+            item.underEstimated,
+            item.ticketsBug,
+            item.ticketsTask,
+            item.ticketsUS
         );
     }
 }

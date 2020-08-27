@@ -19,23 +19,26 @@ export class Ticket {
     private _mergeRequest: number;
     private _overEstimated: number;
     private _underEstimated: number;
+    private _ticketsBug: number;
+    private _ticketsTask: number;
+    private _ticketsUS: number;
 
 
-    constructor(total: number, aQualifier: number, bacAffinage: number, enAttente: number, aFaire: number, enCours: number,
-                abandonne: number, devTermine: number, aValider: number, aLivrer: number, aTester: number, refuseEnRecette: number,
+    constructor(total: number, aqualifier: number, bacAffinage: number, enAttente: number, afaire: number, enCours: number,
+                abandonne: number, devTermine: number, avalider: number, alivrer: number, atester: number, refuseEnRecette: number,
                 valideEnRecette: number, livre: number, termine: number, testCroise: number, valide: number, mergeRequest: number,
-                overEstimated: number, underEstimated: number) {
+                overEstimated: number, underEstimated: number, ticketsBug: number, ticketsTask: number, ticketsUS: number) {
         this._total = total;
-        this._aqualifier = aQualifier;
+        this._aqualifier = aqualifier;
         this._bacAffinage = bacAffinage;
         this._enAttente = enAttente;
-        this._afaire = aFaire;
+        this._afaire = afaire;
         this._enCours = enCours;
         this._abandonne = abandonne;
         this._devTermine = devTermine;
-        this._avalider = aValider;
-        this._alivrer = aLivrer;
-        this._atester = aTester;
+        this._avalider = avalider;
+        this._alivrer = alivrer;
+        this._atester = atester;
         this._refuseEnRecette = refuseEnRecette;
         this._valideEnRecette = valideEnRecette;
         this._livre = livre;
@@ -45,8 +48,10 @@ export class Ticket {
         this._mergeRequest = mergeRequest;
         this._overEstimated = overEstimated;
         this._underEstimated = underEstimated;
+        this._ticketsBug = ticketsBug;
+        this._ticketsTask = ticketsTask;
+        this._ticketsUS = ticketsUS;
     }
-
 
     get total(): number {
         return this._total;
@@ -126,6 +131,18 @@ export class Ticket {
 
     get underEstimated(): number {
         return this._underEstimated;
+    }
+
+    get ticketsBug(): number {
+        return this._ticketsBug;
+    }
+
+    get ticketsTask(): number {
+        return this._ticketsTask;
+    }
+
+    get ticketsUS(): number {
+        return this._ticketsUS;
     }
 
     getDoneTickets(): number {
