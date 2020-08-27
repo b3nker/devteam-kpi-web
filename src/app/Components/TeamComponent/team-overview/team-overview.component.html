@@ -2,8 +2,8 @@
     <mat-grid-list cols="4" rowHeight="100px">
         <!-- Sprint Recap (info and progress bar)-->
         <mat-grid-tile class="resume-tile mat-elevation-z3"
-                [colspan]="1"
-                [rowspan]="3">
+                       [colspan]="1"
+                       [rowspan]="3">
             <h1><b>{{sprint.name}}</b></h1>
             <h2>{{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}</h2>
             <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
@@ -11,8 +11,8 @@
 
         <!-- Story Points -->
         <mat-grid-tile class="resume-tile mat-elevation-z3"
-                [colspan]="3"
-                [rowspan]="3">
+                       [colspan]="3"
+                       [rowspan]="3">
             <h2>Etats des story points</h2>
             <app-story-point-progress-bar [chartElement]="chartElement"
                                           [totalStoryPoints]="totalStoryPoints"></app-story-point-progress-bar>
@@ -20,40 +20,49 @@
 
         <!--Tickets Recap-->
         <mat-grid-tile class="mat-elevation-z3"
-                [colspan]="1"
-                [rowspan]="4">
+                       [colspan]="1"
+                       [rowspan]="4">
             <div>
-            <h2>Fiches embarquées</h2> <br>
-            <p>
-                <span style="font-size: 35px; ">{{totalTickets}}</span> tickets<br>
-                ({{totalEstimatedHours / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
-                {{totalEstimatedHours % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
-                <br><br><br>
-                <span style="font-size: 35px; color: darkred">+X</span> ajoutés <br>
-                (Xh)
-                <br><br><br>
-                <span style="font-size: 55px"><b>{{ticketsLeftToDo}}</b></span> tickets à faire<br>
-                ({{totalWorkLeft / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
-                {{totalWorkLeft % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
-            </p>
+                <h2>Fiches embarquées</h2> <br>
+                <ul>
+                    <li>
+                        <span style="font-size: 35px; ">{{totalTickets}}</span> tickets<br>
+                        ({{totalEstimatedHours / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
+                        {{totalEstimatedHours % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
+                    </li>
+                    <br><br><br>
+                    <li>
+                        <span style="font-size: 35px; color: darkred">+X</span> ajoutés <br>
+                        (Xh)
+                    </li>
+                    <br><br><br>
+                    <li>
+                        <span style="font-size: 55px"><b>{{ticketsLeftToDo}}</b></span> tickets à faire<br>
+                        ({{totalWorkLeft / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
+                        {{totalWorkLeft % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
+                    </li>
+                </ul>
             </div>
         </mat-grid-tile>
 
         <mat-grid-tile class="mat-elevation-z3"
-                [colspan]="1"
-                [rowspan]="4">
+                       [colspan]="1"
+                       [rowspan]="4">
             <div>
-                <h2>Détails des tickets</h2> <br>
+                <h2>Détails des tickets</h2>
                 <ul>
-                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
+                    <li><span style="font-size: 35px">{{totalTicketsUS}}</span> <span
+                            style="color: darkred; font-size: 25px"> +x</span>
                         US
                     </li>
                     <br/><br/>
-                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
+                    <li><span style="font-size: 35px">{{totalTicketsTask}}</span> <span
+                            style="color: darkred; font-size: 25px"> +x</span>
                         Tâches
                     </li>
                     <br/><br/>
-                    <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
+                    <li><span style="font-size: 35px">{{totalTicketsBug}}</span> <span
+                            style="color: darkred; font-size: 25px"> +x</span>
                         Bugs
                     </li>
 
@@ -64,8 +73,8 @@
 
         <!-- Gauge-->
         <mat-grid-tile class="mat-elevation-z3"
-                [colspan]="2"
-                [rowspan]="3">
+                       [colspan]="2"
+                       [rowspan]="3">
             <div>
                 <h2>Taux d'avancement estimé</h2>
                 <app-gauge [gaugeValue]="gaugeValue"></app-gauge>
@@ -79,16 +88,16 @@
 
         <!-- Comment -->
         <mat-grid-tile class="mat-elevation-z3"
-                [colspan]="2"
-                [rowspan]="1">
+                       [colspan]="2"
+                       [rowspan]="1">
             <div>
                 <form class="example-form">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Warning</mat-label>
-                    <label>
-                        <input matInput placeholder="Message">
-                    </label>
-                </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Warning</mat-label>
+                        <label>
+                            <input matInput placeholder="Message">
+                        </label>
+                    </mat-form-field>
                     <button mat-raised-button color="primary">Envoyer</button>
                 </form>
 

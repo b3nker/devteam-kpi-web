@@ -18,6 +18,9 @@ export class TeamOverviewComponent implements OnChanges {
     totalEstimatedHours: number;
     totalWorkLeft: number;
     ticketsLeftToDo: number;
+    totalTicketsUS: number;
+    totalTicketsTask: number;
+    totalTicketsBug: number;
     gaugeValue: number;
     inAdvance: number;
     SCRUM = 'scrum';
@@ -32,6 +35,9 @@ export class TeamOverviewComponent implements OnChanges {
         this.inAdvance = 0;
         this.totalEstimatedHours = 0;
         this.totalWorkLeft = 0;
+        this.totalTicketsBug = 0;
+        this.totalTicketsTask = 0;
+        this.totalTicketsUS = 0;
     }
 
     ngOnChanges(): void {
@@ -54,8 +60,6 @@ export class TeamOverviewComponent implements OnChanges {
         if (diffTime < 0 ){
             this.progression = 100;
         }else{
-            console.log(diffTime - nbDaysOff);
-            console.log(diffTimeTotal - nbDaysOffTotal);
             this.progression = (100 - Math.round(((diffTime - nbDaysOff) / (diffTimeTotal - nbDaysOffTotal) ) * 100 ));
         }
     }
@@ -75,6 +79,9 @@ export class TeamOverviewComponent implements OnChanges {
             ticketsSupDevDone += c.tickets.getSupDevDoneTickets();
             this.totalEstimatedHours += c.estimatedTime;
             this.totalWorkLeft += c.remainingTime;
+            this.totalTicketsBug += c.tickets.ticketsBug;
+            this.totalTicketsTask += c.tickets.ticketsTask;
+            this.totalTicketsUS += c.tickets.ticketsUS;
         }
         this.ticketsLeftToDo = this.totalTickets - ticketsSupDevDone;
     }
