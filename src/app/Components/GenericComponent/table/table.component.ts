@@ -75,6 +75,7 @@ export class TableComponent {
         const oldNbDays = this.dataSource[i].runDays;
         this.dataSource[i].runDays = nbDays;
         const diffNbDays = nbDays - oldNbDays;
+        console.log(diffNbDays);
         const timeToSubtract = velocity * (diffNbDays * this.WORKING_HOURS_PER_DAY);
         this.dataSource[i].availableTime = Math.round((this.dataSource[i].availableTime - timeToSubtract) * 10) / 10;
         this.dataSource[i].devTime = Math.round((this.dataSource[i].devTime - timeToSubtract) * 10) / 10;
@@ -108,5 +109,28 @@ export class TableComponent {
             }
         }
         return this.JIRA_DOMAIN + '/issues/?jql=issue in (' + str + ')';
+    }
+
+    /**
+     * Changes a raw time (in hours) to the following format 'Xj Xh'
+     * @param time, a number (in hours)
+     * @return a string with a specific format
+     */
+    getTimeFormat(time: number): string{
+        const nbDaysInTime = Math.floor(time / this.WORKING_HOURS_PER_DAY);
+        const nbHoursInTime = Math.floor(time - nbDaysInTime * this.WORKING_HOURS_PER_DAY);
+        if (time === 46.8){
+            console.log(nbDaysInTime);
+            console.log(nbHoursInTime);
+        }
+        if (nbDaysInTime === 0){
+            return nbHoursInTime + 'h';
+        }else{
+            if (nbHoursInTime === 0){
+                return nbDaysInTime + 'j';
+            }else{
+                return nbDaysInTime + 'j ' + nbHoursInTime + 'h';
+            }
+        }
     }
 }
