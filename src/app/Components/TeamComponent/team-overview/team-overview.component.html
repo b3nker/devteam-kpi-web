@@ -1,29 +1,29 @@
 <ng-container *ngIf="sprint">
     <mat-grid-list cols="4" rowHeight="100px">
         <!-- Sprint Recap (info and progress bar)-->
-        <mat-grid-tile
-                [colspan]="2"
-                [rowspan]="2"
-                class="resume-tile">
+        <mat-grid-tile class="resume-tile mat-elevation-z3"
+                [colspan]="1"
+                [rowspan]="3">
             <h1><b>{{sprint.name}}</b></h1>
             <h2>{{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}</h2>
             <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
         </mat-grid-tile>
 
         <!-- Story Points -->
-        <mat-grid-tile
-                [colspan]="2"
-                [rowspan]="3"
-                class="resume-tile">
+        <mat-grid-tile class="resume-tile mat-elevation-z3"
+                [colspan]="3"
+                [rowspan]="3">
             <h2>Etats des story points</h2>
             <app-story-point-progress-bar [chartElement]="chartElement"
                                           [totalStoryPoints]="totalStoryPoints"></app-story-point-progress-bar>
         </mat-grid-tile>
 
         <!--Tickets Recap-->
-        <mat-grid-tile
+        <mat-grid-tile class="mat-elevation-z3"
                 [colspan]="1"
                 [rowspan]="4">
+            <div>
+            <h2>Fiches embarquées</h2> <br>
             <p>
                 <span style="font-size: 35px; ">{{totalTickets}}</span> tickets<br>
                 ({{totalEstimatedHours / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
@@ -32,26 +32,27 @@
                 <span style="font-size: 35px; color: darkred">+X</span> ajoutés <br>
                 (Xh)
                 <br><br><br>
-                <span style="font-size: 55px"><b>{{ticketsLeftToDo}}</b></span> à faire <br>
+                <span style="font-size: 55px"><b>{{ticketsLeftToDo}}</b></span> tickets à faire<br>
                 ({{totalWorkLeft / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
                 {{totalWorkLeft % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
             </p>
+            </div>
         </mat-grid-tile>
 
-        <mat-grid-tile
+        <mat-grid-tile class="mat-elevation-z3"
                 [colspan]="1"
                 [rowspan]="4">
             <div>
-                <h2>Fiches embarquées</h2> <br>
+                <h2>Détails des tickets</h2> <br>
                 <ul>
                     <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
                         US
                     </li>
-                    <br><br>
+                    <br/><br/>
                     <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
                         Tâches
                     </li>
-                    <br><br>
+                    <br/><br/>
                     <li><span style="font-size: 25px">X</span> <span style="color: darkred; font-size: 20px"> +x</span>
                         Bugs
                     </li>
@@ -62,34 +63,32 @@
         </mat-grid-tile>
 
         <!-- Gauge-->
-        <mat-grid-tile
+        <mat-grid-tile class="mat-elevation-z3"
                 [colspan]="2"
                 [rowspan]="3">
             <div>
+                <h2>Taux d'avancement estimé</h2>
                 <app-gauge [gaugeValue]="gaugeValue"></app-gauge>
                 <p *ngIf="inAdvance >=0" style="font-size: 20px; text-align: center"> En avance de <span
                         style="color: green"> {{inAdvance}} h</span></p>
                 <p *ngIf="inAdvance < 0" style="font-size: 20px; text-align: center"> En retard de <span
                         style="color: darkred">{{inAdvance}} h</span></p>
-
             </div>
 
         </mat-grid-tile>
 
         <!-- Comment -->
-        <mat-grid-tile
-                [colspan]="4"
-                [rowspan]="2">
+        <mat-grid-tile class="mat-elevation-z3"
+                [colspan]="2"
+                [rowspan]="1">
             <div>
                 <form class="example-form">
-                    <mat-form-field class="example-full-width">
-                        <mat-label style="font-size: 20px">Warning</mat-label>
-                        <label>
-                            <textarea matInput style="font-size: 20px"></textarea>
-                        </label>
-                    </mat-form-field>
-                    <button mat-raised-button color="primary">Enregistrer</button>
+                <mat-form-field class="example-full-width">
+                    <mat-label>Warning</mat-label>
+                    <input matInput placeholder="Message">
+                </mat-form-field>
                 </form>
+
             </div>
         </mat-grid-tile>
     </mat-grid-list>

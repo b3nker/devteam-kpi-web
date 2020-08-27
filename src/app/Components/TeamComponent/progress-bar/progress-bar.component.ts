@@ -27,7 +27,7 @@ export class ProgressBarComponent implements OnChanges {
       this.dateNow = new Date();
       const dateF = new Date(this.dateFin);
       this.diffTime = Math.round((dateF.getTime() - this.dateNow.getTime()) / (1000 * 3600 * 24)) + 1;
-      const nbDaysOff = this.getNumber(this.dateNow, new Date(this.dateFin));
+      const nbDaysOff = this.getNumberNotWorkingDays(this.dateNow, new Date(this.dateFin));
       if (this.diffTime < 0){
         this.diffTime += nbDaysOff;
       }else{
@@ -42,7 +42,7 @@ export class ProgressBarComponent implements OnChanges {
    * @param end, Represent end date
    * @return A number
    */
-  getNumber(now: Date, end: Date): number{
+  getNumberNotWorkingDays(now: Date, end: Date): number{
     let nbWeekendDays = 0;
     const daysBetween = now;
     if (now.getTime() <= end.getTime()){

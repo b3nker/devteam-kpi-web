@@ -23,12 +23,8 @@ span{
     font-size: 24px !important;
 }
 
-mat-grid-tile{
-    border: 2px solid silver;
-}
-
 ::ng-deep app-story-point-progress-bar{
-    width: 80%;
+    width: 100%;
 }
 
 

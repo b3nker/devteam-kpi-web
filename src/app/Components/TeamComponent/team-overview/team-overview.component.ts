@@ -44,14 +44,20 @@ export class TeamOverviewComponent implements OnChanges {
     }
 
     getProgressBar(): void {
-        let nbSpDone = 0;
-        let nbSpTotal = 0;
-        for (const c of this.sprint.team.collaborators) {
-            nbSpDone += c.storyPoints.getSupDevDoneStoryPoints();
-            nbSpTotal += c.storyPoints.total;
+        const dateNow = new Date();
+        const dateF = new Date(this.sprint.endDate);
+        const dateD = new Date(this.sprint.startDate);
+        const diffTime = Math.round((dateF.getTime() - dateNow.getTime()) / (1000 * 3600 * 24)) + 1;
+        const nbDaysOff = this.getNumberNotWorkingDays(dateNow, dateF);
+        const diffTimeTotal = Math.round((dateF.getTime() - dateD.getTime()) / (1000 * 3600 * 24)) + 1;
+        const nbDaysOffTotal = this.getNumberNotWorkingDays(new Date(this.sprint.startDate), dateF);
+        if (diffTime < 0 ){
+            this.progression = 100;
+        }else{
+            console.log(diffTime - nbDaysOff);
+            console.log(diffTimeTotal - nbDaysOffTotal);
+            this.progression = (100 - Math.round(((diffTime - nbDaysOff) / (diffTimeTotal - nbDaysOffTotal) ) * 100 ));
         }
-        const percentage = (nbSpDone / nbSpTotal) * 100;
-        this.progression = Math.round(percentage * 1e2) / 1e2;
     }
 
     getBootstrapStoryPoints(): void {
@@ -84,5 +90,33 @@ export class TeamOverviewComponent implements OnChanges {
         }
         this.inAdvance = Math.round((sumTimeLeft - sumRemainingTime) * 10) / 10;
         this.gaugeValue = Math.floor(( sumTimeLeft / sumRemainingTime ) * 100);
+    }
+
+    /**
+     * Compute the number of weekend days (saturdays and sundays) between two dates
+     * @param now, Represent start date
+     * @param end, Represent end date
+     * @return A number
+     */
+    getNumberNotWorkingDays(now: Date, end: Date): number{
+        let nbWeekendDays = 0;
+        const daysBetween = now;
+        if (now.getTime() <= end.getTime()){
+            while (daysBetween.getTime() < end.getTime()){
+                if (daysBetween.getDay() % 6 === 0){
+                    nbWeekendDays++;
+                }
+                daysBetween.setDate(daysBetween.getDate() + 1);
+            }
+            return nbWeekendDays;
+        }else{
+            while (end.getTime() < daysBetween.getTime()){
+                if (end.getDay() % 6 === 0){
+                    nbWeekendDays++;
+                }
+                end.setDate(end.getDate() + 1);
+            }
+            return nbWeekendDays;
+        }
     }
 }

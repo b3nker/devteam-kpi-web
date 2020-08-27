@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {TableElement} from '../../../Interface/table-element';
 
 @Component({
@@ -61,7 +61,7 @@ export class TableComponent {
     }
 
     changeRowValues(event: any, i: number): void {
-        if (this.dataSource[i].role === this.UNASSIGNED_ROLE) {
+        if (this.dataSource[i].name === 'Assigné') {
             return;
         }
         let velocity;
