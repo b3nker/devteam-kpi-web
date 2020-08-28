@@ -32,8 +32,9 @@
                     </li>
                     <br><br><br>
                     <li>
-                        <span style="font-size: 35px; color: darkred">+X</span> ajoutés <br>
-                        (Xh)
+                        <span style="font-size: 35px; color: darkred">+{{sprint.addedTickets.total}}</span> dont ajoutés <br>
+                        ({{sprint.addedWork / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
+                        {{sprint.addedWork % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
                     </li>
                     <br><br><br>
                     <li>
@@ -52,17 +53,17 @@
                 <h2>Détails des tickets</h2>
                 <ul>
                     <li><span style="font-size: 35px">{{totalTicketsUS}}</span> <span
-                            style="color: darkred; font-size: 25px"> +x</span>
+                            style="color: darkred; font-size: 25px"> +{{sprint.addedTickets.ticketsUS}}</span>
                         US
                     </li>
                     <br/><br/>
                     <li><span style="font-size: 35px">{{totalTicketsTask}}</span> <span
-                            style="color: darkred; font-size: 25px"> +x</span>
+                            style="color: darkred; font-size: 25px"> +{{sprint.addedTickets.ticketsBug}}</span>
                         Tâches
                     </li>
                     <br/><br/>
                     <li><span style="font-size: 35px">{{totalTicketsBug}}</span> <span
-                            style="color: darkred; font-size: 25px"> +x</span>
+                            style="color: darkred; font-size: 25px"> +{{sprint.addedTickets.ticketsTask}}</span>
                         Bugs
                     </li>
 

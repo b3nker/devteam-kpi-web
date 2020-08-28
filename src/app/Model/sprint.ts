@@ -1,4 +1,5 @@
 import {Team} from './team';
+import {Ticket} from "./ticket";
 
 export class Sprint {
     private _id: number;
@@ -8,7 +9,21 @@ export class Sprint {
     private _team: Team;
     private _startDate: string;
     private _endDate: string;
+    private _addedTickets: Ticket;
+    private _addedWork: number;
 
+
+    get id(): number {
+        return this._id;
+    }
+
+    get addedTickets(): Ticket {
+        return this._addedTickets;
+    }
+
+    get addedWork(): number {
+        return this._addedWork;
+    }
 
     set team(value: Team) {
         this._team = value;
@@ -39,7 +54,9 @@ export class Sprint {
         return this._endDate;
     }
 
-    constructor(id: number, name: string, timeLeft: number, totalTime: number, team: Team, startDate: string, endDate: string) {
+
+    constructor(id: number, name: string, timeLeft: number, totalTime: number, team: Team, startDate: string,
+                endDate: string, addedTickets: Ticket, addedWork: number) {
         this._id = id;
         this._name = name;
         this._timeLeft = timeLeft;
@@ -47,6 +64,8 @@ export class Sprint {
         this._team = team;
         this._startDate = startDate;
         this._endDate = endDate;
+        this._addedTickets = addedTickets;
+        this._addedWork = addedWork;
     }
 }
 

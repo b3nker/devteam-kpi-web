@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Adapter} from './adapter';
 import {Sprint} from '../../Model/sprint';
 import {TeamAdapter} from './team-adapter';
+import {TicketAdapter} from "./ticket-adapter";
 
 @Injectable({
     providedIn: 'root',
@@ -15,7 +16,9 @@ export class SprintAdapter implements Adapter<Sprint> {
             item.totalTime,
             TeamAdapter.adapt(item.team),
             item.startDate,
-            item.endDate
+            item.endDate,
+            TicketAdapter.adapt(item.addedTickets),
+            item.addedWork
         );
     }
 }
