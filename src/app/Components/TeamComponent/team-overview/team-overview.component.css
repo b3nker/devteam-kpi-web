@@ -31,4 +31,57 @@ ul{
     list-style-type: none;
 }
 
+.ticket-size{
+    font-size: 35px;
+}
+
+.added-ticket-style{
+    color: darkred;
+    font-size: 25px;
+}
+.resume-ticket-size{
+    font-size: 45px;
+
+}
+
+.gauge-text-style{
+    font-size: 20px;
+    text-align: center;
+}
+
+.inAdvance-color{
+    color: green;
+}
+
+.late-color{
+    color: darkred;
+}
+
+.list-padding{
+    padding-bottom: 70px;
+}
+
+.title-padding-tickets{
+    padding-bottom: 20px;
+}
+
+.title-padding-details{
+    padding-bottom: 30px;
+}
+
+.list-padding-resume-ticket{
+    padding-bottom: 50px;
+}
+
+.list-padding-added-ticket{
+    padding-bottom: 50px;
+}
+
+.gauge-centering{
+    padding-left: 15px;
+}
+
+.mat-form-field{
+    padding-right: 20px;
+}
 

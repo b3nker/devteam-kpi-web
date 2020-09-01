@@ -23,22 +23,20 @@
                        [colspan]="1"
                        [rowspan]="4">
             <div>
-                <h2>Fiches embarquées</h2> <br>
+                <h2 class="title-padding-tickets">Fiches embarquées</h2>
                 <ul>
-                    <li>
-                        <span style="font-size: 35px; ">{{totalTickets}}</span> tickets<br>
+                    <li class="list-padding-added-ticket">
+                        <span class="ticket-size">{{totalTickets}}</span> tickets<br>
                         ({{totalEstimatedHours / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
                         {{totalEstimatedHours % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
                     </li>
-                    <br><br><br>
-                    <li>
-                        <span style="font-size: 35px; color: darkred">+{{sprint.addedTickets.total}}</span> dont ajoutés <br>
+                    <li class="list-padding-resume-ticket">
+                        <span class="added-ticket-style">+{{sprint.addedTickets.total}}</span> dont ajoutés <br>
                         ({{sprint.addedWork / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
                         {{sprint.addedWork % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
                     </li>
-                    <br><br><br>
                     <li>
-                        <span style="font-size: 55px"><b>{{ticketsLeftToDo}}</b></span> tickets à faire<br>
+                        <span class="resume-ticket-size"><b>{{ticketsLeftToDo}}</b></span> tickets à faire<br>
                         ({{totalWorkLeft / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
                         {{totalWorkLeft % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
                     </li>
@@ -50,26 +48,19 @@
                        [colspan]="1"
                        [rowspan]="4">
             <div>
-                <h2>Détails des tickets</h2>
+                <h2 class="title-padding-details">Détails des tickets</h2>
                 <ul>
-                    <li><span style="font-size: 35px">{{totalTicketsUS}}</span> <span
-                            style="color: darkred; font-size: 25px"> +{{sprint.addedTickets.ticketsUS}}</span>
-                        US
+                    <li class="list-padding"><span class="ticket-size">{{totalTicketsUS}}</span>
+                        <span class="added-ticket-style"> (+{{sprint.addedTickets.ticketsUS}}) </span> US
                     </li>
-                    <br/><br/>
-                    <li><span style="font-size: 35px">{{totalTicketsTask}}</span> <span
-                            style="color: darkred; font-size: 25px"> +{{sprint.addedTickets.ticketsBug}}</span>
-                        Tâches
+                    <li class="list-padding"><span class="ticket-size">{{totalTicketsTask}}</span>
+                        <span class="added-ticket-style"> (+{{sprint.addedTickets.ticketsTask}}) </span> Tâches
                     </li>
-                    <br/><br/>
-                    <li><span style="font-size: 35px">{{totalTicketsBug}}</span> <span
-                            style="color: darkred; font-size: 25px"> +{{sprint.addedTickets.ticketsTask}}</span>
-                        Bugs
+                    <li><span class="ticket-size">{{totalTicketsBug}}</span>
+                        <span class="added-ticket-style"> (+{{sprint.addedTickets.ticketsBug}}) </span> Bugs
                     </li>
-
                 </ul>
             </div>
-
         </mat-grid-tile>
 
         <!-- Gauge-->
@@ -78,13 +69,12 @@
                        [rowspan]="3">
             <div>
                 <h2>Taux d'avancement estimé</h2>
-                <app-gauge [gaugeValue]="gaugeValue"></app-gauge>
-                <p *ngIf="inAdvance >=0" style="font-size: 20px; text-align: center"> En avance de <span
-                        style="color: green"> {{inAdvance}} h</span></p>
-                <p *ngIf="inAdvance < 0" style="font-size: 20px; text-align: center"> En retard de <span
-                        style="color: darkred">{{inAdvance}} h</span></p>
+                <app-gauge class="gauge-centering" [gaugeValue]="gaugeValue"></app-gauge>
+                <p class="gauge-text-style" *ngIf="inAdvance >=0"> En avance de
+                    <span class="inAdvance-color"> {{inAdvance}} h</span></p>
+                <p class ="gauge-text-style" *ngIf="inAdvance < 0"> En retard de
+                    <span class="late-color">{{inAdvance}} h</span></p>
             </div>
-
         </mat-grid-tile>
 
         <!-- Comment -->

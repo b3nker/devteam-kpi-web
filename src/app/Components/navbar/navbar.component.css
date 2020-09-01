@@ -16,3 +16,8 @@ mat-toolbar{
   vertical-align: middle;
   display: inline-block;
 }
+
+.image-size{
+  height:75px;
+  width: 75px;
+}

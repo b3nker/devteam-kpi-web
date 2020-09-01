@@ -2,7 +2,7 @@
 
     <!-- To Do Progress Bar-->
 
-    <div class="progress-bar" role="progressbar" style="background-color: #c0c0c0"
+    <div class="progress-bar toDoBackground" role="progressbar"
          [style.width]="
          (((chartElement.aQualifierBacAffinnage
          + chartElement.aFaire
@@ -15,7 +15,7 @@
 
     <!-- In Progress -->
 
-    <div class="progress-bar" role="progressbar" style="background-color: #4682B4"
+    <div class="progress-bar inProgressBackground" role="progressbar"
          [style.width]="((chartElement.enCoursDevTermineTestCroise/totalStoryPoints) * 100) + '%'"
          [attr.aria-valuemax]="totalStoryPoints">
         {{chartElement.enCoursDevTermineTestCroise}}
@@ -23,7 +23,7 @@
 
     <!-- To be tested-->
 
-    <div class="progress-bar" role="progressbar" style="background-color: #b1c113"
+    <div class="progress-bar toTestBackground" role="progressbar"
          [style.width]="(((chartElement.aTester
          + chartElement.aLivrer
          )/totalStoryPoints)*100) + '%'"
@@ -34,7 +34,7 @@
 
     <!--Done-->
 
-    <div class="progress-bar" role="progressbar" style="background-color: #7a9823"
+    <div class="progress-bar doneBackground" role="progressbar"
          [style.width]="((chartElement.valideEnRecetteLivreTermine/totalStoryPoints) * 100) + '%'"
          [attr.aria-valuemax]="totalStoryPoints">
         {{chartElement.valideEnRecetteLivreTermine}}
@@ -43,20 +43,20 @@
 
 <br><br><br>
 <div class="legend">
-    <svg width="20" height="20">
-        <rect width="20" height="20" style="fill:#c0c0c0;"/>
+    <svg class="size">
+        <rect class="legendToDO size"/>
     </svg>
     A faire
-    <svg width="20" height="20">
-        <rect width="20" height="20" style="fill:#4682B4;"/>
+    <svg class="size">
+        <rect class="legendInProgress size"/>
     </svg>
     En cours
-    <svg width="20" height="20">
-        <rect width="20" height="20" style="fill:#b1c113;"/>
+    <svg class="size">
+        <rect class="legendToTest size"/>
     </svg>
     A tester
-    <svg width="20" height="20">
-        <rect width="20" height="20" style="fill:#7a9823;"/>
+    <svg class="size">
+        <rect class="legendDone size"/>
     </svg>
     Finis
 </div>
