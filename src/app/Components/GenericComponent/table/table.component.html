@@ -4,7 +4,7 @@
 
     <!-- Identity Column -->
     <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[0]> Développeur </th>
+        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[0]> Développeur </th>
         <td mat-cell class="cell-borders" *matCellDef="let element">
             {{element.name}} <br/>
             <i *ngIf="element.role !== null">({{element.role}})</i>
@@ -13,7 +13,7 @@
 
     <!-- Not Dev days Column -->
     <ng-container matColumnDef="notDevDays">
-        <th mat-header-cell *matHeaderCellDef [matTooltip]=displayedTooltip[1]>Activités non dév <br/> (run/crémonies)</th>
+        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[1]>Activités non dév <br/> (run/crémonies)</th>
         <td mat-cell class="cell-borders" *matCellDef="let element; let i = index">
             <mat-form-field>
                 <mat-select [ngModel]="dataSource[i].runDays" name="runDays" (selectionChange)="changeRowValues($event,i)">
@@ -78,7 +78,7 @@
 
 
     <ng-container matColumnDef="header-first">
-        <th mat-header-cell *matHeaderCellDef
+        <th  class="cell-borders-bottom" mat-header-cell *matHeaderCellDef
             [attr.colspan]="1">
         </th>
     </ng-container>

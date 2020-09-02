@@ -57,3 +57,9 @@ mat-select{
     border: 1px solid black;
     padding: 0 !important;
 }
+
+.cell-borders-bottom{
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding: 0 !important;
+}
