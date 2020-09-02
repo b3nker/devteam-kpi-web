@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {TableElement} from '../../../Interface/table-element';
+import {TimeService} from "../../../Service/time.service";
 
 @Component({
     selector: 'app-table',
@@ -15,13 +16,14 @@ export class TableComponent {
     UPPER_BOUND_MULTIPLIER = 1.1;
     LEAD_DEV_VELOCITY = 0.65;
     DEV_VELOCITY = 1;
+    timeService: TimeService;
     SCRUM = 'scrum';
     LEAD_DEV = 'lead dev';
-    UNASSIGNED_ROLE = 'none';
     WORKING_HOURS_PER_DAY = 8;
     JIRA_DOMAIN = 'https://apriltechnologies.atlassian.net';
 
     constructor() {
+        this.timeService = new TimeService();
         this.nbRunDays = [
             {value: 0, viewValue: 'Aucun'},
             {value: 1, viewValue: 1},
@@ -109,28 +111,5 @@ export class TableComponent {
             }
         }
         return this.JIRA_DOMAIN + '/issues/?jql=issue in (' + str + ')';
-    }
-
-    /**
-     * Changes a raw time (in hours) to the following format 'Xj Xh'
-     * @param time, a number (in hours)
-     * @return a string with a specific format
-     */
-    getTimeFormat(time: number): string{
-        const nbDaysInTime = Math.floor(time / this.WORKING_HOURS_PER_DAY);
-        const nbHoursInTime = Math.floor(time - nbDaysInTime * this.WORKING_HOURS_PER_DAY);
-        if (time === 46.8){
-            console.log(nbDaysInTime);
-            console.log(nbHoursInTime);
-        }
-        if (nbDaysInTime === 0){
-            return nbHoursInTime + 'h';
-        }else{
-            if (nbHoursInTime === 0){
-                return nbDaysInTime + 'j';
-            }else{
-                return nbDaysInTime + 'j ' + nbHoursInTime + 'h';
-            }
-        }
     }
 }

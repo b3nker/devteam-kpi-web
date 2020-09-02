@@ -28,7 +28,7 @@
     <!-- Development Time Column -->
     <ng-container matColumnDef="devTime">
         <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[2]> Capacité <br/>totale </th>
-        <td mat-cell class="cell-borders" *matCellDef="let element">{{getTimeFormat(element.devTime)}}</td>
+        <td mat-cell class="cell-borders" *matCellDef="let element">{{timeService.getTimeFormat(element.devTime,WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
 
     <!-- Allocated Time Column -->
@@ -38,19 +38,19 @@
       'is-green' : element.allocatedTime <= LOWER_BOUND_MULTIPLIER * element.devTime && (element.devTime != null && element.allocatedTime != null),
       'is-orange': element.allocatedTime > LOWER_BOUND_MULTIPLIER * element.devTime && element.allocatedTime <= UPPER_BOUND_MULTIPLIER*element.devTime && (element.devTime != null && element.allocatedTime != null),
       'is-red' : element.allocatedTime > UPPER_BOUND_MULTIPLIER* element.devTime && (element.devTime != null && element.allocatedTime != null)
-      }">{{getTimeFormat(element.allocatedTime)}}</td>
+      }">{{timeService.getTimeFormat(element.allocatedTime,WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
 
     <!-- Log Time Column -->
     <ng-container matColumnDef="consumedTime">
         <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[4] >Temps log</th>
-        <td mat-cell class="cell-borders" *matCellDef="let element">{{getTimeFormat(element.consumedTime)}}</td>
+        <td mat-cell class="cell-borders" *matCellDef="let element">{{timeService.getTimeFormat(element.consumedTime,WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
 
     <!-- Time Left Column -->
     <ng-container matColumnDef="availableTime">
         <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[5]>Capacité <br/>restante</th>
-        <td mat-cell class="cell-borders" *matCellDef="let element">{{getTimeFormat(element.availableTime)}}</td>
+        <td mat-cell class="cell-borders" *matCellDef="let element">{{timeService.getTimeFormat(element.availableTime,WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
 
     <!-- Left To Do Column -->
@@ -60,7 +60,7 @@
       'is-green' : element.leftToDo <= LOWER_BOUND_MULTIPLIER * element.availableTime && (element.leftToDo != null && element.availableTime != null),
       'is-orange': element.leftToDo > LOWER_BOUND_MULTIPLIER * element.availableTime && element.leftToDo <= UPPER_BOUND_MULTIPLIER*element.availableTime && (element.leftToDo != null && element.availableTime != null),
       'is-red' : element.leftToDo > UPPER_BOUND_MULTIPLIER* element.availableTime && (element.leftToDo != null && element.availableTime != null)
-      }">{{getTimeFormat(element.leftToDo)}}</td>
+      }">{{timeService.getTimeFormat(element.leftToDo, WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
 
     <!-- Tickets Column -->
