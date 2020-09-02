@@ -1,0 +1,94 @@
+<mat-grid-list cols="4" rowHeight="100px">
+    <!-- Sprint Recap (info and progress bar)-->
+    <mat-grid-tile class="resume-tile mat-elevation-z3"
+                   [colspan]="1"
+                   [rowspan]="3">
+        <h1><b>{{name}}</b></h1>
+        <h2>{{startDate | date:'dd/MM/yyyy'}} - {{endDate | date: 'dd/MM/yyyy'}}</h2>
+        <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
+    </mat-grid-tile>
+
+    <!-- Story Points -->
+    <mat-grid-tile class="resume-tile mat-elevation-z3"
+                   [colspan]="3"
+                   [rowspan]="3">
+        <h2>Etats des story points</h2>
+        <app-story-point-progress-bar [chartElement]="chartElement"
+                                      [totalStoryPoints]="totalStoryPoints"></app-story-point-progress-bar>
+    </mat-grid-tile>
+
+    <!--Tickets Recap-->
+    <mat-grid-tile class="mat-elevation-z3"
+                   [colspan]="1"
+                   [rowspan]="4">
+        <div>
+            <h2 class="title-padding-tickets">Fiches embarquées</h2>
+            <ul>
+                <li class="list-padding-added-ticket">
+                    <span class="ticket-size">{{totalTickets}}</span> tickets<br>
+                    ({{timeService.getTimeFormat(totalEstimatedHours,WORKING_HOURS_PER_DAY)}})
+                </li>
+                <li class="list-padding-resume-ticket">
+                    <span class="added-ticket-style">+{{addedTickets}}</span> dont ajoutés <br>
+                    ({{timeService.getTimeFormat(addedHours,WORKING_HOURS_PER_DAY)}})
+                </li>
+                <li>
+                    <span class="resume-ticket-size"><b>{{ticketsLeftToDo}}</b></span> tickets à faire<br>
+                    ({{timeService.getTimeFormat(totalWorkLeft,WORKING_HOURS_PER_DAY)}})
+                </li>
+            </ul>
+        </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile class="mat-elevation-z3"
+                   [colspan]="1"
+                   [rowspan]="4">
+        <div>
+            <h2 class="title-padding-details">Détails des tickets</h2>
+            <ul>
+                <li class="list-padding"><span class="ticket-size">{{totalTicketsUS}}</span>
+                    <span class="added-ticket-style"> (+{{addedTotalTicketsUS}}) </span> US
+                </li>
+                <li class="list-padding"><span class="ticket-size">{{totalTicketsTask}}</span>
+                    <span class="added-ticket-style"> (+{{addedTotalTicketsTask}}) </span> Tâches
+                </li>
+                <li><span class="ticket-size">{{totalTicketsBug}}</span>
+                    <span class="added-ticket-style"> (+{{addedTotalTicketsBug}}) </span> Bugs
+                </li>
+            </ul>
+        </div>
+    </mat-grid-tile>
+
+    <!-- Gauge-->
+    <mat-grid-tile class="mat-elevation-z3"
+                   [colspan]="2"
+                   [rowspan]="3">
+        <div>
+            <h2>Taux d'avancement estimé<br/>sur les tâches restantes</h2>
+            <app-gauge class="gauge-centering" [gaugeValue]="gaugeValue"></app-gauge>
+            <p class="gauge-text-style" *ngIf="inAdvance >=0"> En avance de
+                <span class="inAdvance-color">{{timeService.getTimeFormat(inAdvance, WORKING_HOURS_PER_DAY)}}</span></p>
+            <p class="gauge-text-style" *ngIf="inAdvance < 0"> En retard de
+                <span class="late-color">- {{timeService.getTimeFormat(inAdvance, WORKING_HOURS_PER_DAY)}}</span></p>
+        </div>
+    </mat-grid-tile>
+
+    <!-- Comment -->
+    <mat-grid-tile class="mat-elevation-z3"
+                   [colspan]="2"
+                   [rowspan]="1">
+        <div>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                    <mat-label>Warning</mat-label>
+                    <label>
+                        <input matInput placeholder="Message">
+                    </label>
+                </mat-form-field>
+                <button mat-raised-button color="primary">Envoyer</button>
+            </form>
+
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
