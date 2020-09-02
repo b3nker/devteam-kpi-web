@@ -49,6 +49,7 @@ import { StoryPointProgressBarComponent } from './Components/GenericComponent/st
 import {NgxGaugeModule} from 'ngx-gauge';
 import { GaugeComponent } from './Components/GenericComponent/gauge/gauge.component';
 import {MatInputModule} from '@angular/material/input';
+import { OverviewComponent } from './Components/GenericComponent/overview/overview.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import {MatInputModule} from '@angular/material/input';
     TeamOverviewComponent,
     StoryPointProgressBarComponent,
     GaugeComponent,
+    OverviewComponent,
   ],
     imports: [
         BrowserModule,

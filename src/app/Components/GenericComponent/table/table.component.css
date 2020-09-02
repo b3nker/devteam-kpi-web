@@ -42,12 +42,6 @@ mat-select{
     text-align: center;
 }
 
-th.mat-header-cell, td.mat-cell {
-    text-align: center;
-    border: 1px solid black;
-    padding: 0 !important;
-}
-
 .firstGroupColor{
     background-color: lightblue;
 }
@@ -55,4 +49,11 @@ th.mat-header-cell, td.mat-cell {
 .secondGroupColor{
     background-color: midnightblue;
     color: white;
+}
+
+
+.cell-borders{
+    text-align: center;
+    border: 1px solid black;
+    padding: 0 !important;
 }

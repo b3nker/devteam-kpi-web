@@ -1,99 +1,24 @@
 <ng-container *ngIf="sprint">
-    <mat-grid-list cols="4" rowHeight="100px">
-        <!-- Sprint Recap (info and progress bar)-->
-        <mat-grid-tile class="resume-tile mat-elevation-z3"
-                       [colspan]="1"
-                       [rowspan]="3">
-            <h1><b>{{sprint.name}}</b></h1>
-            <h2>{{sprint.startDate | date:'dd/MM/yyyy'}} - {{sprint.endDate | date: 'dd/MM/yyyy'}}</h2>
-            <mat-progress-bar mode="determinate" class="app-progress-bar" value={{progression}}></mat-progress-bar>
-        </mat-grid-tile>
-
-        <!-- Story Points -->
-        <mat-grid-tile class="resume-tile mat-elevation-z3"
-                       [colspan]="3"
-                       [rowspan]="3">
-            <h2>Etats des story points</h2>
-            <app-story-point-progress-bar [chartElement]="chartElement"
-                                          [totalStoryPoints]="totalStoryPoints"></app-story-point-progress-bar>
-        </mat-grid-tile>
-
-        <!--Tickets Recap-->
-        <mat-grid-tile class="mat-elevation-z3"
-                       [colspan]="1"
-                       [rowspan]="4">
-            <div>
-                <h2 class="title-padding-tickets">Fiches embarquées</h2>
-                <ul>
-                    <li class="list-padding-added-ticket">
-                        <span class="ticket-size">{{totalTickets}}</span> tickets<br>
-                        ({{totalEstimatedHours / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
-                        {{totalEstimatedHours % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
-                    </li>
-                    <li class="list-padding-resume-ticket">
-                        <span class="added-ticket-style">+{{sprint.addedTickets.total}}</span> dont ajoutés <br>
-                        ({{sprint.addedWork / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
-                        {{sprint.addedWork % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
-                    </li>
-                    <li>
-                        <span class="resume-ticket-size"><b>{{ticketsLeftToDo}}</b></span> tickets à faire<br>
-                        ({{totalWorkLeft / WORKING_HOURS_PER_DAY | number : '1.0-0'}}j
-                        {{totalWorkLeft % WORKING_HOURS_PER_DAY | number : '1.0-0'}}h)
-                    </li>
-                </ul>
-            </div>
-        </mat-grid-tile>
-
-        <mat-grid-tile class="mat-elevation-z3"
-                       [colspan]="1"
-                       [rowspan]="4">
-            <div>
-                <h2 class="title-padding-details">Détails des tickets</h2>
-                <ul>
-                    <li class="list-padding"><span class="ticket-size">{{totalTicketsUS}}</span>
-                        <span class="added-ticket-style"> (+{{sprint.addedTickets.ticketsUS}}) </span> US
-                    </li>
-                    <li class="list-padding"><span class="ticket-size">{{totalTicketsTask}}</span>
-                        <span class="added-ticket-style"> (+{{sprint.addedTickets.ticketsTask}}) </span> Tâches
-                    </li>
-                    <li><span class="ticket-size">{{totalTicketsBug}}</span>
-                        <span class="added-ticket-style"> (+{{sprint.addedTickets.ticketsBug}}) </span> Bugs
-                    </li>
-                </ul>
-            </div>
-        </mat-grid-tile>
-
-        <!-- Gauge-->
-        <mat-grid-tile class="mat-elevation-z3"
-                       [colspan]="2"
-                       [rowspan]="3">
-            <div>
-                <h2>Taux d'avancement estimé</h2>
-                <app-gauge class="gauge-centering" [gaugeValue]="gaugeValue"></app-gauge>
-                <p class="gauge-text-style" *ngIf="inAdvance >=0"> En avance de
-                    <span class="inAdvance-color"> {{inAdvance}} h</span></p>
-                <p class ="gauge-text-style" *ngIf="inAdvance < 0"> En retard de
-                    <span class="late-color">{{inAdvance}} h</span></p>
-            </div>
-        </mat-grid-tile>
-
-        <!-- Comment -->
-        <mat-grid-tile class="mat-elevation-z3"
-                       [colspan]="2"
-                       [rowspan]="1">
-            <div>
-                <form class="example-form">
-                    <mat-form-field class="example-full-width">
-                        <mat-label>Warning</mat-label>
-                        <label>
-                            <input matInput placeholder="Message">
-                        </label>
-                    </mat-form-field>
-                    <button mat-raised-button color="primary">Envoyer</button>
-                </form>
-
-            </div>
-        </mat-grid-tile>
-    </mat-grid-list>
+    <app-overview
+            [name]="sprint.name"
+            [startDate]="sprint.startDate"
+            [endDate]="sprint.endDate"
+            [progression]="progression"
+            [chartElement]="chartElement"
+            [totalStoryPoints]="totalStoryPoints"
+            [totalTickets]="totalTickets"
+            [totalEstimatedHours]="totalEstimatedHours"
+            [addedTickets]="sprint.addedTickets.total"
+            [addedHours]="sprint.addedWork"
+            [ticketsLeftToDo]="ticketsLeftToDo"
+            [totalWorkLeft]="totalWorkLeft"
+            [totalTicketsUS]="totalTicketsUS"
+            [totalTicketsTask]="totalTicketsTask"
+            [totalTicketsBug]="totalTicketsBug"
+            [addedTotalTicketsBug]="sprint.addedTickets.ticketsBug"
+            [addedTotalTicketsUS]="sprint.addedTickets.ticketsUS"
+            [addedTotalTicketsTask]="sprint.addedTickets.ticketsTask"
+            [gaugeValue]="gaugeValue"
+            [inAdvance]="inAdvance">
+    </app-overview>
 </ng-container>
-
