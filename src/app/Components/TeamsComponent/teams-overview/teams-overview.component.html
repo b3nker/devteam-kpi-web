@@ -1,0 +1,25 @@
+<p>teams-overview works!</p>
+<ng-container *ngIf="sprints">
+    <app-overview
+            [name]="name"
+            [startDate]="startDate"
+            [endDate]="endDate"
+            [progression]="progression"
+            [chartElement]="chartElement"
+            [totalStoryPoints]="totalStoryPoints"
+            [totalTickets]="totalTickets"
+            [totalEstimatedHours]="totalEstimatedHours"
+            [addedTickets]="addedTickets"
+            [addedHours]="addedHours"
+            [ticketsLeftToDo]="ticketsLeftToDo"
+            [totalWorkLeft]="totalWorkLeft"
+            [totalTicketsUS]="totalTicketsUS"
+            [totalTicketsTask]="totalTicketsTask"
+            [totalTicketsBug]="totalTicketsBug"
+            [addedTotalTicketsBug]="addedTotalTicketsBug"
+            [addedTotalTicketsUS]="addedTotalTicketsUS"
+            [addedTotalTicketsTask]="addedTotalTicketsTask"
+            [gaugeValue]="gaugeValue"
+            [inAdvance]="inAdvance">
+    </app-overview>
+</ng-container>

@@ -44,6 +44,15 @@ export class SprintService {
     return progression;
   }
 
+  static getProgressBarPercentageForSprints(sprints: Sprint[]): number {
+    let progression = 0;
+    for(const s of sprints){
+      progression += SprintService.getProgressBarPercentage(s);
+    }
+    progression /= sprints.length;
+    return progression;
+  }
+
   /**
    * Compute the number of weekend days (saturdays and sundays) between two dates
    * @param now, Represent start date

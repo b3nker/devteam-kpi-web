@@ -1,2 +1,5 @@
+<ng-container *ngIf="sprints">
+<app-teams-overview [sprints]="sprints"></app-teams-overview>
 <app-teams-table [teams]="teams" [sprints]="sprints"></app-teams-table>
 <app-teams-charts [teams]="teams" [sprints]="sprints"></app-teams-charts>
+</ng-container>

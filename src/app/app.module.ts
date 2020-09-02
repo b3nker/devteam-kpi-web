@@ -50,6 +50,7 @@ import {NgxGaugeModule} from 'ngx-gauge';
 import { GaugeComponent } from './Components/GenericComponent/gauge/gauge.component';
 import {MatInputModule} from '@angular/material/input';
 import { OverviewComponent } from './Components/GenericComponent/overview/overview.component';
+import { TeamsOverviewComponent } from './Components/TeamsComponent/teams-overview/teams-overview.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { OverviewComponent } from './Components/GenericComponent/overview/overvi
     StoryPointProgressBarComponent,
     GaugeComponent,
     OverviewComponent,
+    TeamsOverviewComponent,
   ],
     imports: [
         BrowserModule,
