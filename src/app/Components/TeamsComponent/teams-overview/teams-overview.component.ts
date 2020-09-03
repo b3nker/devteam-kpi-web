@@ -107,7 +107,11 @@ export class TeamsOverviewComponent implements OnChanges {
       }
     }
     this.inAdvance = Math.round((sumTimeLeft - sumRemainingTime) * 10) / 10;
-    this.gaugeValue = Math.floor(( sumTimeLeft / sumRemainingTime ) * 100);
+    if(sumTimeLeft < 0){
+      this.gaugeValue = 0;
+    }else{
+      this.gaugeValue = Math.floor(( sumTimeLeft / sumRemainingTime ) * 100);
+    }
   }
 
   getAddedValue(): void{
