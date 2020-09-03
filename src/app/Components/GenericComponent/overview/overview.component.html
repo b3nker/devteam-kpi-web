@@ -69,7 +69,7 @@
             <p class="gauge-text-style" *ngIf="inAdvance >=0"> En avance de
                 <span class="inAdvance-color">{{timeService.getTimeFormat(inAdvance, WORKING_HOURS_PER_DAY)}}</span></p>
             <p class="gauge-text-style" *ngIf="inAdvance < 0"> En retard de
-                <span class="late-color">- {{timeService.getTimeFormat(inAdvance, WORKING_HOURS_PER_DAY)}}</span></p>
+                <span class="late-color">{{timeService.getTimeFormat(inAdvance, WORKING_HOURS_PER_DAY)}}</span></p>
         </div>
     </mat-grid-tile>
 
