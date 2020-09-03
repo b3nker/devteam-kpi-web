@@ -31,9 +31,11 @@ export class OverviewComponent implements OnInit {
 
   timeService: TimeService
   WORKING_HOURS_PER_DAY = 8;
+  message: string;
 
   constructor() {
     this.timeService = new TimeService()
+    this.message = '';
   }
 
   ngOnInit(): void {

@@ -75,6 +75,9 @@
 
     <!-- Comment -->
     <mat-grid-tile class="mat-elevation-z3"
+                   [ngClass]="{
+                   'is-orange': message.length > 0
+                    }"
                    [colspan]="2"
                    [rowspan]="1">
         <div>
@@ -82,12 +85,11 @@
                 <mat-form-field class="example-full-width">
                     <mat-label>Warning</mat-label>
                     <label>
-                        <input matInput placeholder="Message">
+                        <input type="text" id="message" name="message" [(ngModel)]="message" matInput placeholder="Message">
                     </label>
                 </mat-form-field>
                 <button mat-raised-button color="primary">Envoyer</button>
             </form>
-
         </div>
     </mat-grid-tile>
 </mat-grid-list>
