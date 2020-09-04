@@ -1,8 +1,9 @@
 <div class="title"><b>Répartition des story points selon les états JIRA</b></div>
 <ng-container class="margin" *ngFor="let name of names; let index = index">
-    <div class="center">
+    <div class="center" *ngIf="totalStoryPointsByIndex(index) != 0">
         <span class="name">{{name}}</span>
-        <div class="progress" [style.width]="(totalStoryPointsByIndex(index)/totalStoryPointsByIndex(0))*100 + '%'">
+        <div class="progress" [style.width]="(totalStoryPointsByIndex(index)/totalStoryPointsByIndex(0))*100 + '%'"
+        >
             <!-- A qualifier/Bac affinage-->
             <div class="progress-bar aqualifier-bacAffinage-color" role="progressbar"
                  [style.width]="
