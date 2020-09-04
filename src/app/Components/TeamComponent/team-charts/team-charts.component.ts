@@ -63,4 +63,5 @@ export class TeamChartsComponent implements OnChanges {
         this.spATester.push(elem.aTester);
         this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
     }
+
 }

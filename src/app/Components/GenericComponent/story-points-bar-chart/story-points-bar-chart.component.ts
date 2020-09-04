@@ -21,7 +21,7 @@ export class StoryPointsBarChartComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  totalStoryPoints(index: number): number{
+  totalStoryPointsByIndex(index: number): number{
     return this.spAqualifierBacAffinnage[index]
         + this.spAfaire[index]
         + this.spEnAttente[index]
@@ -31,5 +31,21 @@ export class StoryPointsBarChartComponent implements OnInit {
         + this.spATester[index]
         + this.spValideEnRecetteLivreTermine[index];
   }
+
+  totalStoryPoints(): number{
+    let total = 0;
+    for (let i = 0; i < this.spValideEnRecetteLivreTermine.length; ++i) {
+      total += this.spAqualifierBacAffinnage[i];
+      total += this.spAfaire[i];
+      total += this.spEnAttente[i];
+      total += this.spRefuseEnRecette[i];
+      total += this.spEncoursDevTermineTestCroise[i];
+      total += this.spAlivrer[i];
+      total += this.spATester[i];
+      total += this.spValideEnRecetteLivreTermine[i];
+    }
+    return total;
+  }
+
 
 }

@@ -2,7 +2,7 @@ import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
 import {Sprint} from '../../../Model/sprint';
 import {ChartElement} from '../../../Interface/chart-element';
-import {TeamService} from "../../../Service/team.service";
+import {TeamService} from '../../../Service/team.service';
 
 @Component({
   selector: 'app-teams-charts',
@@ -36,13 +36,26 @@ export class TeamsChartsComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (typeof this.teams !== 'undefined') {
+      const all: ChartElement = {
+        name: 'total',
+        aQualifierBacAffinnage: 0,
+        aFaire: 0,
+        enAttente: 0,
+        refuseEnRecette: 0,
+        enCoursDevTermineTestCroise: 0,
+        aLivrer: 0,
+        aTester: 0,
+        valideEnRecetteLivreTermine: 0
+      };
       for (const t of this.teams) {
         const elem = TeamService.generateEmptyChartElement(t.name);
         for (const c of t.collaborators) {
             TeamService.updateChartElement(c, elem);
+            TeamService.updateChartElement(c, all);
         }
         this.pushElement(elem);
       }
+      this.unshiftElement(all);
     }
   }
   /* Method that push ChartElement's data to each Chart attribute
@@ -58,5 +71,17 @@ export class TeamsChartsComponent implements OnChanges {
     this.spAlivrer.push(elem.aLivrer);
     this.spATester.push(elem.aTester);
     this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
+  }
+
+  unshiftElement(elem: ChartElement): void{
+    this.names.unshift(elem.name);
+    this.spAqualifierBacAffinnage.unshift(elem.aQualifierBacAffinnage);
+    this.spAfaire.unshift(elem.aFaire);
+    this.spEnAttente.unshift(elem.enAttente);
+    this.spRefuseEnRecette.unshift(elem.refuseEnRecette);
+    this.spEncoursDevTermineTestCroise.unshift(elem.enCoursDevTermineTestCroise);
+    this.spAlivrer.unshift(elem.aLivrer);
+    this.spATester.unshift(elem.aTester);
+    this.spValideEnRecetteLivreTermine.unshift(elem.valideEnRecetteLivreTermine);
   }
 }

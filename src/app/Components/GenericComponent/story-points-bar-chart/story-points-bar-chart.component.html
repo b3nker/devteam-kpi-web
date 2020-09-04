@@ -1,69 +1,69 @@
-<div class="title"><b>Répartitions des story points selon les états JIRA</b></div>
+<div class="title"><b>Répartition des story points selon les états JIRA</b></div>
 <ng-container class="margin" *ngFor="let name of names; let index = index">
     <div class="center">
         <span class="name">{{name}}</span>
-        <div class="progress">
+        <div class="progress" [style.width]="(totalStoryPointsByIndex(index)/totalStoryPointsByIndex(0))*100 + '%'">
             <!-- A qualifier/Bac affinage-->
             <div class="progress-bar aqualifier-bacAffinage-color" role="progressbar"
                  [style.width]="
-         ((spAqualifierBacAffinnage[index]/totalStoryPoints(index))) * 100 + '%'"
-                 [attr.aria-valuemax]="totalStoryPoints(index)">
+         ((spAqualifierBacAffinnage[index]/totalStoryPointsByIndex(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPointsByIndex(index)">
                 {{spAqualifierBacAffinnage[index]}}
             </div>
 
             <!-- A faire-->
             <div class="progress-bar aFaire-color" role="progressbar"
                  [style.width]="
-         ((spAfaire[index]/totalStoryPoints(index))) * 100 + '%'"
-                 [attr.aria-valuemax]="totalStoryPoints(index)">
+         ((spAfaire[index]/totalStoryPointsByIndex(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPointsByIndex(index)">
                 {{spAfaire[index]}}
             </div>
 
             <!-- En attente-->
             <div class="progress-bar enAttente-color" role="progressbar"
                  [style.width]="
-         ((spEnAttente[index]/totalStoryPoints(index))) * 100 + '%'"
-                 [attr.aria-valuemax]="totalStoryPoints(index)">
+         ((spEnAttente[index]/totalStoryPointsByIndex(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPointsByIndex(index)">
                 {{spEnAttente[index]}}
             </div>
 
             <!-- Refusé en recette-->
             <div class="progress-bar refuseEnRecette-color" role="progressbar"
                  [style.width]="
-         ((spRefuseEnRecette[index]/totalStoryPoints(index))) * 100 + '%'"
-                 [attr.aria-valuemax]="totalStoryPoints(index)">
+         ((spRefuseEnRecette[index]/totalStoryPointsByIndex(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPointsByIndex(index)">
                 {{spRefuseEnRecette[index]}}
             </div>
 
             <!-- En cours-->
             <div class="progress-bar enCours-color" role="progressbar"
                  [style.width]="
-         ((spEncoursDevTermineTestCroise[index]/totalStoryPoints(index))) * 100 + '%'"
-                 [attr.aria-valuemax]="totalStoryPoints(index)">
+         ((spEncoursDevTermineTestCroise[index]/totalStoryPointsByIndex(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPointsByIndex(index)">
                 {{spEncoursDevTermineTestCroise[index]}}
             </div>
 
             <!-- A livrer-->
             <div class="progress-bar aLivrer-color" role="progressbar"
                  [style.width]="
-         ((spAlivrer[index]/totalStoryPoints(index))) * 100 + '%'"
-                 [attr.aria-valuemax]="totalStoryPoints(index)">
+         ((spAlivrer[index]/totalStoryPointsByIndex(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPointsByIndex(index)">
                 {{spAlivrer[index]}}
             </div>
 
             <!-- A tester-->
             <div class="progress-bar aTester-color" role="progressbar"
                  [style.width]="
-         ((spATester[index]/totalStoryPoints(index))) * 100 + '%'"
-                 [attr.aria-valuemax]="totalStoryPoints(index)">
+         ((spATester[index]/totalStoryPointsByIndex(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPointsByIndex(index)">
                 {{spATester[index]}}
             </div>
 
             <!-- Finis-->
             <div class="progress-bar valide-color" role="progressbar"
                  [style.width]="
-         ((spValideEnRecetteLivreTermine[index]/totalStoryPoints(index))) * 100 + '%'"
-                 [attr.aria-valuemax]="totalStoryPoints(index)">
+         ((spValideEnRecetteLivreTermine[index]/totalStoryPointsByIndex(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPointsByIndex(index)">
                 {{spValideEnRecetteLivreTermine[index]}}
             </div>
         </div>

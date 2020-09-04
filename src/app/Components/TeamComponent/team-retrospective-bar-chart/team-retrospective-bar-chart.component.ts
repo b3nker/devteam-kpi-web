@@ -2,6 +2,8 @@ import {Component, Input, OnChanges} from '@angular/core';
 import {Retrospective} from '../../../Model/retrospective';
 import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
+// @ts-ignore
+import Chart = require('chart.js');
 
 @Component({
   selector: 'app-team-retrospective-bar-chart',
@@ -26,6 +28,9 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
   public sprints: Array<string>;
 
   constructor() {
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = 'black';
+    Chart.defaults.global.defaultFontStyle = 'bold';
     this.sprints = [];
     this.url = 'https://apriltechnologies.atlassian.net/issues/?jql=issue in (';
     this.urls = new Map<string, string>();
