@@ -1,0 +1,107 @@
+<div class="title"><b>Répartitions des story points selon les états JIRA</b></div>
+<ng-container class="margin" *ngFor="let name of names; let index = index">
+    <div class="center">
+        <span class="name">{{name}}</span>
+        <div class="progress">
+            <!-- A qualifier/Bac affinage-->
+            <div class="progress-bar aqualifier-bacAffinage-color" role="progressbar"
+                 [style.width]="
+         ((spAqualifierBacAffinnage[index]/totalStoryPoints(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPoints(index)">
+                {{spAqualifierBacAffinnage[index]}}
+            </div>
+
+            <!-- A faire-->
+            <div class="progress-bar aFaire-color" role="progressbar"
+                 [style.width]="
+         ((spAfaire[index]/totalStoryPoints(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPoints(index)">
+                {{spAfaire[index]}}
+            </div>
+
+            <!-- En attente-->
+            <div class="progress-bar enAttente-color" role="progressbar"
+                 [style.width]="
+         ((spEnAttente[index]/totalStoryPoints(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPoints(index)">
+                {{spEnAttente[index]}}
+            </div>
+
+            <!-- Refusé en recette-->
+            <div class="progress-bar refuseEnRecette-color" role="progressbar"
+                 [style.width]="
+         ((spRefuseEnRecette[index]/totalStoryPoints(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPoints(index)">
+                {{spRefuseEnRecette[index]}}
+            </div>
+
+            <!-- En cours-->
+            <div class="progress-bar enCours-color" role="progressbar"
+                 [style.width]="
+         ((spEncoursDevTermineTestCroise[index]/totalStoryPoints(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPoints(index)">
+                {{spEncoursDevTermineTestCroise[index]}}
+            </div>
+
+            <!-- A livrer-->
+            <div class="progress-bar aLivrer-color" role="progressbar"
+                 [style.width]="
+         ((spAlivrer[index]/totalStoryPoints(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPoints(index)">
+                {{spAlivrer[index]}}
+            </div>
+
+            <!-- A tester-->
+            <div class="progress-bar aTester-color" role="progressbar"
+                 [style.width]="
+         ((spATester[index]/totalStoryPoints(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPoints(index)">
+                {{spATester[index]}}
+            </div>
+
+            <!-- Finis-->
+            <div class="progress-bar valide-color" role="progressbar"
+                 [style.width]="
+         ((spValideEnRecetteLivreTermine[index]/totalStoryPoints(index))) * 100 + '%'"
+                 [attr.aria-valuemax]="totalStoryPoints(index)">
+                {{spValideEnRecetteLivreTermine[index]}}
+            </div>
+        </div>
+    </div>
+</ng-container>
+<br><br><br>
+<div class="legend">
+    <svg class="size">
+        <rect class="aqualifier-bacAffinage-legend size"/>
+    </svg>
+    A qualifier/Bac d'affinage
+    <svg class="size">
+        <rect class="aFaire-legend size"/>
+    </svg>
+    A faire
+    <svg class="size">
+        <rect class="enAttente-legend size"/>
+    </svg>
+    En attente
+    <svg class="size">
+        <rect class="refuseEnRecette-legend size"/>
+    </svg>
+    Refusé en recette
+    <svg class="size">
+        <rect class="enCours-legend size"/>
+    </svg>
+    En cours/Dev terminé/Test croisé/MR
+    <br/><br/>
+    <svg class="size">
+        <rect class="aLivrer-legend size"/>
+    </svg>
+    A livrer
+    <svg class="size">
+        <rect class="aTester-legend size"/>
+    </svg>
+    A tester/A valider
+    <svg class="size">
+        <rect class="valide-legend size"/>
+    </svg>
+    Validé en recette/Livré/Terminé/Abandonné
+</div>

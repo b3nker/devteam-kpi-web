@@ -6,3 +6,7 @@ mat-tab-group{
     margin-right: auto;
 }
 
+mat-tab-group.mat-tab-body{
+    padding-top: 25px;
+}
+

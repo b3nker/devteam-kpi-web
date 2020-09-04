@@ -1,0 +1,89 @@
+.progress{
+    height: 50px;
+
+}
+.center{
+    width: 65%;
+    margin: auto;
+}
+.progress-bar{
+    font-size: 20px;
+    color: black;
+    padding-top: 15px;
+}
+.aqualifier-bacAffinage-color{
+    background-color: #696969;
+}
+.aFaire-color{
+    background-color: #c0c0c0;
+}
+.enAttente-color{
+    background-color: #f29120;
+}
+.refuseEnRecette-color{
+    background-color: red;
+}
+.enCours-color{
+    background-color: #4682B4;
+}
+.aLivrer-color{
+    background-color: #87CEFA;
+}
+.aTester-color{
+    background-color: #b1c113;
+}
+.valide-color{
+    background-color: #7a9823;
+}
+
+.aqualifier-bacAffinage-legend{
+    fill: #696969;
+}
+.aFaire-legend{
+    fill: #c0c0c0;
+}
+.enAttente-legend{
+    fill: #f29120;
+}
+.refuseEnRecette-legend{
+    fill: red;
+}
+.enCours-legend{
+    fill: #4682B4;
+}
+.aLivrer-legend{
+    fill: #87CEFA;
+}
+.aTester-legend{
+    fill: #b1c113;
+}
+.valide-legend{
+    fill: #7a9823;
+}
+
+.size{
+    height: 20px;
+    width: 20px;
+}
+
+.legend{
+    text-align: center;
+    font-size: 22px;
+}
+
+.name{
+    font-size: 20px;
+    font-weight:  bold;
+}
+
+.margin{
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.title{
+    padding-top: 20px;
+    padding-bottom: 50px;
+    text-align: center;
+    font-size: 25px;
+}
