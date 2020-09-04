@@ -32,6 +32,7 @@
     </ng-container>
 
     <!-- Allocated Time Column -->
+    <!--
     <ng-container matColumnDef="allocatedTime">
         <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[3]> Temps assigné </th>
         <td mat-cell class="cell-borders" *matCellDef="let element" [ngClass]="{
@@ -40,6 +41,7 @@
       'is-red' : element.allocatedTime > UPPER_BOUND_MULTIPLIER* element.devTime && (element.devTime != null && element.allocatedTime != null)
       }">{{timeService.getTimeFormat(element.allocatedTime,WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
+    -->
 
     <!-- Log Time Column -->
     <ng-container matColumnDef="consumedTime">
@@ -84,7 +86,7 @@
     </ng-container>
     <ng-container matColumnDef="header-second">
         <th mat-header-cell class="cell-borders firstGroupColor" *matHeaderCellDef
-            [attr.colspan]="3">
+            [attr.colspan]="2">
             Prévisions
         </th>
     </ng-container>

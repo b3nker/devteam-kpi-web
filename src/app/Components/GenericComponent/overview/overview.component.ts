@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ChartElement} from "../../../Interface/chart-element";
-import {TimeService} from "../../../Service/time.service";
+import {ChartElement} from '../../../Interface/chart-element';
+import {TimeService} from '../../../Service/time.service';
+import {CommentService} from '../../../Service/comment.service';
+import {Comment} from '../../../Model/comment';
 
 @Component({
   selector: 'app-overview',
@@ -29,16 +31,20 @@ export class OverviewComponent implements OnInit {
   @Input() gaugeValue: number;
   @Input() inAdvance: number;
 
-  timeService: TimeService
+  timeService: TimeService;
   WORKING_HOURS_PER_DAY = 8;
   message: string;
 
-  constructor() {
-    this.timeService = new TimeService()
+  constructor(private commentService: CommentService) {
+    this.timeService = new TimeService();
     this.message = '';
   }
 
   ngOnInit(): void {
+  }
+
+  saveMessage(): void{
+    console.log(this.commentService.postComment(new Comment(1, 'Parfait')));
   }
 
 }

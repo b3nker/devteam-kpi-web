@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {TableElement} from '../../../Interface/table-element';
-import {TimeService} from "../../../Service/time.service";
+import {TimeService} from '../../../Service/time.service';
 
 @Component({
     selector: 'app-table',
@@ -42,7 +42,9 @@ export class TableComponent {
             'name',
             'notDevDays',
             'devTime', // Temps de présence sur le sprint
+            /*
             'allocatedTime', // estimated time
+             */
             'consumedTime', // logged time
             'availableTime', // Temps disponible restant sur le sprint
             'leftToDo', // remaining time
