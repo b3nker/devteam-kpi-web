@@ -10,3 +10,10 @@ mat-tab-group.mat-tab-body{
     padding-top: 25px;
 }
 
+.header-title{
+    font-size: 35px;
+    padding-top: 50px;
+    text-align: center;
+    text-decoration: underline;
+}
+
