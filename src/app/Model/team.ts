@@ -22,4 +22,11 @@ export class Team {
   get collaborators(): Collaborator[] {
     return this._collaborators;
   }
+
+  get prettyName(): string{
+    if (this._name.length <= 0){
+      return this._name;
+    }
+    return this._name.substr(0, 1).toLocaleUpperCase() + this._name.substr(1, this._name.length);
+  }
 }

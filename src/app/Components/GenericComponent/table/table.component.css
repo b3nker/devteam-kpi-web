@@ -63,3 +63,7 @@ mat-select{
     border-bottom: 1px solid black;
     padding: 0 !important;
 }
+
+.header-background-color{
+    background-color: lightslategrey;
+}

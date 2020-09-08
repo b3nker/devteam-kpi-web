@@ -26,7 +26,7 @@ export class TeamChartsRoleComponent implements OnChanges {
   ngOnChanges(): void {
     if (typeof this.team !== 'undefined' && typeof this.role !== 'undefined') {
       const all: ChartElement = {
-        name: this.role,
+        name: this.prettyName(this.role),
         aQualifierBacAffinnage: 0,
         aFaire: 0,
         enAttente: 0,
@@ -48,6 +48,12 @@ export class TeamChartsRoleComponent implements OnChanges {
   }
 
 
+  prettyName(name: string): string{
+    if (name.length <= 0){
+      return name;
+    }
+    return name.substr(0, 1).toLocaleUpperCase() + name.substr(1, name.length);
+  }
 
   pushElement(elem: ChartElement): void{
     this.names.push(elem.name);

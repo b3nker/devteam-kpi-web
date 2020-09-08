@@ -16,6 +16,6 @@
         </div>
     </div>
     <ul *ngFor="let key of sprints">
-        <a *ngIf="key !== null" href="{{urls.get(key)}}" target="_blank"> Added issues for {{key}}</a>
+        <li><a *ngIf="key !== null" href="{{urls.get(key)}}" target="_blank"> <b>Tickets ajoutés:</b> {{key}}</a></li>
     </ul>
 </ng-container>

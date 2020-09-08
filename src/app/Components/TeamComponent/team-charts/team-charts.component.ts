@@ -38,8 +38,8 @@ export class TeamChartsComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.team !== 'undefined') {
-            const elem = TeamService.generateEmptyChartElement(this.team.name);
-            const unassignedElem = TeamService.generateEmptyChartElement(this.UNASSIGNED_ACCOUNT_ID);
+            const elem = TeamService.generateEmptyChartElement('Story points assignés');
+            const unassignedElem = TeamService.generateEmptyChartElement('Story points non assignés');
             for (const c of this.team.collaborators) {
                 if (c.accountId !== this.UNASSIGNED_ACCOUNT_ID){
                     TeamService.updateChartElement(c, elem);

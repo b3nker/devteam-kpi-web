@@ -4,7 +4,7 @@
 
     <!-- Identity Column -->
     <ng-container matColumnDef="name">
-        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[0]> Développeur </th>
+        <th mat-header-cell class="header-background-color cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[0]> Développeur </th>
         <td mat-cell class="cell-borders" *matCellDef="let element">
             {{element.name}} <br/>
             <i *ngIf="element.role !== null">({{element.role}})</i>
@@ -13,7 +13,7 @@
 
     <!-- Not Dev days Column -->
     <ng-container matColumnDef="notDevDays">
-        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[1]>Activités non dév <br/> (run/crémonies)</th>
+        <th mat-header-cell class="header-background-color cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[1]>Activités non dév <br/> (run/crémonies)</th>
         <td mat-cell class="cell-borders" *matCellDef="let element; let i = index">
             <mat-form-field>
                 <mat-select [ngModel]="dataSource[i].runDays" name="runDays" (selectionChange)="changeRowValues($event,i)">
@@ -27,7 +27,7 @@
 
     <!-- Development Time Column -->
     <ng-container matColumnDef="devTime">
-        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[2]> Capacité <br/>totale </th>
+        <th mat-header-cell class="header-background-color cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[2]> Capacité <br/>totale </th>
         <td mat-cell class="cell-borders" *matCellDef="let element">{{timeService.getTimeFormat(element.devTime,WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
 
@@ -45,19 +45,19 @@
 
     <!-- Log Time Column -->
     <ng-container matColumnDef="consumedTime">
-        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[4] >Temps log</th>
+        <th mat-header-cell class="header-background-color cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[4] >Temps log</th>
         <td mat-cell class="cell-borders" *matCellDef="let element">{{timeService.getTimeFormat(element.consumedTime,WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
 
     <!-- Time Left Column -->
     <ng-container matColumnDef="availableTime">
-        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[5]>Capacité <br/>restante</th>
+        <th mat-header-cell class="header-background-color cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[5]>Capacité <br/>restante</th>
         <td mat-cell class="cell-borders" *matCellDef="let element">{{timeService.getTimeFormat(element.availableTime,WORKING_HOURS_PER_DAY)}}</td>
     </ng-container>
 
     <!-- Left To Do Column -->
     <ng-container matColumnDef="leftToDo">
-        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[6]>Reste à faire</th>
+        <th mat-header-cell class="header-background-color cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[6]>Reste à faire</th>
         <td mat-cell class="cell-borders" *matCellDef="let element" [ngClass]="{
       'is-green' : element.leftToDo <= LOWER_BOUND_MULTIPLIER * element.availableTime && (element.leftToDo != null && element.availableTime != null),
       'is-orange': element.leftToDo > LOWER_BOUND_MULTIPLIER * element.availableTime && element.leftToDo <= UPPER_BOUND_MULTIPLIER*element.availableTime && (element.leftToDo != null && element.availableTime != null),
@@ -67,13 +67,13 @@
 
     <!-- Tickets Column -->
     <ng-container matColumnDef="tickets">
-        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[7]>Tickets <br/> (finis / total)</th>
+        <th mat-header-cell class="header-background-color cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[7]>Tickets <br/> (finis / total)</th>
         <td mat-cell class="cell-borders" *matCellDef="let element" > <sup>{{element.ticketsDone}}</sup>/<sub>{{element.tickets}}</sub> </td>
     </ng-container>
 
     <!-- Jira link to issues Column-->
     <ng-container matColumnDef="url">
-        <th mat-header-cell class="cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[8]>Tâches assignées</th>
+        <th mat-header-cell class="header-background-color cell-borders" *matHeaderCellDef [matTooltip]=displayedTooltip[8]>Tâches assignées</th>
         <td mat-cell class="cell-borders" *matCellDef="let element">
             <a *ngIf="element.url != ''" href="{{this.getJqlKeysList(element.url)}}" target="_blank">Lien Jira</a>
     </ng-container>

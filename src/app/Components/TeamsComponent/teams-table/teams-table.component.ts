@@ -46,7 +46,7 @@ export class TeamsTableComponent implements OnChanges {
                 _devTime: null,
             };
             for (const t of this.teams) {
-                const row = TeamService.generateEmptyTableElement(t.name, this.UNASSIGNED_ROLE);
+                const row = TeamService.generateEmptyTableElement(t.prettyName, this.UNASSIGNED_ROLE);
                 for (const c of t.collaborators) {
                     const velocity = c.getVelocity(this.SCRUM, this.LEAD_DEV);
                     TeamService.updateTableElement(c, row, velocity);
