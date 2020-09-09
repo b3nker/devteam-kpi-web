@@ -1,0 +1,11 @@
+table.alignement{
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+thead.size{
+    font-size: 20px;
+}

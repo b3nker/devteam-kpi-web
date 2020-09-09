@@ -52,6 +52,8 @@ import {MatInputModule} from '@angular/material/input';
 import { OverviewComponent } from './Components/GenericComponent/overview/overview.component';
 import { TeamsOverviewComponent } from './Components/TeamsComponent/teams-overview/teams-overview.component';
 import { StoryPointsBarChartComponent } from './Components/GenericComponent/story-points-bar-chart/story-points-bar-chart.component';
+import { TicketsEstimationComponent } from './Components/GenericComponent/tickets-estimation/tickets-estimation.component';
+import { TeamTicketsComponent } from './Components/TeamComponent/team-tickets/team-tickets.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +87,8 @@ import { StoryPointsBarChartComponent } from './Components/GenericComponent/stor
     OverviewComponent,
     TeamsOverviewComponent,
     StoryPointsBarChartComponent,
+    TicketsEstimationComponent,
+    TeamTicketsComponent,
   ],
     imports: [
         BrowserModule,

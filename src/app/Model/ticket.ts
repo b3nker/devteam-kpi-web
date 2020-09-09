@@ -146,7 +146,7 @@ export class Ticket {
     }
 
     getDoneTickets(): number {
-        return this.valideEnRecette + this.valide + this.termine + this.livre;
+        return this.valideEnRecette + this.valide + this.termine + this.livre + this.abandonne;
     }
 
     getSupDevDoneTickets(): number {

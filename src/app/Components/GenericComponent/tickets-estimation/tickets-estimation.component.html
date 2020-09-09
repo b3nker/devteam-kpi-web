@@ -1,0 +1,23 @@
+<table class="table table-bordered alignement table-responsive">
+    <!-- Headers-->
+    <thead class="size">
+    <tr>
+        <th scope="col">Nb fiches développées</th>
+        <th scope="col">Nb fiches sous estimées</th>
+        <th scope="col">Nb fiches sur estimées</th>
+        <th scope="col">Nb fiches bien estimées</th>
+        <th scope="col">Taux fiabilité d'estimation unitaire</th>
+        <th scope="col">Taux fiabilité d'estmation horaire</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{supDevDoneTickets}}</td>
+        <td>{{underEstimatedTickets}}</td>
+        <td>{{overEstimatedTickets}}</td>
+        <td>{{wellEstimatedTickets()}}</td>
+        <td>{{(wellEstimatedTickets()/ supDevDoneTickets) * 100 | number: '1.0-1'}}</td>
+        <td>TO_DO</td>
+    </tr>
+    </tbody>
+</table>
