@@ -14,7 +14,6 @@ mat-tab-group.mat-tab-body{
     font-size: 35px;
     padding-top: 50px;
     text-align: center;
-    text-decoration: underline;
 }
 
 div.size{
@@ -23,4 +22,8 @@ div.size{
     margin-left: auto;
     margin-right: auto;
     margin-top: 80px;
+}
+
+div.underlined{
+    text-decoration: underline;
 }
