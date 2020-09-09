@@ -5,5 +5,7 @@
     <h1 class="header-title">Vision globale des équipes</h1>
     <app-teams-table [teams]="teams" [sprints]="sprints"></app-teams-table>
     <h1 class="header-title">Vision scrum</h1>
+    <app-teams-tickets [sprints]="sprints"></app-teams-tickets>
+    <div class="size spacing">Estimation des story points</div>
     <app-teams-charts [teams]="teams" [sprints]="sprints"></app-teams-charts>
 </ng-container>

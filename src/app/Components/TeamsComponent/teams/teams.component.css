@@ -4,4 +4,12 @@
     text-align: center;
 }
 
+div.size{
+    font-size: 25px;
+    width: 75%;
+    margin: 20px auto 30px;
+}
 
+div.spacing{
+    margin-top: 50px;
+}

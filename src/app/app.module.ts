@@ -55,6 +55,7 @@ import { StoryPointsBarChartComponent } from './Components/GenericComponent/stor
 import { TicketsEstimationComponent } from './Components/GenericComponent/tickets-estimation/tickets-estimation.component';
 import { TeamTicketsComponent } from './Components/TeamComponent/team-tickets/team-tickets.component';
 import { TeamsRecapComponent } from './Components/TeamsComponent/teams-recap/teams-recap.component';
+import { TeamsTicketsComponent } from './Components/TeamsComponent/teams-tickets/teams-tickets.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { TeamsRecapComponent } from './Components/TeamsComponent/teams-recap/tea
     TicketsEstimationComponent,
     TeamTicketsComponent,
     TeamsRecapComponent,
+    TeamsTicketsComponent,
   ],
     imports: [
         BrowserModule,
