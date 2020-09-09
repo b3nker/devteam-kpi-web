@@ -1,27 +1,29 @@
-<h1 class="header-title">Résumé du sprint</h1>
-<app-team-overview [sprint]="sprint"></app-team-overview>
-<h1 class="header-title">Vision d'équipe</h1>
-<app-team-table [team]="team"></app-team-table>
-<h1 class="header-title">Vision scrum</h1>
-<app-team-tickets [team]="team"></app-team-tickets>
-<mat-tab-group mat-stretch-tabs>
-    <mat-tab label="{{teamName}}">
-        <app-team-charts [team]="team"></app-team-charts>
-    </mat-tab>
-    <mat-tab label="Front" *ngIf="hasFront">
-        <app-team-charts-role [team]="team" [role]="ROLE_FRONT"></app-team-charts-role>
-    </mat-tab>
-    <mat-tab label="Middle" *ngIf="hasMiddle">
-        <app-team-charts-role [team]="team" [role]="ROLE_MIDDLE"></app-team-charts-role>
-    </mat-tab>
-    <mat-tab label="Transverse" *ngIf="hasTransverse">
-        <app-team-charts-role [team]="team" [role]="ROLE_TRANSVERSE"></app-team-charts-role>
-    </mat-tab>
-</mat-tab-group>
-<h1 class="header-title">Prédictibilité de l'équipe</h1>
-<app-team-retrospective-bar-chart [retrospective]="retrospective"></app-team-retrospective-bar-chart>
-<app-team-retrospective-line-chart [retrospective]="retrospective"></app-team-retrospective-line-chart>
-
+<ng-container *ngIf="team">
+    <h1 class="header-title">Résumé du sprint</h1>
+    <app-team-overview [sprint]="sprint"></app-team-overview>
+    <h1 class="header-title">Vision d'équipe</h1>
+    <app-team-table [team]="team"></app-team-table>
+    <h1 class="header-title">Vision scrum</h1>
+    <app-team-tickets [team]="team"></app-team-tickets>
+    <div class="size">Estimation des story points</div>
+    <mat-tab-group mat-stretch-tabs>
+        <mat-tab label="{{team.prettyName}}">
+            <app-team-charts [team]="team"></app-team-charts>
+        </mat-tab>
+        <mat-tab label="Front" *ngIf="hasFront">
+            <app-team-charts-role [team]="team" [role]="ROLE_FRONT"></app-team-charts-role>
+        </mat-tab>
+        <mat-tab label="Middle" *ngIf="hasMiddle">
+            <app-team-charts-role [team]="team" [role]="ROLE_MIDDLE"></app-team-charts-role>
+        </mat-tab>
+        <mat-tab label="Transverse" *ngIf="hasTransverse">
+            <app-team-charts-role [team]="team" [role]="ROLE_TRANSVERSE"></app-team-charts-role>
+        </mat-tab>
+    </mat-tab-group>
+    <h1 class="header-title">Prédictibilité de l'équipe</h1>
+    <app-team-retrospective-bar-chart [retrospective]="retrospective"></app-team-retrospective-bar-chart>
+    <app-team-retrospective-line-chart [retrospective]="retrospective"></app-team-retrospective-line-chart>
+</ng-container>
 
 
 

@@ -1,6 +1,5 @@
-<div class="title"><b>Répartition des story points selon les états JIRA</b></div>
-<ng-container class="margin" *ngFor="let name of names; let index = index">
-    <div class="center" *ngIf="totalStoryPointsByIndex(index) != 0">
+<ng-container *ngFor="let name of names; let index = index">
+    <div class="center margin" *ngIf="totalStoryPointsByIndex(index) != 0">
         <span class="name">{{name}}</span>
         <div class="progress" [style.width]="(totalStoryPointsByIndex(index)/totalStoryPointsByIndex(0))*100 + '%'"
         >
@@ -70,7 +69,7 @@
         </div>
     </div>
 </ng-container>
-<br><br><br>
+<div class="title"><i>Répartition des story points selon les états JIRA</i></div>
 <div class="legend">
     <svg class="size">
         <rect class="aqualifier-bacAffinage-legend size"/>

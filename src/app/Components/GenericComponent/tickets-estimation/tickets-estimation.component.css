@@ -3,7 +3,6 @@ table.alignement{
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
-    margin-bottom: 50px;
 }
 
 thead.size{
@@ -25,5 +24,12 @@ th.centered{
 
 thead.background-color{
     background-color: aliceblue;
+}
+
+div.size{
+    font-size: 25px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
