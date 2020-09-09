@@ -1,25 +1,26 @@
-<ng-container *ngIf="teams">
+<ng-container *ngIf="sprints">
     <table class="table table-bordered alignement table-responsive">
         <!-- Headers -->
         <thead class="size background-color">
         <tr >
-            <th class="centered" scope="col" *ngFor="let team of teams">{{team.prettyName}}</th>
+            <th class="centered" scope="col" *ngFor="let sprint of sprints">{{sprint.team.prettyName}}</th>
         </tr>
         </thead>
         <!-- Rows -->
         <tbody class="size">
         <tr>
-            <td class="centered size" *ngFor="let team of teams">
-                <app-gauge [gaugeValue]="gaugeValue(team)"></app-gauge>
-                <p class="gauge-text-style" *ngIf="inAdvance(team) >=0"> En avance de
-                    <span class="inAdvance-color">{{timeService.getTimeFormat(inAdvance(team), WORKING_HOURS_PER_DAY)}}</span></p>
-                <p class="gauge-text-style" *ngIf="inAdvance(team) < 0"> En retard de
-                    <span class="late-color">{{timeService.getTimeFormat(inAdvance(team), WORKING_HOURS_PER_DAY)}}</span></p>
+            <td class="centered size" *ngFor="let sprint of sprints">
+                <app-gauge [gaugeValue]="gaugeValue(sprint)"></app-gauge>
+                <p class="gauge-text-style" *ngIf="inAdvance(sprint) >=0"> En avance de
+                    <span class="inAdvance-color">{{timeService.getTimeFormat(inAdvance(sprint), WORKING_HOURS_PER_DAY)}}</span></p>
+                <p class="gauge-text-style" *ngIf="inAdvance(sprint) < 0"> En retard de
+                    <span class="late-color">{{timeService.getTimeFormat(inAdvance(sprint), WORKING_HOURS_PER_DAY)}}</span></p>
             </td>
         </tr>
         <tr>
-            <td class="size" *ngFor="let team of teams">
-                Warning:
+            <td class="size" *ngFor="let sprint of sprints">
+                <b>Warning:</b><br/>
+                <!-- Si champ texte vide TODO--> <div>Rien à signaler</div>
             </td>
         </tr>
         </tbody>

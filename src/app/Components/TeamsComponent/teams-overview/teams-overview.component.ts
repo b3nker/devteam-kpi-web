@@ -1,9 +1,8 @@
 import {Component, Input, OnChanges} from '@angular/core';
-import {Sprint} from "../../../Model/sprint";
-import {ChartElement} from "../../../Interface/chart-element";
-import {TeamService} from "../../../Service/team.service";
-import {SprintService} from "../../../Service/sprint.service";
-import {Team} from "../../../Model/team";
+import {Sprint} from '../../../Model/sprint';
+import {ChartElement} from '../../../Interface/chart-element';
+import {TeamService} from '../../../Service/team.service';
+import {SprintService} from '../../../Service/sprint.service';
 
 @Component({
   selector: 'app-teams-overview',
@@ -14,7 +13,7 @@ export class TeamsOverviewComponent implements OnChanges {
   @Input() sprints: Sprint[];
   name: string;
   startDate: string;
-  endDate: string
+  endDate: string;
   progression: number;
   chartElement: ChartElement;
   totalStoryPoints: number;
@@ -36,7 +35,7 @@ export class TeamsOverviewComponent implements OnChanges {
   LEAD_DEV = 'lead dev';
 
   constructor() {
-    this.name= '';
+    this.name = '';
     this.startDate = '';
     this.endDate = '';
     this.progression = 0;
@@ -107,7 +106,7 @@ export class TeamsOverviewComponent implements OnChanges {
       }
     }
     this.inAdvance = Math.round((sumTimeLeft - sumRemainingTime) * 10) / 10;
-    if(sumTimeLeft < 0){
+    if (sumTimeLeft < 0){
       this.gaugeValue = 0;
     }else{
       this.gaugeValue = Math.floor(( sumTimeLeft / sumRemainingTime ) * 100);
@@ -115,7 +114,7 @@ export class TeamsOverviewComponent implements OnChanges {
   }
 
   getAddedValue(): void{
-    for(const s of this.sprints){
+    for (const s of this.sprints){
       this.addedTickets += s.addedTickets.total;
       this.addedHours += s.addedWork;
       this.addedTotalTicketsBug += s.addedTickets.ticketsBug;
@@ -125,7 +124,7 @@ export class TeamsOverviewComponent implements OnChanges {
   }
 
   getSprintsIdentity(): void{
-    this.name = this.sprints[0].name.substr(0,9);
+    this.name = this.sprints[0].name.substr(0, 9);
     this.startDate = this.sprints[0].startDate;
     this.endDate = this.sprints[0].endDate;
   }
