@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Sprint} from '../../../Model/sprint';
 import {SprintService} from '../../../Service/sprint.service';
 import {Router} from '@angular/router';
@@ -9,7 +9,8 @@ import {Retrospective} from '../../../Model/retrospective';
 @Component({
     selector: 'app-team',
     templateUrl: './team.component.html',
-    styleUrls: ['./team.component.css']
+    styleUrls: ['./team.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class TeamComponent implements OnInit {
     sprint: Sprint;

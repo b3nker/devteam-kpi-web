@@ -16,6 +16,9 @@ mat-tab-group.mat-tab-body{
     text-align: center;
 }
 
+.mat-tab-label{
+    font-size: 20px;
+}
 div.size{
     font-size: 25px;
     width: 75%;

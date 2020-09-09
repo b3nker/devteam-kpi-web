@@ -1,9 +1,9 @@
 <ng-container *ngIf="team">
-    <h1 class="header-title">Résumé du sprint</h1>
+    <div class="header-title">Résumé du sprint</div>
     <app-team-overview [sprint]="sprint"></app-team-overview>
-    <h1 class="header-title">Vision d'équipe</h1>
+    <div class="header-title">Vision d'équipe</div>
     <app-team-table [team]="team"></app-team-table>
-    <h1 class="header-title">Vision scrum</h1>
+    <div class="header-title">Vision scrum</div>
     <app-team-tickets [team]="team"></app-team-tickets>
     <div class="size">Estimation des story points</div>
     <mat-tab-group mat-stretch-tabs>
@@ -20,7 +20,7 @@
             <app-team-charts-role [team]="team" [role]="ROLE_TRANSVERSE"></app-team-charts-role>
         </mat-tab>
     </mat-tab-group>
-    <h1 class="header-title">Prédictibilité de l'équipe</h1>
+    <div class="header-title">Prédictibilité de l'équipe</div>
     <app-team-retrospective-bar-chart [retrospective]="retrospective"></app-team-retrospective-bar-chart>
     <app-team-retrospective-line-chart [retrospective]="retrospective"></app-team-retrospective-line-chart>
 </ng-container>
