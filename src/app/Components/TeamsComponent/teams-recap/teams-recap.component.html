@@ -18,9 +18,10 @@
             </td>
         </tr>
         <tr>
-            <td class="size" *ngFor="let sprint of sprints">
+            <td class="size" *ngFor="let sprint of sprints; let i = index">
                 <b>Warning:</b><br/>
-                <!-- Si champ texte vide TODO--> <div>Rien à signaler</div>
+                <div *ngIf="comments[i]; else commentEmpty">{{comments[i]}}</div>
+                <ng-template #commentEmpty>Rien à signaler</ng-template>
             </td>
         </tr>
         </tbody>

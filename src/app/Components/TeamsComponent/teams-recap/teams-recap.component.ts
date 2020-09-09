@@ -2,18 +2,21 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Config} from '../../../Model/config';
 import {TimeService} from '../../../Service/time.service';
 import {Sprint} from '../../../Model/sprint';
+import {CommentService} from '../../../Service/comment.service';
 
 @Component({selector: 'app-teams-recap', templateUrl: './teams-recap.component.html', styleUrls: ['./teams-recap.component.css']})
 export class TeamsRecapComponent implements OnInit {
     @Input() sprints: Sprint[];
-    timeService: TimeService;
     WORKING_HOURS_PER_DAY = Config.workingHoursPerDay;
+    comments: string[] = [];
 
-    constructor(timeService: TimeService) {
-        this.timeService = timeService;
+    constructor(public timeService: TimeService, public commentService: CommentService) {
     }
 
     ngOnInit(): void {
+        this.getComment(this.sprints);
+        console.log(this.comments);
+
     }
 
     inAdvance(sprint: Sprint): number {
@@ -43,5 +46,13 @@ export class TeamsRecapComponent implements OnInit {
             return Math.floor((sumTimeLeft / sumRemainingTime) * 100);
         }
     }
-}
 
+    getComment(sprints: Sprint[]): void {
+        for (let i = 0; i < sprints.length; i++) {
+            this.commentService.getComment(sprints[i].id).subscribe(data => {
+                this.comments[i] = data.comment;
+            });
+        }
+
+    }
+}

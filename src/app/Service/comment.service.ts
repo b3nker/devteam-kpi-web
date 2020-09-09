@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {CollaboratorAdapter} from './adapter/collaborator-adapter';
-import {CommentAdapter} from './adapter/comment-adapter';
 import {Observable} from 'rxjs';
 import {Comment} from '../Model/comment';
 
