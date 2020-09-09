@@ -1,0 +1,43 @@
+mat-grid-list{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2{
+    text-align: center;
+}
+
+table.alignement{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+}
+
+thead.size{
+    font-size: 20px;
+}
+
+td.centered{
+    text-align: center;
+}
+td.size{
+    font-size: 18px;
+}
+
+th.centered{
+    text-align: center;
+}
+
+thead.background-color{
+    background-color: white;
+}
+
+.inAdvance-color{
+    color: green;
+}
+
+.late-color{
+    color: darkred;
+}

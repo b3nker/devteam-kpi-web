@@ -1,6 +1,7 @@
 <ng-container *ngIf="sprints">
     <h1 class="header-title">Résumé des sprints</h1>
     <app-teams-overview [sprints]="sprints"></app-teams-overview>
+    <app-teams-recap [teams]="teams"></app-teams-recap>
     <h1 class="header-title">Vision globale des équipes</h1>
     <app-teams-table [teams]="teams" [sprints]="sprints"></app-teams-table>
     <h1 class="header-title">Vision scrum</h1>

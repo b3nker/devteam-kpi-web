@@ -2,7 +2,7 @@ import {Component, Input, OnChanges} from '@angular/core';
 import {Sprint} from '../../../Model/sprint';
 import {ChartElement} from '../../../Interface/chart-element';
 import {TeamService} from '../../../Service/team.service';
-import {SprintService} from "../../../Service/sprint.service";
+import {SprintService} from '../../../Service/sprint.service';
 
 
 @Component({
@@ -81,9 +81,10 @@ export class TeamOverviewComponent implements OnChanges {
             sumTimeLeft += c.availableTime * velocity;
         }
         this.inAdvance = Math.round((sumTimeLeft - sumRemainingTime) * 10) / 10;
-        if(sumTimeLeft < 0){
+        if (sumTimeLeft < 0){
             this.gaugeValue = 0;
         }else{
             this.gaugeValue = Math.floor(( sumTimeLeft / sumRemainingTime ) * 100);
-        }    }
+        }
+    }
 }
