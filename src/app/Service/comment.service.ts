@@ -12,12 +12,9 @@ export class CommentService {
 
   constructor(private http: HttpClient) { }
 
-  /*
-  getComment(sprintId: number): Observable<Comment>{
-    return this.http.get<Comment>(this.BASE_URL + '/' + sprintId, );
+  getComments(): Observable<HttpResponse<Comment[]>>{
+    return this.http.get<Comment[]>(this.BASE_URL, {observe: 'response'});
   }
-   */
-
   getComment(sprintId: number): Observable<HttpResponse<Comment>>{
     return this.http.get<Comment>(this.BASE_URL + '/' + sprintId, {observe: 'response'});
   }

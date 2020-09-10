@@ -25,19 +25,11 @@ export class TeamChartsComponent implements OnChanges {
     UNASSIGNED_ACCOUNT_ID = 'unassigned';
 
     constructor(){
-        this.names = [];
-        this.spAqualifierBacAffinnage = [];
-        this.spAfaire = [];
-        this.spEnAttente = [];
-        this.spRefuseEnRecette = [];
-        this.spEncoursDevTermineTestCroise = [];
-        this.spAlivrer = [];
-        this.spATester = [];
-        this.spValideEnRecetteLivreTermine = [];
     }
 
     ngOnChanges(): void {
         if (typeof this.team !== 'undefined') {
+            this.resetValues();
             const elem = TeamService.generateEmptyChartElement('Story points assignés');
             const unassignedElem = TeamService.generateEmptyChartElement('Story points non assignés');
             for (const c of this.team.collaborators) {
@@ -62,6 +54,18 @@ export class TeamChartsComponent implements OnChanges {
         this.spAlivrer.push(elem.aLivrer);
         this.spATester.push(elem.aTester);
         this.spValideEnRecetteLivreTermine.push(elem.valideEnRecetteLivreTermine);
+    }
+
+    resetValues(): void{
+        this.names = [];
+        this.spAqualifierBacAffinnage = [];
+        this.spAfaire = [];
+        this.spEnAttente = [];
+        this.spRefuseEnRecette = [];
+        this.spEncoursDevTermineTestCroise = [];
+        this.spAlivrer = [];
+        this.spATester = [];
+        this.spValideEnRecetteLivreTermine = [];
     }
 
 }

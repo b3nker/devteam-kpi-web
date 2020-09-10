@@ -5,6 +5,13 @@ import {Router} from '@angular/router';
 import {Team} from '../../../Model/team';
 import {RetrospectiveService} from '../../../Service/retrospective.service';
 import {Retrospective} from '../../../Model/retrospective';
+import {Config} from '../../../Model/config';
+import {Collaborator} from '../../../Model/collaborator';
+
+interface SprintSelector{
+    value: Sprint;
+    viewValue: string;
+}
 
 @Component({
     selector: 'app-team',
@@ -15,50 +22,34 @@ import {Retrospective} from '../../../Model/retrospective';
 export class TeamComponent implements OnInit {
     sprint: Sprint;
     team: Team;
-    ROLE_FRONT = 'front';
-    ROLE_MIDDLE = 'middle';
-    ROLE_TRANSVERSE = 'transverse';
+    ROLE_FRONT = Config.roleFront;
+    ROLE_MIDDLE = Config.roleMiddle;
+    ROLE_TRANSVERSE = Config.roleTransverse;
     hasTransverse = false;
     hasMiddle = false;
     hasFront = false;
     retrospective: Retrospective;
-    nbSpDoneTotalTeam: number;
-    nbSpTotalTeam: number;
-    nbSpEnCoursDevTermine: number;
-    nbSpATester: number;
     teamName: string;
     teamNameURL: string; // Contains "/teamName"
+    listOfSprints: Sprint[] = [];
+    selectedValue: Sprint;
+    sprintSelector: SprintSelector[] = [];
 
     constructor(private retrospectiveService: RetrospectiveService, private sprintService: SprintService, private router: Router) {
-        this.nbSpDoneTotalTeam = 0;
-        this.nbSpTotalTeam = 0;
-        this.nbSpEnCoursDevTermine = 0;
-        this.nbSpATester = 0;
         this.teamName = this.router.url.substring(this.router.url.lastIndexOf('/') + 1, this.router.url.length);
         this.teamNameURL = '/' + this.teamName;
+        this.loadLast();
     }
 
     ngOnInit(): void {
+        this.setListOfSprints();
+    }
+
+    loadLast(): void {
         this.sprintService.getSprint(this.teamNameURL).subscribe(data => {
             this.sprint = data[0];
             this.team = this.sprint.team;
-            let i = 1;
-            for (const c of this.team.collaborators) {
-
-                this.nbSpDoneTotalTeam += c.storyPoints.abandonne + c.storyPoints.livre + c.storyPoints.termine
-                    + c.storyPoints.valideEnRecette + c.storyPoints.avalider;
-                this.nbSpEnCoursDevTermine += c.storyPoints.enCours + c.storyPoints.devTermine;
-                this.nbSpATester += c.storyPoints.atester;
-                this.nbSpTotalTeam += c.storyPoints.total;
-                if (c.role.includes(this.ROLE_FRONT)){
-                    this.hasFront = true;
-                }else if (c.role.includes(this.ROLE_MIDDLE)){
-                    this.hasMiddle = true;
-                }else if (c.role.includes(this.ROLE_TRANSVERSE)){
-                    this.hasTransverse = true;
-                }
-                i++;
-            }
+            this.hasRoles(this.team.collaborators);
         });
         this.retrospectiveService.getRetrospectives().subscribe(data => {
             for (const r of data) {
@@ -67,6 +58,53 @@ export class TeamComponent implements OnInit {
                 }
             }
         });
+    }
+
+    /**
+     * Change data with given input variable
+     * @param sprint, variable from which we want to print data
+     */
+    loadData(sprint: Sprint): void{
+        this.sprint = sprint;
+        this.team = this.sprint.team;
+        this.hasRoles(this.team.collaborators);
+    }
+
+
+    setListOfSprints(): void{
+        this.sprintService.getAllSprintTeam(this.teamNameURL).subscribe(data => {
+            this.listOfSprints = data;
+            for (const s of this.listOfSprints){
+                this.sprintSelector.push({
+                    value: s,
+                    viewValue: s.name,
+                });
+            }
+        });
+    }
+
+    hasRoles(collaborators: Collaborator[]): void{
+        for (const c of collaborators) {
+            if (c.role.includes(this.ROLE_FRONT)){
+                this.hasFront = true;
+            }else if (c.role.includes(this.ROLE_MIDDLE)){
+                this.hasMiddle = true;
+            }else if (c.role.includes(this.ROLE_TRANSVERSE)){
+                this.hasTransverse = true;
+            }
+        }
+    }
+
+    /**
+     * Updates sprint, team and retrospective variable depending on selected sprint
+     */
+    changeSprint(): void{
+        if (this.selectedValue === undefined){
+           alert('Aucun sprint selectionné');
+        }else{
+            this.loadData(this.selectedValue);
+            alert('Sprint: ' + this.selectedValue.name + ' selectionné');
+        }
     }
 
 

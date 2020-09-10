@@ -15,8 +15,6 @@ export class TeamsRecapComponent implements OnInit {
 
     ngOnInit(): void {
         this.getComment(this.sprints);
-        console.log(this.comments);
-
     }
 
     inAdvance(sprint: Sprint): number {

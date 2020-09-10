@@ -14,6 +14,9 @@ export class Config {
     static workingHoursPerDay = 8;
     static devVelocity = 1;
     static leadDevVelocity = 0.65;
+    static roleFront = 'front';
+    static roleMiddle = 'middle';
+    static roleTransverse = 'transverse';
 
     // Unassigned's properties
     static unassignedRole = 'none';

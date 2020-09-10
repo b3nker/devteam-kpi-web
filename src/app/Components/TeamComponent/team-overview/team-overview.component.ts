@@ -31,20 +31,11 @@ export class TeamOverviewComponent implements OnChanges {
     message = '';
 
     constructor(private commentService: CommentService) {
-        this.totalStoryPoints = 0;
-        this.totalTickets = 0;
-        this.ticketsLeftToDo = 0;
-        this.gaugeValue = 0;
-        this.inAdvance = 0;
-        this.totalEstimatedHours = 0;
-        this.totalWorkLeft = 0;
-        this.totalTicketsBug = 0;
-        this.totalTicketsTask = 0;
-        this.totalTicketsUS = 0;
     }
 
     ngOnChanges(): void {
         if (typeof this.sprint !== 'undefined') {
+            this.resetValue();
             this.progression = SprintService.getProgressBarPercentage(this.sprint);
             this.getBootstrapStoryPoints();
             this.getTicketsInfos();
@@ -92,5 +83,18 @@ export class TeamOverviewComponent implements OnChanges {
         }else{
             this.gaugeValue = Math.floor(( sumTimeLeft / sumRemainingTime ) * 100);
         }
+    }
+
+    resetValue(): void{
+        this.totalStoryPoints = 0;
+        this.totalTickets = 0;
+        this.ticketsLeftToDo = 0;
+        this.gaugeValue = 0;
+        this.inAdvance = 0;
+        this.totalEstimatedHours = 0;
+        this.totalWorkLeft = 0;
+        this.totalTicketsBug = 0;
+        this.totalTicketsTask = 0;
+        this.totalTicketsUS = 0;
     }
 }

@@ -77,8 +77,18 @@ export class SprintService {
   }
 
   getSprint(currentUrl: string): Observable<Sprint[]>{
-    return this.http.get(this.BASE_URL + currentUrl).pipe(
+    return this.http.get(this.BASE_URL + currentUrl + '/last').pipe(
         map((data: any) => [data].map((item) => this.adapter.adapt(item)))
+    );
+  }
+
+  /**
+   * Fetch in kpi-api all sprints for a given team
+   * @param teamName, parameter to sort data given a team name.
+   */
+  getAllSprintTeam(teamName: string): Observable<Sprint[]>{
+    return this.http.get(this.BASE_URL + teamName).pipe(
+        map((data: any[]) => data.map((item) => this.adapter.adapt(item)))
     );
   }
 }

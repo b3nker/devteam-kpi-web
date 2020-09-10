@@ -25,6 +25,7 @@ export class TeamChartsRoleComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (typeof this.team !== 'undefined' && typeof this.role !== 'undefined') {
+      this.resetValues();
       const all: ChartElement = {
         name: this.prettyName(this.role),
         aQualifierBacAffinnage: 0,
@@ -77,6 +78,18 @@ export class TeamChartsRoleComponent implements OnChanges {
     this.spAlivrer.unshift(elem.aLivrer);
     this.spATester.unshift(elem.aTester);
     this.spValideEnRecetteLivreTermine.unshift(elem.valideEnRecetteLivreTermine);
+  }
+
+  resetValues(): void{
+    this.names = [];
+    this.spAqualifierBacAffinnage = [];
+    this.spAfaire = [];
+    this.spEnAttente = [];
+    this.spRefuseEnRecette = [];
+    this.spEncoursDevTermineTestCroise = [];
+    this.spAlivrer = [];
+    this.spATester = [];
+    this.spValideEnRecetteLivreTermine = [];
   }
 }
 

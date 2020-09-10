@@ -1,5 +1,5 @@
 import {Team} from './team';
-import {Ticket} from "./ticket";
+import {Ticket} from './ticket';
 
 export class Sprint {
     private _id: number;
