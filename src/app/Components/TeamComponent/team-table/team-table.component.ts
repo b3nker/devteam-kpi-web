@@ -29,6 +29,7 @@ export class TeamTableComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.team !== 'undefined') {
+            this.resetValues();
             let unassigned: TableElement = {
                 name: this.UNASSIGNED_NAME,
                 devTime: null,
@@ -91,6 +92,12 @@ export class TeamTableComponent implements OnChanges {
             this.ELEMENT_DATA.push(unassigned);
             this.ELEMENT_DATA.push(total);
             this.dataSource = this.ELEMENT_DATA;
+            console.log(this.dataSource);
         }
+    }
+
+    resetValues(): void{
+        this.ELEMENT_DATA = [];
+        this.dataSource = [];
     }
 }

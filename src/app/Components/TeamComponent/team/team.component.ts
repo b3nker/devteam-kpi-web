@@ -103,7 +103,8 @@ export class TeamComponent implements OnInit {
            alert('Aucun sprint selectionné');
         }else{
             this.loadData(this.selectedValue);
-            alert('Sprint: ' + this.selectedValue.name + ' selectionné');
+            alert(this.selectedValue.name + ' selectionné');
+            console.log(this.team);
         }
     }
 
