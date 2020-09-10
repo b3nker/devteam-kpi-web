@@ -3,6 +3,7 @@ import {ChartElement} from '../../../Interface/chart-element';
 import {TimeService} from '../../../Service/time.service';
 import {CommentService} from '../../../Service/comment.service';
 import {Comment} from '../../../Model/comment';
+import {Config} from '../../../Model/config';
 
 @Component({
   selector: 'app-overview',
@@ -32,7 +33,7 @@ export class OverviewComponent implements OnInit {
   @Input() inAdvance: number;
 
   timeService: TimeService;
-  WORKING_HOURS_PER_DAY = 8;
+  WORKING_HOURS_PER_DAY = Config.workingHoursPerDay;
   message: string;
 
   constructor(private commentService: CommentService) {

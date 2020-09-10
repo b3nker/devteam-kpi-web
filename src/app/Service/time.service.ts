@@ -14,15 +14,25 @@ export class TimeService {
    * @param nbWorkingHoursDay, number of working hours in a day
    * @return a string with a specific format
    */
-  getTimeFormat(time: number, nbWorkingHoursDay: number): string{
-    const nbDaysInTime = Math.floor(time / nbWorkingHoursDay);
-    const nbHoursInTime = Math.floor(Math.abs(time - nbDaysInTime * nbWorkingHoursDay));
-    if (nbDaysInTime === 0){
+  getTimeFormat(time: number, nbWorkingHoursDay: number): string {
+    let nbDaysInTime;
+    let nbHoursInTime;
+    if (time >= 0) {
+      nbDaysInTime = Math.floor(time / nbWorkingHoursDay);
+      nbHoursInTime = Math.floor(time - nbDaysInTime * nbWorkingHoursDay);
+    } else {
+      nbDaysInTime = Math.ceil(time / nbWorkingHoursDay);
+      nbHoursInTime = Math.abs(Math.ceil(time - nbDaysInTime * nbWorkingHoursDay));
+    }
+
+    // Printing
+
+    if (nbDaysInTime === 0) {
       return nbHoursInTime + 'h';
-    }else{
-      if (nbHoursInTime === 0){
+    } else {
+      if (nbHoursInTime === 0) {
         return nbDaysInTime + 'j';
-      }else{
+      } else {
         return nbDaysInTime + 'j ' + nbHoursInTime + 'h';
       }
     }
