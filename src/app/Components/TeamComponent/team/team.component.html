@@ -1,6 +1,6 @@
 <ng-container *ngIf="team">
-    <div class="header-title">Résumé du sprint</div>
-    <mat-form-field appearance="fill">
+    <div class="title"> <span class="header-title">Résumé du sprint</span><br/><br/>
+        <mat-form-field appearance="fill">
         <mat-label>Sprint</mat-label>
         <mat-select [(ngModel)]="selectedValue" name="food">
             <mat-option *ngFor="let sprint of sprintSelector" [value]="sprint.value">
@@ -8,7 +8,9 @@
             </mat-option>
         </mat-select>
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="changeSprint()">Charger</button>
+        <button mat-raised-button color="primary" (click)="changeSprint()">Charger</button>
+    </div>
+
     <app-team-overview [sprint]="sprint"></app-team-overview>
     <div class="header-title spacing">Vision d'équipe</div>
     <app-team-table [team]="team"></app-team-table>
