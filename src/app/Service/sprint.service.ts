@@ -4,27 +4,16 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Sprint} from '../Model/sprint';
 import {SprintAdapter} from './adapter/sprint-adapter';
+import {Config} from '../Model/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SprintService {
 
-  private BASE_URL = '/api/sprint';
+  private BASE_URL = Config.sprintBaseURL;
 
   constructor(private http: HttpClient, private adapter: SprintAdapter) {
-  }
-
-  getSprints(): Observable<Sprint[]> {
-    return this.http.get(this.BASE_URL).pipe(
-        map((data: any[]) => data.map((item) => this.adapter.adapt(item)))
-    );
-  }
-
-  getSprint(currentUrl: string): Observable<Sprint[]>{
-    return this.http.get(this.BASE_URL + currentUrl).pipe(
-        map((data: any) => [data].map((item) => this.adapter.adapt(item)))
-    );
   }
 
   static getProgressBarPercentage(sprint: Sprint): number {
@@ -46,7 +35,7 @@ export class SprintService {
 
   static getProgressBarPercentageForSprints(sprints: Sprint[]): number {
     let progression = 0;
-    for(const s of sprints){
+    for (const s of sprints){
       progression += SprintService.getProgressBarPercentage(s);
     }
     progression /= sprints.length;
@@ -79,5 +68,17 @@ export class SprintService {
       }
       return nbWeekendDays;
     }
+  }
+
+  getSprints(): Observable<Sprint[]> {
+    return this.http.get(this.BASE_URL).pipe(
+        map((data: any[]) => data.map((item) => this.adapter.adapt(item)))
+    );
+  }
+
+  getSprint(currentUrl: string): Observable<Sprint[]>{
+    return this.http.get(this.BASE_URL + currentUrl).pipe(
+        map((data: any) => [data].map((item) => this.adapter.adapt(item)))
+    );
   }
 }

@@ -2,6 +2,7 @@ import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
 import {TableElement} from '../../../Interface/table-element';
 import {TeamService} from '../../../Service/team.service';
+import {Config} from '../../../Model/config';
 
 @Component({
     selector: 'app-team-table',
@@ -20,10 +21,10 @@ export class TeamTableComponent implements OnChanges {
     constructor() {
         this.ELEMENT_DATA = [];
         this.dataSource = [];
-        this.SCRUM = 'scrum';
-        this.LEAD_DEV = 'lead dev';
-        this.UNASSIGNED_NAME = 'Non Assigné';
-        this.UNASSIGNED_ROLE = 'none';
+        this.SCRUM = Config.scrum;
+        this.LEAD_DEV = Config.leadDev;
+        this.UNASSIGNED_NAME = Config.unassignedName;
+        this.UNASSIGNED_ROLE = Config.unassignedRole;
     }
 
     ngOnChanges(): void {

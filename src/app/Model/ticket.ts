@@ -151,7 +151,7 @@ export class Ticket {
 
     getSupDevDoneTickets(): number {
         return this.devTermine + this.testCroise + this.mergeRequest +
-            this.atester + this.alivrer + this.getDoneTickets();
+            this.atester + this.alivrer + this.avalider + this.getDoneTickets();
     }
 
 }

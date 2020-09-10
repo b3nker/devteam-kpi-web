@@ -4,12 +4,13 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Release} from '../Model/release';
 import {ReleaseAdapter} from './adapter/release-adapter';
+import {Config} from '../Model/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReleaseService {
-  private BASE_URL = '/api/release';
+  private BASE_URL = Config.releaseBaseURL;
 
   constructor(private http: HttpClient, private adapter: ReleaseAdapter) { }
 

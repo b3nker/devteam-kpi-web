@@ -3,6 +3,7 @@ import {Sprint} from '../../../Model/sprint';
 import {ChartElement} from '../../../Interface/chart-element';
 import {TeamService} from '../../../Service/team.service';
 import {SprintService} from '../../../Service/sprint.service';
+import {Config} from '../../../Model/config';
 
 @Component({
   selector: 'app-teams-overview',
@@ -31,8 +32,8 @@ export class TeamsOverviewComponent implements OnChanges {
   addedTotalTicketsTask: number;
   gaugeValue: number;
   inAdvance: number;
-  SCRUM = 'scrum';
-  LEAD_DEV = 'lead dev';
+  SCRUM = Config.scrum;
+  LEAD_DEV = Config.leadDev;
 
   constructor() {
     this.name = '';

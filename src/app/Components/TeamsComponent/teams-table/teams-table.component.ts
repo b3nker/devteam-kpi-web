@@ -3,6 +3,7 @@ import {Team} from '../../../Model/team';
 import {Sprint} from '../../../Model/sprint';
 import {TableElement} from '../../../Interface/table-element';
 import {TeamService} from '../../../Service/team.service';
+import {Config} from '../../../Model/config';
 
 
 @Component({
@@ -20,9 +21,9 @@ export class TeamsTableComponent implements OnChanges {
     UNASSIGNED_ROLE: string;
 
     constructor(){
-        this.UNASSIGNED_ROLE = 'team';
-        this.SCRUM = 'scrum';
-        this.LEAD_DEV = 'lead dev';
+        this.UNASSIGNED_ROLE = Config.teamRole;
+        this.SCRUM = Config.scrum;
+        this.LEAD_DEV = Config.leadDev;
         this.ELEMENT_DATA = [];
         this.dataSource = [];
     }

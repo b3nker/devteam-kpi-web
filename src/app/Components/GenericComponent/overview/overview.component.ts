@@ -47,7 +47,7 @@ export class OverviewComponent implements OnInit {
   }
 
   saveMessage(): void{
-    console.log(this.commentService.postComment(new Comment(1, 'Parfait')));
+    console.log(this.commentService.postComment(new Comment(1, 'Parfait')).subscribe());
   }
 
 }

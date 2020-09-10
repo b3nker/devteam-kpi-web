@@ -2,6 +2,7 @@ import {Component, Input, OnChanges} from '@angular/core';
 import {Collaborator} from '../../../Model/collaborator';
 import {TableElement} from '../../../Interface/table-element';
 import {TeamService} from '../../../Service/team.service';
+import {Config} from '../../../Model/config';
 
 
 
@@ -23,10 +24,10 @@ export class CollaboratorTableComponent implements OnChanges {
     constructor(){
         this.ELEMENT_DATA = [];
         this.dataSource = [];
-        this.SCRUM = 'scrum';
-        this.LEAD_DEV = 'lead dev';
-        this.UNASSIGNED_ACCOUNT_ID = 'unassigned';
-        this.UNASSIGNED_ROLE = 'none';
+        this.SCRUM = Config.scrum;
+        this.LEAD_DEV = Config.leadDev;
+        this.UNASSIGNED_ACCOUNT_ID = Config.unassignedAccountID;
+        this.UNASSIGNED_ROLE = Config.unassignedRole;
     }
 
     ngOnChanges(): void {

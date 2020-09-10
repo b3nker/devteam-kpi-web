@@ -4,11 +4,12 @@ import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {Collaborator} from '../Model/collaborator';
 import {CollaboratorAdapter} from './adapter/collaborator-adapter';
+import {Config} from '../Model/config';
 @Injectable({
   providedIn: 'root'
 })
 export class CollaboratorService {
-  private BASE_URL = '/api';
+  private BASE_URL = Config.baseURL;
 
   constructor(private http: HttpClient, private adapter: CollaboratorAdapter) {
   }

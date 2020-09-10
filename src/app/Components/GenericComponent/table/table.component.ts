@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {TableElement} from '../../../Interface/table-element';
 import {TimeService} from '../../../Service/time.service';
+import {Config} from '../../../Model/config';
 
 @Component({
     selector: 'app-table',
@@ -14,13 +15,13 @@ export class TableComponent {
     displayedTooltip: string[];
     LOWER_BOUND_MULTIPLIER = 0.9;
     UPPER_BOUND_MULTIPLIER = 1.1;
-    LEAD_DEV_VELOCITY = 0.65;
-    DEV_VELOCITY = 1;
+    LEAD_DEV_VELOCITY = Config.leadDevVelocity;
+    DEV_VELOCITY = Config.devVelocity;
     timeService: TimeService;
-    SCRUM = 'scrum';
-    LEAD_DEV = 'lead dev';
-    WORKING_HOURS_PER_DAY = 8;
-    JIRA_DOMAIN = 'https://apriltechnologies.atlassian.net';
+    SCRUM = Config.scrum;
+    LEAD_DEV = Config.leadDev;
+    WORKING_HOURS_PER_DAY = Config.workingHoursPerDay;
+    JIRA_DOMAIN = Config.jiraDomain;
 
     constructor() {
         this.timeService = new TimeService();
