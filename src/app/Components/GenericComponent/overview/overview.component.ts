@@ -48,7 +48,11 @@ export class OverviewComponent implements OnInit {
   }
 
   saveMessage(): void{
-    this.commentService.postComment(new Comment(this.sprintId, this.message)).subscribe();
+    this.commentService.postComment(new Comment(this.sprintId, this.message)).subscribe(response => {
+      if (response.status === 200){
+        alert('Message sauvegardé.');
+      }
+    });
   }
 
 }
