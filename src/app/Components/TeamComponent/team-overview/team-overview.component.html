@@ -1,5 +1,6 @@
 <ng-container *ngIf="sprint">
     <app-overview
+            [sprintId]="sprint.id"
             [name]="sprint.name"
             [startDate]="sprint.startDate"
             [endDate]="sprint.endDate"

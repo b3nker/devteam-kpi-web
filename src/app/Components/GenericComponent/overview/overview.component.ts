@@ -11,6 +11,7 @@ import {Config} from '../../../Model/config';
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
+  @Input() sprintId: number;
   @Input() name: string;
   @Input() startDate: string;
   @Input() endDate: string;
@@ -47,7 +48,7 @@ export class OverviewComponent implements OnInit {
   }
 
   saveMessage(): void{
-    console.log(this.commentService.postComment(new Comment(1, 'Parfait')).subscribe());
+    this.commentService.postComment(new Comment(this.sprintId, this.message)).subscribe();
   }
 
 }
