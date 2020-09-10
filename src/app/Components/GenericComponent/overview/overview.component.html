@@ -26,15 +26,15 @@
             <ul>
                 <li class="list-padding-added-ticket">
                     <span class="ticket-size">{{totalTickets}}</span> tickets<br>
-                    ({{timeService.getTimeFormat(totalEstimatedHours,WORKING_HOURS_PER_DAY)}})
+                    ({{timeService.getTimeFormat(totalEstimatedHours, WORKING_HOURS_PER_DAY)}})
                 </li>
                 <li class="list-padding-resume-ticket">
                     <span class="added-ticket-style">+{{addedTickets}}</span> dont ajoutés <br>
-                    ({{timeService.getTimeFormat(addedHours,WORKING_HOURS_PER_DAY)}})
+                    ({{timeService.getTimeFormat(addedHours, WORKING_HOURS_PER_DAY)}})
                 </li>
                 <li>
                     <span class="resume-ticket-size"><b>{{ticketsLeftToDo}}</b></span> tickets à faire<br>
-                    ({{timeService.getTimeFormat(totalWorkLeft,WORKING_HOURS_PER_DAY)}})
+                    ({{timeService.getTimeFormat(totalWorkLeft, WORKING_HOURS_PER_DAY)}})
                 </li>
             </ul>
         </div>
@@ -60,6 +60,7 @@
     </mat-grid-tile>
 
     <!-- Gauge-->
+    <ng-container *ngIf="sprintId; else sprintIdEmpty">
     <mat-grid-tile class="mat-elevation-z3"
                    [colspan]="2"
                    [rowspan]="3">
@@ -74,23 +75,41 @@
     </mat-grid-tile>
 
     <!-- Comment -->
-    <mat-grid-tile class="mat-elevation-z3"
-                   [ngClass]="{
+
+        <mat-grid-tile class="mat-elevation-z3"
+                       [ngClass]="{
                    'is-orange': message.length > 0
                     }"
-                   [colspan]="2"
-                   [rowspan]="1">
-        <div>
-            <form class="example-form">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Warning</mat-label>
-                    <label>
-                        <input type="text" id="message" name="message" [(ngModel)]="message" matInput placeholder="Message">
-                    </label>
-                </mat-form-field>
-                <button mat-raised-button color="primary" (click)="saveMessage()">Sauvegarder</button>
-            </form>
-        </div>
-    </mat-grid-tile>
+                       [colspan]="2"
+                       [rowspan]="1">
+            <div>
+                <form class="example-form">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Warning</mat-label>
+                        <label>
+                            <input type="text" id="message" name="message" [(ngModel)]="message" matInput
+                                   placeholder="Message">
+                        </label>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" (click)="saveMessage()">Sauvegarder</button>
+                </form>
+            </div>
+        </mat-grid-tile>
+    </ng-container>
+
+    <ng-template #sprintIdEmpty>
+        <mat-grid-tile class="mat-elevation-z3"
+                       [colspan]="2"
+                       [rowspan]="4">
+            <div>
+                <h2>Taux d'avancement estimé<br/>sur les tâches restantes</h2>
+                <app-gauge class="gauge-centering" [gaugeValue]="gaugeValue"></app-gauge>
+                <p class="gauge-text-style" *ngIf="inAdvance >=0"> En avance de
+                    <span class="inAdvance-color">{{timeService.getTimeFormat(inAdvance, WORKING_HOURS_PER_DAY)}}</span></p>
+                <p class="gauge-text-style" *ngIf="inAdvance < 0"> En retard de
+                    <span class="late-color">{{timeService.getTimeFormat(inAdvance, WORKING_HOURS_PER_DAY)}}</span></p>
+            </div>
+        </mat-grid-tile>
+    </ng-template>
 </mat-grid-list>
 
