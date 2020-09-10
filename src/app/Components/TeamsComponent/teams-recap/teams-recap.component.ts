@@ -50,7 +50,7 @@ export class TeamsRecapComponent implements OnInit {
     getComment(sprints: Sprint[]): void {
         for (let i = 0; i < sprints.length; i++) {
             this.commentService.getComment(sprints[i].id).subscribe(data => {
-                this.comments[i] = data.comment;
+                this.comments[i] = data.body.comment;
             });
         }
 

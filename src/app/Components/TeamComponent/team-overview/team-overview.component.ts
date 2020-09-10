@@ -50,7 +50,7 @@ export class TeamOverviewComponent implements OnChanges {
             this.getTicketsInfos();
             this.getGaugeValue();
             this.commentService.getComment(this.sprint.id).subscribe(data => {
-                this.message = data.comment;
+                this.message = data.body.comment;
             });
         }
     }
