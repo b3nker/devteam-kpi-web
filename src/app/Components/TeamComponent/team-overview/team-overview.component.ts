@@ -3,6 +3,8 @@ import {Sprint} from '../../../Model/sprint';
 import {ChartElement} from '../../../Interface/chart-element';
 import {TeamService} from '../../../Service/team.service';
 import {SprintService} from '../../../Service/sprint.service';
+import {CommentService} from '../../../Service/comment.service';
+import {Config} from '../../../Model/config';
 
 
 @Component({
@@ -24,10 +26,11 @@ export class TeamOverviewComponent implements OnChanges {
     totalTicketsBug: number;
     gaugeValue: number;
     inAdvance: number;
-    SCRUM = 'scrum';
-    LEAD_DEV = 'lead dev';
+    SCRUM = Config.scrum;
+    LEAD_DEV = Config.leadDev;
+    message = '';
 
-    constructor() {
+    constructor(private commentService: CommentService) {
         this.totalStoryPoints = 0;
         this.totalTickets = 0;
         this.ticketsLeftToDo = 0;
@@ -46,6 +49,9 @@ export class TeamOverviewComponent implements OnChanges {
             this.getBootstrapStoryPoints();
             this.getTicketsInfos();
             this.getGaugeValue();
+            this.commentService.getComment(this.sprint.id).subscribe(data => {
+                this.message = data.comment;
+            });
         }
     }
 

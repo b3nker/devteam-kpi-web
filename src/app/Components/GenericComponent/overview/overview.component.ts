@@ -31,17 +31,19 @@ export class OverviewComponent implements OnInit {
   @Input() addedTotalTicketsTask: number;
   @Input() gaugeValue: number;
   @Input() inAdvance: number;
+  @Input() message: string;
 
   timeService: TimeService;
   WORKING_HOURS_PER_DAY = Config.workingHoursPerDay;
-  message: string;
 
   constructor(private commentService: CommentService) {
     this.timeService = new TimeService();
-    this.message = '';
   }
 
   ngOnInit(): void {
+    if (this.message === undefined){
+      this.message = '';
+    }
   }
 
   saveMessage(): void{
