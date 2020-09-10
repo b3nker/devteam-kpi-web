@@ -50,7 +50,8 @@ export class TeamRetrospectiveLineChartComponent implements OnChanges {
         this.lineChartOptions = {
             title: {
                 text: 'Travail abattu par l\'équipe sur les derniers sprints ',
-                display: true
+                display: true,
+                position: 'bottom'
             },
             responsive: true,
             scales: {
@@ -60,7 +61,7 @@ export class TeamRetrospectiveLineChartComponent implements OnChanges {
                     {
                         scaleLabel: {
                             display: true,
-                            labelString: '%'
+                            labelString: 'Pourcentage (%)'
                         },
                         id: 'y-axis-0',
                         position: 'left',

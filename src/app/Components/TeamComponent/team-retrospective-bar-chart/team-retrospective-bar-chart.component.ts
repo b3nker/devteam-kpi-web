@@ -42,11 +42,17 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
     this.barChartOptions = {
       title: {
         text: 'Charge et performance de l\'équipe sur les derniers sprints (en Story Points) ',
-        display: true
+        display: true,
+        position: 'bottom'
       },
       responsive: true,
       // We use these empty structures as placeholders for dynamic theming.
-      scales: { xAxes: [{}], yAxes: [{}] },
+      scales: { xAxes: [{}], yAxes: [{
+          scaleLabel: {
+            display: true,
+            labelString: 'Nombre de story points'
+          },
+        }] },
     };
     this.barChartLabels = [];
     this.barChartType = 'bar';

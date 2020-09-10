@@ -30,3 +30,7 @@ div.size{
 div.underlined{
     text-decoration: underline;
 }
+
+div.spacing{
+    margin-bottom: 50px;
+}
