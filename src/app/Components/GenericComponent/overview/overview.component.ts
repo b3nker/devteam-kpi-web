@@ -47,6 +47,9 @@ export class OverviewComponent implements OnInit {
     }
   }
 
+  /**
+   * Performs a POST request in kpi-api message route
+   */
   saveMessage(): void{
     this.commentService.postComment(new Comment(this.sprintId, this.message)).subscribe(response => {
       if (response.status === 200){

@@ -13,9 +13,6 @@ export class CollaboratorComponent implements OnInit {
 
     constructor(private collaboratorService: CollaboratorService, private router: Router) {}
 
-    /* Retrieve data from "api/sprint/all" route using dedicated service.
-     * Fetch this data and pass them to child components
-     */
     ngOnInit(): void {
         this.collaboratorService.getCollaborators(this.router.url).subscribe(data => {
             this.collaborators = data;

@@ -15,6 +15,9 @@ export class TicketsEstimationComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Returns number of tickets estimated correctly
+   */
   wellEstimatedTickets(): number{
     return this.supDevDoneTickets - this.underEstimatedTickets - this.overEstimatedTickets;
   }

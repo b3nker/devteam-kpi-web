@@ -30,56 +30,11 @@ export class TeamTableComponent implements OnChanges {
     ngOnChanges(): void {
         if (typeof this.team !== 'undefined') {
             this.resetValues();
-            let unassigned: TableElement = {
-                name: this.UNASSIGNED_NAME,
-                devTime: null,
-                allocatedTime: null,
-                consumedTime: null,
-                leftToDo: null,
-                tickets: 0,
-                ticketsDone: 0,
-                availableTime: null,
-                runDays: 0,
-                ceremonyDays: 0,
-                role: this.UNASSIGNED_ROLE,
-                url: new Array<string>(),
-                _availableTime: null,
-                _devTime: null,
-            };
-            const total: TableElement = {
-                name: 'Total',
-                devTime: 0,
-                allocatedTime: 0,
-                consumedTime: 0,
-                leftToDo: 0,
-                tickets: 0,
-                ticketsDone: 0,
-                availableTime: 0,
-                runDays: 0,
-                ceremonyDays: 0,
-                role: 'none',
-                url: new Array<string>(),
-                _availableTime: null,
-                _devTime: null,
-            };
+            let unassigned: TableElement;
+            const total = TeamService.generateEmptyTableElement('Total', 'none');
             for (const c of this.team.collaborators) {
                 if (c.getFullName().includes(this.UNASSIGNED_NAME)) {
-                    unassigned = {
-                        name: c.getFullName(),
-                        devTime: null,
-                        allocatedTime: c.estimatedTime,
-                        consumedTime: c.loggedTime,
-                        leftToDo: c.remainingTime,
-                        tickets: c.tickets.total,
-                        ticketsDone: c.tickets.getSupDevDoneTickets(),
-                        availableTime: null,
-                        runDays: 0,
-                        ceremonyDays: 0,
-                        role: this.UNASSIGNED_ROLE,
-                        url: c.assignedIssues,
-                        _availableTime: null,
-                        _devTime: null,
-                    };
+                    unassigned = TeamService.generateTableElement(c, 0);
                     TeamService.updateTableElement(c, total, 0);
                 } else {
                     const velocity = c.getVelocity(this.SCRUM, this.LEAD_DEV);

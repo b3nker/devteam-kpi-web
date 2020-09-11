@@ -30,22 +30,7 @@ export class TeamsTableComponent implements OnChanges {
 
     ngOnChanges(): void {
         if (typeof this.teams !== 'undefined' && typeof this.sprints !== 'undefined' ) {
-            const total: TableElement = {
-                name: 'Total',
-                devTime: 0,
-                allocatedTime: 0,
-                consumedTime: 0,
-                leftToDo: 0,
-                tickets: 0,
-                ticketsDone: 0,
-                availableTime: 0,
-                runDays: 0,
-                ceremonyDays: 0,
-                role: 'none',
-                url: new Array<string>(),
-                _availableTime: null,
-                _devTime: null,
-            };
+            const total: TableElement = TeamService.generateEmptyTableElement('Total', 'none');
             for (const t of this.teams) {
                 const row = TeamService.generateEmptyTableElement(t.prettyName, this.UNASSIGNED_ROLE);
                 for (const c of t.collaborators) {

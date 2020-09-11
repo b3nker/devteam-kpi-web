@@ -13,9 +13,6 @@ export class BacklogComponent implements OnInit {
 
   constructor(private backlogService: BacklogService) {}
 
-  /* Fetch data from "api/backlog" route.
-   * OnInit, create a backlog object and generate child components.
-   */
   ngOnInit(): void {
     this.backlogService.getBacklog().subscribe(data => {
       this.backlog = data;

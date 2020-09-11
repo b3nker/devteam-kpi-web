@@ -24,7 +24,6 @@ import { TeamsComponent } from './Components/TeamsComponent/teams/teams.componen
 import { CollaboratorComponent } from './Components/CollaboratorsComponent/collaborator/collaborator.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { TeamChartsComponent } from './Components/TeamComponent/team-charts/team-charts.component';
-import { ProgressBarComponent } from './Components/TeamComponent/progress-bar/progress-bar.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { WelcomeCardComponent } from './Components/welcome-page/welcome-card/welcome-card.component';
@@ -70,7 +69,6 @@ import { TeamsTicketsComponent } from './Components/TeamsComponent/teams-tickets
     TeamsComponent,
     CollaboratorComponent,
     TeamChartsComponent,
-    ProgressBarComponent,
     WelcomeCardComponent,
     TeamsChartsComponent,
     BacklogComponent,

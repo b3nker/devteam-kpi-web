@@ -45,6 +45,9 @@ export class TeamComponent implements OnInit {
         this.setListOfSprints();
     }
 
+    /**
+     * load last sprint for corresponding team.
+     */
     loadLast(): void {
         this.sprintService.getSprint(this.teamNameURL).subscribe(data => {
             this.sprint = data[0];
@@ -70,7 +73,9 @@ export class TeamComponent implements OnInit {
         this.hasRoles(this.team.collaborators);
     }
 
-
+    /**
+     * Found list of previous sprints given team name.
+     */
     setListOfSprints(): void{
         this.sprintService.getAllSprintTeam(this.teamNameURL).subscribe(data => {
             this.listOfSprints = data;

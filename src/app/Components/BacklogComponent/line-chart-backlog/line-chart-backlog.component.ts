@@ -116,7 +116,7 @@ export class LineChartBacklogComponent implements OnChanges {
         }
     }
 
-    /* Returns an array of strings of the size of nbBugsResolved/Created's array.
+    /** Returns an array of strings of the size of nbBugsResolved/Created's array.
      * Index "0" corresponds to today's date.
      * Index "max", length(array bugs created) date (representing 'x' days ago date)
      */

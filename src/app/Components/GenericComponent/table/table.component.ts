@@ -65,6 +65,12 @@ export class TableComponent {
         ];
     }
 
+    /**
+     * Changes remaining time and total working time of a collaborator (index "i" in table)
+     * Changes values by substracting event value, representing number of ceremony days
+     * @param event, catch value
+     * @param i, index in table
+     */
     changeRowValues(event: any, i: number): void {
         if (this.dataSource[i].name === 'Assigné') {
             return;
@@ -98,6 +104,9 @@ export class TableComponent {
         }
     }
 
+    /**
+     * Returns list of string as correct Jira URL/ JQL to view corresponding ticket on JIRA website.
+     */
     getJqlKeysList(urls: Array<string>): string {
         if (urls.length === 0){
             return null;

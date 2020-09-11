@@ -58,9 +58,8 @@ export class TeamsChartsComponent implements OnChanges {
       this.unshiftElement(all);
     }
   }
-  /* Method that push ChartElement's data to each Chart attribute
-   *
-   */
+
+
   pushElement(elem: ChartElement): void{
     this.names.push(elem.name);
     this.spAqualifierBacAffinnage.push(elem.aQualifierBacAffinnage);

@@ -46,6 +46,9 @@ export class TeamOverviewComponent implements OnChanges {
         }
     }
 
+    /**
+     * Setup variables for story points tile.
+     */
     getBootstrapStoryPoints(): void {
         this.chartElement = TeamService.generateEmptyChartElement(null);
         for (const c of this.sprint.team.collaborators) {
@@ -54,6 +57,9 @@ export class TeamOverviewComponent implements OnChanges {
         }
     }
 
+    /**
+     * Setup variables for tickets tiles
+     */
     getTicketsInfos(): void {
         let ticketsSupDevDone = 0;
         for (const c of this.sprint.team.collaborators){
@@ -68,6 +74,9 @@ export class TeamOverviewComponent implements OnChanges {
         this.ticketsLeftToDo = this.totalTickets - ticketsSupDevDone;
     }
 
+    /**
+     * Setup variables for gauge tile.
+     */
     getGaugeValue(): void {
         let sumRemainingTime = 0;
         let sumTimeLeft = 0;

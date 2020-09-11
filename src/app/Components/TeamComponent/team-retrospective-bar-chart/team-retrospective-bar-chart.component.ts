@@ -4,6 +4,7 @@ import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
 import {Color, Label} from 'ng2-charts';
 // @ts-ignore
 import Chart = require('chart.js');
+import {Config} from '../../../Model/config';
 
 @Component({
   selector: 'app-team-retrospective-bar-chart',
@@ -32,7 +33,7 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
     Chart.defaults.global.defaultFontColor = 'black';
     Chart.defaults.global.defaultFontStyle = 'bold';
     this.sprints = [];
-    this.url = 'https://apriltechnologies.atlassian.net/issues/?jql=issue in (';
+    this.url = Config.jiraDomain + '/issues/?jql=issue in (';
     this.urls = new Map<string, string>();
     this.initialCommitments = [];
     this.completedWorks = [];
@@ -107,11 +108,7 @@ export class TeamRetrospectiveBarChartComponent implements OnChanges {
     }
   }
 
-  /* Given a set of string containing issue keys, returned a parsed string
-   * fitting jira's JQL syntax.
-   * Return the string for an "in" request (projection)
-   * ex: project = BMKP AND issue in ('issue1','issue2','issue3')
-   */
+
   getJqlSearch(issueKeys: string[]): string {
     if (issueKeys === null){
       return null;
