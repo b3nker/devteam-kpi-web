@@ -36,17 +36,7 @@ export class TeamsChartsComponent implements OnChanges {
 
   ngOnChanges(): void {
     if (typeof this.teams !== 'undefined') {
-      const all: ChartElement = {
-        name: 'Total',
-        aQualifierBacAffinnage: 0,
-        aFaire: 0,
-        enAttente: 0,
-        refuseEnRecette: 0,
-        enCoursDevTermineTestCroise: 0,
-        aLivrer: 0,
-        aTester: 0,
-        valideEnRecetteLivreTermine: 0
-      };
+      const all: ChartElement = TeamService.generateEmptyChartElement('Total');
       for (const t of this.teams) {
         const elem = TeamService.generateEmptyChartElement(t.prettyName);
         for (const c of t.collaborators) {

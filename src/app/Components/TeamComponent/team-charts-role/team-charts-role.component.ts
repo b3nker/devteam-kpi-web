@@ -2,6 +2,7 @@ import {Component, Input, OnChanges} from '@angular/core';
 import {Team} from '../../../Model/team';
 import {ChartElement} from '../../../Interface/chart-element';
 import {TeamService} from '../../../Service/team.service';
+import {NameService} from '../../../Service/name.service';
 
 @Component({
   selector: 'app-team-charts-role',
@@ -26,17 +27,7 @@ export class TeamChartsRoleComponent implements OnChanges {
   ngOnChanges(): void {
     if (typeof this.team !== 'undefined' && typeof this.role !== 'undefined') {
       this.resetValues();
-      const all: ChartElement = {
-        name: this.prettyName(this.role),
-        aQualifierBacAffinnage: 0,
-        aFaire: 0,
-        enAttente: 0,
-        refuseEnRecette: 0,
-        enCoursDevTermineTestCroise: 0,
-        aLivrer: 0,
-        aTester: 0,
-        valideEnRecetteLivreTermine: 0
-      };
+      const all: ChartElement = TeamService.generateEmptyChartElement(NameService.prettyString(this.role));
       for (const c of this.team.collaborators) {
         if (c.role.toUpperCase().includes(this.role.toUpperCase())) {
           const elem = TeamService.generateChartElement(c);
@@ -46,14 +37,6 @@ export class TeamChartsRoleComponent implements OnChanges {
       }
       this.unshiftElement(all);
     }
-  }
-
-
-  prettyName(name: string): string{
-    if (name.length <= 0){
-      return name;
-    }
-    return name.substr(0, 1).toLocaleUpperCase() + name.substr(1, name.length);
   }
 
   pushElement(elem: ChartElement): void{

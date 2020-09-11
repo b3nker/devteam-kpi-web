@@ -1,5 +1,6 @@
 import {Ticket} from './ticket';
 import {StoryPoint} from './story-point';
+import {NameService} from '../Service/name.service';
 
 export class Collaborator {
     private _accountId: string;
@@ -104,22 +105,10 @@ export class Collaborator {
     }
 
     /**
-     * Return input string as Pascal case (first character is a capital letter)
-     * @param str, input string we want to get in Pascal case formatting.
-     */
-    getPascalCase(str: string): string{
-        if (str.length > 0 ){
-            return str[0].toUpperCase() + str.slice(1);
-        }else{
-            return str;
-        }
-    }
-
-    /**
      * Returns full name in pascal case.
      */
     getFullName(): string {
-        return this.getPascalCase(this._firstName) + ' ' + this.getPascalCase(this._name);
+        return NameService.prettyString(this._firstName) + ' ' + NameService.prettyString(this._name);
     }
 }
 
