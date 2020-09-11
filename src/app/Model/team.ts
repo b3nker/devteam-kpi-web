@@ -23,6 +23,10 @@ export class Team {
     return this._collaborators;
   }
 
+  /**
+   * Returns as a string, team name with an uppercase for first character.
+   * ex : alpha -> Alpha
+   */
   get prettyName(): string{
     if (this._name.length <= 0){
       return this._name;

@@ -145,10 +145,14 @@ export class Ticket {
         return this._ticketsUS;
     }
 
+    /** Returns number of tickets that are "done", meaning that they were accepted (tested) by the client.
+     */
     getDoneTickets(): number {
         return this.valideEnRecette + this.valide + this.termine + this.livre + this.abandonne;
     }
 
+    /** Returns number of tickets for which development is "over", when they have passed the "Dév terminé" status is Jira's workflow
+     */
     getSupDevDoneTickets(): number {
         return this.devTermine + this.testCroise + this.mergeRequest +
             this.atester + this.alivrer + this.avalider + this.getDoneTickets();

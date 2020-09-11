@@ -12,6 +12,18 @@ export class Sprint {
     private _addedTickets: Ticket;
     private _addedWork: number;
 
+    constructor(id: number, name: string, timeLeft: number, totalTime: number, team: Team, startDate: string,
+                endDate: string, addedTickets: Ticket, addedWork: number) {
+        this._id = id;
+        this._name = name;
+        this._timeLeft = timeLeft;
+        this._totalTime = totalTime;
+        this._team = team;
+        this._startDate = startDate;
+        this._endDate = endDate;
+        this._addedTickets = addedTickets;
+        this._addedWork = addedWork;
+    }
 
     get id(): number {
         return this._id;
@@ -29,6 +41,10 @@ export class Sprint {
         this._team = value;
     }
 
+    get team(): Team {
+        return this._team;
+    }
+
     get name(): string {
         return this._name;
     }
@@ -41,31 +57,12 @@ export class Sprint {
         return this._totalTime;
     }
 
-    // tslint:disable-next-line:adjacent-overload-signatures
-    get team(): Team {
-        return this._team;
-    }
-
     get startDate(): string {
         return this._startDate;
     }
 
     get endDate(): string {
         return this._endDate;
-    }
-
-
-    constructor(id: number, name: string, timeLeft: number, totalTime: number, team: Team, startDate: string,
-                endDate: string, addedTickets: Ticket, addedWork: number) {
-        this._id = id;
-        this._name = name;
-        this._timeLeft = timeLeft;
-        this._totalTime = totalTime;
-        this._team = team;
-        this._startDate = startDate;
-        this._endDate = endDate;
-        this._addedTickets = addedTickets;
-        this._addedWork = addedWork;
     }
 }
 

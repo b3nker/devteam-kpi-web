@@ -8,6 +8,19 @@ export class Backlog {
     private _nbBugsCreated: number [];
     private _nbBugsResolved: number [];
 
+    constructor(projectName: string, nbBugs: number, nbBugsLow: number, nbBugsMedium: number,
+                nbBugsHigh: number, nbBugsHighest: number, nbBugsCreated: number[],
+                nbBugsResolved: number[]) {
+        this._projectName = projectName;
+        this._nbBugs = nbBugs;
+        this._nbBugsLow = nbBugsLow;
+        this._nbBugsMedium = nbBugsMedium;
+        this._nbBugsHigh = nbBugsHigh;
+        this._nbBugsHighest = nbBugsHighest;
+        this._nbBugsCreated = nbBugsCreated;
+        this._nbBugsResolved = nbBugsResolved;
+    }
+
     get nbBugsCreated(): number[] {
         return this._nbBugsCreated;
     }
@@ -40,17 +53,4 @@ export class Backlog {
         return this._nbBugsHighest;
     }
 
-
-   constructor(projectName: string, nbBugs: number, nbBugsLow: number, nbBugsMedium: number,
-               nbBugsHigh: number, nbBugsHighest: number, nbBugsCreated: number[],
-               nbBugsResolved: number[]) {
-        this._projectName = projectName;
-        this._nbBugs = nbBugs;
-        this._nbBugsLow = nbBugsLow;
-        this._nbBugsMedium = nbBugsMedium;
-        this._nbBugsHigh = nbBugsHigh;
-        this._nbBugsHighest = nbBugsHighest;
-        this._nbBugsCreated = nbBugsCreated;
-        this._nbBugsResolved = nbBugsResolved;
-    }
 }

@@ -113,14 +113,4 @@ export class StoryPoint {
     get mergeRequest(): number {
         return this._mergeRequest;
     }
-
-
-    getDoneStoryPoints(): number {
-        return this.valideEnRecette + this.valide + this.termine + this.livre + this.abandonne;
-    }
-
-    getSupDevDoneStoryPoints(): number {
-        return this.devTermine + this.testCroise + this.mergeRequest +
-            this.atester + this.alivrer + this.avalider + this.getDoneStoryPoints();
-    }
 }
