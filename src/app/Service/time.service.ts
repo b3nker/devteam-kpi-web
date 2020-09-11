@@ -24,9 +24,7 @@ export class TimeService {
       nbDaysInTime = Math.ceil(time / nbWorkingHoursDay);
       nbHoursInTime = Math.abs(Math.ceil(time - nbDaysInTime * nbWorkingHoursDay));
     }
-
     // Printing
-
     if (nbDaysInTime === 0) {
       return nbHoursInTime + 'h';
     } else {

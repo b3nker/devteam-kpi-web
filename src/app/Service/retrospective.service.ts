@@ -12,6 +12,9 @@ export class RetrospectiveService {
 
   constructor(private http: HttpClient) {}
 
+  /**Retrieves retrospective objects by performing a GET request to kpi-api
+   *
+   */
   getRetrospectives(): Observable<Retrospective[]> {
     return this.http.get<Retrospective[]>(this.BASE_URL);
   }

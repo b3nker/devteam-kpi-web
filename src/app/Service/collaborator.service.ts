@@ -14,6 +14,10 @@ export class CollaboratorService {
   constructor(private http: HttpClient, private adapter: CollaboratorAdapter) {
   }
 
+  /**
+   * Retrieves all collaborators data from kpi-api (GET)
+   * @param currentUrl, collaborator URL (last segment)
+   */
   getCollaborators(currentUrl: string): Observable<Collaborator[]> {
     return this.http.get(this.BASE_URL + currentUrl).pipe(
       map((data: any[]) => data.map((item) => this.adapter.adapt(item)))

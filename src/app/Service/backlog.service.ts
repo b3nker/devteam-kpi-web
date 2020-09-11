@@ -12,6 +12,8 @@ export class BacklogService {
 
   constructor(private http: HttpClient) { }
 
+  /** Retrieve Backlog object from back-end REST API (kpi-api)
+   */
   getBacklog(): Observable<Backlog> {
     return this.http.get<Backlog>(this.BASE_URL);
   }

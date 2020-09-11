@@ -16,6 +16,9 @@ export class SprintService {
   constructor(private http: HttpClient, private adapter: SprintAdapter) {
   }
 
+  /**Returns as percentage, the number of days left on the sprint (0 days left = 100%)
+   * @param sprint, object we want to get progress bar percentage from
+   */
   static getProgressBarPercentage(sprint: Sprint): number {
     let progression;
     const dateNow = new Date();
@@ -33,6 +36,10 @@ export class SprintService {
     return progression;
   }
 
+  /**
+   * Returns as percentage, the number of days left on the sprint (0 days left = 100%)
+   * @param sprints, objects we want to get progress bar percentage from
+   */
   static getProgressBarPercentageForSprints(sprints: Sprint[]): number {
     let progression = 0;
     for (const s of sprints){
@@ -70,12 +77,19 @@ export class SprintService {
     }
   }
 
+  /** Returns all lastly active sprints.
+   *
+   */
   getSprints(): Observable<Sprint[]> {
     return this.http.get(this.BASE_URL).pipe(
         map((data: any[]) => data.map((item) => this.adapter.adapt(item)))
     );
   }
 
+  /**
+   * Returns the last active sprint for a given team.
+   * @param currentUrl, teamName
+   */
   getSprint(currentUrl: string): Observable<Sprint[]>{
     return this.http.get(this.BASE_URL + currentUrl + '/last').pipe(
         map((data: any) => [data].map((item) => this.adapter.adapt(item)))
