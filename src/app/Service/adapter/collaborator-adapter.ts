@@ -2,7 +2,6 @@ import {Collaborator} from '../../Model/collaborator';
 import {Adapter} from './adapter';
 import {Injectable} from '@angular/core';
 import {TicketAdapter} from './ticket-adapter';
-import {StoryPoint} from '../../Model/story-point';
 import {StoryPointAdapter} from './story-point-adapter';
 
 @Injectable({
